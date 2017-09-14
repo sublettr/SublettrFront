@@ -1,0 +1,22 @@
+.container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.search {
+  height: 55%;
+}
+
+.options {
+  height: 45%;
+}
+
+.lease-div {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+.rent-div {
+  text-align: center;
+}
