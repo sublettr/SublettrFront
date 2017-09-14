@@ -12,6 +12,39 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bacfb53b', endColorstr='#98700d',GradientType=1 ); /* IE6-9 */
 }
 
+#searchwrapper {
+  width:310px; /*follow your image's size*/
+  height:40px;/*follow your image's size*/
+  background-repeat:no-repeat; /*important*/
+  padding:0px;
+  margin:0px;
+  position:relative; /*important*/
+}
+
+#searchwrapper form { display:inline ; }
+
+.searchbox {
+  border:0px; /*important*/
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), black;
+  background-color:transparent; /*important*/
+  position:absolute; /*important*/
+  top:4px;
+  left:9px;
+  width:256px;
+  height:28px;
+  font-family: 'Merriweather';
+}
+
+.searchbox_submit {
+  border:0px; /*important*/
+  background-color:transparent; /*important*/
+  position:absolute; /*important*/
+  top:4px;
+  left:265px;
+  width:32px;
+  height:28px;
+}
+
 .options {
   height: 45%;
 }
