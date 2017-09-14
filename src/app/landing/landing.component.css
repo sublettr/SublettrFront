@@ -13,10 +13,41 @@
 
 .lease-div {
   float: left;
-  width: 50%;
   text-align: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/South Street Station.jpg");
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  font-family: 'Merriweather'
+}
+
+.lease-div h1 {
+  position: relative;
+  top: 15%;
+  font-size: 52pt;
+  color: goldenrod;
 }
 
 .rent-div {
+  float: right;
   text-align: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/Klondike House.jpg");
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  background-color:rgba(0,0,0,0.8);
+  font-family: 'Merriweather'
+}
+
+.rent-div h1 {
+  position: relative;
+  top: 15%;
+  font-size: 52pt;
+  color: whitesmoke;
 }
