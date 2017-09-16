@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdIconModule, MdInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-@NgModule({
-  imports: [BrowserAnimationsModule, MdButtonModule, MdCheckboxModule],
-  exports: [BrowserAnimationsModule, MdButtonModule, MdCheckboxModule],
-})
 
 @NgModule({
   imports: [
     CommonModule,
-    MdButtonModule, MdCheckboxModule
+    BrowserAnimationsModule,
+    MdToolbarModule,
+    MdButtonModule,
+    MdCheckboxModule,
+    MdInputModule,
+    MdIconModule
   ],
-  exports: [MdButtonModule, MdCheckboxModule],
+  exports: [BrowserAnimationsModule,
+    MdToolbarModule,
+    MdButtonModule,
+    MdCheckboxModule,
+    MdInputModule,
+  MdIconModule ],
   declarations: []
 })
 export class AllMaterialModulesModule { }

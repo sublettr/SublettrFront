@@ -3,6 +3,13 @@
   width: 100%;
   position: absolute;
 }
+
+.search-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
 .search {
   height: 55%;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfb53b+0,98700d+100&0.73+36,1+100 */
