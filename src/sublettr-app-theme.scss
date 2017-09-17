@@ -9,8 +9,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$sublettr-primary: mat-palette($mat-amber);
-$sublettr-accent:  mat-palette($mat-blue-grey, 500, 900, A100);
+$sublettr-primary: mat-palette($mat-amber, 300, 500, A200);
+$sublettr-accent:  mat-palette($mat-blue-grey, 500, 900);
 $sublettr-warn:    mat-palette($mat-deep-orange);
 
 $sublettr-theme: mat-light-theme($sublettr-primary, $sublettr-accent, $sublettr-warn);
