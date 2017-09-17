@@ -6,19 +6,8 @@
       </md-form-field>
   </md-toolbar>
   <div class="search">
-    <div id="searchwrapper">
-      <form action="">
-        <input type="text" class="searchbox" name="s" value=""/>
-        <input type="image" src="../../assets/search-icon.png" class="searchbox_submit" value=""/>
-      </form>
-    </div>
-  </div>
-  <div class="row options">
-    <div class="lease-div">
-      <h1>Lease</h1>
-    </div>
-    <div class="rent-div">
-      <h1>Rent</h1>
-    </div>
+    <md-card *ngFor="let num of [0,1,2,3,4,5,6,7,8,9,10]" class="listing-card">
+      Sample Listing
+    </md-card>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdIconModule, MdInputModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdIconModule, MdInputModule, MdCardModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -12,14 +12,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MdButtonModule,
     MdCheckboxModule,
     MdInputModule,
-    MdIconModule
+    MdIconModule,
+    MdCardModule
   ],
   exports: [BrowserAnimationsModule,
     MdToolbarModule,
     MdButtonModule,
     MdCheckboxModule,
     MdInputModule,
-  MdIconModule ],
+    MdIconModule,
+    MdCardModule
+  ],
   declarations: []
 })
 export class AllMaterialModulesModule { }

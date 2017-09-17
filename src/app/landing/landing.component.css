@@ -11,7 +11,7 @@
 }
 
 .search {
-  height: 55%;
+  height: 100%;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfb53b+0,98700d+100&0.73+36,1+100 */
   background: -moz-linear-gradient(left, rgba(207,181,59,0.73) 0%, rgba(187,156,42,0.73) 36%, rgba(152,112,13,1) 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(left, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -19,80 +19,9 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bacfb53b', endColorstr='#98700d',GradientType=1 ); /* IE6-9 */
 }
 
-#searchwrapper {
-  width:310px; /*follow your image's size*/
-  height:40px;/*follow your image's size*/
-  background-repeat:no-repeat; /*important*/
-  padding:0px;
-  margin:0px;
-  position:relative; /*important*/
-}
-
-#searchwrapper form { display:inline ; }
-
-.searchbox {
-  border:0px; /*important*/
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), black;
-  background-color:transparent; /*important*/
-  position:absolute; /*important*/
-  top:4px;
-  left:9px;
-  width:256px;
-  height:28px;
-  font-family: 'Merriweather';
-}
-
-.searchbox_submit {
-  border:0px; /*important*/
-  background-color:transparent; /*important*/
-  position:absolute; /*important*/
-  top:4px;
-  left:265px;
-  width:32px;
-  height:28px;
-}
-
-.options {
-  height: 45%;
-}
-
-.lease-div {
-  float: left;
-  text-align: center;
-  vertical-align: middle;
-  height: 100%;
-  width: 50%;
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/South Street Station.jpg");
-  background-size:     cover;
-  background-repeat:   no-repeat;
-  background-position: center center;
-  font-family: 'Merriweather'
-}
-
-.lease-div h1 {
-  position: relative;
-  top: 15%;
-  font-size: 52pt;
-  color: goldenrod;
-}
-
-.rent-div {
-  float: right;
-  text-align: center;
-  vertical-align: middle;
-  height: 100%;
-  width: 50%;
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../assets/Klondike House.jpg");
-  background-size:     cover;
-  background-repeat:   no-repeat;
-  background-position: center center;
-  background-color:rgba(0,0,0,0.8);
-  font-family: 'Merriweather'
-}
-
-.rent-div h1 {
-  position: relative;
-  top: 15%;
-  font-size: 52pt;
-  color: whitesmoke;
+.listing-card {
+  width: 200px;
+  height: 300px;
+  margin: 20px 20px;
+  display: inline-block;
 }
