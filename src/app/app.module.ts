@@ -9,7 +9,9 @@ import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-
+  { path: '', component: LandingComponent },
+  { path: '*', component: LandingComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -21,7 +23,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AllMaterialModulesModule,
-    RouterModule.forChild(routes)
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
