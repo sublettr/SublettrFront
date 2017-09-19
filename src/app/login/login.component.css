@@ -1,0 +1,22 @@
+.container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.half-div {
+  height: 100%;
+  width: 50%;
+  position: relative;
+}
+
+.logo-div {
+  float: left;
+  background-color: #FFC107;
+}
+
+
+.login-div {
+  float: right;
+  background-color: #757575;
+}
