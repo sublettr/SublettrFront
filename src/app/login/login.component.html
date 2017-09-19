@@ -2,13 +2,33 @@
   <div class="half-div logo-div">
     <h2>Logo</h2>
   </div>
-  <div class="half-div login-div">
-    <h2>
-      Login
-    </h2>
-    <p>
-      login works!
-    </p>
+  <div class="half-div login-div text-center" flex layout="column" layout-align="center center">
+    <div>
+      <div class="login-label">
+        <h2>Login</h2>
+      </div>
+      <div class="email-input">
+        <md-form-field style="width: 100%">
+          <label>Email</label>
+          <input mdInput type="email" ng-model="username"/>
+        </md-form-field>
+      </div>
+      <div class="password-input">
+        <md-form-field style="width: 100%">
+          <label>Password</label>
+          <input mdInput type="password" ng-model="password"/>
+        </md-form-field>
+      </div>
+
+      <div class="login-register-div">
+        <div class="login-btn-div">
+          <button md-raised-button color="primary">Login</button>
+        </div>
+        <div class="forgot-password-div">
+          <button href="" md-button md-no-ink>Forgot Password</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
