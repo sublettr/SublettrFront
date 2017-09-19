@@ -20,3 +20,38 @@
   float: right;
   background-color: #757575;
 }
+
+.login-label {
+  width:50%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.email-input {
+  width:80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.password-input {
+  width:80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.login-register-div {
+  padding-top: 5%;
+  width:100%;
+  margin: 0 auto;
+  display: inline-flex;
+}
+
+.login-btn-div {
+  width:25%;
+  margin: 0 auto;
+}
+
+.forgot-password-div {
+  width:25%;
+  margin: 0 auto;
+}
