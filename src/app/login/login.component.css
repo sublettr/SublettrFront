@@ -15,6 +15,12 @@
   background-color: #FFC107;
 }
 
+.logo {
+  top: 25%;
+  text-align: center;
+  position: relative;
+}
+
 
 .login-div {
   float: right;

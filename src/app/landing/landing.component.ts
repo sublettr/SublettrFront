@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
+import {MdDialogRef, MD_DIALOG_DATA, MdDialog} from "@angular/material";
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MdDialog) { }
 
   ngOnInit() {
   }
 
+  openDialog(): void {
+    let dialogRef = this.dialog.open(LoginDialog, {
+      width: '250px',
+      data: { firstname: "", lastname: "", password: "" }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }
+
+@Component({
+  selector: 'app-login',
+  templateUrl: '../login/login.component.html',
+  styleUrls: ['../login/login.component.css']
+})
+export class LoginDialog {
+
+  constructor(
+    public dialogRef: MdDialogRef<LoginDialog>,
+    @Inject(MD_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}
+
