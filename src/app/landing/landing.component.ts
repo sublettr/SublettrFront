@@ -15,7 +15,8 @@ export class LandingComponent implements OnInit {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(LoginDialog, {
-      width: '250px',
+      width: '500px',
+      height: '500px',
       data: { firstname: "", lastname: "", password: "" }
     });
 
@@ -26,9 +27,9 @@ export class LandingComponent implements OnInit {
 }
 
 @Component({
-  selector: 'app-login',
-  templateUrl: '../login/login.component.html',
-  styleUrls: ['../login/login.component.css']
+  selector: 'app-landing',
+  templateUrl: './login-dialog.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginDialog {
 

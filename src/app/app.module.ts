@@ -21,6 +21,9 @@ const routes: Routes = [
     LoginComponent,
     LoginDialog
   ],
+  entryComponents: [
+    LoginDialog
+  ],
   imports: [
     BrowserModule,
     AllMaterialModulesModule,
