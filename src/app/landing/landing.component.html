@@ -5,9 +5,9 @@
         <md-icon class="material-icons">search</md-icon>
       </md-form-field>
       <span class="search-spacer"></span>
-    <button md-raised-button color="dark-primary" class="btn-toolbar">Help</button>
-    <button md-raised-button class="mat-warn btn-toolbar">Register</button>
+    <a [routerLink]="['/post']"><button md-raised-button class="mat-warn btn-toolbar">Post</button></a>
     <a (click)="openDialog()"><button md-raised-button class="mat-accent btn-toolbar">Login</button></a>
+    <button md-raised-button color="dark-primary" class="btn-toolbar">Help</button>
 
   </md-toolbar>
   <div class="search">
