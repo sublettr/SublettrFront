@@ -30,7 +30,7 @@
 .login-label {
   width:50%;
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
 }
 
 .email-input {
@@ -45,19 +45,21 @@
   text-align: left;
 }
 
-.login-register-div {
+.name-input {
+  width:80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.register-div {
   padding-top: 5%;
   width:100%;
   margin: 0 auto;
   display: inline-flex;
 }
 
-.login-btn-div {
-  width:25%;
+.register-btn-div {
+  width:50%;
   margin: 0 auto;
-}
-
-.forgot-password-div {
-  width:25%;
-  margin: 0 auto;
+  text-align: center;
 }
