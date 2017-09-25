@@ -1,6 +1,8 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {MdDialogRef, MD_DIALOG_DATA, MdDialog} from "@angular/material";
 
+import {HttpService} from './../utility/http.service';
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -8,7 +10,9 @@ import {MdDialogRef, MD_DIALOG_DATA, MdDialog} from "@angular/material";
 })
 export class LandingComponent implements OnInit {
 
-  constructor(public dialog: MdDialog) { }
+  searchText: string;
+
+  constructor(public dialog: MdDialog, private httpServ: HttpService) { }
 
   ngOnInit() {
   }
@@ -22,6 +26,16 @@ export class LandingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+    });
+  }
+
+  search() {
+    this.httpServ.search(this.searchText)
+      .subscribe(()=>{
+        console.log('response received');
+      },
+    err =>{
+      console.log('error on search response');
     });
   }
 }

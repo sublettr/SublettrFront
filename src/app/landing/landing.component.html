@@ -1,8 +1,8 @@
 <div class="container">
   <md-toolbar color="primary">
       <md-form-field class="search-form" color="white" floatPlaceholder="never">
-        <input mdInput placeholder="Search here">
-        <md-icon class="material-icons">search</md-icon>
+        <input mdInput placeholder="Search here" [(ngModel)]='searchText'>
+        <button (click)='search()'><md-icon class="material-icons">search</md-icon></button>
       </md-form-field>
       <span class="search-spacer"></span>
     <button md-raised-button color="dark-primary" class="btn-toolbar">Help</button>
