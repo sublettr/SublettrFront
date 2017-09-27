@@ -30,7 +30,7 @@
 .login-label {
   width:50%;
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
 }
 
 .email-input {
@@ -45,6 +45,12 @@
   text-align: left;
 }
 
+.name-input {
+  width:80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .register-div {
   padding-top: 5%;
   width:100%;
@@ -52,24 +58,8 @@
   display: inline-flex;
 }
 
-.login-register-div {
-  padding-top: 5%;
-  width:100%;
-  margin: 0 auto;
-  display: inline-flex;
-}
-
 .register-btn-div {
-  width:25%;
+  width:50%;
   margin: 0 auto;
-}
-
-.login-btn-div {
-  width:25%;
-  margin: 0 auto;
-}
-
-.forgot-password-div {
-  width:25%;
-  margin: 0 auto;
+  text-align: center;
 }

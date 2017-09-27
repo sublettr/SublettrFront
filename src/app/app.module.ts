@@ -4,25 +4,27 @@ import { AllMaterialModulesModule } from './all-material.module';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import {LandingComponent, LoginDialog} from './landing/landing.component';
-import { LoginComponent } from './login/login.component';
+import {LandingComponent, LoginDialog, RegisterDialog} from './landing/landing.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: '*', component: LandingComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
-    LoginComponent,
-    LoginDialog
+    LoginDialog,
+    RegisterDialog,
+    RegisterComponent
   ],
   entryComponents: [
-    LoginDialog
+    LoginDialog,
+    RegisterDialog
   ],
   imports: [
     BrowserModule,
