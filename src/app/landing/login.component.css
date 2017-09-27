@@ -45,11 +45,23 @@
   text-align: left;
 }
 
+.register-div {
+  padding-top: 5%;
+  width:100%;
+  margin: 0 auto;
+  display: inline-flex;
+}
+
 .login-register-div {
   padding-top: 5%;
   width:100%;
   margin: 0 auto;
   display: inline-flex;
+}
+
+.register-btn-div {
+  width:25%;
+  margin: 0 auto;
 }
 
 .login-btn-div {

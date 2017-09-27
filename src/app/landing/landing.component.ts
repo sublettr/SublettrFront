@@ -13,14 +13,25 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDialog(): void {
-    let dialogRef = this.dialog.open(LoginDialog, {
+  openLoginDialog(): void {
+    let loginDialogRef = this.dialog.open(LoginDialog, {
       width: '500px',
       height: '500px',
       data: { firstname: "", lastname: "", password: "" }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    loginDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openRegisterDialog(): void {
+    let registerDialogRef = this.dialog.open(RegisterDialog, {
+      width: '500px',
+      height: '500px',
+      data: { firstname: "", lastname: "", password: "" }
+    });
+
+    registerDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
@@ -34,12 +45,28 @@ export class LandingComponent implements OnInit {
 export class LoginDialog {
 
   constructor(
-    public dialogRef: MdDialogRef<LoginDialog>,
+    public loginDialogRef: MdDialogRef<LoginDialog>,
     @Inject(MD_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.loginDialogRef.close();
   }
 
 }
 
+@Component({
+  selector: 'app-landing',
+  templateUrl: './register-dialog.html',
+  styleUrls: ['./login.component.css']
+})
+export class RegisterDialog {
+
+  constructor(
+    public registerDialogRef: MdDialogRef<RegisterDialog>,
+    @Inject(MD_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.registerDialogRef.close();
+  }
+
+}

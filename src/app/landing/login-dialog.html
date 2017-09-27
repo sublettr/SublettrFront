@@ -4,23 +4,22 @@
   <div class="email-input">
     <md-form-field style="width: 100%">
       <label>Email</label>
-      <input mdInput type="email" ng-model="username"/>
+      <input mdInput type="email" ng-model="username" />
     </md-form-field>
   </div>
   <div class="password-input">
     <md-form-field style="width: 100%">
       <label>Password</label>
-      <input mdInput type="password" ng-model="password"/>
+      <input mdInput type="password" ng-model="password" />
     </md-form-field>
   </div>
 
   <div md-dialog-actions class="login-register-div">
+    <div class="forgot-password-div">
+      <button md-button md-no-ink>Forgot Password?</button>
+    </div>
     <div class="login-btn-div">
       <button md-raised-button color="primary">Login</button>
-    </div>
-    <div class="forgot-password-div">
-      <a [routerLink]="['/register']"><button md-raised-button color="accent">Register</button></a>
-      <button md-button md-no-ink>Forgot Password?</button>
     </div>
   </div>
 </div>

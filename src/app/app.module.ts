@@ -4,7 +4,7 @@ import { AllMaterialModulesModule } from './all-material.module';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import {LandingComponent, LoginDialog} from './landing/landing.component';
+import {LandingComponent, LoginDialog, RegisterDialog} from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -19,10 +19,12 @@ const routes: Routes = [
     AppComponent,
     LandingComponent,
     LoginDialog,
+    RegisterDialog,
     RegisterComponent
   ],
   entryComponents: [
-    LoginDialog
+    LoginDialog,
+    RegisterDialog
   ],
   imports: [
     BrowserModule,

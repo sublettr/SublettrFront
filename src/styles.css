@@ -7,4 +7,5 @@
 .accent-color          { background: #9E9E9E; }
 .primary-text-color    { color: #212121; }
 .secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }
 body                   { margin: 0; }
