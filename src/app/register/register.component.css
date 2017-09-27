@@ -1,0 +1,65 @@
+.container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.half-div {
+  height: 100%;
+  width: 50%;
+  position: relative;
+}
+
+.logo-div {
+  float: left;
+  background-color: #FFC107;
+}
+
+.logo {
+  top: 25%;
+  text-align: center;
+  position: relative;
+}
+
+
+.login-div {
+  float: right;
+  background-color: #757575;
+}
+
+.login-label {
+  width:50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.email-input {
+  width:80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.password-input {
+  width:80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.name-input {
+  width:80%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.register-div {
+  padding-top: 5%;
+  width:100%;
+  margin: 0 auto;
+  display: inline-flex;
+}
+
+.register-btn-div {
+  width:50%;
+  margin: 0 auto;
+  text-align: center;
+}

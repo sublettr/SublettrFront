@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="half-div logo-div">
+    <div class="logo">
+      <h1>sublettr</h1>
+      <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    </div>
+  </div>
+  <div class="half-div login-div text-center" flex layout="column" layout-align="center center">
+    <div>
+      <div class="login-label">
+        <h2 style="color: #FFC107">Register an Account</h2>
+      </div>
+      <div class="name-input">
+        <md-form-field style="width: 100%">
+          <label>Name</label>
+          <input mdInput type="text" ng-model="name" />
+        </md-form-field>
+      </div>
+      <div class="email-input">
+        <md-form-field style="width: 100%">
+          <label>Email</label>
+          <input mdInput type="email" ng-model="username" />
+        </md-form-field>
+      </div>
+      <div class="password-input">
+        <md-form-field style="width: 100%">
+          <label>Password</label>
+          <input mdInput type="password" ng-model="password" />
+        </md-form-field>
+      </div>
+      <div class="password-input">
+        <md-form-field style="width: 100%">
+          <label>Confirm Password</label>
+          <input mdInput type="password" ng-model="password" />
+        </md-form-field>
+      </div>
+
+      <div class="register-div">
+        <div class="register-btn-div">
+          <button (click)="onClick($event)" md-raised-button color="primary">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

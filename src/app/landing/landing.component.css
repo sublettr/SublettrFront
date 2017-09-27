@@ -1,0 +1,45 @@
+.container {
+  height: auto;
+  width: auto;
+  position: absolute;
+}
+
+.search-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.search {
+  height: auto;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfb53b+0,98700d+100&0.73+36,1+100 */
+  background: -moz-linear-gradient(left, rgba(207,181,59,0.73) 0%, rgba(187,156,42,0.73) 36%, rgba(152,112,13,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bacfb53b', endColorstr='#98700d',GradientType=1 ); /* IE6-9 */
+}
+
+.search-spacer {
+  flex: 1 1 auto;
+}
+
+.btn-toolbar {
+  margin-right: 20px;
+}
+
+.listing-card {
+  width: 15%;
+  height: auto;
+  margin: 20px 20px;
+  display: inline-block;
+}
+
+.listing-card md-card-header {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.listing-card mat-card-header-text {
+  margin-left: auto;
+  margin-right: auto;
+}
