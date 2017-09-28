@@ -1,18 +1,16 @@
-
-
 .post-h1 {
-  margin: auto 0;
+  margin: 20px auto 20px;
   text-align: center;
 }
 
 .example-form {
-  width: 1000px;
-  height: 800px;
+  width: auto;
+  height: auto;
 
   position:absolute; /*it can be fixed too*/
   left:0; right:0;
   top:0; bottom:0;
-  margin:auto;
+  margin: 50px 50px;
 
   /*this to solve "the content will not be cut when the window is smaller than the content": */
   max-width:100%;
