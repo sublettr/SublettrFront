@@ -1,3 +1,9 @@
+.container {
+  height: auto;
+  width: auto;
+  position: absolute;
+}
+
 .search-form {
   min-width: 150px;
   max-width: 500px;

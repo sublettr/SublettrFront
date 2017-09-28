@@ -1,22 +1,21 @@
 <div class="container">
   <md-toolbar color="primary">
-      <md-form-field class="search-form" color="white" floatPlaceholder="never">
-        <input mdInput placeholder="Search here">
-        <md-icon class="material-icons">search</md-icon>
-      </md-form-field>
-      <span class="search-spacer"></span>
-    <a [routerLink]="['/post']"><button md-raised-button class="mat-warn btn-toolbar">Post</button></a>
-    <a (click)="openDialog()"><button md-raised-button class="mat-accent btn-toolbar">Login</button></a>
+    <md-form-field class="search-form" color="white" floatPlaceholder="never">
+      <input mdInput placeholder="Search here">
+      <md-icon class="material-icons">search</md-icon>
+    </md-form-field>
+    <span class="search-spacer"></span>
     <button md-raised-button color="dark-primary" class="btn-toolbar">Help</button>
-
+    <a [routerLink]="['/post']"><button md-raised-button class="mat-warn btn-toolbar">Post</button></a>
+    <a (click)="openRegisterDialog()"><button md-raised-button class="mat-warn btn-toolbar">Register</button></a>
+    <a (click)="openLoginDialog()"><button md-raised-button class="mat-accent btn-toolbar">Login</button></a>
   </md-toolbar>
   <div class="search">
     <md-card *ngFor="let num of [10,134,22,300,40,54,46,27,38,19,510]" class="listing-card">
       <md-card-content>
         <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         </p>
         <button md-icon-button color="primary">
           <md-icon>plus_one</md-icon>
