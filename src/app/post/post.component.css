@@ -6,11 +6,11 @@
 .example-form {
   width: auto;
   height: auto;
-
+  background-color: inherit;
   position:absolute; /*it can be fixed too*/
   left:0; right:0;
   top:0; bottom:0;
-  margin: 50px 50px;
+  padding: 50px 50px;
 
   /*this to solve "the content will not be cut when the window is smaller than the content": */
   max-width:100%;
