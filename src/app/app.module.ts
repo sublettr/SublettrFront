@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AllMaterialModulesModule } from './all-material.module';
 import { RouterModule, Routes } from '@angular/router';
+import {HttpModule} from "@angular/http";
+
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -28,6 +30,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     AllMaterialModulesModule,
     RouterModule.forRoot(routes)
   ],

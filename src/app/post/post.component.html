@@ -47,12 +47,27 @@
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
-            <md-checkbox property="la">Roommates?</md-checkbox>
+            <md-checkbox property="la">Roommates</md-checkbox>
         </td>
         <td>
           <md-form-field class="example-full-width">
             <input mdInput type="number" placeholder="Number of Roommates">
           </md-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <th style="font-family: Roboto">Amenities</th>
+      </tr>
+      <tr>
+        <td>
+            <md-selection-list dense #amenitiesList>
+              <md-list-option *ngFor="let amenity of amenities">
+                <md-icon svgIcon="{{amenity.url}}"></md-icon>
+                <h3 mdLine> {{amenity.title}} </h3>
+              </md-list-option>
+            </md-selection-list>
         </td>
       </tr>
     </table>
