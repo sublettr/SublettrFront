@@ -21,3 +21,7 @@
 .example-full-width {
   width: 100%;
 }
+
+.btn-landing {
+  float: right;
+}
