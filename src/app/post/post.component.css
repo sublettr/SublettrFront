@@ -1,3 +1,10 @@
+
+
+.post-h1 {
+  margin: auto 0;
+  text-align: center;
+}
+
 .example-form {
   width: 1000px;
   height: 800px;
