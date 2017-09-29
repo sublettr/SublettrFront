@@ -253,12 +253,22 @@ export class LoginDialog {
 })
 export class RegisterDialog {
 
-  constructor(public registerDialogRef: MdDialogRef<RegisterDialog>,
-              @Inject(MD_DIALOG_DATA) public data: any) {
-  }
+  constructor(
+    public registerDialogRef: MdDialogRef<RegisterDialog>,
+    @Inject(MD_DIALOG_DATA) public data: any) {
+      this.data = {
+        name: "",
+        email: "",
+        pass1: "",
+        pass2: ""
+      };
+    }
 
   onNoClick(): void {
     this.registerDialogRef.close();
   }
 
+  onRegistrationSubmit() {
+    console.log(JSON.stringify(this.data));
+  }
 }
