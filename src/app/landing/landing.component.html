@@ -11,12 +11,23 @@
 
   </md-toolbar>
   <div class="search">
-    <md-card *ngFor="let num of [10,134,22,300,40,54,46,27,38,19,510]" class="listing-card">
+    <md-card *ngFor="let property of subleases" class="listing-card">
+      <md-card-header style="margin-bottom: 20px">
+        <md-card-header>{{property.title}}</md-card-header>
+      </md-card-header>
+      <img md-card-image src={{property.url}} alt="Photo of a Property Listing">
       <md-card-content>
-        <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        </p>
+        <md-expansion-panel>
+        <md-expansion-panel-header>
+          <md-panel-title>
+            Description
+          </md-panel-title>
+        </md-expansion-panel-header>
+          <p>
+            {{property.desc}}
+          </p>
+        </md-expansion-panel>
+
         <button md-icon-button color="primary">
           <md-icon>plus_one</md-icon>
         </button>
