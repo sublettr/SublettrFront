@@ -12,7 +12,6 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {
   }
-
   openLoginDialog(): void {
     let loginDialogRef = this.dialog.open(LoginDialog, {
       width: '500px',
