@@ -12,28 +12,43 @@
   </md-toolbar>
   <div class="search">
     <md-card *ngFor="let property of subleases" class="listing-card">
-      <md-card-header style="margin-bottom: 20px">
-        <md-card-header>{{property.title}}</md-card-header>
-      </md-card-header>
-      <img md-card-image src={{property.url}} alt="Photo of a Property Listing">
       <md-card-content>
-        <md-expansion-panel>
-        <md-expansion-panel-header>
-          <md-panel-title>
-            Description
-          </md-panel-title>
-        </md-expansion-panel-header>
-          <p>
-            {{property.desc}}
-          </p>
-        </md-expansion-panel>
+        <div class="listing-card-img">
+          <img md-card-image src={{property.url}} alt="Photo of a Property Listing">
+        </div>
+        <div class="listing-card-description">
+          <div class="listing-card-row">
+            <div style="display: inline-block; float: left">
+              <h3>{{property.title}}</h3>
+              <h4>{{property.location}}</h4>
+            </div>
+            <h3 style="display: inline-block; float: right">${{property.price}}</h3>
+          </div>
+          <div class="listing-card-row">
+            <h3 style="display: inline-block;float: left">{{property.desc}}</h3>
+          </div>
+          <div class="listing-card-row">
+            <h3 style="display: inline-block;float: left">Row 3</h3>
 
-        <button md-icon-button color="primary">
-          <md-icon>plus_one</md-icon>
-        </button>
-        <button md-icon-button color="primary">
-          <md-icon >share</md-icon>
-        </button>
+          </div>
+        </div>
+        <!--<md-expansion-panel>-->
+        <!--<md-expansion-panel-header>-->
+          <!--<md-panel-title>-->
+            <!--Description-->
+          <!--</md-panel-title>-->
+        <!--</md-expansion-panel-header>-->
+          <!--<p>-->
+            <!--{{property.desc}}-->
+          <!--</p>-->
+        <!--</md-expansion-panel>-->
+
+        <!--<button md-icon-button color="primary">-->
+          <!--<md-icon>plus_one</md-icon>-->
+        <!--</button>-->
+        <!--<button md-icon-button color="primary">-->
+          <!--<md-icon >share</md-icon>-->
+        <!--</button>-->
       </md-card-content>
     </md-card>
   </div>
