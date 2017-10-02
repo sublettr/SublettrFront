@@ -28,9 +28,31 @@
 }
 
 .listing-card {
-  width: 15%;
+  width: 95%;
   height: auto;
   margin: 20px 20px;
+  display: inline-block;
+}
+
+.listing-card-img {
+  width: 20%;
+  height: 100%;
+  min-height: 250px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.listing-card-description {
+  width: 70%;
+  height: auto;
+  float: right;
+}
+
+.listing-card-row {
+ width: 100%;
   display: inline-block;
 }
 
