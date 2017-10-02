@@ -47,12 +47,13 @@
           <div class="listing-card-row">
             <div style="display: inline-block; float: left">
               <h3>Amentities</h3>
+              <span *ngFor="let amenity of property.amenities" mdTooltip="{{amenity.title}}"><md-icon style="margin-right: 16px" svgIcon="{{amenity.url}}"></md-icon></span>
             </div>
-            <div style="display: inline-block; float: right">
-              <button md-icon-button color="primary">
+            <div style="display: inline-block; float: right; margin-top: 5%">
+              <button (click)="favorite()" md-icon-button color="primary">
                 <md-icon>favorite</md-icon>
               </button>
-              <button md-icon-button color="primary">
+              <button (click)="share()" md-icon-button color="primary">
                 <md-icon>share</md-icon>
               </button>
             </div>

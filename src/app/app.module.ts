@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AllMaterialModulesModule } from './all-material.module';
 import { RouterModule, Routes } from '@angular/router';
-import {HttpModule} from "@angular/http";
-
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 import {LandingComponent, LoginDialog, RegisterDialog} from './landing/landing.component';
+import {HttpClientModule} from "@angular/common/http";
+import {HttpModule} from "@angular/http";
 
 
 const routes: Routes = [
@@ -31,10 +31,13 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     AllMaterialModulesModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}
