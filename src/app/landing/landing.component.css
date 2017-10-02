@@ -37,7 +37,12 @@
 .listing-card-img {
   width: 20%;
   height: 100%;
+  min-height: 250px;
   float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .listing-card-description {
