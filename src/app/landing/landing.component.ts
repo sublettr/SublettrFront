@@ -238,10 +238,19 @@ export class LoginDialog {
 
   constructor(public loginDialogRef: MdDialogRef<LoginDialog>,
               @Inject(MD_DIALOG_DATA) public data: any) {
+    this.data = {
+      id: 1,
+      email: "",
+      password: ""
+    };
   }
 
   onNoClick(): void {
     this.loginDialogRef.close();
+  }
+
+  onLoginSubmit() {
+      console.log(JSON.stringify(this.data));
   }
 
 }
