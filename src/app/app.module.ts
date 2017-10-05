@@ -8,13 +8,15 @@ import { PostComponent } from './post/post.component';
 import {LandingComponent, LoginDialog, RegisterDialog} from './landing/landing.component';
 import {HttpClientModule} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
+import { ViewSubleaseComponent } from './view-sublease/view-sublease.component';
 
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: '*', component: LandingComponent },
-  { path: 'post', component: PostComponent }
-  ];
+  { path: 'post', component: PostComponent },
+  { path: 'view-sublease', component: ViewSubleaseComponent }
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ const routes: Routes = [
     LandingComponent,
     LoginDialog,
     RegisterDialog,
-    PostComponent
+    PostComponent,
+    ViewSubleaseComponent
   ],
   entryComponents: [
     LoginDialog,
