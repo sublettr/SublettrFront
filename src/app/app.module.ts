@@ -5,14 +5,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { PostComponent } from './post/post.component';
 import {LandingComponent, LoginDialog, RegisterDialog} from './landing/landing.component';
-import { RegisterComponent } from './register/register.component';
+import {HttpClientModule} from "@angular/common/http";
+import {HttpModule} from "@angular/http";
+import { ViewSubleaseComponent } from './view-sublease/view-sublease.component';
 
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: '*', component: LandingComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'post', component: PostComponent },
+  { path: 'view-sublease', component: ViewSubleaseComponent }
 ];
 
 @NgModule({
@@ -21,7 +25,8 @@ const routes: Routes = [
     LandingComponent,
     LoginDialog,
     RegisterDialog,
-    RegisterComponent
+    PostComponent,
+    ViewSubleaseComponent
   ],
   entryComponents: [
     LoginDialog,
@@ -29,6 +34,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     AllMaterialModulesModule,
     RouterModule.forRoot(routes),
     FormsModule
@@ -36,4 +43,6 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}
