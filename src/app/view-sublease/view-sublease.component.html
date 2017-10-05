@@ -1,3 +1,38 @@
-<p>
-  view-sublease works!
-</p>
+<div class="container">
+
+  <md-card class="view-sublease-card">
+    <md-card-content style="fill-pare">
+      <div class="sublease-card-img">
+        <img style="flex-shrink: 0; width: 100%; height: 100%" md-card-image src={{sublease.url}}
+             alt="Photo of a Property Listing">
+      </div>
+      <md-card-title>{{sublease.title}}</md-card-title>
+      <div class="sublease-card-description">
+        <div class="sublease-card-row">
+          <div style="display: inline-block; float: left">
+            <h4>{{sublease.location}}</h4>
+          </div>
+          <h3 style="display: inline-block; float: right">${{sublease.price}}</h3>
+        </div>
+        <div class="sublease-card-row">
+          <h3 style="display: inline-block;float: left">{{sublease.desc}}</h3>
+        </div>
+        <div class="sublease-card-row" style="bottom: 0; left: 0;">
+          <div style="display: inline-block; float: left">
+            <h3>Amentities</h3>
+            <span *ngFor="let amenity of sublease.amenities" mdTooltip="{{amenity.title}}"><md-icon style="margin-right: 16px" svgIcon="{{amenity.url}}"></md-icon></span>
+          </div>
+          <div style="display: inline-block; float: right; margin-top: 5%">
+            <button (click)="favorite()" md-icon-button color="primary">
+              <md-icon>favorite</md-icon>
+            </button>
+            <button (click)="share()" md-icon-button color="primary">
+              <md-icon>share</md-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+
+</div>
