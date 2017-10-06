@@ -3,4 +3,6 @@ export class Sublease {
   userId: number;
   address: string;
   description: string;
+  roommates: number;
+  isFurnished: boolean;
 }
