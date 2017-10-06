@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: '*', component: LandingComponent },
   { path: 'post', component: PostComponent },
-  { path: 'view-sublease', component: ViewSubleaseComponent }
+  { path: 'view-sublease/:id', component: ViewSubleaseComponent }
 ];
 
 @NgModule({
