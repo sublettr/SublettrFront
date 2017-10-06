@@ -5,6 +5,7 @@ import {RequestOptions} from "@angular/http";
 
 import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
+import {SubleaseService} from "../_services/sublet.service";
 
 @Component({
   selector: 'app-landing',
@@ -16,7 +17,7 @@ export class LandingComponent implements OnInit {
   isLoggedIn : boolean;
   currentUser: User;
 
-  constructor(public dialog: MdDialog, private http: HttpClient, private userService: UserService) {
+  constructor(public dialog: MdDialog, private http: HttpClient, private userService: UserService, private subleaseService: SubleaseService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {

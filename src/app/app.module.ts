@@ -12,6 +12,7 @@ import {HttpModule} from "@angular/http";
 import { ViewSubleaseComponent } from './view-sublease/view-sublease.component';
 import {UserService} from "./_services/user.service";
 import {AuthenticationService} from "./_services/auth.service";
+import {SubleaseService} from "./_services/sublet.service";
 
 
 const routes: Routes = [
@@ -42,7 +43,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  providers: [UserService, AuthenticationService],
+  providers: [UserService, AuthenticationService, SubleaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
