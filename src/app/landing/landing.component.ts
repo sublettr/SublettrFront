@@ -1,6 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {MdDialogRef, MD_DIALOG_DATA, MdDialog} from "@angular/material";
 import {HttpClient} from "@angular/common/http";
+import {RequestOptions} from "@angular/http";
 
 @Component({
   selector: 'app-landing',
@@ -8,7 +9,8 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-  public subleases
+  public subleases;
+  public user;
 
   constructor(public dialog: MdDialog, private http: HttpClient) {
     this.subleases = [{
@@ -213,6 +215,14 @@ export class LandingComponent implements OnInit {
 
     loginDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log(JSON.stringify(result));
+      if (result.email != "" && result.password != "") {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        this.http.get("/api/Account").subscribe(result => {
+          this.user = result['user'];
+        });
+      }
     });
   }
 
@@ -225,6 +235,11 @@ export class LandingComponent implements OnInit {
 
     registerDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      if (result.email != "" && result.password != "") {
+        this.http.get("/api/Account").subscribe(result => {
+          this.user = result['user'];
+        });
+      }
     });
   }
 }
@@ -237,7 +252,13 @@ export class LandingComponent implements OnInit {
 export class LoginDialog {
 
   constructor(public loginDialogRef: MdDialogRef<LoginDialog>,
-              @Inject(MD_DIALOG_DATA) public data: any) {
+              @Inject(MD_DIALOG_DATA) public data: any,
+              private http: HttpClient) {
+    this.data = {
+      id: 1,
+      email: "",
+      password: ""
+    };
   }
 
   onNoClick(): void {
