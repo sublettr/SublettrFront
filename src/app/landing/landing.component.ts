@@ -13,10 +13,10 @@ import { UserService } from '../_services/user.service';
 })
 export class LandingComponent implements OnInit {
   public subleases;
+  isLoggedIn : boolean;
   currentUser: User;
 
   constructor(public dialog: MdDialog, private http: HttpClient, private userService: UserService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -198,6 +198,12 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('currentUser') == null) {
+      this.isLoggedIn = false;
+    } else {
+      this.isLoggedIn = true;
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
   }
 
   //Get all subleases for the front page
@@ -215,8 +221,9 @@ export class LandingComponent implements OnInit {
 
   }
 
-  logout(user: User) {
-
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.isLoggedIn = false;
   }
 
   login(id: number, username: string, password: string) {
@@ -224,6 +231,11 @@ export class LandingComponent implements OnInit {
       .subscribe(
         data => {
           this.currentUser = data;
+          if (this.currentUser) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+            this.isLoggedIn = true;
+          }
         },
         error => {
           console.log("Login issue " + error);
@@ -243,11 +255,6 @@ export class LandingComponent implements OnInit {
       console.log(JSON.stringify(result));
       if (result.email != "" && result.password != "") {
         this.login(result.id, result.email, result.password);
-        // let headers = new Headers({ 'Content-Type': 'application/json' });
-        // let options = new RequestOptions({ headers: headers });
-        // this.http.get("/api/Account").subscribe(result => {
-        //   this.user = result['user'];
-        // });
       }
     });
   }

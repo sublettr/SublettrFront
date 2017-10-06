@@ -12,8 +12,11 @@
     <a (click)="openRegisterDialog()">
       <button md-raised-button class="mat-warn btn-toolbar">Register</button>
     </a>
-    <a (click)="openLoginDialog()">
+    <a (click)="openLoginDialog()" *ngIf="!isLoggedIn">
       <button md-raised-button class="mat-accent btn-toolbar">Login</button>
+    </a>
+    <a (click)="logout()" *ngIf="isLoggedIn">
+      <button md-raised-button class="mat-accent btn-toolbar">Logout</button>
     </a>
   </md-toolbar>
   <div class="search">
