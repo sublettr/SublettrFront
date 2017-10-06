@@ -10,6 +10,8 @@ import {LandingComponent, LoginDialog, RegisterDialog} from './landing/landing.c
 import {HttpClientModule} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
 import { ViewSubleaseComponent } from './view-sublease/view-sublease.component';
+import {UserService} from "./_services/user.service";
+import {AuthenticationService} from "./_services/auth.service";
 
 
 const routes: Routes = [
@@ -40,7 +42,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  providers: [],
+  providers: [UserService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

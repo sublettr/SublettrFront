@@ -3,6 +3,9 @@ import {MdDialogRef, MD_DIALOG_DATA, MdDialog} from "@angular/material";
 import {HttpClient} from "@angular/common/http";
 import {RequestOptions} from "@angular/http";
 
+import { User } from '../_models/user';
+import { UserService } from '../_services/user.service';
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -10,9 +13,10 @@ import {RequestOptions} from "@angular/http";
 })
 export class LandingComponent implements OnInit {
   public subleases;
-  public user;
+  currentUser: User;
 
-  constructor(public dialog: MdDialog, private http: HttpClient) {
+  constructor(public dialog: MdDialog, private http: HttpClient, private userService: UserService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -196,6 +200,11 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
   }
 
+  //Get all subleases for the front page
+  loadAllSubleases() {
+
+  }
+
   //Favorite a sublease
   favorite(): void {
     // this.http.put("www.xyz.com","user-id","sublease-id", "if the sublease was favorited or unfavorited");
@@ -204,6 +213,22 @@ export class LandingComponent implements OnInit {
   //Share a sublease
   share(): void {
 
+  }
+
+  logout(user: User) {
+
+  }
+
+  login(id: number, username: string, password: string) {
+    this.userService.getById(id)
+      .subscribe(
+        data => {
+          this.currentUser = data;
+        },
+        error => {
+          console.log("Login issue " + error);
+        }
+      )
   }
 
   openLoginDialog(): void {
@@ -217,11 +242,12 @@ export class LandingComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(JSON.stringify(result));
       if (result.email != "" && result.password != "") {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        this.http.get("/api/Account").subscribe(result => {
-          this.user = result['user'];
-        });
+        this.login(result.id, result.email, result.password);
+        // let headers = new Headers({ 'Content-Type': 'application/json' });
+        // let options = new RequestOptions({ headers: headers });
+        // this.http.get("/api/Account").subscribe(result => {
+        //   this.user = result['user'];
+        // });
       }
     });
   }
@@ -235,11 +261,11 @@ export class LandingComponent implements OnInit {
 
     registerDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      if (result.email != "" && result.password != "") {
-        this.http.get("/api/Account").subscribe(result => {
-          this.user = result['user'];
-        });
-      }
+      // if (result.email != "" && result.password != "") {
+      //   this.http.get("/api/Account").subscribe(result => {
+      //     this.user = result['user'];
+      //   });
+      // }
     });
   }
 }
