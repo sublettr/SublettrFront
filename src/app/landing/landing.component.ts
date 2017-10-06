@@ -14,6 +14,7 @@ import {SubleaseService} from "../_services/sublet.service";
 })
 export class LandingComponent implements OnInit {
   public subleases;
+  public sublets;
   isLoggedIn : boolean;
   currentUser: User;
 
@@ -205,11 +206,20 @@ export class LandingComponent implements OnInit {
       this.isLoggedIn = true;
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
+    this.loadAllSubleases();
   }
 
   //Get all subleases for the front page
   loadAllSubleases() {
-
+    this.subleaseService.getAll()
+      .subscribe(
+        data => {
+          this.sublets = data;
+        },
+        error => {
+          console.log("Getting sublets issue " + error);
+        }
+      );
   }
 
   //Favorite a sublease
