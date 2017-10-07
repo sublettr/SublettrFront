@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import {
   MdButtonModule, MdCheckboxModule, MdToolbarModule, MdIconModule, MdInputModule, MdCardModule,
-  MdDialog, MdDialogRef, MD_DIALOG_DATA, MdDialogModule, MdListModule, MdIconRegistry, MdExpansionModule, MdTooltipModule
+  MdDialog, MdDialogRef, MD_DIALOG_DATA, MdDialogModule, MdListModule, MdIconRegistry, MdExpansionModule,
+  MdTooltipModule, MdSidenavModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -20,7 +21,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MdCardModule,
     MdListModule,
     MdExpansionModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdSidenavModule
   ],
   exports: [BrowserAnimationsModule,
     MdToolbarModule,
@@ -32,7 +34,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MdCardModule,
     MdListModule,
     MdExpansionModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdSidenavModule
   ],
   declarations: []
 })
