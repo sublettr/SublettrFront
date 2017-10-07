@@ -6,6 +6,7 @@ import {RequestOptions} from "@angular/http";
 import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
 import {SubleaseService} from "../_services/sublet.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-landing',
@@ -18,7 +19,7 @@ export class LandingComponent implements OnInit {
   isLoggedIn : boolean;
   currentUser: User;
 
-  constructor(public dialog: MdDialog, private http: HttpClient, private userService: UserService, private subleaseService: SubleaseService) {
+  constructor(public dialog: MdDialog, private router: Router, private http: HttpClient, private userService: UserService, private subleaseService: SubleaseService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -207,6 +208,10 @@ export class LandingComponent implements OnInit {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     this.loadAllSubleases();
+  }
+
+  routePostSublease() {
+    this.router.navigateByUrl('/post');
   }
 
   //Get all subleases for the front page
