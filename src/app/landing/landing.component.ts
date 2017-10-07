@@ -269,8 +269,8 @@ export class LandingComponent implements OnInit {
     loginDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(JSON.stringify(result));
-      if (result.email != "" && result.password != "") {
-        this.login(result.id, result.email, result.password);
+      if (result.username != "" && result.password != "") {
+        this.login(result.id, result.username, result.password);
       }
     });
   }

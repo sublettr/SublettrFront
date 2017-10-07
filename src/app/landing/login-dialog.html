@@ -1,20 +1,16 @@
 <h2 md-dialog-title style="color: #FFC107">Login</h2>
-
-<<<<<<< 5d270cb2c065ca2b744b29c128451985bfa47c2f
-=======
 <form #heroForm="ngForm">
->>>>>>> Started login request.
 <div md-dialog-content>
   <div class="email-input">
     <md-form-field style="width: 100%">
       <label>Email</label>
-      <input mdInput type="email" ng-model="username"/>
+      <input mdInput type="email" [(ngModel)]="data.username" name="username"/>
     </md-form-field>
   </div>
   <div class="password-input">
     <md-form-field style="width: 100%">
       <label>Password</label>
-      <input mdInput type="password" ng-model="password" />
+      <input mdInput type="password" [(ngModel)]="data.password" name="password"/>
     </md-form-field>
   </div>
 
@@ -23,11 +19,8 @@
       <button md-button md-no-ink>Forgot Password?</button>
     </div>
     <div class="login-btn-div">
-<<<<<<< 5d270cb2c065ca2b744b29c128451985bfa47c2f
-      <button md-raised-button color="primary">Login</button>
-=======
       <button [md-dialog-close]="data" md-raised-button color="primary">Login</button>
->>>>>>> Started login request.
     </div>
   </div>
 </div>
+</form>
