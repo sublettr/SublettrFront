@@ -1,6 +1,14 @@
 <md-sidenav-container class="container">
   <md-sidenav #sidenav mode="over" class="sidenav">
-    <h2 class="sidenav-user-name">User</h2>
+    <md-toolbar color="primary" style="min-height: 128px">
+      <span></span>
+      <div layout="column" style="margin-top: auto">
+        <div style="top: 2%; position: absolute">
+          <h3>Firstname Lastname</h3>
+          <h4>email@domainname.com</h4>
+        </div>
+      </div>
+    </md-toolbar>
     <md-list>
       <md-list-item class="sidenav-nav-item">
         <button (click)="routePostSublease()" md-button color="accent" class="sidenav-nav-button">Post Sublease</button>
