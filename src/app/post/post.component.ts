@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MdIconRegistry} from "@angular/material";
+import {MatIconRegistry} from "@angular/material";
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({

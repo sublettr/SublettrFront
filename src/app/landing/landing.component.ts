@@ -1,5 +1,5 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import {MdDialogRef, MD_DIALOG_DATA, MdDialog} from "@angular/material";
+import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
 import {HttpClient} from "@angular/common/http";
 import {RequestOptions} from "@angular/http";
 
@@ -19,7 +19,7 @@ export class LandingComponent implements OnInit {
   isLoggedIn : boolean;
   currentUser: User;
 
-  constructor(public dialog: MdDialog, private router: Router, private http: HttpClient, private userService: UserService, private subleaseService: SubleaseService) {
+  constructor(public dialog: MatDialog, private router: Router, private http: HttpClient, private userService: UserService, private subleaseService: SubleaseService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -300,8 +300,8 @@ export class LandingComponent implements OnInit {
 })
 export class LoginDialog {
 
-  constructor(public loginDialogRef: MdDialogRef<LoginDialog>,
-              @Inject(MD_DIALOG_DATA) public data: any,
+  constructor(public loginDialogRef: MatDialogRef<LoginDialog>,
+              @Inject(MAT_DIALOG_DATA) public data: any,
               private http: HttpClient) {
     this.data = {
       id: 1,
@@ -324,8 +324,8 @@ export class LoginDialog {
 export class RegisterDialog {
 
   constructor(
-    public registerDialogRef: MdDialogRef<RegisterDialog>,
-    @Inject(MD_DIALOG_DATA) public data: any) {
+    public registerDialogRef: MatDialogRef<RegisterDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
       this.data = {
         name: "",
         email: "",
