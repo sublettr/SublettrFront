@@ -1,11 +1,13 @@
-.container {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfb53b+0,98700d+100&0.73+36,1+100 */
-  background: -moz-linear-gradient(left, rgba(207,181,59,0.73) 0%, rgba(187,156,42,0.73) 36%, rgba(152,112,13,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.jumbotron {
+  margin-bottom: 0;
 }
 
 .sublease-h1 {
@@ -20,6 +22,10 @@
   margin: auto auto;
   top: 5%;
   bottom: 5%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfb53b+0,98700d+100&0.73+36,1+100 */
+  background: -moz-linear-gradient(left, rgba(207,181,59,0.73) 0%, rgba(187,156,42,0.73) 36%, rgba(152,112,13,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .sublease-card-img {
