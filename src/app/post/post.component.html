@@ -2,30 +2,30 @@
 
   <h1 class="post-h1 mat-headline">Create a Post</h1>
   <form class="example-form">
-    <md-form-field class="example-full-width">
-      <input mdInput placeholder="Address 1">
-    </md-form-field>
-    <md-form-field class="example-full-width">
-      <input mdInput placeholder="Address 2">
-    </md-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Address 1">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Address 2">
+    </mat-form-field>
 
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
-          <md-form-field class="example-full-width">
-            <input mdInput placeholder="City">
-          </md-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="City">
+          </mat-form-field>
         </td>
         <td>
-          <md-form-field class="example-full-width">
-            <input mdInput placeholder="State">
-          </md-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="State">
+          </mat-form-field>
         </td>
         <td>
-          <md-form-field class="example-full-width">
-            <input mdInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
-            <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
-          </md-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
+            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+          </mat-form-field>
         </td>
       </tr>
     </table>
@@ -33,26 +33,26 @@
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
-          <md-form-field class="example-full-width">
-            <input mdInput placeholder="Sublet Property Name">
-          </md-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Sublet Property Name">
+          </mat-form-field>
         </td>
         <td>
-          <md-form-field class="example-full-width">
-            <input mdInput placeholder="Sublet Location">
-          </md-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Sublet Location">
+          </mat-form-field>
         </td>
       </tr>
     </table>
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>
-            <md-checkbox property="la">Roommates</md-checkbox>
+            <mat-checkbox property="la">Roommates</mat-checkbox>
         </td>
         <td>
-          <md-form-field class="example-full-width">
-            <input mdInput type="number" placeholder="Number of Roommates">
-          </md-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Number of Roommates">
+          </mat-form-field>
         </td>
       </tr>
     </table>
@@ -62,17 +62,17 @@
       </tr>
       <tr>
         <td>
-            <md-selection-list dense #amenitiesList>
-              <md-list-option *ngFor="let amenity of amenities">
-                <md-icon svgIcon="{{amenity.url}}"></md-icon>
-                <h3 mdLine> {{amenity.title}} </h3>
-              </md-list-option>
-            </md-selection-list>
+            <mat-selection-list dense #amenitiesList>
+              <mat-list-option *ngFor="let amenity of amenities">
+                <mat-icon svgIcon="{{amenity.url}}"></mat-icon>
+                <h3 matLine> {{amenity.title}} </h3>
+              </mat-list-option>
+            </mat-selection-list>
         </td>
       </tr>
     </table>
     <div style="margin-top: 40px">
-      <a (click)="submitForm()"><button md-raised-button md-raised-button-bottom-right class="mat-accent btn-landing">Submit</button></a>
+      <a (click)="submitForm()"><button mat-raised-button mat-raised-button-bottom-right class="mat-accent btn-landing">Submit</button></a>
     </div>
   </form>
 </div>

@@ -1,6 +1,6 @@
-<md-sidenav-container class="container-fluid">
-  <md-sidenav #sidenav mode="over" class="sidenav">
-    <md-toolbar color="primary" style="min-height: 128px">
+<mat-sidenav-container class="container-fluid">
+  <mat-sidenav #sidenav mode="over" class="sidenav">
+    <mat-toolbar color="primary" style="min-height: 128px">
       <span></span>
       <div layout="column" style="margin-top: auto">
         <div style="top: 2%; position: absolute">
@@ -8,41 +8,41 @@
           <h4>email@domainname.com</h4>
         </div>
       </div>
-    </md-toolbar>
-    <md-list>
-      <md-list-item class="sidenav-nav-item">
-        <button (click)="routePostSublease()" md-button color="accent" class="sidenav-nav-button">Post Sublease</button>
-      </md-list-item>
-      <md-list-item class="sidenav-nav-item">
-        <button md-button color="accent" class="sidenav-nav-button">Help</button>
-      </md-list-item>
-    </md-list>
-  </md-sidenav>
-  <md-toolbar color="primary">
-    <button md-icon-button (click)="sidenav.toggle()">
-      <md-icon class="md-24">menu</md-icon>
+    </mat-toolbar>
+    <mat-list>
+      <mat-list-item class="sidenav-nav-item">
+        <button (click)="routePostSublease()" mat-button color="accent" class="sidenav-nav-button">Post Sublease</button>
+      </mat-list-item>
+      <mat-list-item class="sidenav-nav-item">
+        <button mat-button color="accent" class="sidenav-nav-button">Help</button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon class="mat-24">menu</mat-icon>
     </button>
     ￼
-    <md-form-field class="search-form" color="white" floatPlaceholder="never">
-      <input mdInput placeholder="Search here">
-      <md-icon class="material-icons">search</md-icon>
-    </md-form-field>
+    <mat-form-field class="search-form" color="white" floatPlaceholder="never">
+      <input matInput placeholder="Search here">
+      <mat-icon class="material-icons">search</mat-icon>
+    </mat-form-field>
     <span class="search-spacer"></span>
     <a (click)="openRegisterDialog()">
-      <button md-raised-button class="mat-warn btn-toolbar">Register</button>
+      <button mat-raised-button class="mat-warn btn-toolbar">Register</button>
     </a>
     <a (click)="openLoginDialog()" *ngIf="!isLoggedIn">
-      <button md-raised-button class="mat-accent btn-toolbar">Login</button>
+      <button mat-raised-button class="mat-accent btn-toolbar">Login</button>
     </a>
     <a (click)="logout()" *ngIf="isLoggedIn">
-      <button md-raised-button class="mat-accent btn-toolbar">Logout</button>
+      <button mat-raised-button class="mat-accent btn-toolbar">Logout</button>
     </a>
-  </md-toolbar>
+  </mat-toolbar>
   <div class="search">
-    <md-card *ngFor="let property of sublets" class="listing-card">
-      <md-card-content>
+    <mat-card *ngFor="let property of sublets" class="listing-card">
+      <mat-card-content>
         <div class="listing-card-img">
-          <img style="flex-shrink: 0; width: 100%; height: 100%" md-card-image src={{subleases[0].url}}
+          <img style="flex-shrink: 0; width: 100%; height: 100%" mat-card-image src={{subleases[0].url}}
                alt="Photo of a Property Listing">
         </div>
         <div class="listing-card-description">
@@ -59,23 +59,23 @@
           <div class="listing-card-row">
             <div style="display: inline-block; float: left">
               <h3>Amentities</h3>
-              <span *ngFor="let amenity of subleases[0].amenities" mdTooltip="{{amenity.title}}"><md-icon
-                style="margin-right: 16px" svgIcon="{{amenity.url}}"></md-icon></span>
+              <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
+                style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
             </div>
             <div style="display: inline-block; float: right; margin-top: 5%">
-              <button (click)="favorite()" md-icon-button color="primary">
-                <md-icon>favorite</md-icon>
+              <button (click)="favorite()" mat-icon-button color="primary">
+                <mat-icon>favorite</mat-icon>
               </button>
-              <button (click)="share()" md-icon-button color="primary">
-                <md-icon>share</md-icon>
+              <button (click)="share()" mat-icon-button color="primary">
+                <mat-icon>share</mat-icon>
               </button>
               <a [routerLink]="['/view-sublease', property.id]">
-                <button md-raised-button class="mat-warn btn-toolbar">View</button>
+                <button mat-raised-button class="mat-warn btn-toolbar">View</button>
               </a>
             </div>
           </div>
         </div>
-      </md-card-content>
-    </md-card>
+      </mat-card-content>
+    </mat-card>
   </div>
-</md-sidenav-container>
+</mat-sidenav-container>

@@ -1,25 +1,25 @@
-<h2 md-dialog-title style="color: #FFC107">Login</h2>
+<h2 mat-dialog-title style="color: #FFC107">Login</h2>
 <form #heroForm="ngForm">
-<div md-dialog-content>
+<div mat-dialog-content>
   <div class="email-input">
-    <md-form-field style="width: 100%">
+    <mat-form-field style="width: 100%">
       <label>Email</label>
-      <input mdInput type="email" [(ngModel)]="data.username" name="username"/>
-    </md-form-field>
+      <input matInput type="email" [(ngModel)]="data.username" name="username"/>
+    </mat-form-field>
   </div>
   <div class="password-input">
-    <md-form-field style="width: 100%">
+    <mat-form-field style="width: 100%">
       <label>Password</label>
-      <input mdInput type="password" [(ngModel)]="data.password" name="password"/>
-    </md-form-field>
+      <input matInput type="password" [(ngModel)]="data.password" name="password"/>
+    </mat-form-field>
   </div>
 
-  <div md-dialog-actions class="login-register-div">
+  <div mat-dialog-actions class="login-register-div">
     <div class="forgot-password-div">
-      <button md-button md-no-ink>Forgot Password?</button>
+      <button mat-button mat-no-ink>Forgot Password?</button>
     </div>
     <div class="login-btn-div">
-      <button [md-dialog-close]="data" md-raised-button color="primary">Login</button>
+      <button [mat-dialog-close]="data" mat-raised-button color="primary">Login</button>
     </div>
   </div>
 </div>

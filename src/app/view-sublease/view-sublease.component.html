@@ -1,13 +1,13 @@
 <div class="jumbotron vertical-center">
 <div class="container">
 
-  <md-card class="view-sublease-card">
-    <md-card-content style="fill-pare">
+  <mat-card class="view-sublease-card">
+    <mat-card-content style="fill-pare">
       <div class="sublease-card-img">
-        <img style="flex-shrink: 0; width: 100%; height: 100%" md-card-image src={{sublease.url}}
+        <img style="flex-shrink: 0; width: 100%; height: 100%" mat-card-image src={{sublease.url}}
              alt="Photo of a Property Listing">
       </div>
-      <md-card-title>{{sublet.address}}</md-card-title>
+      <mat-card-title>{{sublet.address}}</mat-card-title>
       <div class="sublease-card-description">
         <div class="sublease-card-row">
           <div style="display: inline-block; float: left">
@@ -24,20 +24,20 @@
         <div class="sublease-card-row" style="bottom: 0; left: 0;">
           <div style="display: inline-block; float: left">
             <h3>Amentities</h3>
-            <span *ngFor="let amenity of sublease.amenities" mdTooltip="{{amenity.title}}"><md-icon style="margin-right: 16px" svgIcon="{{amenity.url}}"></md-icon></span>
+            <span *ngFor="let amenity of sublease.amenities" matTooltip="{{amenity.title}}"><mat-icon style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
           </div>
           <div style="display: inline-block; float: right; margin-top: 5%">
-            <button (click)="favorite()" md-icon-button color="primary">
-              <md-icon>favorite</md-icon>
+            <button (click)="favorite()" mat-icon-button color="primary">
+              <mat-icon>favorite</mat-icon>
             </button>
-            <button (click)="share()" md-icon-button color="primary">
-              <md-icon>share</md-icon>
+            <button (click)="share()" mat-icon-button color="primary">
+              <mat-icon>share</mat-icon>
             </button>
           </div>
         </div>
       </div>
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
 
 </div>
 </div>
