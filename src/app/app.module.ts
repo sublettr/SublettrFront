@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AllMaterialModulesModule } from './all-material.module';
+import {AllPrimeNGModulesModule} from "./all-primeng.module";
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -40,6 +41,7 @@ const routes: Routes = [
     HttpModule,
     HttpClientModule,
     AllMaterialModulesModule,
+    AllPrimeNGModulesModule,
     RouterModule.forRoot(routes),
     FormsModule
   ],
