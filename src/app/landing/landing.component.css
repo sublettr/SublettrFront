@@ -69,7 +69,7 @@
   display: inline-block;
 }
 
-.listing-card md-card-header {
+.listing-card mat-card-header {
   margin-left: auto;
   margin-right: auto;
 }
