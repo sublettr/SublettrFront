@@ -1,3 +1,7 @@
+a:hover {
+  cursor:pointer;
+}
+
 .sidenav {
   width: 20%;
 }
