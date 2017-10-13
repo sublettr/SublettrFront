@@ -11,7 +11,7 @@
     </mat-toolbar>
     <mat-list>
       <mat-list-item class="sidenav-nav-item">
-        <button (click)="routePostSublease()" mat-button color="accent" class="sidenav-nav-button">Post Sublease
+        <button (click)="routePostSublease()" mat-button color="primary" class="sidenav-nav-button">Post Sublease
         </button>
       </mat-list-item>
       <mat-list-item class="sidenav-nav-item">
@@ -63,43 +63,39 @@
       <div class="row">
         <div class="card listing-card col-md-5" *ngFor="let property of sublets">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
-          <img class="card-img-top img-fluid"
-               src={{subleases[0].url}}
-               alt="Photo of a Property Listing">
-          <div class="card-body">
-            <div class="row">
-              <div class="col">
-                <!--<h3>{{subleases[0].title}}</h3>-->
-                <h3 style="float: left">{{property.address}}</h3>
-              </div>
-              <div class="col">
-                <h3 style="float: right">${{subleases[0].price}}</h3>
-              </div>
-              <div class="w-100"></div>
-              <div class="col">
-                <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
-              </div>
-              <div class="w-100"></div>
-              <div class="col">
-                <div style="display: inline-block; float: left">
-                  <p>Amentities</p>
-                  <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
-                    style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+            <img class="card-img-top img-fluid"
+                 src={{subleases[0].url}}
+                 alt="Photo of a Property Listing">
+          </a>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <!--<h3>{{subleases[0].title}}</h3>-->
+                  <h3 style="float: left">{{property.address}}</h3>
                 </div>
-              </div>
-              <div class="col" style="text-align: right">
-                <div class="footer-btn">
-                  <button (click)="favorite()" mat-icon-button color="primary">
-                    <mat-icon>favorite</mat-icon>
-                  </button>
-                  <button (click)="share()" mat-icon-button color="primary">
-                    <mat-icon>share</mat-icon>
-                  </button>
+                <div class="col">
+                  <h4 style="float: right">${{subleases[0].price}}</h4>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                  <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                  <div style="display: inline-block; float: left">
+                    <p>Amentities</p>
+                    <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
+                      style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+                  </div>
+                </div>
+                <div class="col" style="text-align: right">
+                  <div class="footer-btn">
+                    <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>️</button>
+                    <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true" style="color: dodgerblue;"></i>️</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          </a>
         </div>
       </div>
     </div>
