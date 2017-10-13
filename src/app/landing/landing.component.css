@@ -2,24 +2,54 @@ a:hover {
   cursor:pointer;
 }
 
-.sidenav {
-  width: 20%;
+.sidebar {
+  background-color: var(--Froly);
+  padding-right: 0;
 }
 
-.sidenav-user-name {
-  text-align: center;
+.sidebar .sidebar-header {
+  position: relative;
+  height: 157.5px;
+  margin-bottom: 8px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.sidebar .sidebar-header.header-cover {
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-.sidenav-nav-item {
-  text-align: center;
+.sidebar .sidebar-brand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  padding: 0;
+  padding-left: 16px;
+  padding-right: 56px;
+  text-decoration: none;
+  clear: both;
+  font-weight: 500;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
-
-.sidenav-nav-button {
-  width: 100%;
-  font-size: 16pt;
+.sidebar .sidebar-brand:hover,
+.sidebar .sidebar-brand:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
 }
-
-
 
 .search-form {
   min-width: 150px;

@@ -1,25 +1,6 @@
-<mat-sidenav-container class="container-fluid">
-  <mat-sidenav #sidenav mode="over" class="sidenav">
-    <mat-toolbar color="primary" style="min-height: 128px">
-      <span></span>
-      <div layout="column" style="margin-top: auto">
-        <div style="top: 2%; position: absolute">
-          <h3>Firstname Lastname</h3>
-          <h4>email@domainname.com</h4>
-        </div>
-      </div>
-    </mat-toolbar>
-    <mat-list>
-      <mat-list-item class="sidenav-nav-item">
-        <button (click)="routePostSublease()" mat-button color="primary" class="sidenav-nav-button">Post Sublease
-        </button>
-      </mat-list-item>
-      <mat-list-item class="sidenav-nav-item">
-        <button mat-button color="accent" class="sidenav-nav-button">Help</button>
-      </mat-list-item>
-    </mat-list>
-  </mat-sidenav>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: var(--Froly);">
+<div class="container-fluid">
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: var(--FuzzyWuzzyBrown);">
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon class="mat-24">menu</mat-icon>
     </button>
@@ -59,14 +40,32 @@
     </div>
   </nav>
   <div class="container-fluid search">
-    <div class="container">
-      <div class="row">
-        <div class="card listing-card col-md-5" *ngFor="let property of sublets">
-          <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
-            <img class="card-img-top img-fluid"
-                 src={{subleases[0].url}}
-                 alt="Photo of a Property Listing">
-          </a>
+    <div class="row">
+      <nav id="sidebar" class="col-md-2 sidebar">
+          <div class="sidebar-header header-cover" style="background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B%281%29.jpg);">
+            <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+              <p>Firstname Lastname</p>
+              <p>email@domainname.com</p>
+            </a>
+          </div>
+        <mat-list>
+          <mat-list-item class="sidenav-nav-item">
+            <button (click)="routePostSublease()" mat-button color="primary" class="sidenav-nav-button">Post Sublease
+            </button>
+          </mat-list-item>
+          <mat-list-item class="sidenav-nav-item">
+            <button mat-button color="accent" class="sidenav-nav-button">Help</button>
+          </mat-list-item>
+        </mat-list>
+      </nav>
+      <div class="container col-sm-10">
+        <div class="row">
+          <div class="card listing-card col-md-5" *ngFor="let property of sublets">
+            <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
+              <img class="card-img-top img-fluid"
+                   src={{subleases[0].url}}
+                   alt="Photo of a Property Listing">
+            </a>
             <div class="card-body">
               <div class="row">
                 <div class="col">
@@ -90,14 +89,19 @@
                 </div>
                 <div class="col" style="text-align: right">
                   <div class="footer-btn">
-                    <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>️</button>
-                    <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true" style="color: dodgerblue;"></i>️</button>
+                    <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true"
+                                                                style="color: red;"></i>️
+                    </button>
+                    <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
+                                                             style="color: dodgerblue;"></i>️
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</mat-sidenav-container>
+</div>
