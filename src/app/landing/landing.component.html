@@ -1,9 +1,5 @@
 <div class="container-fluid">
-
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: var(--FuzzyWuzzyBrown);">
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon class="mat-24">menu</mat-icon>
-    </button>
     <div class="collapse navbar-collapse">
       <a class="navbar-brand" href="#">Sublettr</a>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -48,15 +44,33 @@
               <p>email@domainname.com</p>
             </div>
           </div>
-        <mat-list>
-          <mat-list-item class="sidenav-nav-item">
-            <button (click)="routePostSublease()" mat-button color="primary" class="sidenav-nav-button">Post Sublease
-            </button>
-          </mat-list-item>
-          <mat-list-item class="sidenav-nav-item">
-            <button mat-button color="accent" class="sidenav-nav-button">Help</button>
-          </mat-list-item>
-        </mat-list>
+        <!-- Sidebar Links -->
+        <ul class="list-unstyled components">
+          <p>Dummy Heading</p>
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li><a href="#">Home 1</a></li>
+              <li><a href="#">Home 2</a></li>
+              <li><a href="#">Home 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">About</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li><a href="#">Page 1</a></li>
+              <li><a href="#">Page 2</a></li>
+              <li><a href="#">Page 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Portfolio</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
       </nav>
       <div class="container col-sm-10">
         <div class="row">
