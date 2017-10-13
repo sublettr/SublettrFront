@@ -57,8 +57,8 @@ a:hover {
   margin-right: auto;
 }
 
-.view-btn {
-  right: 30px;
+.footer-btn {
+  right: 0;
   bottom: 0;
   position: absolute;
 }
