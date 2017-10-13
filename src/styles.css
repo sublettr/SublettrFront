@@ -17,6 +17,16 @@
 .secondary-text-color  { color: #757575; }
 .divider-color         { border-color: #BDBDBD; }
 
+.btn-primary {
+  border-color: var(--GrayNurse);
+  background-color: var(--FuzzyWuzzyBrown);
+}
+
+.btn-primary:hover{
+  border-color: var(--GrayNurse);
+  background-color: var(--Froly);
+}
+
 
 body                   { margin: 0; }
 @import "~bootstrap/dist/css/bootstrap.min.css";

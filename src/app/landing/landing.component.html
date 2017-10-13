@@ -66,23 +66,27 @@
                src={{subleases[0].url}}
                alt="Photo of a Property Listing">
           <div class="card-body">
-            <div class="listing-card-row">
-              <div style="display: inline-block; float: left">
+            <div class="row">
+              <div class="col">
                 <!--<h3>{{subleases[0].title}}</h3>-->
-                <h3>{{property.address}}</h3>
+                <h3 style="float: left">{{property.address}}</h3>
               </div>
-              <h3 style="display: inline-block; float: right">${{subleases[0].price}}</h3>
-            </div>
-            <div class="listing-card-row">
-              <h3 style="display: inline-block;float: left">{{property.description}}</h3>
-            </div>
-            <div class="listing-card-row">
-              <div style="display: inline-block; float: left">
-                <h3>Amentities</h3>
-                <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
-                  style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+              <div class="col">
+                <h3 style="float: right">${{subleases[0].price}}</h3>
               </div>
-              <div style="display: inline-block; float: right; margin-top: 5%">
+              <div class="w-100"></div>
+              <div class="col">
+                <h3 style="float: left">{{property.description}}</h3>
+              </div>
+              <div class="w-100"></div>
+              <div class="col">
+                <div style="display: inline-block; float: left">
+                  <h5>Amentities</h5>
+                  <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
+                    style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+                </div>
+              </div>
+              <div class="col" style="text-align: right">
                 <button (click)="favorite()" mat-icon-button color="primary">
                   <mat-icon>favorite</mat-icon>
                 </button>
@@ -90,7 +94,7 @@
                   <mat-icon>share</mat-icon>
                 </button>
                 <a [routerLink]="['/view-sublease', property.id]">
-                  <button mat-raised-button class="mat-warn btn-toolbar">View</button>
+                  <button type="button" class="btn btn-primary view-btn">View</button>
                 </a>
               </div>
             </div>

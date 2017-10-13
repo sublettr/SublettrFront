@@ -35,17 +35,15 @@ a:hover {
   flex: 1 1 auto;
 }
 
-.btn-toolbar {
-  margin-right: 20px;
-}
-
 .listing-card {
+  padding-left: 0;
+  padding-right: 0;
   margin: 20px 20px;
   background: var(--GrayNurse);
 }
 
 .listing-card-row {
- width: 80%;
+ width: 100%;
   display: inline-block;
 }
 
@@ -57,4 +55,10 @@ a:hover {
 .listing-card mat-card-header-text {
   margin-left: auto;
   margin-right: auto;
+}
+
+.view-btn {
+  right: 30px;
+  bottom: 0;
+  position: absolute;
 }
