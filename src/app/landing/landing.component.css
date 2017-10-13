@@ -43,6 +43,7 @@ a:hover {
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+  color: var(--GrayNurse);
 }
 .sidebar .sidebar-brand:hover,
 .sidebar .sidebar-brand:focus {
