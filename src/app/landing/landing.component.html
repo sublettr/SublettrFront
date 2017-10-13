@@ -11,7 +11,8 @@
     </mat-toolbar>
     <mat-list>
       <mat-list-item class="sidenav-nav-item">
-        <button (click)="routePostSublease()" mat-button color="accent" class="sidenav-nav-button">Post Sublease</button>
+        <button (click)="routePostSublease()" mat-button color="accent" class="sidenav-nav-button">Post Sublease
+        </button>
       </mat-list-item>
       <mat-list-item class="sidenav-nav-item">
         <button mat-button color="accent" class="sidenav-nav-button">Help</button>
@@ -57,44 +58,45 @@
       </ul>
     </div>
   </nav>
-  <div class="search">
-    <mat-card *ngFor="let property of sublets" class="listing-card">
-      <mat-card-content>
-        <div class="listing-card-img">
-          <img style="flex-shrink: 0; width: 100%; height: 100%" mat-card-image src={{subleases[0].url}}
+  <div class="container-fluid search">
+    <div class="container">
+      <div class="row">
+        <div class="card listing-card col-md-5" *ngFor="let property of sublets">
+          <img class="card-img-top img-fluid"
+               src={{subleases[0].url}}
                alt="Photo of a Property Listing">
+          <div class="card-body">
+            <div class="listing-card-row">
+              <div style="display: inline-block; float: left">
+                <!--<h3>{{subleases[0].title}}</h3>-->
+                <h3>{{property.address}}</h3>
+              </div>
+              <h3 style="display: inline-block; float: right">${{subleases[0].price}}</h3>
+            </div>
+            <div class="listing-card-row">
+              <h3 style="display: inline-block;float: left">{{property.description}}</h3>
+            </div>
+            <div class="listing-card-row">
+              <div style="display: inline-block; float: left">
+                <h3>Amentities</h3>
+                <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
+                  style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+              </div>
+              <div style="display: inline-block; float: right; margin-top: 5%">
+                <button (click)="favorite()" mat-icon-button color="primary">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button (click)="share()" mat-icon-button color="primary">
+                  <mat-icon>share</mat-icon>
+                </button>
+                <a [routerLink]="['/view-sublease', property.id]">
+                  <button mat-raised-button class="mat-warn btn-toolbar">View</button>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="listing-card-description">
-          <div class="listing-card-row">
-            <div style="display: inline-block; float: left">
-              <!--<h3>{{subleases[0].title}}</h3>-->
-              <h3>{{property.address}}</h3>
-            </div>
-            <h3 style="display: inline-block; float: right">${{subleases[0].price}}</h3>
-          </div>
-          <div class="listing-card-row">
-            <h3 style="display: inline-block;float: left">{{property.description}}</h3>
-          </div>
-          <div class="listing-card-row">
-            <div style="display: inline-block; float: left">
-              <h3>Amentities</h3>
-              <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
-                style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
-            </div>
-            <div style="display: inline-block; float: right; margin-top: 5%">
-              <button (click)="favorite()" mat-icon-button color="primary">
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <button (click)="share()" mat-icon-button color="primary">
-                <mat-icon>share</mat-icon>
-              </button>
-              <a [routerLink]="['/view-sublease', property.id]">
-                <button mat-raised-button class="mat-warn btn-toolbar">View</button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+      </div>
+    </div>
   </div>
 </mat-sidenav-container>
