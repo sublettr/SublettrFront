@@ -9,12 +9,12 @@
 }
 
 .dark-primary-color    { background: #FBC02D; }
-.default-primary-color { background: #FFEB3B; }
+.default-primary-color { background: var(--Froly); }
 .light-primary-color   { background: #FFECB3; }
 .text-primary-color    { color: #212121; }
-.accent-color          { color: #FFC107; }
+.accent-color          { color: var(--FuzzyWuzzyBrown); }
 .primary-text-color    { color: #212121; }
-.secondary-text-color  { color: #757575; }
+.secondary-text-color  { color: var(--GrayChateau); }
 .divider-color         { border-color: #BDBDBD; }
 
 .btn-primary {
@@ -29,7 +29,9 @@
 
 
 body                   { margin: 0; }
+
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.css";
 
 .container-fluid {
   padding-left: 0;
