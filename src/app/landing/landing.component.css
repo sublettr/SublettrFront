@@ -1,3 +1,9 @@
+.landing-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 a:hover {
   cursor:pointer;
   color: #ffb9b7;
@@ -74,6 +80,7 @@ a:not([href]):hover {
 
 .search {
   background: var(--OxfordBlue);
+  min-height: 100%;
 }
 
 .search-spacer {
