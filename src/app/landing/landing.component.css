@@ -1,21 +1,77 @@
-.sidenav {
-  width: 20%;
+.landing-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-.sidenav-user-name {
-  text-align: center;
+a:hover {
+  cursor:pointer;
+  color: #ffb9b7;
+}
+a {
+  color: var(--GrayNurse);
 }
 
-.sidenav-nav-item {
-  text-align: center;
+a:not([href]) {
+  color: var(--GrayNurse);
+}
+a:not([href]):hover {
+  color: #ffb9b7;
+}
+.navbar {
+  background-color: var(--FuzzyWuzzyBrown);
 }
 
-.sidenav-nav-button {
-  width: 100%;
-  font-size: 16pt;
+.sidebar {
+  background-color: var(--Froly);
+  padding-right: 0;
+  min-height: 100vh;
 }
 
+.sidebar .sidebar-header {
+  position: relative;
+  height: 157.5px;
+  margin-bottom: 8px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.sidebar .sidebar-header.header-cover {
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
+.sidebar .sidebar-brand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  padding: 0;
+  padding-left: 16px;
+  padding-right: 56px;
+  text-decoration: none;
+  clear: both;
+  font-weight: 500;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: var(--GrayNurse);
+}
+.sidebar .sidebar-brand:hover,
+.sidebar .sidebar-brand:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
 
 .search-form {
   min-width: 150px;
@@ -24,44 +80,19 @@
 }
 
 .search {
-  height: auto;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfb53b+0,98700d+100&0.73+36,1+100 */
-  background: -moz-linear-gradient(left, rgba(207,181,59,0.73) 0%, rgba(187,156,42,0.73) 36%, rgba(152,112,13,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(207,181,59,0.73) 0%,rgba(187,156,42,0.73) 36%,rgba(152,112,13,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bacfb53b', endColorstr='#98700d',GradientType=1 ); /* IE6-9 */
+  background: var(--OxfordBlue);
+  min-height: 100%;
 }
 
 .search-spacer {
   flex: 1 1 auto;
 }
 
-.btn-toolbar {
-  margin-right: 20px;
-}
-
 .listing-card {
-  width: 95%;
-  height: auto;
+  padding-left: 0;
+  padding-right: 0;
   margin: 20px 20px;
-  display: inline-block;
-}
-
-.listing-card-img {
-  width: 20%;
-  height: 100%;
-  min-height: 250px;
-  float: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.listing-card-description {
-  width: 70%;
-  height: auto;
-  float: right;
+  background: var(--GrayNurse);
 }
 
 .listing-card-row {
@@ -77,4 +108,10 @@
 .listing-card mat-card-header-text {
   margin-left: auto;
   margin-right: auto;
+}
+
+.footer-btn {
+  right: 0;
+  bottom: 0;
+  position: absolute;
 }

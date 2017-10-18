@@ -1,43 +1,41 @@
 <div class="jumbotron vertical-center">
-<div class="container">
-
-  <mat-card class="view-sublease-card">
-    <mat-card-content style="fill-pare">
-      <div class="sublease-card-img">
-        <img style="flex-shrink: 0; width: 100%; height: 100%" mat-card-image src={{sublease.url}}
+  <div class="container">
+    <div class="card view-sublease-card">
+        <img class="card-img-top img-fluid"
+             src={{sublease.url}}
              alt="Photo of a Property Listing">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h3 style="float: left">{{sublet.address}}</h3>
+          </div>
+          <div class="col">
+            <h4 style="float: right">${{sublease.price}}</h4>
+          </div>
+          <div class="w-100"></div>
+          <div class="col">
+            <p style="float: left; color: var(--GrayChateau)">{{sublet.description}}</p>
+          </div>
+          <div class="w-100"></div>
+          <div class="col">
+            <p style="float: left; color: var(--GrayChateau)">Roommates: {{sublet.roommates}}</p>
+          </div>
+          <div class="w-100"></div>
+          <div class="col">
+            <div style="display: inline-block; float: left">
+              <p>Amentities</p>
+              <span *ngFor="let amenity of sublease.amenities" matTooltip="{{amenity.title}}"><mat-icon
+                style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+            </div>
+          </div>
+          <div class="col" style="text-align: right">
+            <div class="footer-btn">
+              <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>️</button>
+              <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true" style="color: dodgerblue;"></i>️</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <mat-card-title>{{sublet.address}}</mat-card-title>
-      <div class="sublease-card-description">
-        <div class="sublease-card-row">
-          <div style="display: inline-block; float: left">
-            <!--<h4>{{sublease.location}}</h4>-->
-          </div>
-          <h3 style="display: inline-block; float: right">${{sublease.price}}</h3>
-        </div>
-        <div class="sublease-card-row">
-          <h3 style="display: inline-block;float: left">{{sublet.description}}</h3>
-        </div>
-        <div class="sublease-card-row">
-          <h3 style="display: inline-block;float: left">Roommates: {{sublet.roommates}}</h3>
-        </div>
-        <div class="sublease-card-row" style="bottom: 0; left: 0;">
-          <div style="display: inline-block; float: left">
-            <h3>Amentities</h3>
-            <span *ngFor="let amenity of sublease.amenities" matTooltip="{{amenity.title}}"><mat-icon style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
-          </div>
-          <div style="display: inline-block; float: right; margin-top: 5%">
-            <button (click)="favorite()" mat-icon-button color="primary">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button (click)="share()" mat-icon-button color="primary">
-              <mat-icon>share</mat-icon>
-            </button>
-          </div>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
-</div>
+    </div>
+  </div>
 </div>
