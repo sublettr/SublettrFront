@@ -25,6 +25,7 @@ a:not([href]):hover {
 .sidebar {
   background-color: var(--Froly);
   padding-right: 0;
+  min-height: 100vh;
 }
 
 .sidebar .sidebar-header {
