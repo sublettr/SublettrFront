@@ -21,30 +21,24 @@ import {MatIconModule} from "@angular/material";
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
     MatCheckboxModule,
     MatInputModule,
     MatIconModule,
-    MatCardModule,
     MatListModule,
     MatExpansionModule,
-    MatTooltipModule,
-    MatSidenavModule
+    MatTooltipModule
   ],
   exports: [BrowserAnimationsModule,
-    MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
     MatCheckboxModule,
     MatInputModule,
     MatIconModule,
-    MatCardModule,
     MatListModule,
     MatExpansionModule,
-    MatTooltipModule,
-    MatSidenavModule
+    MatTooltipModule
   ],
   declarations: []
 })

@@ -1,81 +1,121 @@
-<mat-sidenav-container class="container-fluid">
-  <mat-sidenav #sidenav mode="over" class="sidenav">
-    <mat-toolbar color="primary" style="min-height: 128px">
-      <span></span>
-      <div layout="column" style="margin-top: auto">
-        <div style="top: 2%; position: absolute">
-          <h3>Firstname Lastname</h3>
-          <h4>email@domainname.com</h4>
+<div class="container-fluid landing-page">
+  <nav class="navbar navbar-expand-lg">
+    <div class="collapse navbar-collapse">
+      <a class="navbar-brand" href="#">Sublettr</a>
+      <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="post">Post</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="profile">Profile</a>
+        </li>
+      </ul>
+
+      <span class="search-spacer"></span>
+      <div class="col-sm-3 col-md-3">
+        <form class="navbar-form" role="search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="q">
+            <div class="input-group-btn">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item active">
+          <a role="button" class="nav-link"(click)="openRegisterDialog()">Register</a>
+        </li>
+        <li class="nav-item active">
+          <a role="button" class="nav-link" (click)="openLoginDialog()" *ngIf="!isLoggedIn">Login</a>
+          <a class="nav-link" (click)="logout()" *ngIf="isLoggedIn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid search">
+    <div class="row">
+      <nav id="sidebar" class="col-md-2 sidebar">
+          <div class="sidebar-header header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
+            <div data-toggle="dropdown" class="sidebar-brand">
+              <p>Firstname Lastname</p>
+              <p>email@domainname.com</p>
+            </div>
+          </div>
+        <!-- Sidebar Links -->
+        <ul class="list-unstyled components">
+          <p>Dummy Heading</p>
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li><a href="#">Home 1</a></li>
+              <li><a href="#">Home 2</a></li>
+              <li><a href="#">Home 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">About</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li><a href="#">Page 1</a></li>
+              <li><a href="#">Page 2</a></li>
+              <li><a href="#">Page 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Portfolio</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="container col-sm-10">
+        <div class="row">
+          <div class="card listing-card col-md-5" *ngFor="let property of sublets">
+            <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
+              <img class="card-img-top img-fluid"
+                   src={{subleases[0].url}}
+                   alt="Photo of a Property Listing">
+            </a>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <!--<h3>{{subleases[0].title}}</h3>-->
+                  <h3 style="float: left">{{property.address}}</h3>
+                </div>
+                <div class="col">
+                  <h4 style="float: right">${{subleases[0].price}}</h4>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                  <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                  <div style="display: inline-block; float: left">
+                    <p>Amentities</p>
+                    <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
+                      style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+                  </div>
+                </div>
+                <div class="col" style="text-align: right">
+                  <div class="footer-btn">
+                    <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true"
+                                                                style="color: red;"></i>️
+                    </button>
+                    <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
+                                                             style="color: dodgerblue;"></i>️
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </mat-toolbar>
-    <mat-list>
-      <mat-list-item class="sidenav-nav-item">
-        <button (click)="routePostSublease()" mat-button color="accent" class="sidenav-nav-button">Post Sublease</button>
-      </mat-list-item>
-      <mat-list-item class="sidenav-nav-item">
-        <button mat-button color="accent" class="sidenav-nav-button">Help</button>
-      </mat-list-item>
-    </mat-list>
-  </mat-sidenav>
-  <mat-toolbar color="primary">
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon class="mat-24">menu</mat-icon>
-    </button>
-    ￼
-    <mat-form-field class="search-form" color="white" floatPlaceholder="never">
-      <input matInput placeholder="Search here">
-      <mat-icon class="material-icons">search</mat-icon>
-    </mat-form-field>
-    <span class="search-spacer"></span>
-    <a (click)="openRegisterDialog()">
-      <button mat-raised-button class="mat-warn btn-toolbar">Register</button>
-    </a>
-    <a (click)="openLoginDialog()" *ngIf="!isLoggedIn">
-      <button mat-raised-button class="mat-accent btn-toolbar">Login</button>
-    </a>
-    <a (click)="logout()" *ngIf="isLoggedIn">
-      <button mat-raised-button class="mat-accent btn-toolbar">Logout</button>
-    </a>
-  </mat-toolbar>
-  <div class="search">
-    <mat-card *ngFor="let property of sublets" class="listing-card">
-      <mat-card-content>
-        <div class="listing-card-img">
-          <img style="flex-shrink: 0; width: 100%; height: 100%" mat-card-image src={{subleases[0].url}}
-               alt="Photo of a Property Listing">
-        </div>
-        <div class="listing-card-description">
-          <div class="listing-card-row">
-            <div style="display: inline-block; float: left">
-              <!--<h3>{{subleases[0].title}}</h3>-->
-              <h3>{{property.address}}</h3>
-            </div>
-            <h3 style="display: inline-block; float: right">${{subleases[0].price}}</h3>
-          </div>
-          <div class="listing-card-row">
-            <h3 style="display: inline-block;float: left">{{property.description}}</h3>
-          </div>
-          <div class="listing-card-row">
-            <div style="display: inline-block; float: left">
-              <h3>Amentities</h3>
-              <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
-                style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
-            </div>
-            <div style="display: inline-block; float: right; margin-top: 5%">
-              <button (click)="favorite()" mat-icon-button color="primary">
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <button (click)="share()" mat-icon-button color="primary">
-                <mat-icon>share</mat-icon>
-              </button>
-              <a [routerLink]="['/view-sublease', property.id]">
-                <button mat-raised-button class="mat-warn btn-toolbar">View</button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    </div>
   </div>
-</mat-sidenav-container>
+</div>
