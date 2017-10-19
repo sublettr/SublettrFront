@@ -1,3 +1,59 @@
-<p>
-  profile works!
-</p>
+<div class="container-fluid profile-page">
+  <div class="row" style="background-color: var(--Froly); min-height: 33vh">
+    <div style="margin: auto; text-align: center">
+      <img style="max-height: 300px" src="http://www.freeiconspng.com/uploads/profile-icon-9.png"
+           class="img-responsive img-circle"/>
+      <h3>Michael Vieck</h3>
+    </div>
+  </div>
+  <div class="container" style="background-color: white">
+    <div class="row profile-items">
+      <h3>Saved Subleases</h3>
+      <div class="horizontal-card-list">
+        <div class="card listing-card col-md-3" *ngFor="let property of subleases">
+          <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
+            <img class="card-img-top img-fluid"
+                 src={{subleases[0].url}}
+                 alt="Photo of a Property Listing">
+          </a>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <!--<h3>{{subleases[0].title}}</h3>-->
+                <h3 style="float: left">{{property.address}}</h3>
+              </div>
+              <div class="col">
+                <h4 style="float: right">${{subleases[0].price}}</h4>
+              </div>
+              <div class="w-100"></div>
+              <div class="col">
+                <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
+              </div>
+              <div class="w-100"></div>
+              <div class="col">
+                <div style="display: inline-block; float: left">
+                  <p>Amentities</p>
+                  <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
+                    style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+                </div>
+              </div>
+              <div class="col" style="text-align: right">
+                <div class="footer-btn">
+                  <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true"
+                                                              style="color: red;"></i>️
+                  </button>
+                  <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
+                                                           style="color: dodgerblue;"></i>️
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row profile-items">
+      <h3>Posted Subleases</h3>
+    </div>
+  </div>
+</div>

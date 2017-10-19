@@ -1,0 +1,57 @@
+.profile-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-left: 16px;
+  color: var(--GrayNurse);
+  background-color: white;
+}
+
+.profile-items {
+  background: white;
+  color: black;
+  margin-bottom: 16px;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.horizontal-card-list {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.horizontal-card-list > .col-md-3 {
+  display: inline-block;
+  float: none;
+}
+
+.listing-card {
+  padding-left: 0;
+  padding-right: 0;
+  margin: 20px 20px;
+  background: var(--GrayNurse);
+  max-height: 30vh;
+}
+
+.listing-card-row {
+  width: 100%;
+  display: inline-block;
+}
+
+.listing-card mat-card-header {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.listing-card mat-card-header-text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
