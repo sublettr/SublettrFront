@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style="color: #FFC107">Login</h2>
+<h2 mat-dialog-title style="color: var(--Froly)">Login</h2>
 <form #heroForm="ngForm">
 <div mat-dialog-content>
   <div class="email-input">
@@ -19,7 +19,7 @@
       <button mat-button mat-no-ink>Forgot Password?</button>
     </div>
     <div class="login-btn-div">
-      <button [mat-dialog-close]="data" mat-raised-button color="primary">Login</button>
+      <button [mat-dialog-close]="data" class="btn btn-primary">Login</button>
     </div>
   </div>
 </div>
