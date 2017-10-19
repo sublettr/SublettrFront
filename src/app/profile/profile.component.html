@@ -10,10 +10,10 @@
     <div class="row profile-items">
       <h3>Saved Subleases</h3>
       <div class="horizontal-card-list">
-        <div class="card listing-card col-md-3" *ngFor="let property of subleases">
+        <div class="card listing-card col-md-3" *ngFor="let property of savedSubleases">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
             <img class="card-img-top img-fluid"
-                 src={{subleases[0].url}}
+                 src={{savedSubleases[0].url}}
                  alt="Photo of a Property Listing">
           </a>
           <div class="card-body">
@@ -23,21 +23,64 @@
                 <h3 style="float: left">{{property.address}}</h3>
               </div>
               <div class="col">
-                <h4 style="float: right">${{subleases[0].price}}</h4>
+                <h4 style="float: right">${{savedSubleases[0].price}}</h4>
               </div>
               <div class="w-100"></div>
               <div class="col">
                 <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
               </div>
               <div class="w-100"></div>
-              <div class="col">
-                <div style="display: inline-block; float: left">
-                  <p>Amentities</p>
-                  <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
-                    style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+              <div class="col-sm-8">
+                <p style="margin-bottom: 0;">Amentities</p>
+                <div class="row">
+                  <mat-icon *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
+                            style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon>
                 </div>
               </div>
-              <div class="col" style="text-align: right">
+                <div class="footer-btn">
+                  <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true"
+                                                              style="color: red;"></i>️
+                  </button>
+                  <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
+                                                           style="color: dodgerblue;"></i>️
+                  </button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row profile-items">
+      <h3>Posted Subleases</h3>
+      <div class="horizontal-card-list">
+        <div class="card listing-card col-md-3" *ngFor="let property of postedSubleases">
+          <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
+            <img class="card-img-top img-fluid listing-card-img"
+                 src="{{property.url}}"
+                 alt="Photo of a Property Listing">
+          </a>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <!--<h3>{{subleases[0].title}}</h3>-->
+                <h3 style="float: left">{{property.address}}</h3>
+              </div>
+              <div class="col">
+                <h4 style="float: right">${{property.price}}</h4>
+              </div>
+              <div class="w-100"></div>
+              <div class="col">
+                <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-sm-8">
+                <p style="margin-bottom: 0;">Amentities</p>
+                <div class="row">
+                  <mat-icon *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
+                            style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon>
+                </div>
+              </div>
+              <div class="col" style="float: right">
                 <div class="footer-btn">
                   <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true"
                                                               style="color: red;"></i>️
@@ -51,9 +94,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row profile-items">
-      <h3>Posted Subleases</h3>
     </div>
   </div>
 </div>
