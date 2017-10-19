@@ -37,8 +37,8 @@
   </nav>
   <div class="container-fluid search">
     <div class="row">
-      <nav id="sidebar" class="col-md-2 sidebar">
-          <div class="sidebar-header header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
+      <p-sidebar [(visible)]="sidebar" pos="left" styleClass="ui-sidebar-lg">
+          <div class="header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
             <div data-toggle="dropdown" class="sidebar-brand">
               <p>Firstname Lastname</p>
               <p>email@domainname.com</p>
@@ -71,8 +71,8 @@
             <a href="#">Contact</a>
           </li>
         </ul>
-      </nav>
-      <div class="container col-sm-10">
+      </p-sidebar>
+      <div class="container">
         <div class="row">
           <div class="card listing-card col-md-5" *ngFor="let property of sublets">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">

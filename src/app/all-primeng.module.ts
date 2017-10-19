@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import {DialogModule} from "primeng/primeng";
+import {SidebarModule} from "primeng/components/sidebar/sidebar";
+
 
 @NgModule({
   imports: [
-    DialogModule
+    DialogModule,
+    SidebarModule
   ],
   exports: [
-    DialogModule
+    DialogModule,
+    SidebarModule
   ],
   declarations: []
 })

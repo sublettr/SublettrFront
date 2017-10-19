@@ -16,6 +16,7 @@ import {Router} from "@angular/router";
 export class LandingComponent implements OnInit {
   public subleases;
   public sublets;
+  sidebar = true;
   isLoggedIn : boolean;
   currentUser: User;
 
