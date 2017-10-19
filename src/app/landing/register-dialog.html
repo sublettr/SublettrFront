@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style="color: #FFC107">Register</h2>
+<h2 mat-dialog-title style="color: var(--OxfordBlue)">Register</h2>
 <form (ngSubmit)="onRegistrationSubmit()" #heroForm="ngForm">
   <div mat-dialog-content>
     <div class="email-input">
@@ -28,7 +28,7 @@
 
     <div mat-dialog-actions class="register-div">
       <div class="register-btn-div">
-        <button [mat-dialog-close]="" mat-raised-button color="primary">Register</button>
+        <button [mat-dialog-close]="" class="btn btn-secondary">Register</button>
       </div>
     </div>
   </div>

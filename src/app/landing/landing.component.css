@@ -96,7 +96,7 @@ a:not([href]):hover {
 }
 
 .listing-card-row {
- width: 100%;
+  width: 100%;
   display: inline-block;
 }
 

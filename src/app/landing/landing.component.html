@@ -1,7 +1,7 @@
 <div class="container-fluid landing-page">
   <nav class="navbar navbar-expand-lg">
     <div class="collapse navbar-collapse">
-      <a class="navbar-brand" href="#">Sublettr</a>
+      <a class="navbar-brand" (click)="sidebar = !sidebar">Sublettr</a>
       <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -20,7 +20,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" name="q">
             <div class="input-group-btn">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
             </div>
           </div>
         </form>
@@ -37,13 +37,13 @@
   </nav>
   <div class="container-fluid search">
     <div class="row">
-      <nav id="sidebar" class="col-md-2 sidebar">
-          <div class="sidebar-header header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
-            <div data-toggle="dropdown" class="sidebar-brand">
-              <p>Firstname Lastname</p>
-              <p>email@domainname.com</p>
-            </div>
+      <nav *ngIf="sidebar" [@enterAnimation] id="sidebar" class="col-md-2 sidebar">
+        <div class="sidebar-header header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
+          <div data-toggle="dropdown" class="sidebar-brand">
+            <p>Firstname Lastname</p>
+            <p>email@domainname.com</p>
           </div>
+        </div>
         <!-- Sidebar Links -->
         <ul class="list-unstyled components">
           <p>Dummy Heading</p>
