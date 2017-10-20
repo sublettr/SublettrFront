@@ -37,11 +37,23 @@
   float: none;
 }
 
-.listing-card {
+.saved-card {
+  background: white;
+}
+
+.posted-card {
+  background: var(--GrayChateau);
+  color: white;
+}
+
+.posted-card .md-icon.svg.path {
+  fill: white !important;
+}
+
+.card {
   padding-left: 0;
   padding-right: 0;
   margin: 20px 20px;
-  background: var(--GrayNurse);
   height: 30vh;
 }
 

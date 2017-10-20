@@ -236,6 +236,8 @@ export class ProfileComponent implements OnInit {
   ];
 
   postedSubleases = [{
+    id: "0",
+    address: "1111 State Street",
     title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
     amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
       title: 'Fitness Center',
@@ -247,6 +249,8 @@ export class ProfileComponent implements OnInit {
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
     {
+      id: "0",
+      address: "1111 State Street",
       title: 'Klondike House', price: "500", url: 'assets/Klondike House.jpg', location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
         title: 'Fitness Center',
@@ -262,6 +266,8 @@ export class ProfileComponent implements OnInit {
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     {
+      id: "0",
+      address: "1111 State Street",
       title: 'Grant Street Station', price: "500", url: "assets/South Street Station.jpg", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
         title: 'Fitness Center',
@@ -277,6 +283,8 @@ export class ProfileComponent implements OnInit {
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     {
+      id: "0",
+      address: "1111 State Street",
       title: 'Grant Street Station', price: "500", url: "assets/South Street Station.jpg", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
         title: 'Fitness Center',

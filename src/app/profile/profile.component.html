@@ -2,7 +2,7 @@
   <div class="row" style="background-color: var(--Froly); min-height: 33vh">
     <div style="margin: auto; text-align: center">
       <div class="row" style="display: flex; justify-content: center; align-items: center;">
-        <img style="max-height: 300px;" src="http://www.freeiconspng.com/uploads/profile-icon-9.png"
+        <img style="max-height: 300px;" alt="Profile Image" src="http://www.freeiconspng.com/uploads/profile-icon-9.png"
              class="img-responsive img-circle"/>
         <h3 style="position: absolute; top: 0; margin-top: 15px;">Michael Vieck</h3>
       </div>
@@ -18,7 +18,7 @@
     <div class="row profile-items">
       <h3>Saved Subleases</h3>
       <div class="horizontal-card-list">
-        <div class="card listing-card col-md-3" *ngFor="let property of savedSubleases">
+        <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
             <img class="card-img-top img-fluid"
                  src={{savedSubleases[0].url}}
@@ -27,7 +27,6 @@
           <div class="card-body">
             <div class="row">
               <div class="col-sm-7">
-                <!--<h3>{{subleases[0].title}}</h3>-->
                 <h5 style="float: left">{{property.address}}</h5>
               </div>
               <div class="col">
@@ -38,7 +37,7 @@
                 <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
               </div>
               <div class="w-100"></div>
-              <div class="col-sm-8">
+              <div class="col-sm-10">
                 <p *ngIf="property.amenities == null">No amentities</p>
                 <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
                 <div class="row">
@@ -47,7 +46,9 @@
                 </div>
               </div>
               <div class="footer-btn">
-                <i (click)="property.isFavorited = !property.isFavorited" [style.color]="property.isFavorited == true ? 'red' : 'grey'" class="fa fa-heart" aria-hidden="true"></i>
+                <i (click)="property.isFavorited = !property.isFavorited"
+                   [style.color]="property.isFavorited == true ? 'red' : 'grey'" class="fa fa-heart"
+                   aria-hidden="true"></i>
               </div>
             </div>
           </div>
@@ -57,7 +58,7 @@
     <div class="row profile-items">
       <h3>Posted Subleases</h3>
       <div class="horizontal-card-list">
-        <div class="card listing-card col-md-3" *ngFor="let property of postedSubleases">
+        <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
             <img class="card-img-top img-fluid listing-card-img"
                  src="{{property.url}}"
@@ -65,35 +66,27 @@
           </a>
           <div class="card-body">
             <div class="row">
-              <div class="col">
-                <!--<h3>{{subleases[0].title}}</h3>-->
-                <h3 style="float: left">{{property.address}}</h3>
+              <div class="col-sm-7">
+                <h5 style="float: left">{{property.address}}</h5>
               </div>
               <div class="col">
-                <h4 style="float: right">${{property.price}}</h4>
+                <h5 style="float: right">${{property.price}}</h5>
               </div>
               <div class="w-100"></div>
               <div class="col">
                 <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
               </div>
               <div class="w-100"></div>
-              <div class="col-sm-8">
+              <div class="col-sm-10">
                 <p *ngIf="property.amenities == null">No amentities</p>
                 <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
                 <div class="row">
-                  <mat-icon *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
-                            style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon>
+                  <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
+                            style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
                 </div>
               </div>
-              <div class="col" style="float: right">
-                <div class="footer-btn">
-                  <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true"
-                                                              style="color: red;"></i>️
-                  </button>
-                  <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
-                                                           style="color: dodgerblue;"></i>️
-                  </button>
-                </div>
+              <div class="footer-btn">
+                  <i (click)="edit()" matTooltip="Edit" class="fa fa-edit" aria-hidden="true" style="color: var(--GrayNurse);"></i>️
               </div>
             </div>
           </div>
