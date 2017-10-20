@@ -6,10 +6,15 @@
   background-color: white;
 }
 
+.profile-items-container {
+  background-color: white;
+  margin-bottom: 20px;
+}
+
 .profile-items {
   background: white;
   color: black;
-  margin-bottom: 16px;
+  margin-top: 24px;
 }
 
 .img-responsive {
