@@ -1,34 +1,34 @@
 <h2 mat-dialog-title style="color: var(--OxfordBlue)">Register</h2>
-<form (ngSubmit)="onRegistrationSubmit()" #heroForm="ngForm">
+<form (ngSubmit)="onRegistrationSubmit()" #registerForm="ngForm">
   <div mat-dialog-content style="overflow-y: hidden">
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Username</label>
-        <input matInput type="text" [(ngModel)]="data.username" name="username" />
+        <input matInput required type="text" [(ngModel)]="data.username" name="username" />
       </mat-form-field>
     </div>
     <div class="password-input">
       <mat-form-field style="width: 100%">
         <label>Password</label>
-        <input matInput type="password" [(ngModel)]="data.pass1" name="pass1" />
+        <input matInput required type="password" [(ngModel)]="data.pass1" name="pass1" />
       </mat-form-field>
     </div>
     <div class="password-input">
       <mat-form-field style="width: 100%">
         <label>Confirm Password</label>
-        <input matInput type="password" [(ngModel)]="data.pass2" name="pass2" />
+        <input matInput required type="password" [(ngModel)]="data.pass2" name="pass2" />
       </mat-form-field>
     </div>
   <div class="email-input">
     <mat-form-field style="width: 100%">
       <label>Name</label>
-      <input matInput type="text" [(ngModel)]="data.name" name="name" />
+      <input matInput required type="text" [(ngModel)]="data.name" name="name" />
     </mat-form-field>
   </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Age</label>
-        <input matInput type="number" [(ngModel)]="data.age" name="age" />
+        <input matInput required type="number" [(ngModel)]="data.age" name="age" />
       </mat-form-field>
     </div>
     <div class="email-input">
@@ -51,7 +51,7 @@
     </div>
     <div mat-dialog-actions class="register-div">
       <div class="register-btn-div">
-        <button [mat-dialog-close]="" class="btn btn-secondary">Register</button>
+        <button [mat-dialog-close]="data" [disabled]="!registerForm.form.valid" class="btn btn-secondary">Register</button>
       </div>
     </div>
   </div>
