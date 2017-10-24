@@ -1,16 +1,10 @@
 <h2 mat-dialog-title style="color: var(--OxfordBlue)">Register</h2>
 <form (ngSubmit)="onRegistrationSubmit()" #heroForm="ngForm">
-  <div mat-dialog-content>
+  <div mat-dialog-content style="overflow-y: hidden">
     <div class="email-input">
       <mat-form-field style="width: 100%">
-        <label>Name</label>
-        <input matInput type="text" [(ngModel)]="data.name" name="name" />
-      </mat-form-field>
-    </div>
-    <div class="email-input">
-      <mat-form-field style="width: 100%">
-        <label>Email</label>
-        <input matInput type="email" [(ngModel)]="data.email" name="email" />
+        <label>Username</label>
+        <input matInput type="text" [(ngModel)]="data.username" name="username" />
       </mat-form-field>
     </div>
     <div class="password-input">
@@ -25,7 +19,36 @@
         <input matInput type="password" [(ngModel)]="data.pass2" name="pass2" />
       </mat-form-field>
     </div>
-
+  <div class="email-input">
+    <mat-form-field style="width: 100%">
+      <label>Name</label>
+      <input matInput type="text" [(ngModel)]="data.name" name="name" />
+    </mat-form-field>
+  </div>
+    <div class="email-input">
+      <mat-form-field style="width: 100%">
+        <label>Age</label>
+        <input matInput type="number" [(ngModel)]="data.age" name="age" />
+      </mat-form-field>
+    </div>
+    <div class="email-input">
+      <mat-form-field style="width: 100%">
+        <label>Sex</label>
+        <input matInput type="text" [(ngModel)]="data.sex" name="sex" />
+      </mat-form-field>
+    </div>
+    <div class="email-input">
+      <mat-form-field style="width: 100%">
+        <label>Major</label>
+        <input matInput type="text" [(ngModel)]="data.major" name="major" />
+      </mat-form-field>
+    </div>
+    <div class="email-input">
+      <mat-form-field style="width: 100%">
+        <label>Grade</label>
+        <input matInput type="number" [(ngModel)]="data.grade" name="grade" />
+      </mat-form-field>
+    </div>
     <div mat-dialog-actions class="register-div">
       <div class="register-btn-div">
         <button [mat-dialog-close]="" class="btn btn-secondary">Register</button>

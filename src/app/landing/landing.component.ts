@@ -343,10 +343,15 @@ export class RegisterDialog {
     public registerDialogRef: MatDialogRef<RegisterDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.data = {
-        name: "",
-        email: "",
+        username: "",
         pass1: "",
-        pass2: ""
+        pass2: "",
+        name: "",
+        age: 0,
+        sex: "",
+        major: "",
+        grade: 0,
+        isSeller: false
       };
     }
 
