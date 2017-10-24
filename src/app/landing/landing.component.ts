@@ -275,6 +275,25 @@ export class LandingComponent implements OnInit {
       )
   }
 
+  register(user : User) {
+    console.log("Registering User: " + user);
+    this.userService.create(user)
+      .subscribe(
+        data => {
+          this.currentUser = data;
+          if (this.currentUser) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+            this.isLoggedIn = true;
+            console.log("Registered");
+          }
+        },
+        error => {
+          console.log("Registration issue " + error);
+        }
+      )
+  }
+
   openLoginDialog(): void {
     let loginDialogRef = this.dialog.open(LoginDialog, {
       width: '500px',
@@ -300,11 +319,9 @@ export class LandingComponent implements OnInit {
 
     registerDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // if (result.email != "" && result.password != "") {
-      //   this.http.get("/api/Account").subscribe(result => {
-      //     this.user = result['user'];
-      //   });
-      // }
+      if (result.username != "" && result.pass1 != "" && result.pass2 != "") {
+        this.register(result);
+      }
     });
   }
 }
@@ -343,6 +360,7 @@ export class RegisterDialog {
     public registerDialogRef: MatDialogRef<RegisterDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.data = {
+        id: 0,
         username: "",
         pass1: "",
         pass2: "",
