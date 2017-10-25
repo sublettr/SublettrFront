@@ -6,6 +6,18 @@
   background-color: white;
 }
 
+.profile-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+  background-color: var(--Froly);
+  min-height: 33vh;
+  justify-content: center;
+  align-items: center;
+}
+
 .profile-items-container {
   background-color: white;
   margin-bottom: 20px;

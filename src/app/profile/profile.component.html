@@ -1,20 +1,29 @@
 <div class="container-fluid profile-page">
-  <div class="row" style="background-color: var(--Froly); min-height: 33vh">
-    <div style="margin: auto; text-align: center">
-      <div class="row" style="display: flex; justify-content: center; align-items: center;">
-        <img style="max-height: 300px;" alt="Profile Image" src="http://www.freeiconspng.com/uploads/profile-icon-9.png"
-             class="img-responsive img-circle"/>
-        <h3 style="position: absolute; top: 0; margin-top: 15px;">Michael Vieck</h3>
+  <div class="row profile-row">
+    <div class="col-4" style="flex-direction: column">
+      <img style="max-height: 300px;" alt="Profile Image"
+           src="http://www.freeiconspng.com/uploads/profile-icon-9.png"
+           class="img-responsive img-circle"/>
+    </div>
+
+    <div class="col-8" style="display: flex; flex-direction: column; min-height: 33vh">
+      <div class="row" style="margin-top: 15px;">
+        <h3 style="margin-right: 50px">{{profile.name}}</h3>
+        <h3 style="margin-left: 50px">{{profile.username}}</h3>
       </div>
       <div class="row" style="display: flex; align-items: center">
-        <h3 style="float: left; margin-right: 50px">Age: 22</h3>
-        <h3 style="float: right; margin-left: 50px">Major: Computer Science</h3>
+        <h3 *ngIf="profile.age" style="float: left; margin-right: 50px">{{profile.age}} years old</h3>
+        <h3 *ngIf="profile.sex" style="float: right; margin-left: 50px">{{profile.sex}}</h3>
       </div>
-
-
+      <div class="row" style="display: flex; align-items: center">
+        <h3 *ngIf="profile.grade" style="float: left; margin-right: 50px">{{profile.grade}}</h3>
+        <h3 ngif="profile.major" style="float: right; margin-left: 50px">{{profile.major}}</h3>
+      </div>
     </div>
+    <a (click)="editProfile()" class="btn btn-default">Edit  <i matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
+                                                    style="color: var(--GrayChateau);"></i></a>
   </div>
-  <div class="container profile-items-container">
+  <div class="container profile-items-container">22
     <div class="row profile-items">
       <h3>Saved Subleases</h3>
       <div class="horizontal-card-list">
@@ -81,12 +90,14 @@
                 <p *ngIf="property.amenities == null">No amentities</p>
                 <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
                 <div class="row">
-                  <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
+                  <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities"
+                            matTooltip="{{amenity.title}}"
                             style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
                 </div>
               </div>
               <div class="footer-btn">
-                  <i (click)="edit()" matTooltip="Edit" class="fa fa-edit" aria-hidden="true" style="color: var(--GrayNurse);"></i>️
+                <i (click)="edit()" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
+                   style="color: var(--GrayNurse);"></i>️
               </div>
             </div>
           </div>

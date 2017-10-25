@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {User} from "../_models/user";
 
 @Component({
   selector: 'app-profile',
@@ -301,11 +302,16 @@ export class ProfileComponent implements OnInit {
     }
   ];
 
+  profile: User;
+
   constructor() {
 
   }
 
   ngOnInit() {
+    if (localStorage.getItem('currentUser') != null) {
+      this.profile = JSON.parse(localStorage.getItem('currentUser'));
+    }
   }
 
 }
