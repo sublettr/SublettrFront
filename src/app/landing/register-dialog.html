@@ -10,13 +10,13 @@
     <div class="password-input">
       <mat-form-field style="width: 100%">
         <label>Password</label>
-        <input matInput required type="password" [(ngModel)]="data.pass1" name="pass1" />
+        <input matInput required type="password" [(ngModel)]="data.password" name="password" />
       </mat-form-field>
     </div>
     <div class="password-input">
       <mat-form-field style="width: 100%">
         <label>Confirm Password</label>
-        <input matInput required type="password" [(ngModel)]="data.pass2" name="pass2" />
+        <input matInput required type="password" [(ngModel)]="data.passwordcpy" name="passwordcpy" />
       </mat-form-field>
     </div>
   <div class="email-input">
@@ -51,7 +51,7 @@
     </div>
     <div mat-dialog-actions class="register-div">
       <div class="register-btn-div">
-        <button [mat-dialog-close]="data" [disabled]="!registerForm.form.valid" class="btn btn-secondary">Register</button>
+        <button (click)="register(data)" [disabled]="!registerForm.form.valid" class="btn btn-secondary">Register</button>
       </div>
     </div>
   </div>
