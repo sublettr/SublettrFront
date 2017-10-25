@@ -16,6 +16,7 @@
   min-height: 33vh;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .profile-items-container {
