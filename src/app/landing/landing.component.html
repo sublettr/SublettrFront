@@ -27,7 +27,7 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item active">
-          <a role="button" class="nav-link"(click)="openRegisterDialog()">Register</a>
+          <a role="button" class="nav-link" (click)="openRegisterDialog()" *ngIf="!isLoggedIn">Register</a>
         </li>
         <li class="nav-item active">
           <a role="button" class="nav-link" (click)="openLoginDialog()" *ngIf="!isLoggedIn">Login</a>
