@@ -9,7 +9,8 @@ import { User } from '../_models/user';
 
 @Injectable()
 export class UserService {
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   baseURL: string = 'http://localhost:5000';
 
@@ -19,7 +20,9 @@ export class UserService {
     headers.append("Access-Control-Allow-Origin", "*");
     headers.append("Access-Control-Allow-Credentials", "true");
     headers.append("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
-    headers.append("Content-Type", "application/x-www-form-urlencoded");
+    headers.append("Access-Control-Allow-Headers", "Content-Type");
+    headers.append("Content-Type", "application/json");
+    headers.append("Accept", "application/json")
     let options = new RequestOptions({headers: headers});
     console.log(JSON.stringify(options));
     return options;
@@ -37,10 +40,8 @@ export class UserService {
 
   }
 
-
-
   create(user: User) {
-    return this.http.post(this.baseURL + '/api/Account', user, this.addAuthToken()).map((response: Response) => response.json());
+    return this.http.post(this.baseURL + '/api/Account', user, this.getHeaders()).map((response: Response) => response.json());
   }
 
   update(user: User) {
