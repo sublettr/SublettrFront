@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, Inject} from '@angular/core';
 import {User} from "../_models/user";
+import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-profile',
@@ -304,14 +306,82 @@ export class ProfileComponent implements OnInit {
 
   profile: User;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
 
   }
 
   ngOnInit() {
     if (localStorage.getItem('currentUser') != null) {
       this.profile = JSON.parse(localStorage.getItem('currentUser'));
+      console.log("Loaded profile: " + JSON.stringify(this.profile));
     }
   }
 
+  openProfileDialog(): void {
+    let profileDialogRef = this.dialog.open(UpdateProfileDialog, {
+      width: '500px',
+      height: '500px',
+      data: this.profile,
+    });
+
+    profileDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+}
+
+
+@Component({
+  selector: 'app-landing',
+  templateUrl: './update-profile-dialog.html',
+  styleUrls: ['./profile.component.css']
+})
+export class UpdateProfileDialog {
+
+
+  @Input() profile: User;
+  @Output() setCurrentUser: EventEmitter<User> = new EventEmitter<User>();
+
+  newUser: User;
+
+  constructor(public profileDialogRef: MatDialogRef<UpdateProfileDialog>,
+              @Inject(MAT_DIALOG_DATA) private data: any,
+              private userService: UserService) {
+    this.profile = this.data;
+    this.newUser = this.profile;
+  }
+
+  onNoClick(): void {
+    this.profileDialogRef.close();
+  }
+
+  closeDialog() {
+    this.profileDialogRef.close();
+  }
+
+  updateProfile() {
+
+    console.log("Updating user profile: " + this.newUser);
+    if (this.newUser == undefined || this.newUser.username == "") {
+      console.log("Invalid user " + this.data);
+    }
+    console.log("Mapped user: " + JSON.stringify(this.newUser));
+    this.userService.update(this.newUser)
+      .subscribe(
+        data => {
+          this.setCurrentUser.emit(this.profile);
+          if (this.profile) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(this.profile));
+
+            console.log("Updated User");
+            this.closeDialog();
+          }
+        },
+        error => {
+          console.log("Updating user issue " + error);
+        }
+      )
+  }
 }

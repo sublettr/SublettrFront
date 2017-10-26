@@ -45,7 +45,7 @@ export class UserService {
   }
 
   update(user: User) {
-    return this.http.put(this.baseURL + '/api/Account/' + user.id, user, this.addAuthToken()).map((response: Response) => response.json());
+    return this.http.put(this.baseURL + '/api/Account/' + user.id, user, this.getHeaders());
   }
 
   delete(id: number) {
