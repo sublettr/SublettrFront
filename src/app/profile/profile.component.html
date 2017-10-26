@@ -19,9 +19,11 @@
         <h3 *ngIf="profile.grade" style="float: left; margin-right: 50px">{{profile.grade}}</h3>
         <h3 ngif="profile.major" style="float: right; margin-left: 50px">{{profile.major}}</h3>
       </div>
+      <div class="edit-profile-btn-div">
+        <button (click)="editProfile()" class="btn btn-secondary">Edit  <i matTooltip="Edit" class="fa fa-edit" aria-hidden="true" style="color: var(--GrayChateau);"></i></button>
+      </div>
     </div>
-    <a (click)="editProfile()" class="btn btn-default">Edit  <i matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
-                                                    style="color: var(--GrayChateau);"></i></a>
+
   </div>
   <div class="container profile-items-container">22
     <div class="row profile-items">
