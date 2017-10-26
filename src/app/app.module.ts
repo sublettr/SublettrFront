@@ -14,13 +14,15 @@ import { ViewSubleaseComponent } from './view-sublease/view-sublease.component';
 import {UserService} from "./_services/user.service";
 import {AuthenticationService} from "./_services/auth.service";
 import {SubleaseService} from "./_services/sublet.service";
+import {ProfileComponent, UpdateProfileDialog} from './profile/profile.component';
 
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: '*', component: LandingComponent },
   { path: 'post', component: PostComponent },
-  { path: 'view-sublease/:id', component: ViewSubleaseComponent }
+  { path: 'view-sublease/:id', component: ViewSubleaseComponent },
+  { path: 'profile', component: ProfileComponent },
 ];
 
 @NgModule({
@@ -29,12 +31,15 @@ const routes: Routes = [
     LandingComponent,
     LoginDialog,
     RegisterDialog,
+    UpdateProfileDialog,
     PostComponent,
-    ViewSubleaseComponent
+    ViewSubleaseComponent,
+    ProfileComponent
   ],
   entryComponents: [
     LoginDialog,
-    RegisterDialog
+    RegisterDialog,
+    UpdateProfileDialog
   ],
   imports: [
     BrowserModule,

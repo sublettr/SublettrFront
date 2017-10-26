@@ -1,0 +1,117 @@
+.profile-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-left: 16px;
+  color: var(--GrayNurse);
+  background-color: white;
+}
+
+.profile-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+  background-color: var(--Froly);
+  min-height: 33vh;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.profile-items-container {
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.profile-items {
+  background: white;
+  color: black;
+  margin-top: 24px;
+}
+
+.edit-profile-btn-div {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 16px;
+  margin-right: 32px;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.horizontal-card-list {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.horizontal-card-list > .col-md-3 {
+  display: inline-block;
+  float: none;
+}
+
+.saved-card {
+  background: white;
+}
+
+.posted-card {
+  background: var(--GrayChateau);
+  color: white;
+}
+
+.posted-card .md-icon.svg.path {
+  fill: white !important;
+}
+
+.card {
+  padding-left: 0;
+  padding-right: 0;
+  margin: 20px 20px;
+  height: 30vh;
+}
+
+.listing-card-img {
+  height: 125px;
+  width: 100%;
+}
+
+.listing-card-row {
+  width: 100%;
+  display: inline-block;
+}
+
+.listing-card mat-card-header {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.listing-card mat-card-header-text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.profile-div {
+  padding-top: 5%;
+  width:100%;
+  margin: 0 auto;
+  display: inline-flex;
+}
+
+.profile-btn-div {
+  width:25%;
+  margin: 0 auto;
+}
