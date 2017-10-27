@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
-import {MatIconRegistry} from "@angular/material";
+import {MatIconRegistry, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
+import {LoginDialog} from "./_classes/login";
+import {RegisterDialog} from "./_classes/register";
+import {User} from "./_models/user";
+import {UserService} from "./_services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +14,13 @@ import {MatIconRegistry} from "@angular/material";
 export class AppComponent {
   title = 'app';
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  isLoggedIn: boolean;
+  currentUser: User;
+
+  loginDialogRef: MatDialogRef<LoginDialog>;
+
+
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog,  private userService: UserService) {
     iconRegistry
       .addSvgIcon(
         'water',
@@ -46,5 +56,37 @@ export class AppComponent {
       'tennis',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/tennis.svg')
     );
+  }
+
+  openLoginDialog(): void {
+    this.loginDialogRef = this.dialog.open(LoginDialog, {
+      width: '500px',
+      height: '500px',
+      data: {firstname: "", lastname: "", password: ""}
+    });
+
+    this.loginDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(JSON.stringify(result));
+      if (result.username != "" && result.password != "") {
+        this.loginDialogRef.componentInstance.login(result.id, result.username, result.password);
+      }
+    });
+  }
+
+  openRegisterDialog(): void {
+    let registerDialogRef = this.dialog.open(RegisterDialog, {
+      width: '500px',
+      height: '500px',
+      data: {firstname: "", lastname: "", password: ""}
+    });
+
+    registerDialogRef.afterClosed().subscribe(result => {
+      console.log('The registration dialog was closed');
+    });
+  }
+
+  logout() {
+    this.loginDialogRef.componentInstance.logout();
   }
 }

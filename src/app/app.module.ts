@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
-import {LandingComponent, LoginDialog, RegisterDialog} from './landing/landing.component';
+import {LandingComponent} from './landing/landing.component';
 import {HttpClientModule} from "@angular/common/http";
 import {HttpModule} from "@angular/http";
 import { ViewSubleaseComponent } from './view-sublease/view-sublease.component';
@@ -15,6 +15,8 @@ import {UserService} from "./_services/user.service";
 import {AuthenticationService} from "./_services/auth.service";
 import {SubleaseService} from "./_services/sublet.service";
 import {ProfileComponent, UpdateProfileDialog} from './profile/profile.component';
+import {LoginDialog} from "./_classes/login";
+import {RegisterDialog} from "./_classes/register";
 
 
 const routes: Routes = [

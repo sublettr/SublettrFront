@@ -1,13 +1,8 @@
 import {Component, OnInit, Inject, Input, Output, EventEmitter} from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
-import {HttpClient} from "@angular/common/http";
-import {RequestOptions} from "@angular/http";
-
-import {User} from '../_models/user';
-import {UserService} from '../_services/user.service';
 import {SubleaseService} from "../_services/sublet.service";
 import {Router} from "@angular/router";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {User} from "../_models/user";
 
 @Component({
   selector: 'app-landing',
@@ -35,7 +30,7 @@ export class LandingComponent implements OnInit {
   isLoggedIn: boolean;
   currentUser: User;
 
-  constructor(public dialog: MatDialog, private router: Router, private http: HttpClient, private userService: UserService, private subleaseService: SubleaseService) {
+  constructor(private router: Router, private subleaseService: SubleaseService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -253,152 +248,4 @@ export class LandingComponent implements OnInit {
 
   }
 
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.isLoggedIn = false;
-  }
-
-  login(id: number, username: string, password: string) {
-    this.userService.getById(id)
-      .subscribe(
-        data => {
-          this.currentUser = data;
-          if (this.currentUser) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-            this.isLoggedIn = true;
-          }
-        },
-        error => {
-          console.log("Login issue " + error);
-        }
-      )
-  }
-
-
-  openLoginDialog(): void {
-    let loginDialogRef = this.dialog.open(LoginDialog, {
-      width: '500px',
-      height: '500px',
-      data: {firstname: "", lastname: "", password: ""}
-    });
-
-    loginDialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(JSON.stringify(result));
-      if (result.username != "" && result.password != "") {
-        this.login(result.id, result.username, result.password);
-      }
-    });
-  }
-
-  openRegisterDialog(): void {
-    let registerDialogRef = this.dialog.open(RegisterDialog, {
-      width: '500px',
-      height: '500px',
-      data: {firstname: "", lastname: "", password: ""}
-    });
-
-    registerDialogRef.afterClosed().subscribe(result => {
-      console.log('The registration dialog was closed');
-    });
-  }
-}
-
-@Component({
-  selector: 'app-landing',
-  templateUrl: './login-dialog.html',
-  styleUrls: ['./login.component.css']
-})
-export class LoginDialog {
-
-  constructor(public loginDialogRef: MatDialogRef<LoginDialog>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private http: HttpClient) {
-    this.data = {
-      id: 1,
-      email: "",
-      password: ""
-    };
-  }
-
-  onNoClick(): void {
-    this.loginDialogRef.close();
-  }
-
-}
-
-@Component({
-  selector: 'app-landing',
-  templateUrl: './register-dialog.html',
-  styleUrls: ['./login.component.css']
-})
-export class RegisterDialog {
-
-
-  @Input() currentUser: User;
-  @Output() setCurrentUser: EventEmitter<User> = new EventEmitter<User>();
-  @Input() isLoggedIn: boolean;
-  @Output() setLoggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  tempUser: User;
-
-  constructor(public registerDialogRef: MatDialogRef<RegisterDialog>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private userService: UserService) {
-    this.data = {
-      id: 0,
-      username: "",
-      password: "",
-      passwordcpy: "",
-      name: "",
-      age: 0,
-      sex: "",
-      major: "",
-      grade: 0,
-      isSeller: false
-    };
-  }
-
-  onNoClick(): void {
-    this.registerDialogRef.close();
-  }
-
-  onRegistrationSubmit() {
-    console.log(JSON.stringify(this.data));
-  }
-
-  closeDialog() {
-    this.registerDialogRef.close();
-  }
-
-  register(data) {
-
-    console.log("Registering User: " + this.data);
-    if (data == undefined || data.username == "" || data.password != data.passwordcpy) {
-      console.log("Invalid user " + this.data);
-    }
-    this.tempUser = new User(data);
-    console.log("Mapped user: " + JSON.stringify(this.tempUser));
-    this.userService.create(this.tempUser)
-      .subscribe(
-        data => {
-          this.currentUser = data;
-          this.setCurrentUser.emit(this.currentUser);
-          if (this.currentUser) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-
-            this.isLoggedIn = true;
-            this.setLoggedIn.emit(this.isLoggedIn);
-
-            console.log("Registered");
-            this.closeDialog();
-          }
-        },
-        error => {
-          console.log("Registration issue " + error);
-        }
-      )
-  }
 }
