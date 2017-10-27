@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 import {MatIconRegistry, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
 import {LoginDialog} from "./_classes/login";
@@ -11,16 +11,16 @@ import {UserService} from "./_services/user.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
 
-  isLoggedIn: boolean;
+  isLoggedIn: boolean = false;
   currentUser: User;
 
   loginDialogRef: MatDialogRef<LoginDialog>;
 
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog,  private userService: UserService) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, private userService: UserService) {
     iconRegistry
       .addSvgIcon(
         'water',
@@ -58,18 +58,28 @@ export class AppComponent {
     );
   }
 
+  ngOnInit() {
+    if (localStorage.getItem('currentUser') == null) {
+      this.isLoggedIn = false;
+    } else {
+      this.isLoggedIn = true;
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
+  }
+
+
   openLoginDialog(): void {
     this.loginDialogRef = this.dialog.open(LoginDialog, {
       width: '500px',
       height: '500px',
-      data: {firstname: "", lastname: "", password: ""}
+      data: {username: "", password: "", isLoggedIn: this.isLoggedIn}
     });
 
     this.loginDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(JSON.stringify(result));
       if (result.username != "" && result.password != "") {
-        this.loginDialogRef.componentInstance.login(result.id, result.username, result.password);
+        this.login(result.id, result.username, result.password);
       }
     });
   }
@@ -87,6 +97,25 @@ export class AppComponent {
   }
 
   logout() {
-    this.loginDialogRef.componentInstance.logout();
-  }
+      localStorage.removeItem('currentUser');
+      this.isLoggedIn = false;
+    }
+
+  login(id: number, username: string, password: string) {
+      this.userService.getById(id)
+       .subscribe(
+            data => {
+              this.currentUser = data;
+             if (this.currentUser) {
+                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                  this.isLoggedIn = true;
+                }
+            },
+          error => {
+              console.log("Login issue " + error);
+            }
+       )
+    }
+
 }
