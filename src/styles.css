@@ -42,3 +42,38 @@ body                   { margin: 0; }
 .jumbotron {
   background: var(--OxfordBlue);
 }
+
+/* Nav */
+.navbar {
+  background-color: var(--FuzzyWuzzyBrown);
+}
+
+.navbar a:hover {
+  cursor:pointer;
+  color: #ffb9b7;
+}
+.navbar a {
+  color: var(--GrayNurse);
+}
+
+.navbar a:not([href]) {
+  color: var(--GrayNurse);
+}
+.navbar a:not([href]):hover {
+  color: #ffb9b7;
+}
+
+a:hover {
+  cursor:pointer;
+  color: #ffb9b7;
+}
+a {
+  color: var(--GrayNurse);
+}
+
+a:not([href]) {
+  color: var(--GrayNurse);
+}
+a:not([href]):hover {
+  color: #ffb9b7;
+}
