@@ -62,3 +62,18 @@ body                   { margin: 0; }
 .navbar a:not([href]):hover {
   color: #ffb9b7;
 }
+
+a:hover {
+  cursor:pointer;
+  color: #ffb9b7;
+}
+a {
+  color: var(--GrayNurse);
+}
+
+a:not([href]) {
+  color: var(--GrayNurse);
+}
+a:not([href]):hover {
+  color: #ffb9b7;
+}
