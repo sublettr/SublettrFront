@@ -10,7 +10,7 @@ import {Sublease} from "../_models/sublease";
 })
 export class ViewSubleaseComponent implements OnInit {
 
-  sublet = new Sublease();
+  sublet: Sublease;
 
   sublease = {
   title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
