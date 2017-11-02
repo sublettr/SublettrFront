@@ -5,4 +5,6 @@ export class Sublease {
   description: string;
   roommates: number;
   isFurnished: boolean;
+  openHouse: Date;
+  imageUrls: string[];
 }
