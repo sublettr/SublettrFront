@@ -78,13 +78,14 @@
         </div>
       </div>
       <div class="col" *ngIf="post.hasOpenHouse">
-        <label for="inputOpenHouse">Number of Roommates</label>
+        <label for="inputOpenHouse">Date</label>
         <div class="ui-g-12 ui-md-4">
           <p-calendar id="inputOpenHouse"
                       placeholder="Enter open house date"
                       name="openHouse"
-                      [(ngModel)]="post.openhouse" [showTime]="true"></p-calendar>
-          {{post.openhouse}}
+                      type="datetime-local"
+                      [(ngModel)]="post.openHouse" [showTime]="true"></p-calendar>
+          {{post.openHouse}}
         </div>
       </div>
     </div>
@@ -92,7 +93,7 @@
       <div class="col">
         <div class="form-check">
           <label class="form-check-label">
-            <mat-checkbox [(ngModel)]="post.isfurnished" name="isFurnished">Is Furnished</mat-checkbox>
+            <mat-checkbox [(ngModel)]="post.isFurnished" name="isFurnished">Is Furnished</mat-checkbox>
           </label>
         </div>
       </div>

@@ -19,10 +19,23 @@ export class PostComponent implements OnInit {
   currentUser: User = new User("");
 
   post: any = {};
-  sublet: Sublease;
 
 
   constructor(private subleaseService: SubleaseService) {
+    this.post = {
+        "address1": "",
+        "address2": "",
+        "city": "",
+        "state": "",
+        "zipcode": 0,
+        "property": "",
+        "location": "",
+        "hasRoommates": false,
+        "roommates": 0,
+        "hasOpenHouse": false,
+        "openHouse": "",
+        "isFurnished": false
+    }
   }
 
   ngOnInit() {
@@ -35,9 +48,9 @@ export class PostComponent implements OnInit {
   }
 
   submitForm() {
-    this.sublet = new Sublease(0, this.currentUser.id, this.post.address1 + " " + this.post.address2,  this.post.description,
+    let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
       this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
-    this.subleaseService.create(this.sublet)
+    this.subleaseService.create(sublet)
       .subscribe(
         data => {
           console.log("Successful post upload")
