@@ -1,7 +1,8 @@
 import {Component, Input, Output, EventEmitter, Inject} from "@angular/core";
-import {User} from "../_models/user";
+import {FullUser} from "../_models/full-user";
 import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
 import {UserService} from "../_services/user.service";
+import {User} from "../_models/user";
 @Component({
   selector: 'app-landing',
   templateUrl: '../_classes/register-dialog.html',
@@ -10,12 +11,12 @@ import {UserService} from "../_services/user.service";
 export class RegisterDialog {
 
 
-  @Input() currentUser: User;
-  @Output() setCurrentUser: EventEmitter<User> = new EventEmitter<User>();
+  @Input() currentUser: FullUser;
+  @Output() setCurrentUser: EventEmitter<FullUser> = new EventEmitter<FullUser>();
   @Input() isLoggedIn: boolean;
   @Output() setLoggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  tempUser: User;
+  tempUser: FullUser;
 
   constructor(public registerDialogRef: MatDialogRef<RegisterDialog>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -48,13 +49,14 @@ export class RegisterDialog {
 
   register(data) {
 
-    console.log("Registering User: " + this.data);
-    if (data == undefined || data.username == "" || data.password != data.passwordcpy) {
+    console.log("Registering FullUser: " + this.data);
+    if (data == undefined || data.email == "" || data.password != data.passwordcpy) {
       console.log("Invalid user " + this.data);
     }
-    this.tempUser = new User(data);
-    console.log("Mapped user: " + JSON.stringify(this.tempUser));
-    this.userService.create(this.tempUser)
+    let user = new User(data);
+    console.log("Registering user: " + JSON.stringify(this.tempUser));
+    /* Registration Request */
+    this.userService.register(user)
       .subscribe(
         data => {
           this.currentUser = data;
@@ -67,6 +69,10 @@ export class RegisterDialog {
             this.setLoggedIn.emit(this.isLoggedIn);
 
             console.log("Registered");
+
+            /* Put User Request */
+            this.userService
+
             this.closeDialog();
           }
         },

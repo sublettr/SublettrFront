@@ -2,7 +2,7 @@ import {Component, OnInit, Inject, Input, Output, EventEmitter} from '@angular/c
 import {SubleaseService} from "../_services/sublet.service";
 import {Router} from "@angular/router";
 import {animate, style, transition, trigger} from "@angular/animations";
-import {User} from "../_models/user";
+import {FullUser} from "../_models/full-user";
 
 @Component({
   selector: 'app-landing',
@@ -28,7 +28,7 @@ export class LandingComponent implements OnInit {
   public sublets;
   sidebar = true;
   isLoggedIn: boolean;
-  currentUser: User;
+  currentUser: FullUser;
 
   constructor(private router: Router, private subleaseService: SubleaseService) {
     this.subleases = [{
