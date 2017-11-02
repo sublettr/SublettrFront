@@ -46,12 +46,12 @@ export class RegisterDialog {
     this.registerDialogRef.close();
   }
 
-  register(data) {
+  register(registerdata) {
 
-    if (data == undefined || data.email == "" || data.password != data.passwordcpy) {
-      console.log("Invalid user " + this.data);
+    if (registerdata == undefined || registerdata.email == "" || registerdata.password != registerdata.passwordcpy) {
+      console.log("Invalid user " + registerdata);
     }
-    let user = new User(data);
+    let user = new User(registerdata);
     console.log("Registering user: " + JSON.stringify(user));
     /* Registration Request */
     this.userService.register(user)
@@ -69,7 +69,8 @@ export class RegisterDialog {
             console.log("Registered");
 
             /* Put User Request */
-            let fullUser = new FullUser(data);
+            let fullUser = new FullUser(registerdata);
+            console.log("Updating user profile: " + JSON.stringify(fullUser));
             this.userService.updateProfile(fullUser)
               .subscribe(data => {
 

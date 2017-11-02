@@ -42,7 +42,11 @@ export class UserService {
   }
 
   register(user: User) {
-    return this.http.post(this.baseURL + '/api/Account/register', user, this.getHeaders()).map((response: Response) => response.json());
+    return this.http.post(this.baseURL + '/api/Account/register', user, this.getHeaders()).map((response: Response) => {
+      //http call for uppdate provele
+      
+      return response.json();
+    });
   }
 
   updateProfile(user: FullUser) {
