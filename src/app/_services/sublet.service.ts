@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 
 import { User } from '../_models/user';
+import {Sublease} from "../_models/sublease";
 
 @Injectable()
 export class SubleaseService {
@@ -35,15 +36,14 @@ export class SubleaseService {
 
   getFullById(id: number) {
     return this.http.get(this.baseURL + '/api/Sublet/full/' + id, this.getHeaders()).map((response: Response) => { return response.json() });
-
   }
 
-  create(user: User) {
-    return this.http.post(this.baseURL + '/api/Sublet', user, this.getHeaders()).map((response: Response) => { return response.json()});
+  create(sublease: Sublease) {
+    return this.http.post(this.baseURL + '/api/Sublet/full', sublease, this.getHeaders()).map((response: Response) => { return response.json()});
   }
 
-  update(user: User) {
-    return this.http.put(this.baseURL + '/api/Sublet/' + user.id, user, this.getHeaders()).map((response: Response) => { return response.json()});
+  update(sublease: Sublease) {
+    return this.http.put(this.baseURL + '/api/Sublet/' + sublease.id, sublease, this.getHeaders()).map((response: Response) => { return response.json()});
   }
 
   delete(id: number) {
