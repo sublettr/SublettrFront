@@ -40,7 +40,6 @@ export class RegisterDialog {
   }
 
   onRegistrationSubmit() {
-    console.log(JSON.stringify(this.data));
   }
 
   closeDialog() {
@@ -49,12 +48,11 @@ export class RegisterDialog {
 
   register(data) {
 
-    console.log("Registering FullUser: " + this.data);
     if (data == undefined || data.email == "" || data.password != data.passwordcpy) {
       console.log("Invalid user " + this.data);
     }
     let user = new User(data);
-    console.log("Registering user: " + JSON.stringify(this.tempUser));
+    console.log("Registering user: " + JSON.stringify(user));
     /* Registration Request */
     this.userService.register(user)
       .subscribe(
@@ -71,7 +69,15 @@ export class RegisterDialog {
             console.log("Registered");
 
             /* Put User Request */
-            this.userService
+            let fullUser = new FullUser(data);
+            this.userService.updateProfile(fullUser)
+              .subscribe(data => {
+
+                },
+                error => {
+                  console.log("Error updating profile");
+                }
+              )
 
             this.closeDialog();
           }

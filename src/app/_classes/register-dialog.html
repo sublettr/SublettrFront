@@ -1,7 +1,7 @@
 <h2 mat-dialog-title style="color: var(--OxfordBlue)">Register</h2>
 <form (ngSubmit)="onRegistrationSubmit()" #registerForm="ngForm">
   <div mat-dialog-content style="overflow-y: hidden">
-    <div class="username-input">
+    <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Username</label>
         <input matInput required type="text" [(ngModel)]="data.userName" name="username" />
