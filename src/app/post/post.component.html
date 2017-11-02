@@ -64,7 +64,7 @@
       </div>
       <div class="col" *ngIf="post.hasRoommates">
         <label for="inputRoommates">Number of Roommates</label>
-        <input type="number" class="form-control" [(ngModel)]="post.property" id="inputRoommates"
+        <input type="number" class="form-control" [(ngModel)]="post.roommates" id="inputRoommates"
                name="roommates"
                placeholder="Enter number of roommates">
       </div>
@@ -80,11 +80,20 @@
       <div class="col" *ngIf="post.hasOpenHouse">
         <label for="inputOpenHouse">Number of Roommates</label>
         <div class="ui-g-12 ui-md-4">
-        <p-calendar id="inputOpenHouse"
-                    placeholder="Enter open house date"
-                    name="openHouse"
-                    [(ngModel)]="post.openhouse" [showTime]="true"></p-calendar>
-        {{post.openhouse}}
+          <p-calendar id="inputOpenHouse"
+                      placeholder="Enter open house date"
+                      name="openHouse"
+                      [(ngModel)]="post.openhouse" [showTime]="true"></p-calendar>
+          {{post.openhouse}}
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="form-check">
+          <label class="form-check-label">
+            <mat-checkbox [(ngModel)]="post.isfurnished" name="isFurnished">Is Furnished</mat-checkbox>
+          </label>
         </div>
       </div>
     </div>
