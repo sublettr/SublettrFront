@@ -42,17 +42,7 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.postForm = this._fb.group({
-      address: ['', [Validators.required]],
-      description: [''],
-      hasRoommates: [false],
-      roommates: this._fb.array([]),
-      hasOpenHouse: [false],
-      openHouse: [''],
-      isFurnished: [false]
-    });
 
-    this.initRoommates(); //Add roommates
 
     if (localStorage.getItem('currentUser') == null) {
       this.isLoggedIn = false;
@@ -84,6 +74,23 @@ export class PostComponent implements OnInit {
     if (this.post.openHouse != "") {
       this.post.hasOpenHouse = true;
     }
+
+    this.postForm = this._fb.group({
+      email: [this.post.email],
+      address: [this.post.address, [Validators.required]],
+      description: [this.post.description],
+      hasRoommates: [this.post.hasRoommates],
+      roommates: this._fb.array([]),
+      hasOpenHouse: [this.post.hasOpenHouse],
+      openHouse: [''],
+      isFurnished: [this.post.isFurnished],
+      tags: [],
+      imageUrls: []
+    });
+
+    //Add roommates
+    this.initRoommates();
+
     console.log("Post " + JSON.stringify(this.post));
 
   }
@@ -124,7 +131,6 @@ addRoommate() {
     let formModel = model.getRawValue();
     formModel.email = this.post.email;
     formModel.tags = this.post.tags;
-    formModel.imageUrls = [];
     formModel.roommates.forEach(roommate => {
       console.log(roommate);
       roommate.id = 0;
@@ -150,8 +156,8 @@ addRoommate() {
     let formModel = model.getRawValue();
     formModel.email = this.post.email;
     formModel.tags = this.post.tags;
-
-    console.log("Updating: " + formModel);
+    formModel.imageUrls = this.post.tags;
+    console.log("Updating: " + JSON.stringify(formModel));
     this.subleaseService.updatePost(formModel)
       .subscribe(
         data => {
