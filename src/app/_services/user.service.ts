@@ -36,15 +36,19 @@ export class UserService {
   getById(id: number) {
     return this.http.get(this.baseURL + '/api/Account/' + id, this.getHeaders()).map((response: Response) => response.json());  }
 
-  getFullById(id: number) {
-    return this.http.get(this.baseURL + '/api/Account/full/' + id, this.getHeaders()).map((response: Response) => response.json());
+  getFullByEmail(email: string) {
+    return this.http.get(this.baseURL + '/api/Account/' + email, this.getHeaders()).map((response: Response) => response.json());
 
+  }
+
+  login(user: User) {
+    return this.http.post(this.baseURL + '/api/Account/sign-in/', user, this.getHeaders()).map((response: Response) => response.json());
   }
 
   register(user: User) {
     return this.http.post(this.baseURL + '/api/Account/register', user, this.getHeaders()).map((response: Response) => {
       //http call for uppdate provele
-      
+
       return response.json();
     });
   }
