@@ -6,6 +6,7 @@ import {SubleaseService} from "../_services/sublet.service";
 import {FullUser} from "../_models/full-user";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../_services/DataService";
+import {ChipsModule} from 'primeng/primeng';
 
 @Component({
   selector: 'app-post',
@@ -28,6 +29,8 @@ export class PostComponent implements OnInit {
 
   isLoggedIn: boolean = false;
   currentUser: FullUser = new FullUser("");
+
+  tag_chips: string[] = [];
 
   post: Sublease;
 
@@ -54,7 +57,7 @@ export class PostComponent implements OnInit {
         "hasOpenHouse": false,
         "openHouse": "",
         "isFurnished": false,
-        "tags": []
+        "tags": this.tag_chips
       }
     }
 
@@ -72,6 +75,8 @@ export class PostComponent implements OnInit {
   submitForm() {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
+   this.post.tags = this.tag_chips;
+    console.log(this.post);
     this.subleaseService.create(this.post)
       .subscribe(
         data => {
@@ -86,6 +91,7 @@ export class PostComponent implements OnInit {
   updateForm() {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
+    this.post.tags = this.tag_chips;
     this.subleaseService.updatePost(this.post)
       .subscribe(
         data => {

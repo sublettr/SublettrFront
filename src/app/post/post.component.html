@@ -59,6 +59,19 @@
         </div>
       </div>
     </div>
+
+
+    <div class="form-row">
+      <div class="col">
+        <div class="form-check">
+          <label class="form-check-label">Enter any tags you would like:
+            <p-chips [(ngModel)]="tag_chips" name="tags"></p-chips>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
     <div class="form-row">
       <label for="inputAmenities">Amentities</label>
       <mat-selection-list dense #amenitiesList id="inputAmenities">

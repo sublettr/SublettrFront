@@ -4,6 +4,7 @@ import { AllMaterialModulesModule } from './all-material.module';
 import {AllPrimeNGModulesModule} from "./all-primeng.module";
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import {ChipsModule} from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -52,7 +53,8 @@ const routes: Routes = [
     AllMaterialModulesModule,
     AllPrimeNGModulesModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    ChipsModule
   ],
   providers: [UserService, AuthenticationService, SubleaseService, DataService, UserService, UserTrackingService],
   bootstrap: [AppComponent]
