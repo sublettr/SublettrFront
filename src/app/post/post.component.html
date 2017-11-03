@@ -21,7 +21,7 @@
       <div class="col">
         <div class="form-check">
           <label class="form-check-label">
-            <mat-checkbox class="form-control" formControlName="hasRoommates">Roommates</mat-checkbox>
+            <mat-checkbox class="form-control" formControlName="hasRoommates" [value]="post.roommates.length > 0" >Roommates</mat-checkbox>
           </label>
         </div>
       </div>
@@ -125,7 +125,7 @@
       <a *ngIf="dataService.post == undefined" (click)="submitForm(postForm)">
         <button [disabled]="!postForm.valid" mat-raised-button-bottom-right class="btn btn-primary btn-landing">Submit</button>
       </a>
-      <a *ngIf="dataService.post != undefined" (click)="updateForm()">
+      <a *ngIf="dataService.post != undefined" (click)="updateForm(postForm)">
         <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Update</button>
       </a>
     </div>
