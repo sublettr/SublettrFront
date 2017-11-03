@@ -46,7 +46,7 @@
                       name="openHouse"
                       type="datetime-local"
                       [(ngModel)]="post.openHouse" [showTime]="true"></p-calendar>
-          {{post.openHouse}}
+          {{post.openHouse | date:"medium"}}
         </div>
       </div>
     </div>
