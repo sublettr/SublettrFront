@@ -19,7 +19,7 @@ describe('ViewSubleaseComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should register', () => {
     expect(component).toBeTruthy();
   });
 });

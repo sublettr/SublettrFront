@@ -5,7 +5,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 
-import { User } from '../_models/user';
+import { FullUser } from '../_models/full-user';
+import {User} from "../_models/user";
 
 @Injectable()
 export class UserService {
@@ -40,12 +41,16 @@ export class UserService {
 
   }
 
-  create(user: User) {
-    return this.http.post(this.baseURL + '/api/Account', user, this.getHeaders()).map((response: Response) => response.json());
+  register(user: User) {
+    return this.http.post(this.baseURL + '/api/Account/register', user, this.getHeaders()).map((response: Response) => {
+      //http call for uppdate provele
+      
+      return response.json();
+    });
   }
 
-  update(user: User) {
-    return this.http.put(this.baseURL + '/api/Account/' + user.id, user, this.getHeaders());
+  updateProfile(user: FullUser) {
+    return this.http.put(this.baseURL + '/api/Account/' + user.email, user, this.getHeaders());
   }
 
   delete(id: number) {
@@ -55,7 +60,7 @@ export class UserService {
   // private helper methods
 
   private addAuthToken() {
-    // create authorization header with user auth token
+    // register authorization header with user auth token
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.token) {
       let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });

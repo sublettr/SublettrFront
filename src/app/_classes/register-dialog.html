@@ -4,7 +4,13 @@
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Username</label>
-        <input matInput required type="text" [(ngModel)]="data.username" name="username" />
+        <input matInput required type="text" [(ngModel)]="data.userName" name="username" />
+      </mat-form-field>
+    </div>
+    <div class="email-input">
+      <mat-form-field style="width: 100%">
+        <label>Email</label>
+        <input matInput required type="email" [(ngModel)]="data.email" name="email" />
       </mat-form-field>
     </div>
     <div class="password-input">

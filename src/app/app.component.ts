@@ -3,7 +3,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {MatIconRegistry, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
 import {LoginDialog} from "./_classes/login";
 import {RegisterDialog} from "./_classes/register";
-import {User} from "./_models/user";
+import {FullUser} from "./_models/full-user";
 import {UserService} from "./_services/user.service";
 
 @Component({
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   isLoggedIn: boolean = false;
-  currentUser: User;
+  currentUser: FullUser;
 
   loginDialogRef: MatDialogRef<LoginDialog>;
 
