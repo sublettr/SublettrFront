@@ -1,6 +1,6 @@
 <div class="jumbotron vertical-center">
   <div class="container">
-    <div class="card view-sublease-card">
+    <div class="card view-sublease-card" *ngIf="sublet">
         <img class="card-img-top img-fluid"
              src={{sublease.url}}
              alt="Photo of a Property Listing">
@@ -35,7 +35,11 @@
             <div class="footer-btn">
               <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>️</button>
               <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true" style="color: dodgerblue;"></i>️</button>
-              <button class="btn" *ngIf="currentUser != undefined && sublet.email == currentUser.email" (click)="edit()"><i class="fa fa-edit" aria-hidden="true" style="color: slategray;"></i>️
+              <button class="btn" *ngIf="currentUser && sublet.email == currentUser.email" (click)="edit()"><i class="fa fa-edit" aria-hidden="true" style="color: slategray;"></i>️
+              </button>
+            </div>
+            <div style="margin-top: 10px">
+              <button class="btn"  [routerLink]="['/profile', sublet.email]">View Profile <i class="fa fa-link" aria-hidden="true" style="color: slategray;"></i>️
               </button>
             </div>
           </div>
