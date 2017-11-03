@@ -248,4 +248,8 @@ export class LandingComponent implements OnInit {
 
   }
 
+  //Share a sublease
+  edit(): void {
+
+  }
 }

@@ -1,22 +1,32 @@
 export class Sublease {
   id: number = 0;
-  userId: number = -1;
+  email: string = "";
   address: string = "";
   description: string = "";
+  hasRoommates: boolean = false;
   roommates: number = 0;
   isFurnished: boolean = false;
-  openHouse: Date;
+  hasOpenHouse: boolean = false;
+  openHouse: any;
   tags: string[] = [];
 
 
-  constructor(id: number, userId: number, address: string, description: string, roommates: number, isFurnished: boolean, openHouse: Date, tags: string[]) {
+  constructor(id: number, email: string, address: string, description: string, roommates: number, isFurnished: boolean, openHouse: Date, tags: string[]) {
     this.id = id;
-    this.userId = userId;
+    this.email = email;
     this.address = address;
     this.description = description;
     this.roommates = roommates;
     this.isFurnished = isFurnished;
     this.openHouse = openHouse;
     this.tags = tags;
+
+    if (roommates > 0) {
+      this.hasRoommates = true;
+    }
+
+    if (this.openHouse != undefined) {
+      this.hasOpenHouse = true;
+    }
   }
 }

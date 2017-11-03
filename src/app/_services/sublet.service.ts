@@ -43,7 +43,7 @@ export class SubleaseService {
     return this.http.post(this.baseURL + '/api/Sublet/full', sublease, this.getHeaders()).map((response: Response) => { return response.json()});
   }
 
-  update(sublease: Sublease) {
+  updatePost(sublease: Sublease) {
     return this.http.put(this.baseURL + '/api/Sublet/' + sublease.id, sublease, this.getHeaders()).map((response: Response) => { return response.json()});
   }
 

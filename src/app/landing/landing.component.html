@@ -73,6 +73,9 @@
                     <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
                                                              style="color: dodgerblue;"></i>️
                     </button>
+                    <button class="btn" *ngIf="currentUser != undefined && property.email == currentUser.email" (click)="edit()"><i class="fa fa-edit" aria-hidden="true"
+                                                             style="color: slategray;"></i>️
+                    </button>
                   </div>
                 </div>
               </div>
