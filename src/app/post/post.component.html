@@ -2,57 +2,18 @@
   <h1 class="post-h1 mat-headline">Create a Post</h1>
   <form class="example-form" #postForm="ngForm">
     <div class="form-row">
-      <label for="inputAddress1">Address 1</label>
-      <input type="text" class="form-control" [(ngModel)]="post.address1" id="inputAddress1"
-             name="address1"
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" [(ngModel)]="post.address" id="inputAddress"
+             name="address"
              aria-describedby="addressHelp"
              placeholder="Enter primary address">
       <small id="addressHelp" class="form-text text-muted">Your primary address.</small>
     </div>
     <div class="form-row">
-      <label for="inputAddress2">Address 2</label>
-      <input type="text" class="form-control" [(ngModel)]="post.address2" id="inputAddress2"
-             name="address2"
-             aria-describedby="address2Help"
-             placeholder="Enter secondary address">
-      <small id="address2Help" class="form-text text-muted">Your secondary address.</small>
-    </div>
-    <div class="form-row">
-      <div class="col">
-        <label for="inputCity">City</label>
-        <input type="text" class="form-control" [(ngModel)]="post.city" id="inputCity"
-               name="city"
-               placeholder="Enter city name">
-      </div>
-      <div class="col">
-        <label for="inputCity">State</label>
-        <input type="text" class="form-control" [(ngModel)]="post.state" id="inputState"
-               name="state"
-               placeholder="Enter state">
-      </div>
-      <div class="col">
-        <label for="inputZipcode">Zipcode</label>
-        <input type="number" maxlength="5" class="form-control" [(ngModel)]="post.zipcode" id="inputZipcode"
-               name="zipcode"
-               placeholder="Enter Zipcode">
-        <!--<mat-hint align="end">{{inputZipcode.value.length}} / 5</mat-hint>-->
-
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col">
-        <label for="inputCity">Sublet Property Name</label>
-        <input type="text" class="form-control" [(ngModel)]="post.property" id="inputProperty"
-               name="property"
-               placeholder="Enter property holder">
-      </div>
-      <div class="col">
-        <label for="inputCity">Sublet Location</label>
-        <input type="text" class="form-control" [(ngModel)]="post.location" id="inputLocation"
-               name="location"
-               placeholder="Enter location">
-      </div>
+      <label for="inputDescription">Sublet Description</label>
+      <input type="text" class="form-control" [(ngModel)]="post.description" id="inputDescription"
+             name="description"
+             placeholder="Enter description">
     </div>
     <div class="form-row">
       <div class="col">
@@ -107,24 +68,12 @@
         </mat-list-option>
       </mat-selection-list>
     </div>
-    <!--<div class="example-full-width" cellspacing="0">-->
-    <!--<tr>-->
-    <!--<th style="font-family: Roboto">Amenities</th>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<td>-->
-    <!--<mat-selection-list dense #amenitiesList>-->
-    <!--<mat-list-option *ngFor="let amenity of amenities">-->
-    <!--<mat-icon svgIcon="{{amenity.url}}"></mat-icon>-->
-    <!--<h3 matLine> {{amenity.title}} </h3>-->
-    <!--</mat-list-option>-->
-    <!--</mat-selection-list>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</div>-->
     <div style="margin-top: 40px">
-      <a (click)="submitForm()">
+      <a *ngIf="dataService.post == undefined" (click)="submitForm()">
         <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Submit</button>
+      </a>
+      <a *ngIf="dataService.post != undefined" (click)="updateForm()">
+        <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Update</button>
       </a>
     </div>
   </form>

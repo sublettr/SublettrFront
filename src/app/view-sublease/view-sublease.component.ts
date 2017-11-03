@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {SubleaseService} from "../_services/sublet.service";
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Sublease} from "../_models/sublease";
+import {DataService} from "../_services/DataService";
+import {UserTrackingService} from "../_services/UserTrackingService";
+import {FullUser} from "../_models/full-user";
 
 @Component({
   selector: 'app-view-sublease',
@@ -11,6 +14,7 @@ import {Sublease} from "../_models/sublease";
 export class ViewSubleaseComponent implements OnInit {
 
   sublet: Sublease;
+  currentUser: FullUser;
 
   sublease = {
   title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
@@ -23,14 +27,22 @@ export class ViewSubleaseComponent implements OnInit {
   }],
   desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 };
+  private isLoggedIn: boolean;
 
-  constructor(private subleaseService : SubleaseService, private route : ActivatedRoute, private router : Router) { }
+  constructor(private userTrackingService: UserTrackingService, private subleaseService : SubleaseService, private route : ActivatedRoute, private router : Router, private dataService: DataService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const id = Number.parseInt(params['paramKey']);
+      const id = Number.parseInt(params['id']);
+      console.log("ID: " + id);
       this.loadSublease(id);
     });
+    if (localStorage.getItem('currentUser') == null) {
+      this.isLoggedIn = false;
+    } else {
+      this.isLoggedIn = true;
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
   }
 
 
@@ -46,5 +58,10 @@ export class ViewSubleaseComponent implements OnInit {
           console.log("Getting sublets issue " + error);
         }
       );
+  }
+
+  edit(): void {
+    this.dataService.post = this.sublet;
+    this.router.navigate(["post"]);
   }
 }
