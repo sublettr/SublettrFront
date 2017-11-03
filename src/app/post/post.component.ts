@@ -6,6 +6,7 @@ import {SubleaseService} from "../_services/sublet.service";
 import {FullUser} from "../_models/full-user";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../_services/DataService";
+import {FormGroup, FormBuilder, Validators, FormArray} from "@angular/forms";
 
 @Component({
   selector: 'app-post',
@@ -31,11 +32,25 @@ export class PostComponent implements OnInit {
 
   post: Sublease;
 
-  constructor(private subleaseService: SubleaseService, private dataService: DataService, private router: Router) {
+  public postForm: FormGroup;
+
+  constructor(private _fb: FormBuilder, private subleaseService: SubleaseService, private dataService: DataService, private router: Router) {
 
   }
 
   ngOnInit() {
+    this.postForm = this._fb.group({
+      address: ['', [Validators.required]],
+      description: [''],
+      hasRoommates: [false],
+      roommates: this._fb.array([]),
+      hasOpenHouse: [false],
+      openHouse: [''],
+      isFurnished: [false]
+    });
+
+    this.initRoommates(); //Add roommates
+
     if (localStorage.getItem('currentUser') == null) {
       this.isLoggedIn = false;
     } else {
@@ -50,7 +65,7 @@ export class PostComponent implements OnInit {
         "address": "",
         "description": "",
         "hasRoommates": false,
-        "roommates": 0,
+        "roommates": [],
         "hasOpenHouse": false,
         "openHouse": "",
         "isFurnished": false,
@@ -58,7 +73,7 @@ export class PostComponent implements OnInit {
       }
     }
 
-    if (this.post.roommates > 0) {
+    if (this.post.roommates.length > 0) {
       this.post.hasRoommates = true;
     }
 
@@ -69,10 +84,37 @@ export class PostComponent implements OnInit {
 
   }
 
-  submitForm() {
+initRoommates() {
+  // initialize our address
+  return this._fb.group({
+    age: ['', Validators.required],
+    grade: ['', Validators.required],
+    major: ['']
+  });
+}
+
+
+addRoommate() {
+    // add address to the list
+    const control = <FormArray>this.postForm.controls['roommateList'];
+    control.push(this.initRoommates());
+  }
+
+  removeRoommate(i: number) {
+    // remove address from the list
+    const control = <FormArray>this.postForm.controls['roommateList'];
+    control.removeAt(i);
+  }
+
+  submitForm(model) {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
-    this.subleaseService.create(this.post)
+    let formModel = model.getRawValue();
+    formModel.email = this.post.email;
+    formModel.tags = this.post.tags;
+    formModel.imageUrls = [];
+    console.log("Uploading: " + JSON.stringify(formModel));
+    this.subleaseService.create(formModel)
       .subscribe(
         data => {
           console.log("Successful post upload")
@@ -83,10 +125,15 @@ export class PostComponent implements OnInit {
       )
   }
 
-  updateForm() {
+  updateForm(model) {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
-    this.subleaseService.updatePost(this.post)
+    let formModel = model.getRawValue();
+    formModel.email = this.post.email;
+    formModel.tags = this.post.tags;
+
+    console.log("Updating: " + formModel);
+    this.subleaseService.updatePost(formModel)
       .subscribe(
         data => {
           this.router.navigate(["view-sublease/"+this.post.id]);

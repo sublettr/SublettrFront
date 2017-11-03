@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AllMaterialModulesModule } from './all-material.module';
 import {AllPrimeNGModulesModule} from "./all-primeng.module";
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -52,7 +52,8 @@ const routes: Routes = [
     AllMaterialModulesModule,
     AllPrimeNGModulesModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [UserService, AuthenticationService, SubleaseService, DataService, UserService, UserTrackingService],
   bootstrap: [AppComponent]
