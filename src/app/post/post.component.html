@@ -35,10 +35,12 @@
       <div class="col" formArrayName="roommates" *ngIf="postForm.controls.hasRoommates.value">
 
         <div *ngFor="let roommate of postForm.controls.roommates.controls; let i=index">
-          <!-- address header, show remove button when more than one address available -->
+          <!-- roommate header, show remove button when more than one address available -->
           <div>
             <span>Roommate {{i + 1}}</span>
-            <span *ngIf="postForm.controls.roommates.controls.length > 1" (click)="removeAddress(i)">
+            <span *ngIf="postForm.controls.roommates.controls.length >= 1" (click)="removeRoommate(i)">
+              <i matTooltip="Remove" class="fa fa-trash" aria-hidden="true"
+                 style="color: var(--GrayNurse);"></i>
                 </span>
           </div>
 
@@ -49,7 +51,7 @@
               <label>age</label>
               <input type="number" formControlName="age">
               <!--display error message if age is not valid-->
-              <small [hidden]="myForm.controls.addresses.controls[i].controls.age.valid">
+              <small [hidden]="postForm.controls.roommates.controls[i].controls.age.valid">
                 Age is required
               </small>
             </div>
@@ -58,7 +60,7 @@
               <label>grade</label>
               <input type="number" formControlName="grade">
               <!--display error message if grade is not valid-->
-              <small [hidden]="myForm.controls.addresses.controls[i].controls.age.valid">
+              <small [hidden]="postForm.controls.roommates.controls[i].controls.age.valid">
                 Grade is required
               </small>
             </div>
@@ -70,6 +72,11 @@
             <div>
             </div>
           </div>
+        </div>
+        <div class="margin-20">
+          <a (click)="addRoommate()" style="cursor: default">
+            Add another roommate +
+          </a>
         </div>
       </div>
     </div>

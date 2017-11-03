@@ -100,13 +100,13 @@ initRoommates() {
 
 addRoommate() {
     // add address to the list
-    const control = <FormArray>this.postForm.controls['roommateList'];
+    const control = <FormArray>this.postForm.controls['roommates'];
     control.push(this.initRoommates());
   }
 
   removeRoommate(i: number) {
     // remove address from the list
-    const control = <FormArray>this.postForm.controls['roommateList'];
+    const control = <FormArray>this.postForm.controls['roommates'];
     control.removeAt(i);
   }
 
