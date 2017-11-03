@@ -36,6 +36,7 @@ export interface Roommate {
   id: number;
   subletId: number;
   age: number;
-  grade: number;
+  grade: string;
   major: string;
+  sex: string;
 }

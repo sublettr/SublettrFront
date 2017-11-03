@@ -58,10 +58,19 @@
             <!--grade-->
             <div>
               <label>grade</label>
-              <input type="number" formControlName="grade">
+              <input type="string" formControlName="grade">
               <!--display error message if grade is not valid-->
-              <small [hidden]="postForm.controls.roommates.controls[i].controls.age.valid">
+              <small [hidden]="postForm.controls.roommates.controls[i].controls.grade.valid">
                 Grade is required
+              </small>
+            </div>
+            <!--sex-->
+            <div>
+              <label>sex</label>
+              <input type="string" formControlName="sex">
+              <!--display error message if grade is not valid-->
+              <small [hidden]="postForm.controls.roommates.controls[i].controls.sex.valid">
+                Gender is required
               </small>
             </div>
             <!--major-->

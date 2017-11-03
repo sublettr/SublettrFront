@@ -93,6 +93,7 @@ initRoommates() {
   return this._fb.group({
     age: ['', Validators.required],
     grade: ['', Validators.required],
+    sex: ['', Validators.required],
     major: ['']
   });
 }
@@ -124,6 +125,11 @@ addRoommate() {
     formModel.email = this.post.email;
     formModel.tags = this.post.tags;
     formModel.imageUrls = [];
+    formModel.roommates.forEach(roommate => {
+      console.log(roommate);
+      roommate.id = 0;
+      roommate.subletID = 0;
+    });
     console.log("Uploading: " + JSON.stringify(formModel));
     this.subleaseService.create(formModel)
       .subscribe(
