@@ -57,7 +57,8 @@ export class PostComponent implements OnInit {
         "hasOpenHouse": false,
         "openHouse": "",
         "isFurnished": false,
-        "tags": this.tag_chips
+        "tags": this.tag_chips,
+        "imageUrls": []
       }
     }
 
@@ -77,7 +78,11 @@ export class PostComponent implements OnInit {
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
    this.post.tags = this.tag_chips;
     console.log(this.post);
-    this.subleaseService.create(this.post)
+    const imageList: FileList = (<HTMLInputElement>document.querySelector('.photo-upload input')).files;
+    for(let i: number = 0; i < imageList.length; i++) {
+      this.post.imageUrls.push(`https://s3.amazonaws.com/sublettr-images/${this.post.email}-${this.post.address}//file.name`);
+    }
+    this.subleaseService.create(this.post, imageList)
       .subscribe(
         data => {
           console.log("Successful post upload")
