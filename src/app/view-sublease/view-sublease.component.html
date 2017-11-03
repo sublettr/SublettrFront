@@ -38,7 +38,7 @@
               <button class="btn" *ngIf="currentUser && sublet.email == currentUser.email" (click)="edit()"><i class="fa fa-edit" aria-hidden="true" style="color: slategray;"></i>️
               </button>
             </div>
-            <div>
+            <div style="margin-top: 10px">
               <button class="btn"  [routerLink]="['/profile', sublet.email]">View Profile <i class="fa fa-link" aria-hidden="true" style="color: slategray;"></i>️
               </button>
             </div>
