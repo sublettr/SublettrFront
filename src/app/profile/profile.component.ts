@@ -2,6 +2,7 @@ import {Component, OnInit, Input, Output, EventEmitter, Inject} from '@angular/c
 import {FullUser} from "../_models/full-user";
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
 import {UserService} from "../_services/user.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -304,17 +305,42 @@ export class ProfileComponent implements OnInit {
     }
   ];
 
+  currentUser: FullUser;
   profile: FullUser;
+  email: string;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private userService: UserService, private route : ActivatedRoute, private router : Router) {
 
   }
 
   ngOnInit() {
     if (localStorage.getItem('currentUser') != null) {
-      this.profile = JSON.parse(localStorage.getItem('currentUser'));
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       console.log("Loaded profile: " + JSON.stringify(this.profile));
     }
+    this.route.params.subscribe(params => {
+      this.email = params['email'];
+      console.log("Email: " + this.email);
+      if (this.email == this.currentUser.email) {
+        this.profile = this.currentUser
+      } else {
+        this.loadProfile(this.email);
+      }
+    });
+  }
+
+  loadProfile(email: string) {
+    this.userService.getFullByEmail(email)
+      .subscribe(data => {
+        if (data != undefined) {
+          this.profile = data;
+        } else {
+          console.log("No data returned.")
+        }
+      },
+      error => {
+        console.log("Unable to fetch user");
+      })
   }
 
   openProfileDialog(): void {

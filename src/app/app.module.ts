@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: '*', component: LandingComponent },
   { path: 'post', component: PostComponent },
   { path: 'view-sublease/:id', component: ViewSubleaseComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:email', component: ProfileComponent },
 ];
 
 @NgModule({
