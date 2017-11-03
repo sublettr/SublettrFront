@@ -3,8 +3,9 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {MatIconRegistry, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
 import {LoginDialog} from "./_classes/login";
 import {RegisterDialog} from "./_classes/register";
-import {User} from "./_models/user";
+import {FullUser} from "./_models/full-user";
 import {UserService} from "./_services/user.service";
+import {User} from "./_models/user";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   isLoggedIn: boolean = false;
-  currentUser: User;
+  currentUser: FullUser;
 
   loginDialogRef: MatDialogRef<LoginDialog>;
 
@@ -72,14 +73,14 @@ export class AppComponent implements OnInit {
     this.loginDialogRef = this.dialog.open(LoginDialog, {
       width: '500px',
       height: '500px',
-      data: {username: "", password: "", isLoggedIn: this.isLoggedIn}
+      data: {email: "", password: "", isLoggedIn: this.isLoggedIn}
     });
 
     this.loginDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(JSON.stringify(result));
-      if (result.username != "" && result.password != "") {
-        this.login(result.id, result.username, result.password);
+      if (result.email != "" && result.password != "") {
+        this.login(result);
       }
     });
   }
@@ -97,25 +98,37 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-      localStorage.removeItem('currentUser');
-      this.isLoggedIn = false;
-    }
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('accessToken');
+    this.isLoggedIn = false;
+  }
 
-  login(id: number, username: string, password: string) {
-      this.userService.getById(id)
-       .subscribe(
-            data => {
-              this.currentUser = data;
-             if (this.currentUser) {
-                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+  login(userData) {
+    this.userService.login(new User(userData))
+      .subscribe(
+        data => {
+          console.log(data);
+          if (data.access_token) {
+            localStorage.setItem('accessToken', data.access_token);
+            this.userService.getFullByEmail(userData.email).subscribe(data => {
+                this.currentUser = data;
+                if (this.currentUser) {
+                  // store user details and jwt token in local storage to keep user logged in between page refreshes
+                  localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
                   this.isLoggedIn = true;
                 }
-            },
-          error => {
-              console.log("Login issue " + error);
-            }
-       )
-    }
+              },
+              error => {
+                console.log("Get Full User By Email error");
+              }
+            )
+          }
+
+        },
+        error => {
+          console.log("Login issue " + error);
+        }
+      )
+  }
 
 }

@@ -3,7 +3,7 @@ import {MatIconRegistry} from "@angular/material";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Sublease} from "../_models/sublease";
 import {SubleaseService} from "../_services/sublet.service";
-import {User} from "../_models/user";
+import {FullUser} from "../_models/full-user";
 
 @Component({
   selector: 'app-post',
@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
     {title:"Indoor Pool", url:"in-pool"}, {title:"Outdoor Pool", url: "out-pool"}, {title:"Basketball Court", url:"basketball"}, {title:"Tennis Court", url:"tennis"}];
 
   isLoggedIn: boolean = false;
-  currentUser: User = new User("");
+  currentUser: FullUser = new FullUser("");
 
   post: any = {};
 

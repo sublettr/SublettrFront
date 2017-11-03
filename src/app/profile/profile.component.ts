@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter, Inject} from '@angular/core';
-import {User} from "../_models/user";
+import {FullUser} from "../_models/full-user";
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
 import {UserService} from "../_services/user.service";
 
@@ -304,7 +304,7 @@ export class ProfileComponent implements OnInit {
     }
   ];
 
-  profile: User;
+  profile: FullUser;
 
   constructor(public dialog: MatDialog) {
 
@@ -340,10 +340,10 @@ export class ProfileComponent implements OnInit {
 export class UpdateProfileDialog {
 
 
-  @Input() profile: User;
-  @Output() setCurrentUser: EventEmitter<User> = new EventEmitter<User>();
+  @Input() profile: FullUser;
+  @Output() setCurrentUser: EventEmitter<FullUser> = new EventEmitter<FullUser>();
 
-  newUser: User;
+  newUser: FullUser;
 
   constructor(public profileDialogRef: MatDialogRef<UpdateProfileDialog>,
               @Inject(MAT_DIALOG_DATA) private data: any,
@@ -363,11 +363,11 @@ export class UpdateProfileDialog {
   updateProfile() {
 
     console.log("Updating user profile: " + this.newUser);
-    if (this.newUser == undefined || this.newUser.username == "") {
+    if (this.newUser == undefined || this.newUser.userName == "") {
       console.log("Invalid user " + this.data);
     }
     console.log("Mapped user: " + JSON.stringify(this.newUser));
-    this.userService.update(this.newUser)
+    this.userService.updateProfile(this.newUser)
       .subscribe(
         data => {
           this.setCurrentUser.emit(this.profile);
@@ -375,7 +375,7 @@ export class UpdateProfileDialog {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(this.profile));
 
-            console.log("Updated User");
+            console.log("Updated FullUser");
             this.closeDialog();
           }
         },

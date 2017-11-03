@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 
-import { User } from '../_models/user';
+import { FullUser } from '../_models/full-user';
 import {Sublease} from "../_models/sublease";
 
 @Injectable()
@@ -54,7 +54,7 @@ export class SubleaseService {
   // private helper methods
 
   private addAuthToken() {
-    // create authorization header with user auth token
+    // register authorization header with user auth token
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.token) {
       let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
