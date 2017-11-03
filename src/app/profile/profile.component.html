@@ -25,8 +25,8 @@
     </div>
 
   </div>
-  <div class="container profile-items-container">22
-    <div class="row profile-items">
+  <div class="container profile-items-container">
+    <div *ngIf="currentUser != undefined && profile != undefined && profile.email == currentUser.email" class="row profile-items">
       <h3>Saved Subleases</h3>
       <div class="horizontal-card-list">
         <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases">
