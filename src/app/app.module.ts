@@ -20,6 +20,7 @@ import {LoginDialog} from "./_classes/login";
 import {RegisterDialog} from "./_classes/register";
 import {DataService} from "./_services/DataService";
 import {UserTrackingService} from "./_services/UserTrackingService";
+import {ImageService} from './_services/image.service';
 
 
 const routes: Routes = [
@@ -56,7 +57,7 @@ const routes: Routes = [
     FormsModule,
     ChipsModule
   ],
-  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserService, UserTrackingService],
+  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserService, UserTrackingService, ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -7,12 +7,13 @@ import 'rxjs/add/operator/toPromise';
 
 import { FullUser } from '../_models/full-user';
 import {Sublease} from "../_models/sublease";
+import {ImageService} from './image.service';
 
 @Injectable()
 export class SubleaseService {
-  constructor(private http: Http) { }
+  constructor(private http: Http, private ImageService: ImageService) { }
 
-  baseURL: string = 'http://localhost:5000';
+  baseURL: string = 'http://localhost:50000';
 
   getHeaders() {
     let headers =  new Headers();
@@ -39,7 +40,8 @@ export class SubleaseService {
     return this.http.get(this.baseURL + '/api/Sublet/full/' + id, this.getHeaders()).map((response: Response) => { return response.json() });
   }
 
-  create(sublease: Sublease) {
+  create(sublease: Sublease, imageList: FileList) {
+    this.ImageService.uploadSubletImages(sublease, imageList); 
     return this.http.post(this.baseURL + '/api/Sublet/full', sublease, this.getHeaders()).map((response: Response) => { return response.json()});
   }
 
