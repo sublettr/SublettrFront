@@ -17,6 +17,8 @@ import {SubleaseService} from "./_services/sublet.service";
 import {ProfileComponent, UpdateProfileDialog} from './profile/profile.component';
 import {LoginDialog} from "./_classes/login";
 import {RegisterDialog} from "./_classes/register";
+import {DataService} from "./_services/DataService";
+import {UserTrackingService} from "./_services/UserTrackingService";
 
 
 const routes: Routes = [
@@ -52,7 +54,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  providers: [UserService, AuthenticationService, SubleaseService],
+  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserService, UserTrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

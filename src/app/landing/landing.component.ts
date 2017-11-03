@@ -3,6 +3,8 @@ import {SubleaseService} from "../_services/sublet.service";
 import {Router} from "@angular/router";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {FullUser} from "../_models/full-user";
+import {Sublease} from "../_models/sublease";
+import {DataService} from "../_services/DataService";
 
 @Component({
   selector: 'app-landing',
@@ -245,11 +247,6 @@ export class LandingComponent implements OnInit {
 
   //Share a sublease
   share(): void {
-
-  }
-
-  //Share a sublease
-  edit(): void {
 
   }
 }

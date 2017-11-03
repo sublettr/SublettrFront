@@ -4,6 +4,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {Sublease} from "../_models/sublease";
 import {SubleaseService} from "../_services/sublet.service";
 import {FullUser} from "../_models/full-user";
+import {ActivatedRoute, Router} from "@angular/router";
+import {DataService} from "../_services/DataService";
 
 @Component({
   selector: 'app-post',
@@ -12,25 +14,35 @@ import {FullUser} from "../_models/full-user";
 })
 export class PostComponent implements OnInit {
 
-  @Input() post: Sublease;
-
-  amenities = [{title:'Electric', url: "electric"}, {title:'Water', url:"water"}, {title:'Fitness Center', url:"fit-center"}, {title:'Free Parking', url:"parking"}, {title:'Garage', url:"garage"}, {title:"Free Laundry", url:"laundry"}, {title:"Parking Lot", url:"lot"},
-    {title:"Indoor Pool", url:"in-pool"}, {title:"Outdoor Pool", url: "out-pool"}, {title:"Basketball Court", url:"basketball"}, {title:"Tennis Court", url:"tennis"}];
+  amenities = [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
+    title: 'Fitness Center',
+    url: "fit-center"
+  }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
+    title: "Free Laundry",
+    url: "laundry"
+  }, {title: "Parking Lot", url: "lot"},
+    {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
+      title: "Basketball Court",
+      url: "basketball"
+    }, {title: "Tennis Court", url: "tennis"}];
 
   isLoggedIn: boolean = false;
   currentUser: FullUser = new FullUser("");
 
-  constructor(private subleaseService: SubleaseService) {
+  post: Sublease;
+
+  constructor(private subleaseService: SubleaseService, private dataService: DataService) {
 
   }
 
   ngOnInit() {
-      if (localStorage.getItem('currentUser') == null) {
-        this.isLoggedIn = false;
-      } else {
-        this.isLoggedIn = true;
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (localStorage.getItem('currentUser') == null) {
+      this.isLoggedIn = false;
+    } else {
+      this.isLoggedIn = true;
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
+    this.post = this.dataService.post;
     if (this.post == undefined) {
       this.post = {
         "id": 0,
@@ -45,7 +57,8 @@ export class PostComponent implements OnInit {
         "tags": []
       }
     }
-    console.log("Post " + this.post);
+    console.log("Post " + JSON.stringify(this.post));
+
   }
 
   submitForm() {
