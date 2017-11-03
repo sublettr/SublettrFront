@@ -57,31 +57,30 @@ export class RegisterDialog {
     this.userService.register(user)
       .subscribe(
         data => {
-          this.currentUser = data;
-          this.setCurrentUser.emit(this.currentUser);
-          if (this.currentUser) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 
-            this.isLoggedIn = true;
-            this.setLoggedIn.emit(this.isLoggedIn);
+          console.log("Registered");
 
-            console.log("Registered");
+          /* Put User Request */
+          let fullUser = new FullUser(registerdata);
+          console.log("Updating user profile: " + JSON.stringify(fullUser));
+          this.userService.updateProfile(fullUser)
+            .subscribe(data => {
+                this.currentUser = fullUser;
+                this.setCurrentUser.emit(this.currentUser);
+                if (this.currentUser) {
+                  // store user details and jwt token in local storage to keep user logged in between page refreshes
+                  localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 
-            /* Put User Request */
-            let fullUser = new FullUser(registerdata);
-            console.log("Updating user profile: " + JSON.stringify(fullUser));
-            this.userService.updateProfile(fullUser)
-              .subscribe(data => {
-
-                },
-                error => {
-                  console.log("Error updating profile");
+                  this.isLoggedIn = true;
+                  this.setLoggedIn.emit(this.isLoggedIn);
                 }
-              )
+              },
+              error => {
+                console.log("Error updating profile", error);
+              }
+            )
 
-            this.closeDialog();
-          }
+          this.closeDialog();
         },
         error => {
           console.log("Registration issue " + error);
