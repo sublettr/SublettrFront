@@ -31,7 +31,7 @@ export class PostComponent implements OnInit {
 
   post: Sublease;
 
-  constructor(private subleaseService: SubleaseService, private dataService: DataService) {
+  constructor(private subleaseService: SubleaseService, private dataService: DataService, private router: Router) {
 
   }
 
@@ -57,6 +57,14 @@ export class PostComponent implements OnInit {
         "tags": []
       }
     }
+
+    if (this.post.roommates > 0) {
+      this.post.hasRoommates = true;
+    }
+
+    if (this.post.openHouse != "") {
+      this.post.hasOpenHouse = true;
+    }
     console.log("Post " + JSON.stringify(this.post));
 
   }
@@ -81,6 +89,8 @@ export class PostComponent implements OnInit {
     this.subleaseService.updatePost(this.post)
       .subscribe(
         data => {
+          this.router.navigate(["view-sublease/"+this.post.id]);
+
           console.log("Successful post update")
         },
         error => {

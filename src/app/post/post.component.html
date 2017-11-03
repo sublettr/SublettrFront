@@ -69,8 +69,11 @@
       </mat-selection-list>
     </div>
     <div style="margin-top: 40px">
-      <a (click)="submitForm()">
+      <a *ngIf="dataService.post == undefined" (click)="submitForm()">
         <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Submit</button>
+      </a>
+      <a *ngIf="dataService.post != undefined" (click)="updateForm()">
+        <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Update</button>
       </a>
     </div>
   </form>
