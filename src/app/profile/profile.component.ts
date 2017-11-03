@@ -321,7 +321,7 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.email = params['email'];
       console.log("Email: " + this.email);
-      if (this.email == this.currentUser.email) {
+      if (this.currentUser && this.email == this.currentUser.email) {
         this.profile = this.currentUser
       } else {
         this.loadProfile(this.email);
