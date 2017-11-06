@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http: Http) {
   }
 
-  baseURL: string = 'http://localhost:50000';
+  baseURL: string = 'http://localhost:5000';
 
   getHeaders() {
     let headers =  new Headers();
