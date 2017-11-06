@@ -20,7 +20,7 @@
     <div class="form-row photo-upload">
       <div class="col">
         <label>Sublet Photos</label>
-        <input name="uploadedFiles" class="row" type="file" accept="image/*" multiple [(ngModel)]="uploadedFiles"/>
+        <input name="uploadedFiles" class="row" type="file" accept="image/*" multiple />
       </div>
     </div>
     <div class="form-row">
@@ -91,68 +91,68 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <div class="col">
-          <div class="form-check">
-            <label class="form-check-label">
-              <mat-checkbox class="form-control" formControlName="hasOpenHouse">Open House</mat-checkbox>
-            </label>
-          </div>
-        </div>
-        <div class="col" *ngIf="postForm.controls.hasOpenHouse.value">
-          <label for="inputOpenHouse">Date</label>
-          <div class="ui-g-12 ui-md-4">
-            <p-calendar id="inputOpenHouse"
-                        placeholder="Enter open house date"
-                        type="datetime-local"
-                        formControlName="openHouse"
-                        [showTime]="true">
-            </p-calendar>
-            {{postForm.openHouse | date:"medium"}}
-          </div>
+    </div>
+    <div class="form-group">
+      <div class="col">
+        <div class="form-check">
+          <label class="form-check-label">
+            <mat-checkbox class="form-control" formControlName="hasOpenHouse">Open House</mat-checkbox>
+          </label>
         </div>
       </div>
-      <div class="form-group">
-        <div class="col">
-          <div class="form-check">
-            <label class="form-check-label">
-              <mat-checkbox formControlName="isFurnished">Is Furnished</mat-checkbox>
-            </label>
-          </div>
+      <div class="col" *ngIf="postForm.controls.hasOpenHouse.value">
+        <label for="inputOpenHouse">Date</label>
+        <div class="ui-g-12 ui-md-4">
+          <p-calendar id="inputOpenHouse"
+                      placeholder="Enter open house date"
+                      type="datetime-local"
+                      formControlName="openHouse"
+                      [showTime]="true">
+          </p-calendar>
+          {{postForm.openHouse | date:"medium"}}
         </div>
       </div>
-
-
-      <div class="form-row">
-        <div class="col">
-          <div class="form-check">
-            <label class="form-check-label">Enter any tags you would like:
-              <p-chips [(ngModel)]="tag_chips" name="tags"></p-chips>
-            </label>
-          </div>
+    </div>
+    <div class="form-group">
+      <div class="col">
+        <div class="form-check">
+          <label class="form-check-label">
+            <mat-checkbox formControlName="isFurnished">Is Furnished</mat-checkbox>
+          </label>
         </div>
       </div>
+    </div>
 
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="inputAmenities">Amentities</label>
-          <mat-selection-list dense #amenitiesList id="inputAmenities">
-            <mat-list-option *ngFor="let amenity of amenities">
-              <mat-icon svgIcon="{{amenity.url}}"></mat-icon>
-              <h3 matLine> {{amenity.title}} </h3>
-            </mat-list-option>
-          </mat-selection-list>
+    <div class="form-row">
+      <div class="col">
+        <div class="form-check">
+          <label class="form-check-label">Enter any tags you would like:
+            <p-chips formControlName="tags" name="tags"></p-chips>
+          </label>
         </div>
-        <div style="margin-top: 40px">
-          <a *ngIf="dataService.post == undefined" (click)="submitForm(postForm)">
-            <button [disabled]="!postForm.valid" mat-raised-button-bottom-right class="btn btn-primary btn-landing">
-              Submit
-            </button>
-          </a>
-          <a *ngIf="dataService.post != undefined" (click)="updateForm(postForm)">
-            <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Update</button>
-          </a>
-        </div>
-  </form>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="inputAmenities">Amentities</label>
+      <mat-selection-list dense #amenitiesList id="inputAmenities">
+        <mat-list-option *ngFor="let amenity of amenities">
+          <mat-icon svgIcon="{{amenity.url}}"></mat-icon>
+          <h3 matLine> {{amenity.title}} </h3>
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+    <div style="margin-top: 40px">
+      <a *ngIf="dataService.post == undefined" (click)="submitForm(postForm)">
+        <button [disabled]="!postForm.valid" mat-raised-button-bottom-right class="btn btn-primary btn-landing">
+          Submit
+        </button>
+      </a>
+      <a *ngIf="dataService.post != undefined" (click)="updateForm(postForm)">
+        <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Update</button>
+      </a>
+    </div>
+</form>
 </div>

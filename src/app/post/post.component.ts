@@ -31,8 +31,6 @@ export class PostComponent implements OnInit {
   isLoggedIn: boolean = false;
   currentUser: FullUser = new FullUser("");
 
-  tag_chips: string[] = [];
-
   post: Sublease;
 
   public postForm: FormGroup;
@@ -62,7 +60,7 @@ export class PostComponent implements OnInit {
         "hasOpenHouse": false,
         "openHouse": "",
         "isFurnished": false,
-        "tags": this.tag_chips,
+        "tags": [],
         "imageUrls": []
       }
     }
@@ -121,13 +119,13 @@ addRoommate() {
   submitForm(model) {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
-   this.post.tags = this.tag_chips;
     console.log(this.post);
+    let formModel = model.getRawValue();
+    formModel.imageUrls = [];
     const imageList: FileList = (<HTMLInputElement>document.querySelector('.photo-upload input')).files;
     for(let i: number = 0; i < imageList.length; i++) {
-      this.post.imageUrls.push(`https://s3.amazonaws.com/sublettr-images/${this.post.email}-${this.post.address}//file.name`);
+      formModel.imageUrls.push(`https://s3.amazonaws.com/sublettr-images/${formModel.email}-${formModel.address}//file.name`);
     }
-    let formModel = model.getRawValue();
     formModel.email = this.post.email;
     formModel.tags = this.post.tags;
     formModel.roommates.forEach(roommate => {
@@ -150,7 +148,6 @@ addRoommate() {
   updateForm(model) {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
-    this.post.tags = this.tag_chips;
     // this.subleaseService.updatePost(this.post)
 
     let formModel = model.getRawValue();
