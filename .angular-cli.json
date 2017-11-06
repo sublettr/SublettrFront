@@ -20,7 +20,9 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "sublettr-app-theme.scss"
+        "sublettr-app-theme.scss",
+        "../node_modules/primeng/resources/primeng.min.css",
+        "../node_modules/primeng/resources/primeng.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

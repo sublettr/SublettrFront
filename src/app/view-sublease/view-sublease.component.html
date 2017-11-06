@@ -1,9 +1,9 @@
 <div class="jumbotron vertical-center">
   <div class="container">
     <div class="card view-sublease-card" *ngIf="sublet">
-        <img class="card-img-top img-fluid"
-             src={{sublease.url}}
-             alt="Photo of a Property Listing">
+      <img class="card-img-top img-fluid"
+           src={{sublease.url}}
+           alt="Photo of a Property Listing">
       <div class="card-body">
         <div class="row">
           <div class="col">
@@ -18,7 +18,21 @@
           </div>
           <div class="w-100"></div>
           <div class="col">
-            <p style="float: left; color: var(--GrayChateau)">Roommates: {{sublet.roommates.length}}</p>
+            <div class="card" id="roommateAccordition">
+              <div class="card-header" role="tab" id="headingOne">
+                <p class="mb-0" (click)="toggle()">
+                    Roommates: {{sublet.roommates.length}}
+                </p>
+              </div>
+                <div class="card-body" [ngClass]="{hide: !opened}" style="color: var(--GrayChateau)">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                  moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                  Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                  shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                  proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                  aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
           </div>
           <div class="col">
             <p style="color: var(--GrayChateau)">Open House: {{sublet.openHouse | date:"medium"}}</p>
@@ -33,13 +47,20 @@
           </div>
           <div class="col" style="text-align: right">
             <div class="footer-btn">
-              <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>️</button>
-              <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true" style="color: dodgerblue;"></i>️</button>
-              <button class="btn" *ngIf="currentUser && sublet.email == currentUser.email" (click)="edit()"><i class="fa fa-edit" aria-hidden="true" style="color: slategray;"></i>️
+              <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true"
+                                                          style="color: red;"></i>️
+              </button>
+              <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
+                                                       style="color: dodgerblue;"></i>️
+              </button>
+              <button class="btn" *ngIf="currentUser && sublet.email == currentUser.email" (click)="edit()"><i
+                class="fa fa-edit" aria-hidden="true" style="color: slategray;"></i>️
               </button>
             </div>
             <div style="margin-top: 10px">
-              <button class="btn"  [routerLink]="['/profile', sublet.email]">View Profile <i class="fa fa-link" aria-hidden="true" style="color: slategray;"></i>️
+              <button class="btn" [routerLink]="['/profile', sublet.email]">View Profile <i class="fa fa-link"
+                                                                                            aria-hidden="true"
+                                                                                            style="color: slategray;"></i>️
               </button>
             </div>
           </div>

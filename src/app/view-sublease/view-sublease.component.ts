@@ -29,6 +29,11 @@ export class ViewSubleaseComponent implements OnInit {
 };
   private isLoggedIn: boolean;
 
+  opened: Boolean = false;
+  toggle () {
+    this.opened = !this.opened;
+  }
+
   constructor(private userTrackingService: UserTrackingService, private subleaseService : SubleaseService, private route : ActivatedRoute, private router : Router, private dataService: DataService) { }
 
   ngOnInit() {

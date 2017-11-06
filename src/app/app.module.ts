@@ -21,7 +21,6 @@ import {DataService} from "./_services/DataService";
 import {UserTrackingService} from "./_services/UserTrackingService";
 import {ImageService} from './_services/image.service';
 
-
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: '*', component: LandingComponent },
