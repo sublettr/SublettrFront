@@ -7,6 +7,7 @@ import {FullUser} from "../_models/full-user";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../_services/DataService";
 import {ChipsModule} from 'primeng/primeng';
+import {FormGroup, FormBuilder, Validators, FormArray} from "@angular/forms";
 
 @Component({
   selector: 'app-post',
@@ -30,15 +31,17 @@ export class PostComponent implements OnInit {
   isLoggedIn: boolean = false;
   currentUser: FullUser = new FullUser("");
 
-  tag_chips: string[] = [];
-
   post: Sublease;
 
-  constructor(private subleaseService: SubleaseService, private dataService: DataService, private router: Router) {
+  public postForm: FormGroup;
+
+  constructor(private _fb: FormBuilder, private subleaseService: SubleaseService, private dataService: DataService, private router: Router) {
 
   }
 
   ngOnInit() {
+
+
     if (localStorage.getItem('currentUser') == null) {
       this.isLoggedIn = false;
     } else {
@@ -53,36 +56,85 @@ export class PostComponent implements OnInit {
         "address": "",
         "description": "",
         "hasRoommates": false,
-        "roommates": 0,
+        "roommates": [],
         "hasOpenHouse": false,
         "openHouse": "",
         "isFurnished": false,
-        "tags": this.tag_chips,
+        "tags": [],
         "imageUrls": []
       }
     }
 
-    if (this.post.roommates > 0) {
+    if (this.post.roommates.length > 0) {
       this.post.hasRoommates = true;
     }
 
     if (this.post.openHouse != "") {
       this.post.hasOpenHouse = true;
     }
+
+    this.postForm = this._fb.group({
+      email: [this.post.email],
+      address: [this.post.address, [Validators.required]],
+      description: [this.post.description],
+      hasRoommates: [this.post.hasRoommates],
+      roommates: this._fb.array([]),
+      hasOpenHouse: [this.post.hasOpenHouse],
+      openHouse: [''],
+      isFurnished: [this.post.isFurnished],
+      tags: [],
+      imageUrls: []
+    });
+
+    //Add roommates
+    this.initRoommates();
+
     console.log("Post " + JSON.stringify(this.post));
 
   }
 
-  submitForm() {
+initRoommates() {
+  // initialize our address
+  return this._fb.group({
+    age: ['', Validators.required],
+    grade: ['', Validators.required],
+    sex: ['', Validators.required],
+    major: ['']
+  });
+}
+
+
+addRoommate() {
+    // add address to the list
+    const control = <FormArray>this.postForm.controls['roommates'];
+    control.push(this.initRoommates());
+  }
+
+  removeRoommate(i: number) {
+    // remove address from the list
+    const control = <FormArray>this.postForm.controls['roommates'];
+    control.removeAt(i);
+  }
+
+  submitForm(model) {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
-   this.post.tags = this.tag_chips;
     console.log(this.post);
+    let formModel = model.getRawValue();
+    formModel.imageUrls = [];
     const imageList: FileList = (<HTMLInputElement>document.querySelector('.photo-upload input')).files;
     for(let i: number = 0; i < imageList.length; i++) {
-      this.post.imageUrls.push(`https://s3.amazonaws.com/sublettr-images/${this.post.email}-${this.post.address}//file.name`);
+      formModel.imageUrls.push(`https://s3.amazonaws.com/sublettr-images/${formModel.email}-${formModel.address}//file.name`);
     }
-    this.subleaseService.create(this.post, imageList)
+    formModel.email = this.post.email;
+    formModel.tags = this.post.tags;
+    formModel.roommates.forEach(roommate => {
+      console.log(roommate);
+      roommate.id = 0;
+      roommate.subletID = 0;
+    });
+    console.log("Uploading: " + JSON.stringify(formModel));
+    this.subleaseService.create(formModel,imageList)
       .subscribe(
         data => {
           console.log("Successful post upload")
@@ -93,11 +145,17 @@ export class PostComponent implements OnInit {
       )
   }
 
-  updateForm() {
+  updateForm(model) {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
-    this.post.tags = this.tag_chips;
-    this.subleaseService.updatePost(this.post)
+    // this.subleaseService.updatePost(this.post)
+
+    let formModel = model.getRawValue();
+    formModel.email = this.post.email;
+    formModel.tags = this.post.tags;
+    formModel.imageUrls = this.post.tags;
+    console.log("Updating: " + JSON.stringify(formModel));
+    this.subleaseService.updatePost(formModel)
       .subscribe(
         data => {
           this.router.navigate(["view-sublease/"+this.post.id]);

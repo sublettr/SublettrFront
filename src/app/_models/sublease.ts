@@ -4,7 +4,7 @@ export class Sublease {
   address: string = "";
   description: string = "";
   hasRoommates: boolean = false;
-  roommates: number = 0;
+  roommates: Roommate[] = [];
   isFurnished: boolean = false;
   hasOpenHouse: boolean = false;
   openHouse: any;
@@ -12,7 +12,7 @@ export class Sublease {
   imageUrls: string[] = [];
 
 
-  constructor(id: number, email: string, address: string, description: string, roommates: number, isFurnished: boolean, openHouse: Date, tags: string[], imageUrls: string[]) {
+  constructor(id: number, email: string, address: string, description: string, roommates: Roommate[], isFurnished: boolean, openHouse: Date, tags: string[], imageUrls: string[]) {
     this.id = id;
     this.email = email;
     this.address = address;
@@ -22,7 +22,8 @@ export class Sublease {
     this.openHouse = openHouse;
     this.tags = tags;
     this.imageUrls = imageUrls;
-    if (roommates > 0) {
+
+    if (roommates.length > 0) {
       this.hasRoommates = true;
     }
 
@@ -30,4 +31,13 @@ export class Sublease {
       this.hasOpenHouse = true;
     }
   }
+}
+
+export interface Roommate {
+  id: number;
+  subletId: number;
+  age: number;
+  grade: string;
+  major: string;
+  sex: string;
 }

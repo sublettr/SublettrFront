@@ -1,66 +1,123 @@
 <div class="container-fluid post-page">
   <h1 class="post-h1 mat-headline">Create a Post</h1>
-  <form class="example-form" #postForm="ngForm">
-    <div class="form-row">
+  <form class="example-form" novalidate [formGroup]="postForm">
+    <div class="form-group">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" [(ngModel)]="post.address" id="inputAddress"
-             name="address"
+      <input type="text" class="form-control" id="inputAddress"
+             formControlName="address"
              aria-describedby="addressHelp"
              placeholder="Enter primary address">
       <small id="addressHelp" class="form-text text-muted">Your primary address.</small>
+      <small *ngIf="!postForm.controls.address.valid" class="text-danger">An address is required.</small>
     </div>
-    <div class="form-row">
+    <div class="form-group">
       <label for="inputDescription">Sublet Description</label>
-      <input type="text" class="form-control" [(ngModel)]="post.description" id="inputDescription"
-             name="description"
+      <input type="text" class="form-control"
+             formControlName="description"
+             id="inputDescription"
              placeholder="Enter description">
     </div>
-     <div class="form-row photo-upload">
+    <div class="form-row photo-upload">
       <div class="col">
         <label>Sublet Photos</label>
-        <input name="uploadedFiles" class="row" type="file" accept="image/*" multiple [(ngModel)]="uploadedFiles"/>
+        <input name="uploadedFiles" class="row" type="file" accept="image/*" multiple />
       </div>
     </div>
     <div class="form-row">
-      <div class="col">
-        <div class="form-check">
-          <label class="form-check-label">
-            <mat-checkbox [(ngModel)]="post.hasRoommates" name="hasRoommates">Roommates</mat-checkbox>
-          </label>
+      <div class="form-group">
+        <div class="col">
+          <div class="form-check">
+            <label class="form-check-label">
+              <mat-checkbox class="form-control" formControlName="hasRoommates" [value]="post.roommates.length > 0">
+                Roommates
+              </mat-checkbox>
+            </label>
+          </div>
         </div>
-      </div>
-      <div class="col" *ngIf="post.hasRoommates">
-        <label for="inputRoommates">Number of Roommates</label>
-        <input type="number" class="form-control" [(ngModel)]="post.roommates" id="inputRoommates"
-               name="roommates"
-               placeholder="Enter number of roommates">
+        <div class="col" formArrayName="roommates" *ngIf="postForm.controls.hasRoommates.value">
+
+          <div *ngFor="let roommate of postForm.controls.roommates.controls; let i=index">
+            <!-- roommate header, show remove button when more than one address available -->
+            <div>
+              <span>Roommate {{i + 1}}</span>
+              <span *ngIf="postForm.controls.roommates.controls.length >= 1" (click)="removeRoommate(i)">
+              <i matTooltip="Remove" class="fa fa-trash" aria-hidden="true"
+                 style="color: var(--GrayNurse);"></i>
+                </span>
+            </div>
+
+            <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
+            <div [formGroupName]="i">
+              <!--age-->
+              <div>
+                <label>age</label>
+                <input type="number" formControlName="age">
+                <!--display error message if age is not valid-->
+                <small [hidden]="postForm.controls.roommates.controls[i].controls.age.valid">
+                  Age is required
+                </small>
+              </div>
+              <!--grade-->
+              <div>
+                <label>grade</label>
+                <input type="string" formControlName="grade">
+                <!--display error message if grade is not valid-->
+                <small [hidden]="postForm.controls.roommates.controls[i].controls.grade.valid">
+                  Grade is required
+                </small>
+              </div>
+              <!--sex-->
+              <div>
+                <label>sex</label>
+                <input type="string" formControlName="sex">
+                <!--display error message if grade is not valid-->
+                <small [hidden]="postForm.controls.roommates.controls[i].controls.sex.valid">
+                  Gender is required
+                </small>
+              </div>
+              <!--major-->
+              <div>
+                <label>major</label>
+                <input type="text" formControlName="major">
+              </div>
+              <div>
+              </div>
+            </div>
+          </div>
+          <div class="margin-20">
+            <a (click)="addRoommate()" style="cursor: default">
+              Add another roommate +
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="form-row">
+    <div class="form-group">
       <div class="col">
         <div class="form-check">
           <label class="form-check-label">
-            <mat-checkbox [(ngModel)]="post.hasOpenHouse" name="hasOpenHouse">Open House</mat-checkbox>
+            <mat-checkbox class="form-control" formControlName="hasOpenHouse">Open House</mat-checkbox>
           </label>
         </div>
       </div>
-      <div class="col" *ngIf="post.hasOpenHouse">
+      <div class="col" *ngIf="postForm.controls.hasOpenHouse.value">
         <label for="inputOpenHouse">Date</label>
         <div class="ui-g-12 ui-md-4">
           <p-calendar id="inputOpenHouse"
                       placeholder="Enter open house date"
-                      name="openHouse"
                       type="datetime-local"
-                      [(ngModel)]="post.openHouse" [showTime]="true"></p-calendar>
-          {{post.openHouse | date:"medium"}}
+                      formControlName="openHouse"
+                      [showTime]="true">
+          </p-calendar>
+          {{postForm.openHouse | date:"medium"}}
         </div>
       </div>
     </div>
-    <div class="form-row">
+    <div class="form-group">
       <div class="col">
         <div class="form-check">
           <label class="form-check-label">
-            <mat-checkbox [(ngModel)]="post.isFurnished" name="isFurnished">Is Furnished</mat-checkbox>
+            <mat-checkbox formControlName="isFurnished">Is Furnished</mat-checkbox>
           </label>
         </div>
       </div>
@@ -71,14 +128,14 @@
       <div class="col">
         <div class="form-check">
           <label class="form-check-label">Enter any tags you would like:
-            <p-chips [(ngModel)]="tag_chips" name="tags"></p-chips>
+            <p-chips formControlName="tags" name="tags"></p-chips>
           </label>
         </div>
       </div>
     </div>
 
 
-    <div class="form-row">
+    <div class="form-group">
       <label for="inputAmenities">Amentities</label>
       <mat-selection-list dense #amenitiesList id="inputAmenities">
         <mat-list-option *ngFor="let amenity of amenities">
@@ -88,12 +145,14 @@
       </mat-selection-list>
     </div>
     <div style="margin-top: 40px">
-      <a *ngIf="dataService.post == undefined" (click)="submitForm()">
-        <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Submit</button>
+      <a *ngIf="dataService.post == undefined" (click)="submitForm(postForm)">
+        <button [disabled]="!postForm.valid" mat-raised-button-bottom-right class="btn btn-primary btn-landing">
+          Submit
+        </button>
       </a>
-      <a *ngIf="dataService.post != undefined" (click)="updateForm()">
+      <a *ngIf="dataService.post != undefined" (click)="updateForm(postForm)">
         <button mat-raised-button-bottom-right class="btn btn-primary btn-landing">Update</button>
       </a>
     </div>
-  </form>
+</form>
 </div>
