@@ -127,7 +127,6 @@ addRoommate() {
     for(let i: number = 0; i < imageList.length; i++) {
       this.post.imageUrls.push(`https://s3.amazonaws.com/sublettr-images/${this.post.email}-${this.post.address}//file.name`);
     }
-    this.subleaseService.create(this.post, imageList)
     let formModel = model.getRawValue();
     formModel.email = this.post.email;
     formModel.tags = this.post.tags;
@@ -137,7 +136,7 @@ addRoommate() {
       roommate.subletID = 0;
     });
     console.log("Uploading: " + JSON.stringify(formModel));
-    this.subleaseService.create(formModel)
+    this.subleaseService.create(formModel,imageList)
       .subscribe(
         data => {
           console.log("Successful post upload")
@@ -153,6 +152,7 @@ addRoommate() {
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
     this.post.tags = this.tag_chips;
     // this.subleaseService.updatePost(this.post)
+
     let formModel = model.getRawValue();
     formModel.email = this.post.email;
     formModel.tags = this.post.tags;
