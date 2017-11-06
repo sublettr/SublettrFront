@@ -48,3 +48,33 @@
 .hide {
   display: none;
 }
+
+.panel-body {
+  padding: 15px;
+}
+
+.list-group-item{
+  border: 0;
+  padding-left: 0;
+  border-top: 1px solid;
+  border-color: rgba(37,40,43,0.1);
+}
+.list-group .list-group-item:first-child{
+  border:0;
+}
+.list-group .list-group-item a{
+  color: #2895F1;
+  cursor: pointer;
+  text-decoration: none;
+}
+.list-group.list-group-header{
+  padding:0;
+  margin:0;
+}
+.list-group.list-group-body .glyphicon {
+  font-size: 25px; vertical-align: middle;
+}
+.list-group-panel{
+  border: 1px solid #ccdbeb;
+  border-radius: 0;
+}
