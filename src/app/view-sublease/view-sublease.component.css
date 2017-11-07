@@ -25,6 +25,10 @@
   background: var(--GrayNurse);
 }
 
+.card-img-top {
+  height: 250px;
+}
+
 .sublease-card-img {
   width: 100%;
   height: 100%;

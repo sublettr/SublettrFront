@@ -41,7 +41,7 @@
           <div class="card listing-card col-md-5" *ngFor="let property of sublets">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <img class="card-img-top img-fluid"
-                   src={{subleases[0].url}}
+                   src="{{this.imageService.getPhoto(property)}}"
                    alt="Photo of a Property Listing">
             </a>
             <div class="card-body">

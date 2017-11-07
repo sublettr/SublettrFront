@@ -1,9 +1,9 @@
 <div class="jumbotron vertical-center">
   <div class="container">
     <div class="card view-sublease-card" *ngIf="sublet">
-      <img class="card-img-top img-fluid"
-           src={{sublease.url}}
-           alt="Photo of a Property Listing">
+        <img class="card-img-top img-fluid" 
+             src={{this.imageService.getPhoto(sublet)}}
+             alt="Photo of a Property Listing">
       <div class="card-body">
         <div class="row">
           <div class="col">
