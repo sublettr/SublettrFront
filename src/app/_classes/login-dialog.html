@@ -1,16 +1,21 @@
 <h2 mat-dialog-title style="color: var(--Froly)">Login</h2>
-<form #heroForm="ngForm">
+<form [formGroup]="loginForm">
 <div mat-dialog-content>
   <div class="email-input">
     <mat-form-field style="width: 100%">
       <label>Email</label>
-      <input matInput type="email" [(ngModel)]="data.email" name="email"/>
+      <input matInput type="email" formControlName="email" name="email"/>
+      <small *ngIf="email.errors.required" class="text-danger">An email is required.</small>
+      <small *ngIf="email.errors.invalid" class="text-danger">Your email is invalid.</small>
+      <small *ngIf="email.errors.minlength" class="text-danger">Your email is too short.</small>
     </mat-form-field>
   </div>
   <div class="password-input">
     <mat-form-field style="width: 100%">
       <label>Password</label>
-      <input matInput type="password" [(ngModel)]="data.password" name="password"/>
+      <input matInput type="password" formControlName="password" name="password"/>
+      <small *ngIf="password.errors.required" class="text-danger">A password is required.</small>
+      <small *ngIf="password.errors.minlength" class="text-danger">Your password is too short.</small>
     </mat-form-field>
   </div>
 
@@ -19,7 +24,7 @@
       <button mat-button mat-no-ink>Forgot Password?</button>
     </div>
     <div class="login-btn-div">
-      <button [mat-dialog-close]="data" class="btn btn-primary">Login</button>
+      <button [mat-dialog-close]="loginForm" class="btn btn-primary">Login</button>
     </div>
   </div>
 </div>
