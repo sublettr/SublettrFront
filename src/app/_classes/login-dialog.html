@@ -27,6 +27,7 @@
       <mat-form-field style="width: 100%">
         <label>Password</label>
         <input required minlength="5"
+               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})'
                matInput type="password" [(ngModel)]="data.password" name="password" #password="ngModel"/>
       </mat-form-field>
       <div *ngIf="password.invalid && (password.dirty || password.touched)"
@@ -38,7 +39,9 @@
         <div *ngIf="password.errors.minlength">
           Password must be at least 6 characters long.
         </div>
-
+        <div *ngIf="password.errors.pattern">
+          Password must contain at least one of each of the following: alpha-numeric, special character, and capital letter
+        </div>
       </div>
     </div>
 
