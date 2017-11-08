@@ -13,6 +13,7 @@ import {MatExpansionModule} from "@angular/material";
 import {MatListModule} from "@angular/material";
 import {MatTooltipModule} from "@angular/material";
 import {MatIconModule} from "@angular/material";
+import {MatSelectModule} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -25,8 +26,9 @@ import {MatIconModule} from "@angular/material";
     MatIconModule,
     MatListModule,
     MatExpansionModule,
-    MatTooltipModule
-  ],
+    MatTooltipModule,
+    MatSelectModule
+],
   exports: [BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,
@@ -35,7 +37,8 @@ import {MatIconModule} from "@angular/material";
     MatIconModule,
     MatListModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
   ],
   declarations: []
 })
