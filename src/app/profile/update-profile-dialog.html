@@ -3,43 +3,37 @@
   <div mat-dialog-content style="overflow-y: hidden">
     <div class="email-input">
       <mat-form-field style="width: 100%">
-        <label>Username</label>
-        <input matInput required type="text" [(ngModel)]="newUser.username" name="username" />
+        <label>Name</label>
+        <input matInput required type="text" [(ngModel)]="newUser.name" name="name"/>
       </mat-form-field>
     </div>
-  <div class="email-input">
-    <mat-form-field style="width: 100%">
-      <label>Name</label>
-      <input matInput required type="text" [(ngModel)]="newUser.name" name="name" />
-    </mat-form-field>
-  </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Age</label>
-        <input matInput required type="number" [(ngModel)]="newUser.age" name="age" />
+        <input matInput required type="number" [(ngModel)]="newUser.age" name="age"/>
       </mat-form-field>
     </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Sex</label>
-        <input matInput type="text" [(ngModel)]="newUser.sex" name="sex" />
+        <input matInput type="text" [(ngModel)]="newUser.sex" name="sex"/>
       </mat-form-field>
     </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Major</label>
-        <input matInput type="text" [(ngModel)]="newUser.major" name="major" />
+        <input matInput type="text" [(ngModel)]="newUser.major" name="major"/>
       </mat-form-field>
     </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Grade</label>
-        <input matInput type="number" [(ngModel)]="newUser.grade" name="grade" />
+        <input matInput type="number" [(ngModel)]="newUser.grade" name="grade"/>
       </mat-form-field>
     </div>
     <div mat-dialog-actions class="profile-div">
       <div class="profile-btn-div">
-        <button (click)="updateProfile()" [disabled]="!profileForm.form.valid" class="btn btn-secondary">Update</button>
+        <button (click)="updateProfile()" [disabled]="profileForm.invalid" class="btn btn-secondary">Update</button>
       </div>
     </div>
   </div>
