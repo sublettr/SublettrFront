@@ -76,13 +76,13 @@
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Name</label>
-        <input matInput required type="text" [(ngModel)]="data.name" name="name"/>
+        <input matInput type="text" [(ngModel)]="data.name" name="name"/>
       </mat-form-field>
     </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Age</label>
-        <input matInput required type="number" [(ngModel)]="data.age" name="age"/>
+        <input matInput type="number" [(ngModel)]="data.age" name="age"/>
       </mat-form-field>
     </div>
     <div class="email-input">
@@ -105,7 +105,7 @@
     </div>
     <div mat-dialog-actions class="register-div">
       <div class="register-btn-div">
-        <button (click)="register(data)" [disabled]="!registerForm.form.valid" class="btn btn-secondary">Register
+        <button (click)="register(data)" [disabled]="registerForm.invalid" class="btn btn-secondary">Register
         </button>
       </div>
     </div>
