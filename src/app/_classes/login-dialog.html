@@ -1,16 +1,18 @@
 <h2 mat-dialog-title style="color: var(--Froly)">Login</h2>
 <form #loginForm="ngForm">
-<div mat-dialog-content>
-  <div class="email-input">
-    <mat-form-field style="width: 100%">
-      <label>Email</label>
-      <input required minlength="7" allowedRegexValidator='/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@purdue.edu$/'
-             matInput type="email" [(ngModel)]="data.email" name="email" #email="ngModel" email/>
+  <div mat-dialog-content>
+    <div class="email-input">
+      <mat-form-field style="width: 100%">
+        <label>Email</label>
+        <input required minlength="7"
+               allowedRegexValidator='/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@purdue.edu$/'
+               matInput type="email" [(ngModel)]="data.email" name="email" #email="ngModel" email/>
+
+      </mat-form-field>
       <div *ngIf="email.invalid && (email.dirty || email.touched)"
            class="alert alert-danger">
-
         <div *ngIf="email.errors.required">
-          Name is required.
+          An email is required.
         </div>
         <div *ngIf="email.errors.minlength">
           Email must be at least 7 characters long.
@@ -20,22 +22,33 @@
         </div>
 
       </div>
-    </mat-form-field>
-  </div>
-  <div class="password-input">
-    <mat-form-field style="width: 100%">
-      <label>Password</label>
-      <input matInput type="password" [(ngModel)]="data.password" name="password"/>
-    </mat-form-field>
-  </div>
+    </div>
+    <div class="password-input">
+      <mat-form-field style="width: 100%">
+        <label>Password</label>
+        <input required minlength="5"
+               matInput type="password" [(ngModel)]="data.password" name="password" #password="ngModel"/>
+      </mat-form-field>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+           class="alert alert-danger">
 
-  <div mat-dialog-actions class="login-register-div">
-    <div class="forgot-password-div">
-      <button mat-button mat-no-ink>Forgot Password?</button>
+        <div *ngIf="password.errors.required">
+          A password is required.
+        </div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 5 characters long.
+        </div>
+
+      </div>
     </div>
-    <div class="login-btn-div">
-      <button [disabled]="loginForm.invalid" [mat-dialog-close]="data" class="btn btn-primary">Login</button>
+
+    <div mat-dialog-actions class="login-register-div">
+      <div class="forgot-password-div">
+        <button mat-button mat-no-ink>Forgot Password?</button>
+      </div>
+      <div class="login-btn-div">
+        <button [disabled]="loginForm.invalid" [mat-dialog-close]="data" class="btn btn-primary">Login</button>
+      </div>
     </div>
   </div>
-</div>
 </form>
