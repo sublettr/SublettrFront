@@ -223,7 +223,7 @@ export class LandingComponent implements OnInit {
       this.isLoggedIn = true;
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
-    this.landingFilter = new LandingFilter([500, 899], 5, [{label: 'tag1', value: 'tag1'}, {
+    this.landingFilter = new LandingFilter([0, 2000], 5, [{label: 'tag1', value: 'tag1'}, {
       label: 'tag2',
       value: 'tag2'
     }, {label: 'tag3', value: 'tag3'}, {label: 'tag4', value: 'tag4'}, {label: 'tag5', value: 'tag5'}], []);
