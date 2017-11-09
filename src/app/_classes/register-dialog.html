@@ -3,61 +3,114 @@
   <div mat-dialog-content style="overflow-y: hidden">
     <div class="email-input">
       <mat-form-field style="width: 100%">
-        <label>Username</label>
-        <input matInput required type="text" [(ngModel)]="data.userName" name="username" />
-      </mat-form-field>
-    </div>
-    <div class="email-input">
-      <mat-form-field style="width: 100%">
         <label>Email</label>
-        <input matInput required type="email" [(ngModel)]="data.email" name="email" />
+        <input required minlength="7"
+               matInput required type="email" [(ngModel)]="data.email" name="email" #email="ngModel" email/>
       </mat-form-field>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger">
+        <div *ngIf="email.errors.required">
+          An email is required.
+        </div>
+        <div *ngIf="email.errors.minlength">
+          Email must be at least 7 characters long.
+        </div>
+        <div *ngIf="email.errors.email">
+          Input is not an email
+        </div>
+      </div>
     </div>
     <div class="password-input">
       <mat-form-field style="width: 100%">
         <label>Password</label>
-        <input matInput required type="password" [(ngModel)]="data.password" name="password" />
+        <input required minlength="5"
+               validateEqual="passwordcpy" reverse="true"
+               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})'
+               matInput type="password" [(ngModel)]="data.password" name="password" #password="ngModel"/>
       </mat-form-field>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="password.errors.required">
+          A password is required.
+        </div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 6 characters long.
+        </div>
+        <div *ngIf="password.errors.validateEqual">
+          Password does not match confirmation password.
+        </div>
+        <div *ngIf="password.errors.pattern">
+          Password must contain at least one of each of the following: alpha-numeric, special character, and capital
+          letter
+        </div>
+      </div>
     </div>
     <div class="password-input">
       <mat-form-field style="width: 100%">
         <label>Confirm Password</label>
-        <input matInput required type="password" [(ngModel)]="data.passwordcpy" name="passwordcpy" />
+        <input required minlength="5"
+               validateEqual="password"
+               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})'
+               matInput type="password" [(ngModel)]="data.passwordcpy" name="passwordcpy" #passwordcpy="ngModel"/>
+      </mat-form-field>
+      <div *ngIf="passwordcpy.invalid && (passwordcpy.dirty || passwordcpy.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="passwordcpy.errors.required">
+          A password is required.
+        </div>
+        <div *ngIf="passwordcpy.errors.minlength">
+          Password must be at least 6 characters long.
+        </div>
+        <div *ngIf="passwordcpy.errors.validateEqual">
+          Confirmation password does not match original password.
+        </div>
+        <div *ngIf="passwordcpy.errors.pattern">
+          Password must contain at least one of each of the following: alpha-numeric, special character, and capital
+          letter
+        </div>
+
+      </div>
+    </div>
+    <div class="email-input">
+      <mat-form-field style="width: 100%">
+        <label>Name</label>
+        <input matInput type="text" [(ngModel)]="data.name" name="name"/>
       </mat-form-field>
     </div>
-  <div class="email-input">
-    <mat-form-field style="width: 100%">
-      <label>Name</label>
-      <input matInput required type="text" [(ngModel)]="data.name" name="name" />
-    </mat-form-field>
-  </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Age</label>
-        <input matInput required type="number" [(ngModel)]="data.age" name="age" />
+        <input matInput type="number" [(ngModel)]="data.age" name="age"/>
       </mat-form-field>
     </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Sex</label>
-        <input matInput type="text" [(ngModel)]="data.sex" name="sex" />
+        <mat-select matInput [(ngModel)]="data.sex" name="sex">
+          <mat-option *ngFor="let sex of sex" value="sex">{{sex}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Major</label>
-        <input matInput type="text" [(ngModel)]="data.major" name="major" />
+        <input matInput type="text" [(ngModel)]="data.major" name="major"/>
       </mat-form-field>
     </div>
     <div class="email-input">
+      <label>Grade</label>
       <mat-form-field style="width: 100%">
-        <label>Grade</label>
-        <input matInput type="number" [(ngModel)]="data.grade" name="grade" />
+        <mat-select matInput type="number" [(ngModel)]="data.grade" name="grade">
+          <mat-option *ngFor="let grade of grades" value="{{grade.value}}">{{grade.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div mat-dialog-actions class="register-div">
       <div class="register-btn-div">
-        <button (click)="register(data)" [disabled]="!registerForm.form.valid" class="btn btn-secondary">Register</button>
+        <button (click)="register(data)" [disabled]="registerForm.invalid" class="btn btn-secondary">Register
+        </button>
       </div>
     </div>
   </div>

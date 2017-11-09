@@ -20,6 +20,7 @@ import {RegisterDialog} from "./_classes/register";
 import {DataService} from "./_services/DataService";
 import {UserTrackingService} from "./_services/UserTrackingService";
 import {ImageService} from './_services/image.service';
+import {EqualValidator} from "./_directives/EqualValidator";
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -38,7 +39,8 @@ const routes: Routes = [
     UpdateProfileDialog,
     PostComponent,
     ViewSubleaseComponent,
-    ProfileComponent
+    ProfileComponent,
+    EqualValidator
   ],
   entryComponents: [
     LoginDialog,

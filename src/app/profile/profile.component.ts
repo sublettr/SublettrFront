@@ -3,6 +3,8 @@ import {FullUser} from "../_models/full-user";
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
 import {UserService} from "../_services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { genders } from '../_models/constants';
+import { grades } from '../_models/constants';
 
 @Component({
   selector: 'app-profile',
@@ -370,6 +372,9 @@ export class UpdateProfileDialog {
   @Output() setCurrentUser: EventEmitter<FullUser> = new EventEmitter<FullUser>();
 
   newUser: FullUser;
+
+  sex = genders;
+  grades = grades;
 
   constructor(public profileDialogRef: MatDialogRef<UpdateProfileDialog>,
               @Inject(MAT_DIALOG_DATA) private data: any,

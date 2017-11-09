@@ -3,6 +3,8 @@ import {FullUser} from "../_models/full-user";
 import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
 import {UserService} from "../_services/user.service";
 import {User} from "../_models/user";
+import { genders } from '../_models/constants';
+import { grades } from '../_models/constants';
 @Component({
   selector: 'app-landing',
   templateUrl: '../_classes/register-dialog.html',
@@ -10,6 +12,8 @@ import {User} from "../_models/user";
 })
 export class RegisterDialog {
 
+  grades = grades;
+  sex = genders;
 
   @Input() currentUser: FullUser;
   @Output() setCurrentUser: EventEmitter<FullUser> = new EventEmitter<FullUser>();
