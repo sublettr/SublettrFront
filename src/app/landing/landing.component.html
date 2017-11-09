@@ -4,13 +4,16 @@
       <nav *ngIf="sidebar" [@enterAnimation] id="sidebar" class="col-md-2 sidebar">
         <div class="sidebar-header header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
           <div data-toggle="dropdown" class="sidebar-brand">
-            <p>Firstname Lastname</p>
-            <p>email@domainname.com</p>
+            <p>{{this.currentUser.name}}</p>
+            <p>{{this.currentUser.email}}</p>
           </div>
         </div>
         <!-- Sidebar Links -->
         <ul class="list-unstyled components">
-          <p>Dummy Heading</p>
+          <p>Cost: {{landingFilter.costFilter[0] + ' - ' + landingFilter.costFilter[1]}}</p>
+          <li>
+            <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px'}" [animate]="true" [range]="true" [max]="2000"></p-slider>
+          </li>
           <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">

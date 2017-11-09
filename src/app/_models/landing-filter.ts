@@ -1,10 +1,10 @@
 export class LandingFilter {
-  costFilter: number = 0;
-  ratingFilter: number = 0;
+  costFilter: number[];
+  ratingFilter: number;
   tagFilter: string[];
 
 
-  constructor(costFilter: number, ratingFilter: number, tagFilter: string[]) {
+  constructor(costFilter: number[], ratingFilter: number, tagFilter: string[]) {
     this.costFilter = costFilter;
     this.ratingFilter = ratingFilter;
     this.tagFilter = tagFilter;

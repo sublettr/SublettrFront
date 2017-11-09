@@ -5,6 +5,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 import {FullUser} from "../_models/full-user";
 import {Sublease} from "../_models/sublease";
 import {DataService} from "../_services/DataService";
+import {LandingFilter} from "../_models/landing-filter";
 
 @Component({
   selector: 'app-landing',
@@ -31,6 +32,8 @@ export class LandingComponent implements OnInit {
   sidebar = true;
   isLoggedIn: boolean;
   currentUser: FullUser;
+
+  landingFilter: LandingFilter;
 
   constructor(private router: Router, private subleaseService: SubleaseService) {
     this.subleases = [{
@@ -220,6 +223,7 @@ export class LandingComponent implements OnInit {
       this.isLoggedIn = true;
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
+    this.landingFilter = new LandingFilter([500,899], 5, ['tagExample']);
     this.loadAllSubleases();
   }
 

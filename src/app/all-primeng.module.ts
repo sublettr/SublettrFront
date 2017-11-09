@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {CalendarModule, DialogModule, FileUploadModule} from "primeng/primeng";
 import {SidebarModule} from "primeng/components/sidebar/sidebar";
+import {SliderModule} from "primeng/components/slider/slider";
 
 
 @NgModule({
@@ -8,13 +9,15 @@ import {SidebarModule} from "primeng/components/sidebar/sidebar";
     DialogModule,
     SidebarModule,
     CalendarModule,
-    FileUploadModule
+    FileUploadModule,
+    SliderModule
   ],
   exports: [
     DialogModule,
     SidebarModule,
     CalendarModule,
-    FileUploadModule
+    FileUploadModule,
+    SliderModule
   ],
   declarations: []
 })
