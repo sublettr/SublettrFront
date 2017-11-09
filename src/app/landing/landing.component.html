@@ -2,7 +2,8 @@
   <div class="container-fluid search">
     <div class="row">
       <nav *ngIf="sidebar" [@enterAnimation] id="sidebar" class="col-md-2 sidebar">
-        <div class="sidebar-header header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
+        <div class="sidebar-header header-cover"
+             style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
           <div data-toggle="dropdown" class="sidebar-brand">
             <p>{{this.currentUser.name}}</p>
             <p>{{this.currentUser.email}}</p>
@@ -10,18 +11,23 @@
         </div>
         <!-- Sidebar Links -->
         <ul class="list-unstyled components">
-          <p>Cost: {{landingFilter.costFilter[0] + ' - ' + landingFilter.costFilter[1]}}</p>
           <li>
-            <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px'}" [animate]="true" [range]="true" [max]="2000"></p-slider>
+            <p>Price: {{landingFilter.costFilter[0] + ' - ' + landingFilter.costFilter[1]}}</p>
+            <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px'}" [animate]="true" [range]="true"
+                      [max]="2000"></p-slider>
+          </li>
+          <li>
+            <p>Rating: {{landingFilter.ratingFilter}}</p>
+            <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px'}" [animate]="true"
+                     [min]="1" [max]="5"></p-slider>
+          </li>
+          <li>
+            <p>Tags</p>
           </li>
           <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-              <li><a href="#">Home 1</a></li>
-              <li><a href="#">Home 2</a></li>
-              <li><a href="#">Home 3</a></li>
-            </ul>
-          </li>
+          <li><a href="#">Home 1</a></li>
+          <li><a href="#">Home 2</a></li>
+          <li><a href="#">Home 3</a></li>
           <li>
             <a href="#">About</a>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
