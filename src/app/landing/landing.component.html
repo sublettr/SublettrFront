@@ -19,30 +19,12 @@
           <li>
             <p>Rating: {{landingFilter.ratingFilter}}</p>
             <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px'}" [animate]="true"
-                     [min]="1" [max]="5"></p-slider>
+                      [min]="1" [max]="5"></p-slider>
           </li>
           <li>
             <p>Tags</p>
-            <p-multiSelect [options]="landingFilter.tags" [(ngModel)]="landingFilter.tagFilter" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
-          </li>
-          <li class="active">
-          <li><a href="#">Home 1</a></li>
-          <li><a href="#">Home 2</a></li>
-          <li><a href="#">Home 3</a></li>
-          <li>
-            <a href="#">About</a>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-              <li><a href="#">Page 1</a></li>
-              <li><a href="#">Page 2</a></li>
-              <li><a href="#">Page 3</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Portfolio</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
+            <p-multiSelect [options]="landingFilter.tags" [(ngModel)]="landingFilter.tagFilter"
+                           [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
           </li>
         </ul>
       </nav>
