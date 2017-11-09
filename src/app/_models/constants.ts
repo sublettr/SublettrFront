@@ -1,3 +1,9 @@
-export const genders = ['Male','Female','Other','Unspecified'];
+export const genders = ['Male', 'Female', 'Other', 'Unspecified'];
 
-export const grades = ['Freshman','Sophomore','Junior','Senior','Grad Student', 'Faculty/Administrative', 'Other'];
+export const grades = [{name: 'Freshman', value: 0}, {name: 'Sophomore', value: 1}, {
+  name: 'Junior',
+  value: 2
+}, {name: 'Senior', value: 3}, {name: 'Grad Student', value: 4}, {
+  name: 'Faculty/Administrative',
+  value: 5
+}, {name: 'Other', value: 6}];

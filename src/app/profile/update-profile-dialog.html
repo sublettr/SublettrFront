@@ -16,7 +16,9 @@
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Sex</label>
-        <input matInput type="text" [(ngModel)]="newUser.sex" name="sex"/>
+        <mat-select matInput [(ngModel)]="newUser.sex" name="sex">
+          <mat-option *ngFor="let sex of sex" value="sex">{{sex}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="email-input">
@@ -28,7 +30,9 @@
     <div class="email-input">
       <mat-form-field style="width: 100%">
         <label>Grade</label>
-        <input matInput type="number" [(ngModel)]="newUser.grade" name="grade"/>
+        <mat-select matInput type="number" [(ngModel)]="newUser.grade" name="grade">
+          <mat-option *ngFor="let grade of grades" value="{{grade.value}}">{{grade.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div mat-dialog-actions class="profile-div">
