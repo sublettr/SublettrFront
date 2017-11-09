@@ -21,6 +21,7 @@ import {DataService} from "./_services/DataService";
 import {UserTrackingService} from "./_services/UserTrackingService";
 import {ImageService} from './_services/image.service';
 import {EqualValidator} from "./_directives/EqualValidator";
+import { CostPipe } from './_pipes/cost-pipe.pipe';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -40,7 +41,8 @@ const routes: Routes = [
     PostComponent,
     ViewSubleaseComponent,
     ProfileComponent,
-    EqualValidator
+    EqualValidator,
+    CostPipe
   ],
   entryComponents: [
     LoginDialog,
