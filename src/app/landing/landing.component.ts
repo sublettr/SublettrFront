@@ -6,6 +6,7 @@ import {FullUser} from "../_models/full-user";
 import {Sublease} from "../_models/sublease";
 import {DataService} from "../_services/DataService";
 import {LandingFilter} from "../_models/landing-filter";
+import {TagsPipe} from "../_pipes/tags.pipe";
 
 @Component({
   selector: 'app-landing',

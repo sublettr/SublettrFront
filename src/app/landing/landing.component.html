@@ -30,7 +30,7 @@
       </nav>
       <div class="container col-sm-10">
         <div class="row">
-          <div class="card listing-card col-md-5" *ngFor="let property of sublets">
+          <div class="card listing-card col-md-5" *ngFor="let property of sublets | tagsPipe:landingFilter.tagFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <img class="card-img-top img-fluid"
                    src={{subleases[0].url}}
