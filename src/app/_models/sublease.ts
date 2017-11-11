@@ -3,6 +3,7 @@ export class Sublease {
   email: string = "";
   address: string = "";
   description: string = "";
+  price: number = 0;
   hasRoommates: boolean = false;
   roommates: Roommate[] = [];
   isFurnished: boolean = false;
@@ -12,10 +13,11 @@ export class Sublease {
   imageUrls: string[] = [];
 
 
-  constructor(id: number, email: string, address: string, description: string, roommates: Roommate[], isFurnished: boolean, openHouse: Date, tags: string[], imageUrls: string[]) {
+  constructor(id: number, email: string, address: string, description: string, price: number, roommates: Roommate[], isFurnished: boolean, openHouse: Date, tags: string[], imageUrls: string[]) {
     this.id = id;
     this.email = email;
     this.address = address;
+    this.price = price;
     this.description = description;
     this.roommates = roommates;
     this.isFurnished = isFurnished;

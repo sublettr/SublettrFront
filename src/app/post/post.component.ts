@@ -54,6 +54,7 @@ export class PostComponent implements OnInit {
         "id": 0,
         "email": this.currentUser.email,
         "address": "",
+        "price": 599,
         "description": "",
         "hasRoommates": false,
         "roommates": [],
@@ -76,6 +77,7 @@ export class PostComponent implements OnInit {
     this.postForm = this._fb.group({
       email: [this.post.email],
       address: [this.post.address, [Validators.required]],
+      price: [this.post.price],
       description: [this.post.description],
       hasRoommates: [this.post.hasRoommates],
       roommates: this._fb.array([]),
