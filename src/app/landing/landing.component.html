@@ -23,7 +23,7 @@
           </li>
           <li>
             <p>Tags</p>
-            <p-multiSelect [options]="landingFilter.tags" [(ngModel)]="landingFilter.tagFilter"
+            <p-multiSelect [options]="landingFilter.tags" [optionLabel]="label" [dataKey]="value" [(ngModel)]="landingFilter.tagFilter"
                            [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
           </li>
         </ul>
