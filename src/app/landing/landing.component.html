@@ -35,6 +35,7 @@
           <li>
             <p>Tags</p>
             <div class="components">
+              <p-chips [style]="{'margin-bottom':'30px'}" [(ngModel)]="landingFilter.tagFilter"></p-chips>
               <p-multiSelect [options]="landingFilter.tags" [optionLabel]="label" [dataKey]="value" [(ngModel)]="landingFilter.tagFilter"
                              [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
             </div>
