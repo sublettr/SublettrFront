@@ -6,6 +6,10 @@
   --Froly: #F57A74;
   --FuzzyWuzzyBrown: #C26355;
   --OxfordBlue: #3C4B5C;
+
+  --GhostWhite: #FAFAFC;
+  --LightGray: #D2D2D2;
+  --DarkGray: #A4A4A4;
 }
 
 .dark-primary-color    { background: #FBC02D; }
@@ -38,11 +42,11 @@ body                   { margin: 0; }
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
-  background: var(--OxfordBlue);
+  background: var(--GhostWhite);
 }
 
 .jumbotron {
-  background: var(--OxfordBlue);
+  background: var(--GhostWhite);
 }
 
 /* Nav */
