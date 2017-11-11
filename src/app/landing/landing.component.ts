@@ -32,13 +32,12 @@ import {forEach} from "@angular/router/src/utils/collection";
 export class LandingComponent implements OnInit {
   public subleases;
   public sublets: Sublease[];
-  sidebar = true;
   isLoggedIn: boolean;
   currentUser: FullUser;
 
   landingFilter: LandingFilter;
 
-  constructor(private router: Router, private subleaseService: SubleaseService, private imageService: ImageService) {
+  constructor(private router: Router,  private dataService: DataService, private subleaseService: SubleaseService, private imageService: ImageService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -54,6 +53,9 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.dataService.sidebar = true;
+
     if (localStorage.getItem('currentUser') == null) {
       this.isLoggedIn = false;
     } else {

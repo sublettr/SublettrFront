@@ -6,4 +6,5 @@ export class DataService {
   constructor() { }
 
   public post: Sublease;
+  public sidebar: boolean;
 }
