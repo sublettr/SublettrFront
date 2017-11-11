@@ -249,6 +249,19 @@ export class LandingComponent implements OnInit {
       );
   }
 
+  loadAllTags() {
+    this.subleaseService.getAll()
+    .subscribe(
+      data => {
+        this.sublets = data;
+        this.sublets[0].price = 599;
+      },
+      error => {
+        console.log("Getting sublets issue " + error);
+      }
+    );
+}
+
   //Favorite a sublease
   favorite(): void {
     // this.http.put("www.xyz.com","user-id","sublease-id", "if the sublease was favorited or unfavorited");

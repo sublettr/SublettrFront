@@ -9,6 +9,6 @@ export class TagsPipe implements PipeTransform {
     console.log("Array: " + JSON.stringify(array) + " : Tags: " + JSON.stringify(tags));
     if (!array) return array;
     if (tags.length == 0) return array;
-    return array.filter(sublease => sublease.tags.indexOf(tags[0]) !== -1);
+    return array.filter(sublease => sublease.tags == undefined || sublease.tags.indexOf(tags[0]) !== -1);
   }
 }

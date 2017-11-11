@@ -14,7 +14,7 @@
           <li>
             <p>Price: {{landingFilter.costFilter[0] + ' - ' + landingFilter.costFilter[1]}}</p>
             <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px'}" [animate]="true" [range]="true"
-                      [max]="2000"></p-slider>
+                      [min]="0" [max]="2000"></p-slider>
           </li>
           <li>
             <p>Rating: {{landingFilter.ratingFilter}}</p>
@@ -30,7 +30,8 @@
       </nav>
       <div class="container col-sm-10">
         <div class="row">
-          <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter | tagsPipe:landingFilter.tagFilter">
+          <!--| tagsPipe:landingFilter.tagFilter-->
+          <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <img class="card-img-top img-fluid"
                    src={{subleases[0].url}}
