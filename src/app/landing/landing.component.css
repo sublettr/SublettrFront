@@ -119,3 +119,7 @@
   bottom: 0;
   position: absolute;
 }
+
+.card-img-top {
+ height: 300px;
+}

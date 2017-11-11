@@ -5,6 +5,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 import {FullUser} from "../_models/full-user";
 import {Sublease} from "../_models/sublease";
 import {DataService} from "../_services/DataService";
+import {ImageService} from '../_services/image.service';
 import {LandingFilter} from "../_models/landing-filter";
 import {TagsPipe} from "../_pipes/tags.pipe";
 import {forEach} from "@angular/router/src/utils/collection";
@@ -37,7 +38,7 @@ export class LandingComponent implements OnInit {
 
   landingFilter: LandingFilter;
 
-  constructor(private router: Router, private subleaseService: SubleaseService) {
+  constructor(private router: Router, private subleaseService: SubleaseService, private imageService: ImageService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -59,6 +60,7 @@ export class LandingComponent implements OnInit {
       this.isLoggedIn = true;
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
+
     this.landingFilter = new LandingFilter([0, 2000], 5, [{label: 'tag1', value: 'tag1'}, {
       label: 'tag2',
       value: 'tag2'

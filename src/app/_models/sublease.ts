@@ -10,20 +10,20 @@ export class Sublease {
   hasOpenHouse: boolean = false;
   openHouse: any;
   tags: string[] = [];
-  imageUrls: string[] = [];
+  imageUrl: string = "";
 
 
-  constructor(id: number, email: string, address: string, description: string, price: number, roommates: Roommate[], isFurnished: boolean, openHouse: Date, tags: string[], imageUrls: string[]) {
+  constructor(id: number, email: string, address: string, description: string, price: number, roommates: Roommate[], isFurnished: boolean, openHouse: Date, tags: string[], imageUrl: string) {
     this.id = id;
     this.email = email;
     this.address = address;
-    this.price = price;
     this.description = description;
+    this.price = price;
     this.roommates = roommates;
     this.isFurnished = isFurnished;
     this.openHouse = openHouse;
     this.tags = tags;
-    this.imageUrls = imageUrls;
+    this.imageUrl = imageUrl;
 
     if (roommates.length > 0) {
       this.hasRoommates = true;
