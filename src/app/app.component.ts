@@ -6,6 +6,7 @@ import {RegisterDialog} from "./_classes/register";
 import {FullUser} from "./_models/full-user";
 import {UserService} from "./_services/user.service";
 import {User} from "./_models/user";
+import {DataService} from "./_services/DataService";
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
   loginDialogRef: MatDialogRef<LoginDialog>;
 
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, private userService: UserService) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, private dataService: DataService, private userService: UserService) {
     iconRegistry
       .addSvgIcon(
         'water',

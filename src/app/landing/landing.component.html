@@ -1,7 +1,7 @@
 <div class="container-fluid landing-page">
   <div class="container-fluid search">
     <div class="row">
-      <nav *ngIf="sidebar" [@enterAnimation] id="sidebar" class="col-md-3 sidebar">
+      <nav *ngIf="dataService.sidebar" [@enterAnimation] id="sidebar" class="col-md-3 sidebar">
         <div class="sidebar-header header-cover"
              style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
           <div data-toggle="dropdown" class="sidebar-brand">
@@ -43,8 +43,8 @@
           <hr>
         </ul>
       </nav>
-      <div class="container col-md-8">
-        <div class="row">
+      <div class="container col-md-9">
+        <div class="row justify-content-center">
           <!--| tagsPipe:landingFilter.tagFilter-->
           <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
