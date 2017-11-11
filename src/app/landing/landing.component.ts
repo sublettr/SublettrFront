@@ -29,7 +29,7 @@ import {TagsPipe} from "../_pipes/tags.pipe";
 })
 export class LandingComponent implements OnInit {
   public subleases;
-  public sublets;
+  public sublets: Sublease[];
   sidebar = true;
   isLoggedIn: boolean;
   currentUser: FullUser;
@@ -241,6 +241,7 @@ export class LandingComponent implements OnInit {
       .subscribe(
         data => {
           this.sublets = data;
+          this.sublets[0].price = 599;
         },
         error => {
           console.log("Getting sublets issue " + error);
