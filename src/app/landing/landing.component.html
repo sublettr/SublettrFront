@@ -43,8 +43,8 @@
           <hr>
         </ul>
       </nav>
-      <div class="container col-md-8">
-        <div class="row">
+      <div class="container col-md-9">
+        <div class="row justify-content-center">
           <!--| tagsPipe:landingFilter.tagFilter-->
           <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
