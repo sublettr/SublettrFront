@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {CalendarModule, DialogModule, FileUploadModule, MultiSelectModule} from "primeng/primeng";
 import {SidebarModule} from "primeng/components/sidebar/sidebar";
 import {SliderModule} from "primeng/components/slider/slider";
+import {RatingModule} from "primeng/components/rating/rating";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import {SliderModule} from "primeng/components/slider/slider";
     CalendarModule,
     FileUploadModule,
     SliderModule,
-    MultiSelectModule
+    MultiSelectModule,
+    RatingModule
   ],
   exports: [
     DialogModule,
@@ -19,7 +21,8 @@ import {SliderModule} from "primeng/components/slider/slider";
     CalendarModule,
     FileUploadModule,
     SliderModule,
-    MultiSelectModule
+    MultiSelectModule,
+    RatingModule
   ],
   declarations: []
 })

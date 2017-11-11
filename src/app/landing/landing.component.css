@@ -59,13 +59,23 @@
   outline: none;
 }
 
+.sidebar .input-rounded {
+  width: 100px;
+  border-radius: 1em;
+}
+
+.sidebar ul {
+  padding: 20px;
+}
+
 .sidebar p {
   font-weight: bold;
 }
 
 .sidebar .components {
-  padding: 20px;
+  margin: 30px 20px;
 }
+
 
 .search-form {
   min-width: 150px;
