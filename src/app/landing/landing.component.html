@@ -1,44 +1,52 @@
 <div class="container-fluid landing-page">
   <div class="container-fluid search">
     <div class="row">
-      <nav *ngIf="sidebar" [@enterAnimation] id="sidebar" class="col-md-2 sidebar">
-        <div class="sidebar-header header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
+      <nav *ngIf="sidebar" [@enterAnimation] id="sidebar" class="col-md-3 sidebar">
+        <div class="sidebar-header header-cover"
+             style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
           <div data-toggle="dropdown" class="sidebar-brand">
-            <p>Firstname Lastname</p>
-            <p>email@domainname.com</p>
+            <p>{{this.currentUser.name}}</p>
+            <p>{{this.currentUser.email}}</p>
           </div>
         </div>
         <!-- Sidebar Links -->
-        <ul class="list-unstyled components">
-          <p>Dummy Heading</p>
-          <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-              <li><a href="#">Home 1</a></li>
-              <li><a href="#">Home 2</a></li>
-              <li><a href="#">Home 3</a></li>
-            </ul>
-          </li>
+        <ul class="list-unstyled">
           <li>
-            <a href="#">About</a>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-              <li><a href="#">Page 1</a></li>
-              <li><a href="#">Page 2</a></li>
-              <li><a href="#">Page 3</a></li>
-            </ul>
+            <p>Price</p>
+            <div class="components">
+              <div class="row justify-content-between">
+                <input type="number" [(ngModel)]="landingFilter.costFilter[0]" class="form-control input-rounded" readonly>
+                <input type="number" [(ngModel)]="landingFilter.costFilter[1]" class="form-control input-rounded" readonly>
+              </div>
+              <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px', 'margin-top':'30px'}" [animate]="true" [range]="true"
+                        [min]="0" [max]="2000"></p-slider>
+            </div>
           </li>
+          <hr>
           <li>
-            <a href="#">Portfolio</a>
+            <p>Rating {{landingFilter.ratingFilter}}</p>
+            <div class="components">
+              <p-rating style="text-align: center; font-size: larger" [(ngModel)]="landingFilter.ratingFilter" [cancel]="false"></p-rating>
+              <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px', 'margin-top':'30px'}" [animate]="true"
+                        [min]="1" [max]="5"></p-slider>
+            </div>
           </li>
+          <hr>
           <li>
-            <a href="#">Contact</a>
+            <p>Tags</p>
+            <div class="components">
+              <p-chips [style]="{'margin-bottom':'30px'}" [(ngModel)]="landingFilter.tagFilter"></p-chips>
+              <p-multiSelect [options]="landingFilter.tags" [optionLabel]="label" [dataKey]="value" [(ngModel)]="landingFilter.tagFilter"
+                             [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+            </div>
           </li>
+          <hr>
         </ul>
       </nav>
-      <div class="container col-sm-10">
+      <div class="container col-md-8">
         <div class="row">
-          <div class="card listing-card col-md-5" *ngFor="let property of sublets">
+          <!--| tagsPipe:landingFilter.tagFilter-->
+          <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <img class="card-img-top img-fluid"
                    src="{{this.imageService.getPhoto(property)}}"
@@ -51,7 +59,7 @@
                   <h3 style="float: left">{{property.address}}</h3>
                 </div>
                 <div class="col">
-                  <h4 style="float: right">${{subleases[0].price}}</h4>
+                  <h4 style="float: right">{{property.price != undefined ? '$' + property.price : 'N/A'}}</h4>
                 </div>
                 <div class="w-100"></div>
                 <div class="col">

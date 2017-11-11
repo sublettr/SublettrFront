@@ -6,6 +6,10 @@
   --Froly: #F57A74;
   --FuzzyWuzzyBrown: #C26355;
   --OxfordBlue: #3C4B5C;
+
+  --GhostWhite: #FAFAFC;
+  --LightGray: #D2D2D2;
+  --DarkGray: #A4A4A4;
 }
 
 .dark-primary-color    { background: #FBC02D; }
@@ -32,15 +36,17 @@ body                   { margin: 0; }
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
+@import "~primeng/resources/primeng.min.css";
+@import "~primeng/resources/themes/omega/theme.css";
 
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
-  background: var(--OxfordBlue);
+  background: var(--GhostWhite);
 }
 
 .jumbotron {
-  background: var(--OxfordBlue);
+  background: var(--GhostWhite);
 }
 
 /* Nav */

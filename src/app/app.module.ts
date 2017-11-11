@@ -21,6 +21,9 @@ import {DataService} from "./_services/DataService";
 import {UserTrackingService} from "./_services/UserTrackingService";
 import {ImageService} from './_services/image.service';
 import {EqualValidator} from "./_directives/EqualValidator";
+import { CostPipe } from './_pipes/cost-pipe.pipe';
+import { RatingPipe } from './_pipes/rating-pipe.pipe';
+import { TagsPipe } from './_pipes/tags.pipe';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -40,7 +43,10 @@ const routes: Routes = [
     PostComponent,
     ViewSubleaseComponent,
     ProfileComponent,
-    EqualValidator
+    EqualValidator,
+    CostPipe,
+    RatingPipe,
+    TagsPipe
   ],
   entryComponents: [
     LoginDialog,

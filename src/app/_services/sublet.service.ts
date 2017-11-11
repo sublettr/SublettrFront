@@ -60,8 +60,11 @@ export class SubleaseService {
         return this.http.delete(this.baseURL + '/api/Sublet/' + id, this.getHeaders()).map((response: Response) => { return response.json() });
     }
 
-    // private helper methods
+  getTags() {
+    return this.http.get(this.baseURL + '/tags', this.getHeaders()).map((response: Response) => { return response.json()});
+  }
 
+  // private helper methods
     private addAuthToken() {
         // register authorization header with user auth token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

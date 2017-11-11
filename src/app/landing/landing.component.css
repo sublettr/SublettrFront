@@ -9,7 +9,7 @@
 }
 
 .sidebar {
-  background-color: var(--Froly);
+  background-color: var(--GhostWhite);
   padding-right: 0;
   min-height: 100vh;
 }
@@ -58,6 +58,24 @@
   box-shadow: none;
   outline: none;
 }
+
+.sidebar .input-rounded {
+  width: 100px;
+  border-radius: 1em;
+}
+
+.sidebar ul {
+  padding: 20px;
+}
+
+.sidebar p {
+  font-weight: bold;
+}
+
+.sidebar .components {
+  margin: 30px 20px;
+}
+
 
 .search-form {
   min-width: 150px;
