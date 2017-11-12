@@ -5,6 +5,7 @@ import {UserService} from "../_services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { genders } from '../_models/constants';
 import { grades } from '../_models/constants';
+import {Sublease} from "../_models/sublease";
 
 @Component({
   selector: 'app-profile',
@@ -13,299 +14,8 @@ import { grades } from '../_models/constants';
 })
 export class ProfileComponent implements OnInit {
 
-  savedSubleases = [{
-    id: "0",
-    title: 'Klondike House',
-    url: 'assets/Klondike House.jpg',
-    price: "500",
-    location: "Riatta Place",
-    address: "1111 State Street",
-    amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-      title: 'Fitness Center',
-      url: "fit-center"
-    }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-      title: "Free Laundry",
-      url: "laundry"
-    }],
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-  },
-    {
-      id: "0",
-      title: 'Klondike House',
-      price: "500",
-      url: 'assets/Klondike House.jpg',
-      location: "Riatta Place",
-      address: "1111 State Street",
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: true,
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: false,
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: false,
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: false,
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: true,
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}]
-      ,
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: false,
-      amentities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: false,
-      amentities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: true,
-      amentities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      title: 'Klondike House',
-      address: "1111 State Street",
-      price: "500",
-      url: "assets/Klondike House.jpg",
-      location: "Riatta Place",
-      isFavorited: false,
-      amentities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-  ];
-
-  postedSubleases = [{
-    id: "0",
-    address: "1111 State Street",
-    title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
-    amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-      title: 'Fitness Center',
-      url: "fit-center"
-    }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-      title: "Free Laundry",
-      url: "laundry"
-    }],
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-  },
-    {
-      id: "0",
-      address: "1111 State Street",
-      title: 'Klondike House', price: "500", url: 'assets/Klondike House.jpg', location: "Riatta Place",
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      address: "1111 State Street",
-      title: 'Grant Street Station', price: "500", url: "assets/South Street Station.jpg", location: "Riatta Place",
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      id: "0",
-      address: "1111 State Street",
-      title: 'Grant Street Station', price: "500", url: "assets/South Street Station.jpg", location: "Riatta Place",
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
-        title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
-      }, {title: "Parking Lot", url: "lot"},
-        {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-          title: "Basketball Court",
-          url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-  ];
+  savedSubleases: Sublease[];
+  postedSubleases: Sublease[];
 
   currentUser: FullUser;
   profile: FullUser;
@@ -325,6 +35,8 @@ export class ProfileComponent implements OnInit {
       console.log("Email: " + this.email);
       if (this.currentUser && this.email == this.currentUser.email) {
         this.profile = this.currentUser
+        this.loadSavedSublets(this.profile.email);
+        this.loadPostedSublets(this.profile.email)
       } else {
         this.loadProfile(this.email);
       }
@@ -336,6 +48,8 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => {
         if (data != undefined) {
           this.profile = data;
+          this.loadSavedSublets(this.profile.email);
+          this.loadPostedSublets(this.profile.email)
         } else {
           console.log("No data returned.")
         }
@@ -343,6 +57,36 @@ export class ProfileComponent implements OnInit {
       error => {
         console.log("Unable to fetch user");
       })
+  }
+
+  loadSavedSublets(email: string) {
+    this.userService.getSavedSubleases(email)
+      .subscribe(data => {
+          if (data != undefined) {
+            this.savedSubleases = data;
+            console.log(data);
+          } else {
+            console.log("No saved sublets returned.")
+          }
+        },
+        error => {
+          console.log("Unable to fetch saved sublets");
+        })
+  }
+
+  loadPostedSublets(email: string) {
+    this.userService.getPostedSubleases(email)
+      .subscribe(data => {
+          if (data != undefined) {
+            this.postedSubleases = data;
+            console.log(data);
+          } else {
+            console.log("No posted sublets returned.")
+          }
+        },
+        error => {
+          console.log("Unable to fetch posted sublets");
+        })
   }
 
   openProfileDialog(): void {

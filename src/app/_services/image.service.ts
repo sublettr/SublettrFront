@@ -28,7 +28,6 @@ export class ImageService {
     }
 
     public getPhoto(sublease: Sublease) {
-        console.log(sublease);
         if (sublease.imageUrl) {
             return sublease.imageUrl;
         }

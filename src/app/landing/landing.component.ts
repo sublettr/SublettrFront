@@ -104,8 +104,15 @@ export class LandingComponent implements OnInit {
   }
 
   //Favorite a sublease
-  favorite(): void {
-    // this.http.put("www.xyz.com","user-id","sublease-id", "if the sublease was favorited or unfavorited");
+  favorite(id: number): void {
+    this.subleaseService.saveSublease(this.currentUser.email, id).subscribe(
+      data => {
+        console.log('Returned: ' + data);
+      },
+      error => {
+        console.log('Favoriting issue ' + error);
+      }
+    )
   }
 
   //Share a sublease

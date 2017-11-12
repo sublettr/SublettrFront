@@ -1,7 +1,7 @@
 <div class="jumbotron vertical-center">
   <div class="container">
     <div class="card view-sublease-card" *ngIf="sublet">
-        <img class="card-img-top img-fluid" 
+        <img class="card-img-top img-fluid"
              src={{this.imageService.getPhoto(sublet)}}
              alt="Photo of a Property Listing">
       <div class="card-body">
@@ -68,7 +68,7 @@
           </div>
           <div class="col" style="text-align: right">
             <div class="footer-btn">
-              <button class="btn" (click)="favorite()"><i class="fa fa-heart" aria-hidden="true"
+              <button class="btn" (click)="favorite(sublet.id)"><i class="fa fa-heart" aria-hidden="true"
                                                           style="color: red;"></i>️
               </button>
               <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
