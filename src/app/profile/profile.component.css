@@ -31,10 +31,10 @@
 }
 
 .edit-profile-btn-div {
-  position: absolute;
+  position: relative;
   bottom: 0;
   right: 0;
-  margin-bottom: 16px;
+  margin-bottom: -200px;
   margin-right: 32px;
 }
 
