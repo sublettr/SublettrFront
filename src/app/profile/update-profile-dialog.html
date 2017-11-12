@@ -17,7 +17,7 @@
       <mat-form-field style="width: 100%">
         <label>Sex</label>
         <mat-select matInput [(ngModel)]="newUser.sex" name="sex">
-          <mat-option *ngFor="let sex of sex" value="sex">{{sex}}</mat-option>
+          <mat-option *ngFor="let gender of sex" value="{{gender}}">{{gender}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

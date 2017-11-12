@@ -59,6 +59,8 @@ export class ProfileComponent implements OnInit {
   profile: FullUser;
   email: string;
 
+  grades = grades;
+
   constructor(public dialog: MatDialog, private userService: UserService, private imageService: ImageService, private route: ActivatedRoute, private router: Router) {
 
   }
@@ -187,7 +189,7 @@ export class UpdateProfileDialog {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(this.profile));
 
-            console.log("Updated User Information");
+            console.log("Updated User Information: " + JSON.stringify(this.profile));
             this.closeDialog();
           }
         },

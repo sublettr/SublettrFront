@@ -16,7 +16,7 @@
         <h3 *ngIf="profile.sex" style="float: right; margin-left: 50px">{{profile.sex}}</h3>
       </div>
       <div class="row justify-content-between" style="display: flex; align-items: center">
-        <h3 *ngIf="profile.grade" style="float: left; margin-right: 50px">{{profile.grade}}</h3>
+        <h3 *ngIf="profile.grade" style="float: left; margin-right: 50px">{{grades[profile.grade]?.name}}</h3>
         <h3 ngif="profile.major" style="float: right; margin-left: 50px">{{profile.major}}</h3>
       </div>
 
