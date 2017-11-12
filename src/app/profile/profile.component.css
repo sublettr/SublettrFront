@@ -71,6 +71,26 @@
   fill: white !important;
 }
 
+
+.thumbnail img{
+  max-width: 100%; /* do not stretch the bootstrap column */
+}
+
+.img-wrapper{
+  width: 100%;
+  padding-bottom: 95%; /* your aspect ratio here! */
+  position: relative;
+}
+
+.img-wrapper img{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 100%; /* optional: if you want the smallest images to fill the .thumbnail */
+}
+
 .card {
   padding-left: 0;
   padding-right: 0;
@@ -79,7 +99,7 @@
 }
 
 .listing-card-img {
-  height: 125px;
+  height: 200px;
   width: 100%;
 }
 
@@ -89,11 +109,6 @@
 }
 
 .listing-card mat-card-header {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.listing-card mat-card-header-text {
   margin-left: auto;
   margin-right: auto;
 }
