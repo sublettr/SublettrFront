@@ -5,7 +5,7 @@ import { Sublease } from '../_models/sublease';
 
 @Injectable()
 export class ImageService {
-    contstructor() { };
+    constructor() { };
     private getS3(): S3 {
         AWS.config.update({
             region: 'us-east-1',

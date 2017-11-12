@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import { genders } from '../_models/constants';
 import { grades } from '../_models/constants';
 import {Sublease} from "../_models/sublease";
+import {ImageService} from "../_services/image.service";
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,7 @@ export class ProfileComponent implements OnInit {
   profile: FullUser;
   email: string;
 
-  constructor(public dialog: MatDialog, private userService: UserService, private route : ActivatedRoute, private router : Router) {
+  constructor(public dialog: MatDialog, private userService: UserService, private imageService: ImageService, private route : ActivatedRoute, private router : Router) {
 
   }
 
@@ -48,7 +49,6 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => {
         if (data != undefined) {
           this.profile = data;
-          this.loadSavedSublets(this.profile.email);
           this.loadPostedSublets(this.profile.email)
         } else {
           console.log("No data returned.")

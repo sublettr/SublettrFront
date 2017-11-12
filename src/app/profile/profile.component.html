@@ -32,7 +32,7 @@
         <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
             <img class="card-img-top img-fluid"
-                 src={{savedSubleases[0].url}}
+                 src={{this.imageService?.getPhoto(property)}}
                  alt="Photo of a Property Listing">
           </a>
           <div class="card-body">
@@ -72,7 +72,7 @@
         <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
             <img class="card-img-top img-fluid listing-card-img"
-                 src="{{property.url}}"
+                 src={{this.imageService?.getPhoto(property)}}
                  alt="Photo of a Property Listing">
           </a>
           <div class="card-body">
