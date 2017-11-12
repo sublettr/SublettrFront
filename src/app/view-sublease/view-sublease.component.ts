@@ -72,4 +72,17 @@ export class ViewSubleaseComponent implements OnInit {
     this.router.navigate(["post"]);
   }
 
+  //Favorite a sublease
+  favorite(id: number): void {
+    console.log("Saving " + id + " " + this.currentUser.email);
+    this.subleaseService.saveSublease(this.currentUser.email, id).subscribe(
+      data => {
+        console.log('Returned: ' + data);
+      },
+      error => {
+        console.log('Favoriting issue ' + error);
+      }
+    )
+  }
+
 }

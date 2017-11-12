@@ -64,7 +64,7 @@ export class PostComponent implements OnInit {
       }
     }
 
-    if (this.post.roommates.length > 0) {
+    if (this.post.roommates && this.post.roommates.length > 0) {
       this.post.hasRoommates = true;
     }
 
@@ -76,7 +76,7 @@ export class PostComponent implements OnInit {
       email: [this.post.email],
       address: [this.post.address, [Validators.required]],
       description: [this.post.description],
-      price: [this.post.price],
+      // price: [this.post.price],
       hasRoommates: [this.post.hasRoommates],
       roommates: this._fb.array([]),
       hasOpenHouse: [this.post.hasOpenHouse],
@@ -123,7 +123,7 @@ export class PostComponent implements OnInit {
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
     console.log(this.post);
     let formModel = model.getRawValue();
-    formModel.imageUrl = "";
+      formModel.imageUrl = "";
     const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
 
     formModel.email = this.post.email;
@@ -140,10 +140,12 @@ export class PostComponent implements OnInit {
 
   updateForm(model) {
     let formModel = model.getRawValue();
+    formModel.id = this.post.id;
     formModel.email = this.post.email;
     formModel.email = this.post.email;
     formModel.tags = this.post.tags;
     formModel.imageUrl = this.post.imageUrl;
+    formModel.price
 
     console.log("Updating: " + JSON.stringify(formModel));
     this.subleaseService.updatePost(formModel)

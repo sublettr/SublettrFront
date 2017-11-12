@@ -59,7 +59,15 @@ export class UserService {
     }
 
     delete(id: number) {
-        return this.http.delete(this.baseURL + '/api/Account/' + id, this.addAuthToken()).map((response: Response) => response.json());
+        return this.http.delete(this.baseURL + '/api/Account/' + id, this.getHeaders()).map((response: Response) => response.json());
+    }
+
+    getSavedSubleases(email: string) {
+      return this.http.get(this.baseURL + '/api/Account/saved/' + email, this.getHeaders()).map((response: Response) => response.json());
+    }
+
+    getPostedSubleases(email: string) {
+      return this.http.get(this.baseURL + '/api/Account/posted/' + email, this.getHeaders()).map((response: Response) => response.json());
     }
 
     // private helper methods

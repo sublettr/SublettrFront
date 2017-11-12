@@ -1,39 +1,42 @@
 <div class="container-fluid profile-page">
   <div class="row profile-row" *ngIf="profile">
-    <div class="col-4" style="flex-direction: column">
+    <div class="col-3" style="flex-direction: column">
       <img style="max-height: 300px;" alt="Profile Image"
            src="http://www.freeiconspng.com/uploads/profile-icon-9.png"
            class="img-responsive img-circle"/>
     </div>
 
-    <div class="col-8" style="display: flex; flex-direction: column; min-height: 33vh">
-      <div class="row" style="margin-top: 15px;">
+    <div class="col-4" style="display: flex; flex-direction: column; min-height: 33vh">
+      <div class="row justify-content-between" style="margin-top: 15px;">
         <h3 style="margin-right: 50px">{{profile.name}}</h3>
         <h3 style="margin-left: 50px">{{profile.email}}</h3>
       </div>
-      <div class="row" style="display: flex; align-items: center">
+      <div class="row justify-content-between" style="display: flex; align-items: center">
         <h3 *ngIf="profile.age" style="float: left; margin-right: 50px">{{profile.age}} years old</h3>
         <h3 *ngIf="profile.sex" style="float: right; margin-left: 50px">{{profile.sex}}</h3>
       </div>
-      <div class="row" style="display: flex; align-items: center">
-        <h3 *ngIf="profile.grade" style="float: left; margin-right: 50px">{{profile.grade}}</h3>
+      <div class="row justify-content-between" style="display: flex; align-items: center">
+        <h3 *ngIf="profile.grade" style="float: left; margin-right: 50px">{{grades[profile.grade]?.name}}</h3>
         <h3 ngif="profile.major" style="float: right; margin-left: 50px">{{profile.major}}</h3>
       </div>
-      <div *ngIf="currentUser && profile.email == currentUser.email" class="edit-profile-btn-div">
-        <button (click)="openProfileDialog()" class="btn btn-secondary">Edit  <i matTooltip="Edit" class="fa fa-edit" aria-hidden="true" style="color: var(--GrayChateau);"></i></button>
-      </div>
-    </div>
 
+    </div>
+    <div *ngIf="currentUser && profile.email == currentUser.email" class="edit-profile-btn-div">
+      <button (click)="openProfileDialog()" class="btn btn-secondary">Edit  <i matTooltip="Edit" class="fa fa-edit" aria-hidden="true" style="color: var(--GrayChateau);"></i></button>
+    </div>
   </div>
   <div class="container profile-items-container">
     <div *ngIf="currentUser && profile && profile.email == currentUser.email" class="row profile-items">
       <h3>Saved Subleases</h3>
       <div class="horizontal-card-list">
-        <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases">
+        <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases; let i = index">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
-            <img class="card-img-top img-fluid"
-                 src={{savedSubleases[0].url}}
-                 alt="Photo of a Property Listing">
+            <div class="img-wrapper">
+              <img class="card-img-top img-fluid"
+                   src={{this.imageService?.getPhoto(property)}}
+                   alt="Photo of a Property Listing">
+            </div>
+
           </a>
           <div class="card-body">
             <div class="row">
@@ -41,7 +44,7 @@
                 <h5 style="float: left">{{property.address}}</h5>
               </div>
               <div class="col">
-                <h5 style="float: right">${{property.price}}</h5>
+                <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
               </div>
               <div class="w-100"></div>
               <div class="col">
@@ -57,8 +60,8 @@
                 </div>
               </div>
               <div class="footer-btn">
-                <i (click)="property.isFavorited = !property.isFavorited"
-                   [style.color]="property.isFavorited == true ? 'red' : 'grey'" class="fa fa-heart"
+                <i (click)="favorite(property.id, i)"
+                   [style.color]="'red'" class="fa fa-trash"
                    aria-hidden="true"></i>
               </div>
             </div>
@@ -71,9 +74,11 @@
       <div class="horizontal-card-list">
         <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
+            <div class="img-wrapper">
             <img class="card-img-top img-fluid listing-card-img"
-                 src="{{property.url}}"
+                 src={{this.imageService?.getPhoto(property)}}
                  alt="Photo of a Property Listing">
+            </div>
           </a>
           <div class="card-body">
             <div class="row">
@@ -81,7 +86,7 @@
                 <h5 style="float: left">{{property.address}}</h5>
               </div>
               <div class="col">
-                <h5 style="float: right">${{property.price}}</h5>
+                <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
               </div>
               <div class="w-100"></div>
               <div class="col">
@@ -98,7 +103,7 @@
                 </div>
               </div>
               <div class="footer-btn">
-                <i (click)="edit()" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
+                <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
                    style="color: var(--GrayNurse);"></i>️
               </div>
             </div>
