@@ -187,7 +187,7 @@ export class UpdateProfileDialog {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(this.profile));
 
-            console.log("Updated FullUser");
+            console.log("Updated User Information");
             this.closeDialog();
           }
         },

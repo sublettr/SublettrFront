@@ -20,7 +20,7 @@ export class SubleaseService {
     let headers = new Headers();
     headers.append("Access-Control-Allow-Origin", "*");
     headers.append("Access-Control-Allow-Credentials", "true");
-    headers.append("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
+    headers.append("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE");
     headers.append("Access-Control-Allow-Headers", "Content-Type");
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "application/json")
@@ -72,7 +72,7 @@ export class SubleaseService {
   }
 
   saveSublease(email: string, id: number) {
-    return this.http.get(this.baseURL + '/save/' + email + '/' + id, this.getHeaders()).map((response: Response) => {
+    return this.http.put(this.baseURL + '/save/' + email + '/' + id, this.getHeaders()).map((response: Response) => {
       return response.json()
     });
   }
