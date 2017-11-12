@@ -64,7 +64,7 @@ export class PostComponent implements OnInit {
       }
     }
 
-    if (this.post.roommates.length > 0) {
+    if (this.post.roommates && this.post.roommates.length > 0) {
       this.post.hasRoommates = true;
     }
 

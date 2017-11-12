@@ -19,7 +19,7 @@
     </div>
     <div class="form-group">
         <label for="inputSubletImage">Sublet Photo</label>
-        <input type="file" 
+        <input type="file"
                id="inputSubletImage"
                class="form-control-file"
                name="subletImage"
@@ -31,7 +31,7 @@
         <div class="col">
           <div class="form-check">
             <label class="form-check-label">
-              <mat-checkbox class="form-control" formControlName="hasRoommates" [value]="post.roommates.length > 0">
+              <mat-checkbox class="form-control" formControlName="hasRoommates" [value]="post.roommates?.length > 0">
                 Roommates
               </mat-checkbox>
             </label>

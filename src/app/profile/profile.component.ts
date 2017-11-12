@@ -8,6 +8,7 @@ import {grades} from '../_models/constants';
 import {Sublease} from "../_models/sublease";
 import {ImageService} from "../_services/image.service";
 import {SubleaseService} from "../_services/sublet.service";
+import {DataService} from "../_services/DataService";
 
 @Component({
   selector: 'app-profile',
@@ -62,7 +63,7 @@ export class ProfileComponent implements OnInit {
 
   grades = grades;
 
-  constructor(public dialog: MatDialog, private userService: UserService, private subleaseService: SubleaseService, private imageService: ImageService, private route: ActivatedRoute, private router: Router) {
+  constructor(public dialog: MatDialog, private userService: UserService, private subleaseService: SubleaseService, private dataService: DataService, private imageService: ImageService, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -104,7 +105,6 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => {
           if (data != undefined) {
             this.savedSubleases = data;
-            console.log(data);
           } else {
             console.log("No saved sublets returned.")
           }
@@ -119,7 +119,6 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => {
           if (data != undefined) {
             this.postedSubleases = data;
-            console.log(data);
           } else {
             console.log("No posted sublets returned.")
           }
@@ -133,13 +132,17 @@ export class ProfileComponent implements OnInit {
   favorite(id: number, index: number): void {
     this.subleaseService.saveSublease(this.currentUser.email, id).subscribe(
       data => {
-        console.log('Returned: ' + data);
         this.savedSubleases.splice(index, 1);
       },
       error => {
         console.log('Favoriting issue ' + error);
       }
     )
+  }
+
+  editPost(sublease: Sublease): void {
+    this.dataService.post = sublease;
+    this.router.navigate(["post"]);
   }
 
   openProfileDialog(): void {
