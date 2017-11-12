@@ -41,7 +41,7 @@
                 <h5 style="float: left">{{property.address}}</h5>
               </div>
               <div class="col">
-                <h5 style="float: right">${{property.price}}</h5>
+                <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
               </div>
               <div class="w-100"></div>
               <div class="col">
@@ -81,7 +81,7 @@
                 <h5 style="float: left">{{property.address}}</h5>
               </div>
               <div class="col">
-                <h5 style="float: right">${{property.price}}</h5>
+                <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
               </div>
               <div class="w-100"></div>
               <div class="col">
