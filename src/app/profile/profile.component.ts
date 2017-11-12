@@ -7,6 +7,7 @@ import {genders} from '../_models/constants';
 import {grades} from '../_models/constants';
 import {Sublease} from "../_models/sublease";
 import {ImageService} from "../_services/image.service";
+import {SubleaseService} from "../_services/sublet.service";
 
 @Component({
   selector: 'app-profile',
@@ -61,7 +62,7 @@ export class ProfileComponent implements OnInit {
 
   grades = grades;
 
-  constructor(public dialog: MatDialog, private userService: UserService, private imageService: ImageService, private route: ActivatedRoute, private router: Router) {
+  constructor(public dialog: MatDialog, private userService: UserService, private subleaseService: SubleaseService, private imageService: ImageService, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -126,6 +127,19 @@ export class ProfileComponent implements OnInit {
         error => {
           console.log("Unable to fetch posted sublets");
         })
+  }
+
+  //Favorite a sublease
+  favorite(id: number, index: number): void {
+    this.subleaseService.saveSublease(this.currentUser.email, id).subscribe(
+      data => {
+        console.log('Returned: ' + data);
+        this.savedSubleases.splice(index, 1);
+      },
+      error => {
+        console.log('Favoriting issue ' + error);
+      }
+    )
   }
 
   openProfileDialog(): void {

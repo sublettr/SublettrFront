@@ -29,7 +29,7 @@
     <div *ngIf="currentUser && profile && profile.email == currentUser.email" class="row profile-items">
       <h3>Saved Subleases</h3>
       <div class="horizontal-card-list">
-        <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases">
+        <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases; let i = index">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
             <img class="card-img-top img-fluid"
                  src={{this.imageService?.getPhoto(property)}}
@@ -57,8 +57,8 @@
                 </div>
               </div>
               <div class="footer-btn">
-                <i (click)="property.isFavorited = !property.isFavorited"
-                   [style.color]="property.isFavorited == true ? 'red' : 'grey'" class="fa fa-heart"
+                <i (click)="favorite(property.id, i)"
+                   [style.color]="'red'" class="fa fa-trash"
                    aria-hidden="true"></i>
               </div>
             </div>
