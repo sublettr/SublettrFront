@@ -2,8 +2,7 @@
   min-height: 100vh;
   overflow-x: hidden;
   padding-left: 16px;
-  color: var(--GrayNurse);
-  background-color: white;
+  background-color: var(--GhostWhite);
 }
 
 .profile-row {
@@ -12,7 +11,7 @@
   display: -ms-flexbox;
   display:         flex;
   flex-wrap: wrap;
-  background-color: var(--Froly);
+  background-color: var(--GhostWhite);
   min-height: 33vh;
   justify-content: center;
   align-items: center;
@@ -20,12 +19,12 @@
 }
 
 .profile-items-container {
-  background-color: white;
+  background-color: var(--GhostWhite);
   margin-bottom: 20px;
 }
 
 .profile-items {
-  background: white;
+  background: var(--GhostWhite);
   color: black;
   margin-top: 24px;
 }
@@ -69,26 +68,6 @@
 
 .posted-card .md-icon.svg.path {
   fill: white !important;
-}
-
-
-.thumbnail img{
-  max-width: 100%; /* do not stretch the bootstrap column */
-}
-
-.img-wrapper{
-  width: 100%;
-  padding-bottom: 95%; /* your aspect ratio here! */
-  position: relative;
-}
-
-.img-wrapper img{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  min-height: 100%; /* optional: if you want the smallest images to fill the .thumbnail */
 }
 
 .card {

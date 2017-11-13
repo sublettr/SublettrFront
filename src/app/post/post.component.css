@@ -1,5 +1,5 @@
 .post-page {
-  color: var(--GrayNurse)
+  /*color: var(--LightGray)*/
 }
 
 .post-h1 {
@@ -34,3 +34,6 @@
   margin-bottom: 15px;
 }
 
+.form-check-label {
+  padding-left: 0;
+}
