@@ -15,10 +15,13 @@
             <p>Price</p>
             <div class="components">
               <div class="row justify-content-between">
-                <input type="number" [(ngModel)]="landingFilter.costFilter[0]" class="form-control input-rounded" readonly>
-                <input type="number" [(ngModel)]="landingFilter.costFilter[1]" class="form-control input-rounded" readonly>
+                <input type="number" [(ngModel)]="landingFilter.costFilter[0]" class="form-control input-rounded"
+                       readonly>
+                <input type="number" [(ngModel)]="landingFilter.costFilter[1]" class="form-control input-rounded"
+                       readonly>
               </div>
-              <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px', 'margin-top':'30px'}" [animate]="true" [range]="true"
+              <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px', 'margin-top':'30px'}"
+                        [animate]="true" [range]="true"
                         [min]="0" [max]="2000"></p-slider>
             </div>
           </li>
@@ -26,8 +29,10 @@
           <li>
             <p>Rating {{landingFilter.ratingFilter}}</p>
             <div class="components">
-              <p-rating style="text-align: center; font-size: larger" [(ngModel)]="landingFilter.ratingFilter" [cancel]="false"></p-rating>
-              <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px', 'margin-top':'30px'}" [animate]="true"
+              <p-rating style="text-align: center; font-size: larger" [(ngModel)]="landingFilter.ratingFilter"
+                        [cancel]="false"></p-rating>
+              <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px', 'margin-top':'30px'}"
+                        [animate]="true"
                         [min]="1" [max]="5"></p-slider>
             </div>
           </li>
@@ -36,7 +41,8 @@
             <p>Tags</p>
             <div class="components">
               <p-chips [style]="{'margin-bottom':'30px'}" [(ngModel)]="landingFilter.tagFilter"></p-chips>
-              <p-multiSelect [options]="landingFilter.tags" [optionLabel]="label" [dataKey]="value" [(ngModel)]="landingFilter.tagFilter"
+              <p-multiSelect [options]="landingFilter.tags" [optionLabel]="label" [dataKey]="value"
+                             [(ngModel)]="landingFilter.tagFilter"
                              [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
             </div>
           </li>
@@ -48,9 +54,11 @@
           <!--| tagsPipe:landingFilter.tagFilter-->
           <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
-              <img class="card-img-top img-fluid"
-                   src="{{this.imageService?.getPhoto(property)}}"
-                   alt="Photo of a Property Listing">
+              <div class="img-wrapper">
+                <img class="card-img-top img-fluid"
+                     src="{{this.imageService?.getPhoto(property)}}"
+                     alt="Photo of a Property Listing">
+              </div>
             </a>
             <div class="card-body">
               <div class="row">
@@ -76,7 +84,7 @@
                 <div class="col" style="text-align: right">
                   <div class="footer-btn">
                     <button class="btn" (click)="favorite(property.id)"><i class="fa fa-heart" aria-hidden="true"
-                                                                style="color: red;"></i>️
+                                                                           style="color: red;"></i>️
                     </button>
                     <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
                                                              style="color: dodgerblue;"></i>️
