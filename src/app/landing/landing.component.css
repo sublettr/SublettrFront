@@ -4,10 +4,6 @@
   overflow-y: hidden;
 }
 
-.navbar {
-  background-color: var(--FuzzyWuzzyBrown);
-}
-
 .sidebar {
   background-color: var(--GhostWhite);
   padding-right: 0;
@@ -96,6 +92,7 @@
   padding-left: 0;
   padding-right: 0;
   margin: 20px 20px;
+  box-shadow: 10px 10px 5px var(--DarkGray);
   background: var(--GhostWhite);
 }
 

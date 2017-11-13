@@ -51,7 +51,7 @@ body                   { margin: 0; }
 
 /* Nav */
 .navbar {
-  background-color: var(--FuzzyWuzzyBrown);
+  background-color: var(--Froly);
 }
 
 .navbar a:hover {
