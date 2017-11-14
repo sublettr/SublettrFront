@@ -30,7 +30,9 @@ export class PostComponent implements OnInit {
 
   post: Sublease;
 
-  public postForm: FormGroup;
+  public postForm: FormGroup
+
+  postError: boolean;
 
   constructor(private _fb: FormBuilder, private subleaseService: SubleaseService, public dataService: DataService, private router: Router) {
 
@@ -120,7 +122,7 @@ export class PostComponent implements OnInit {
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
     console.log(this.post);
     let formModel = model.getRawValue();
-      formModel.imageUrl = "";
+    formModel.imageUrl = "";
     const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
 
     formModel.email = this.post.email;
@@ -132,7 +134,17 @@ export class PostComponent implements OnInit {
     });
     console.log("Uploading: " + JSON.stringify(formModel));
 
-    this.subleaseService.create(formModel, imageList);
+    this.subleaseService.create(formModel, imageList).subscribe(
+      data => {
+        console.log(data);
+        this.post = data;
+        this.router.navigate(["view-sublease/" + this.post.id]);
+      },
+      error => {
+        console.log(`Post update issue: ${error})`)
+        this.postError = true;
+      }
+    );
   }
 
   updateForm(model) {
@@ -154,6 +166,7 @@ export class PostComponent implements OnInit {
         },
         error => {
           console.log("Post update issue " + error);
+          this.postError = true;
         }
       )
   }
