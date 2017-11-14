@@ -6,6 +6,8 @@ import { DataService } from "../_services/DataService";
 import { UserTrackingService } from "../_services/UserTrackingService";
 import { FullUser } from "../_models/full-user";
 import { ImageService } from '../_services/image.service';
+import {ShareDialog} from "../_classes/share";
+import {MatDialog} from "@angular/material";
 
 @Component({
   selector: 'app-view-sublease',
@@ -37,7 +39,7 @@ export class ViewSubleaseComponent implements OnInit {
     }
   }
 
-  constructor(private userTrackingService: UserTrackingService, private subleaseService: SubleaseService, private route: ActivatedRoute, private router: Router, private dataService: DataService, private imageService: ImageService) { }
+  constructor(private userTrackingService: UserTrackingService, private subleaseService: SubleaseService, private route: ActivatedRoute, private router: Router, private dataService: DataService, private imageService: ImageService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -85,4 +87,16 @@ export class ViewSubleaseComponent implements OnInit {
     )
   }
 
+  //Share a sublease
+  share(): void {
+    let shareDialogRef = this.dialog.open(ShareDialog, {
+      width: '500px',
+      height: '200px',
+      data: {firstname: "", lastname: "", password: ""}
+    });
+
+    shareDialogRef.afterClosed().subscribe(result => {
+      console.log('The shared dialog was closed');
+    });
+  }
 }

@@ -24,6 +24,8 @@ import {EqualValidator} from "./_directives/EqualValidator";
 import { CostPipe } from './_pipes/cost-pipe.pipe';
 import { RatingPipe } from './_pipes/rating-pipe.pipe';
 import { TagsPipe } from './_pipes/tags.pipe';
+import {ShareModule} from 'ng2share/share.module'
+import {ShareDialog} from "./_classes/share";
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -39,6 +41,7 @@ const routes: Routes = [
     LandingComponent,
     LoginDialog,
     RegisterDialog,
+    ShareDialog,
     UpdateProfileDialog,
     PostComponent,
     ViewSubleaseComponent,
@@ -51,7 +54,8 @@ const routes: Routes = [
   entryComponents: [
     LoginDialog,
     RegisterDialog,
-    UpdateProfileDialog
+    UpdateProfileDialog,
+    ShareDialog
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     ChipsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShareModule
   ],
   providers: [UserService, AuthenticationService, SubleaseService, DataService, UserService, UserTrackingService, ImageService],
   bootstrap: [AppComponent]
