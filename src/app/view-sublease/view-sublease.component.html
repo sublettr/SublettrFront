@@ -1,5 +1,8 @@
 <div class="jumbotron vertical-center">
   <div class="container">
+    <div *ngIf="subletError" class="col justify-content-center">
+      <img src="../../assets/images/generic_400_error.png" class="rounded mx-auto d-block" height="500" width="666"/>
+    </div>
     <div class="card view-sublease-card" *ngIf="sublet">
         <img class="card-img-top img-fluid"
              src={{this.imageService.getPhoto(sublet)}}

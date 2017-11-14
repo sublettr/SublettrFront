@@ -39,6 +39,8 @@ export class ViewSubleaseComponent implements OnInit {
     }
   }
 
+  subletError: Boolean;
+
   constructor(private userTrackingService: UserTrackingService, private subleaseService: SubleaseService, private route: ActivatedRoute, private router: Router, private dataService: DataService, private imageService: ImageService, private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -62,9 +64,11 @@ export class ViewSubleaseComponent implements OnInit {
       .subscribe(
       data => {
         this.sublet = data;
+        this.subletError = false;
       },
       error => {
         console.log("Getting sublets issue " + error);
+        this.subletError = true;
       }
       );
   }
