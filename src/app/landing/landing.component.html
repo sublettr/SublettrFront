@@ -50,7 +50,13 @@
         </ul>
       </nav>
       <div class="container col-md-9">
-        <div class="row justify-content-center">
+        <div *ngIf="subletsError" class="col justify-content-center">
+          <img src="../../assets/images/empty_state.jpg" class="rounded mx-auto d-block" height="600" width="800"/>
+          <br>
+          <h3 style="text-align: center; color: var(--DarkGray)">Sorry, unable to load any subleases</h3>
+        </div>
+        <div *ngIf="!subletsError" class="row justify-content-center">
+
           <!--| tagsPipe:landingFilter.tagFilter-->
           <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">

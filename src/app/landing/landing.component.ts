@@ -35,6 +35,8 @@ export class LandingComponent implements OnInit {
 
   landingFilter: LandingFilter;
 
+  subletsError: boolean;
+
   constructor(private router: Router, public dataService: DataService, private subleaseService: SubleaseService, private imageService: ImageService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
@@ -80,9 +82,11 @@ export class LandingComponent implements OnInit {
         data => {
           this.sublets = data;
           this.sublets[0].price = 599;
+          this.subletsError = false;
         },
         error => {
           console.log("Getting sublets issue " + error);
+          this.subletsError = true;
         }
       );
   }
