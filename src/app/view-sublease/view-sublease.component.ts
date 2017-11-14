@@ -1,24 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { SubleaseService } from "../_services/sublet.service";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import { Sublease } from "../_models/sublease";
-import { DataService } from "../_services/DataService";
-import { UserTrackingService } from "../_services/UserTrackingService";
-import { FullUser } from "../_models/full-user";
-import { ImageService } from '../_services/image.service';
+import {Component, OnInit} from "@angular/core";
+import {SubleaseService} from "../_services/sublet.service";
+import {Router, ActivatedRoute} from "@angular/router";
+import {Sublease} from "../_models/sublease";
+import {DataService} from "../_services/DataService";
+import {UserTrackingService} from "../_services/UserTrackingService";
+import {FullUser} from "../_models/full-user";
+import {ImageService} from "../_services/image.service";
 import {ShareDialog} from "../_classes/share";
 import {MatDialog} from "@angular/material";
-import {fadeInAnimation} from "../_anims/anim-fade-in";
 
 @Component({
   selector: 'app-view-sublease',
   templateUrl: './view-sublease.component.html',
-  styleUrls: ['./view-sublease.component.css'],
-  // make fade in animation available to this component
-  animations: [fadeInAnimation],
-
-  // attach the fade in animation to the host (root) element of this component
-  host: { '[@fadeInAnimation]': '' }
+  styleUrls: ['./view-sublease.component.css']
 })
 export class ViewSubleaseComponent implements OnInit {
 

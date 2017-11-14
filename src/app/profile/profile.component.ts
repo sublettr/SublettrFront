@@ -1,10 +1,9 @@
-import {Component, OnInit, Input, Output, EventEmitter, Inject} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, Inject} from "@angular/core";
 import {FullUser} from "../_models/full-user";
 import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
 import {UserService} from "../_services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {genders} from '../_models/constants';
-import {grades} from '../_models/constants';
+import {genders, grades} from "../_models/constants";
 import {Sublease} from "../_models/sublease";
 import {ImageService} from "../_services/image.service";
 import {SubleaseService} from "../_services/sublet.service";

@@ -1,17 +1,12 @@
-import {Component, OnInit, Inject, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {SubleaseService} from "../_services/sublet.service";
 import {Router} from "@angular/router";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {FullUser} from "../_models/full-user";
 import {Sublease} from "../_models/sublease";
 import {DataService} from "../_services/DataService";
-import {ImageService} from '../_services/image.service';
+import {ImageService} from "../_services/image.service";
 import {LandingFilter} from "../_models/landing-filter";
-import {TagsPipe} from "../_pipes/tags.pipe";
-import {forEach} from "@angular/router/src/utils/collection";
-import {ShareDialog} from "../_classes/share";
-import {MatDialog} from "@angular/material";
-import {fadeInAnimation} from "../_anims/anim-fade-in";
 
 @Component({
   selector: 'app-landing',
@@ -27,10 +22,8 @@ import {fadeInAnimation} from "../_anims/anim-fade-in";
           animate('500ms', style({transform: 'translateX(-100%)', opacity: 0}))
         ])
       ]
-    ),
-    fadeInAnimation
+    )
   ],
-  host: { '[@fadeInAnimation]': '' },
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })

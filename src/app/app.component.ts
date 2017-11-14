@@ -7,11 +7,13 @@ import {FullUser} from "./_models/full-user";
 import {UserService} from "./_services/user.service";
 import {User} from "./_models/user";
 import {DataService} from "./_services/DataService";
+import {routerAnimation} from "./_anims/anim-route";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [routerAnimation]
 })
 export class AppComponent implements OnInit {
   title = 'app';
@@ -69,6 +71,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  // change the animation state
+  getRouteAnimation(outlet) {
+    return outlet.activatedRouteData.animation
+  }
 
   openLoginDialog(): void {
     this.loginDialogRef = this.dialog.open(LoginDialog, {
