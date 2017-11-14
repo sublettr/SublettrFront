@@ -82,6 +82,7 @@ export class LandingComponent implements OnInit {
         data => {
           this.sublets = data;
           this.sublets[0].price = 599;
+          this.subletsError = false;
         },
         error => {
           console.log("Getting sublets issue " + error);

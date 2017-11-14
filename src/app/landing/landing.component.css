@@ -81,7 +81,7 @@
 }
 
 .search {
-  background: var(--GhostWhite);
+  background: white;
   min-height: 100%;
 }
 

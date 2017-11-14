@@ -50,11 +50,10 @@
         </ul>
       </nav>
       <div class="container col-md-9">
-        <div *ngIf="subletsError" class="card">
-          <div class="card-body">
-            <img src="../../assets/images/empty_state.jpg" height="600" width="800"/>
-            <h3>Unable to load any subleases</h3>
-          </div>
+        <div *ngIf="subletsError" class="col justify-content-center">
+          <img src="../../assets/images/empty_state.jpg" class="rounded mx-auto d-block" height="600" width="800"/>
+          <br>
+          <h3 style="text-align: center; color: var(--DarkGray)">Sorry, unable to load any subleases</h3>
         </div>
         <div *ngIf="!subletsError" class="row justify-content-center">
 
