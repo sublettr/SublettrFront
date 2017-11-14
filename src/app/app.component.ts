@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   loginDialogRef: MatDialogRef<LoginDialog>;
 
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, private dataService: DataService, private userService: UserService) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, public dataService: DataService, public userService: UserService) {
     iconRegistry
       .addSvgIcon(
         'water',

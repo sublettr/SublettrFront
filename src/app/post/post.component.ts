@@ -32,7 +32,7 @@ export class PostComponent implements OnInit {
 
   public postForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private subleaseService: SubleaseService, private dataService: DataService, private router: Router) {
+  constructor(private _fb: FormBuilder, private subleaseService: SubleaseService, public dataService: DataService, private router: Router) {
 
   }
 
