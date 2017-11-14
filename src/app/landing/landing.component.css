@@ -8,6 +8,7 @@
   background-color: var(--GhostWhite);
   padding-right: 0;
   min-height: 100vh;
+  border-right: 1.5px solid rgba(0,0,0,.125);
 }
 
 .sidebar .sidebar-header {
@@ -80,7 +81,7 @@
 }
 
 .search {
-  background: var(--LightGray);
+  background: var(--GhostWhite);
   min-height: 100%;
 }
 
