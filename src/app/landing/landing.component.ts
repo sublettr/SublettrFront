@@ -11,6 +11,7 @@ import {TagsPipe} from "../_pipes/tags.pipe";
 import {forEach} from "@angular/router/src/utils/collection";
 import {ShareDialog} from "../_classes/share";
 import {MatDialog} from "@angular/material";
+import {fadeInAnimation} from "../_anims/anim-fade-in";
 
 @Component({
   selector: 'app-landing',
@@ -26,8 +27,10 @@ import {MatDialog} from "@angular/material";
           animate('500ms', style({transform: 'translateX(-100%)', opacity: 0}))
         ])
       ]
-    )
+    ),
+    fadeInAnimation
   ],
+  host: { '[@fadeInAnimation]': '' },
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })

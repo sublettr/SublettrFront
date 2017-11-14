@@ -8,11 +8,17 @@ import { FullUser } from "../_models/full-user";
 import { ImageService } from '../_services/image.service';
 import {ShareDialog} from "../_classes/share";
 import {MatDialog} from "@angular/material";
+import {fadeInAnimation} from "../_anims/anim-fade-in";
 
 @Component({
   selector: 'app-view-sublease',
   templateUrl: './view-sublease.component.html',
-  styleUrls: ['./view-sublease.component.css']
+  styleUrls: ['./view-sublease.component.css'],
+  // make fade in animation available to this component
+  animations: [fadeInAnimation],
+
+  // attach the fade in animation to the host (root) element of this component
+  host: { '[@fadeInAnimation]': '' }
 })
 export class ViewSubleaseComponent implements OnInit {
 

@@ -26,6 +26,7 @@ import { RatingPipe } from './_pipes/rating-pipe.pipe';
 import { TagsPipe } from './_pipes/tags.pipe';
 import {ShareModule} from 'ng2share/share.module'
 import {ShareDialog} from "./_classes/share";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -59,6 +60,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     HttpClientModule,
     AllMaterialModulesModule,

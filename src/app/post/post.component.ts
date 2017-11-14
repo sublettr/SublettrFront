@@ -8,11 +8,14 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../_services/DataService";
 import {ChipsModule, FileUploadModule} from 'primeng/primeng';
 import {FormGroup, FormBuilder, Validators, FormArray} from "@angular/forms";
+import {fadeInAnimation} from "../_anims/anim-fade-in";
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.css'],
+  animations: [fadeInAnimation],
+  host: { '[@fadeInAnimation]': '' }
 })
 export class PostComponent implements OnInit {
 
