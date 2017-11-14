@@ -26,13 +26,14 @@ import { RatingPipe } from './_pipes/rating-pipe.pipe';
 import { TagsPipe } from './_pipes/tags.pipe';
 import {ShareModule} from 'ng2share/share.module'
 import {ShareDialog} from "./_classes/share";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
-  { path: '*', component: LandingComponent },
-  { path: 'post', component: PostComponent },
-  { path: 'view-sublease/:id', component: ViewSubleaseComponent },
-  { path: 'profile/:email', component: ProfileComponent },
+  { path: '', component: LandingComponent, data: { animation: '' } },
+  { path: '*', component: LandingComponent, data: { animation: '*' } },
+  { path: 'post', component: PostComponent, data: { animation: 'post' } },
+  { path: 'view-sublease/:id', component: ViewSubleaseComponent, data: { animation: 'view-sublease/:id' } },
+  { path: 'profile/:email', component: ProfileComponent,data: { animation: 'profile/:email' } },
 ];
 
 @NgModule({
@@ -59,6 +60,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     HttpClientModule,
     AllMaterialModulesModule,

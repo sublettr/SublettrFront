@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { SubleaseService } from "../_services/sublet.service";
-import { Router, ActivatedRoute, Params } from "@angular/router";
-import { Sublease } from "../_models/sublease";
-import { DataService } from "../_services/DataService";
-import { UserTrackingService } from "../_services/UserTrackingService";
-import { FullUser } from "../_models/full-user";
-import { ImageService } from '../_services/image.service';
+import {Component, OnInit} from "@angular/core";
+import {SubleaseService} from "../_services/sublet.service";
+import {Router, ActivatedRoute} from "@angular/router";
+import {Sublease} from "../_models/sublease";
+import {DataService} from "../_services/DataService";
+import {UserTrackingService} from "../_services/UserTrackingService";
+import {FullUser} from "../_models/full-user";
+import {ImageService} from "../_services/image.service";
 import {ShareDialog} from "../_classes/share";
 import {MatDialog} from "@angular/material";
 

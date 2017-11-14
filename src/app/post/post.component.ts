@@ -1,12 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {MatIconRegistry} from "@angular/material";
-import {DomSanitizer} from "@angular/platform-browser";
+import {Component, OnInit} from "@angular/core";
 import {Sublease} from "../_models/sublease";
 import {SubleaseService} from "../_services/sublet.service";
 import {FullUser} from "../_models/full-user";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {DataService} from "../_services/DataService";
-import {ChipsModule, FileUploadModule} from 'primeng/primeng';
 import {FormGroup, FormBuilder, Validators, FormArray} from "@angular/forms";
 
 @Component({
