@@ -46,7 +46,7 @@ body                   { margin: 0; }
 }
 
 .jumbotron {
-  background: var(--GhostWhite);
+  background: white;
 }
 
 /* Nav */
