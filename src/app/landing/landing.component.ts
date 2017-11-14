@@ -9,6 +9,8 @@ import {ImageService} from '../_services/image.service';
 import {LandingFilter} from "../_models/landing-filter";
 import {TagsPipe} from "../_pipes/tags.pipe";
 import {forEach} from "@angular/router/src/utils/collection";
+import {ShareDialog} from "../_classes/share";
+import {MatDialog} from "@angular/material";
 
 @Component({
   selector: 'app-landing',
@@ -37,7 +39,7 @@ export class LandingComponent implements OnInit {
 
   landingFilter: LandingFilter;
 
-  constructor(private router: Router,  private dataService: DataService, private subleaseService: SubleaseService, private imageService: ImageService) {
+  constructor(private router: Router, private dataService: DataService, private subleaseService: SubleaseService, private imageService: ImageService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -113,10 +115,5 @@ export class LandingComponent implements OnInit {
         console.log('Favoriting issue ' + error);
       }
     )
-  }
-
-  //Share a sublease
-  share(): void {
-
   }
 }
