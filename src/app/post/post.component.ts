@@ -57,7 +57,7 @@ export class PostComponent implements OnInit {
         "openHouse": "",
         "isFurnished": false,
         "tags": [],
-        "imageUrl": ""
+        "imageUrl": "",
       }
     }
 
@@ -73,7 +73,7 @@ export class PostComponent implements OnInit {
       email: [this.post.email],
       address: [this.post.address, [Validators.required]],
       description: [this.post.description],
-      // price: [this.post.price],
+      price: [this.post.price],
       hasRoommates: [this.post.hasRoommates],
       roommates: this._fb.array([]),
       hasOpenHouse: [this.post.hasOpenHouse],
