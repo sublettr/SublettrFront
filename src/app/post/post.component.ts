@@ -49,7 +49,7 @@ export class PostComponent implements OnInit {
         "id": 0,
         "email": this.currentUser.email,
         "address": "",
-        "price": 599,
+        "price": 0,
         "description": "",
         "hasRoommates": false,
         "roommates": [],
