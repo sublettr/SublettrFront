@@ -73,7 +73,7 @@
                   <h3 style="float: left">{{property.address}}</h3>
                 </div>
                 <div class="col">
-                  <h4 style="float: right">{{property.price != undefined ? '$' + property.price : 'N/A'}}</h4>
+                  <h4 style="float: right">{{property.price != (undefined || 0) ? '$' + (property.price |  number:'.0') : 'Message For Price'}}</h4>
                 </div>
                 <div class="w-100"></div>
                 <div class="col">

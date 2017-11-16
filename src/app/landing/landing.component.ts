@@ -81,7 +81,6 @@ export class LandingComponent implements OnInit {
       .subscribe(
         data => {
           this.sublets = data;
-          this.sublets[0].price = 599;
           this.subletsError = false;
         },
         error => {
