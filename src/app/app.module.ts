@@ -27,6 +27,7 @@ import { TagsPipe } from './_pipes/tags.pipe';
 import {ShareModule} from 'ng2share/share.module'
 import {ShareDialog} from "./_classes/share";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MessagingComponent } from './messaging/messaging.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'post', component: PostComponent, data: { animation: 'post' } },
   { path: 'view-sublease/:id', component: ViewSubleaseComponent, data: { animation: 'view-sublease/:id' } },
   { path: 'profile/:email', component: ProfileComponent,data: { animation: 'profile/:email' } },
+  { path: 'messenger/:email', component: MessagingComponent, data: { animation: 'messenger/:email' } },
 ];
 
 @NgModule({
@@ -50,7 +52,8 @@ const routes: Routes = [
     EqualValidator,
     CostPipe,
     RatingPipe,
-    TagsPipe
+    TagsPipe,
+    MessagingComponent
   ],
   entryComponents: [
     LoginDialog,
