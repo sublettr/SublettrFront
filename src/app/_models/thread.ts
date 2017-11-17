@@ -4,15 +4,15 @@ import {Message} from "./message";
  * Thread represents a group of Users exchanging Messages
  */
 export class Thread {
-  id: string;
+  email: string;
   lastMessage: Message;
   name: string;
   avatarSrc: string;
 
-  constructor(id?: string,
+  constructor(email?: string,
               name?: string,
               avatarSrc?: string) {
-    this.id = id;
+    this.email = email;
     this.name = name;
     this.avatarSrc = avatarSrc;
   }

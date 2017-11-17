@@ -3,7 +3,7 @@ import {Thread} from "../_models/thread";
 import {ThreadsService} from "../_services/thread.service";
 
 @Component({
-  selector: 'app-message-threads',
+  selector: 'app-message-thread',
   templateUrl: 'message-thread.component.html',
   styleUrls: ['message-thread.component.css']
 })
