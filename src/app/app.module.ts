@@ -30,6 +30,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { MessagingComponent } from './messaging/messaging.component';
 import { MessageThreadComponent } from './message-thread/message-thread.component';
 import { MessageThreadsComponent } from './message-threads/message-threads.component';
+import {ThreadsService} from "./_services/thread.service";
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
@@ -78,7 +79,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     ShareModule
   ],
-  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserService, UserTrackingService, ImageService],
+  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserTrackingService, ImageService, ThreadsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

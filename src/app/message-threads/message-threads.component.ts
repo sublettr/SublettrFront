@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
+import {ThreadsService} from "../_services/thread.service";
 
 @Component({
   selector: 'app-message-threads',
@@ -14,4 +15,6 @@ export class MessageThreadsComponent implements OnInit {
     this.threads = threadsService.orderedThreads;
   }
 
+  ngOnInit(): void {
+  }
 }

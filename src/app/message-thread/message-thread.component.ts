@@ -1,4 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Thread} from "../_models/thread";
+import {ThreadsService} from "../_services/thread.service";
 
 @Component({
   selector: 'app-message-threads',
