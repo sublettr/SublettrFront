@@ -1,19 +1,23 @@
-import { Message } from '../message/message.model';
 
+import {User} from "./user";
+import {Thread} from "./thread";
 /**
- * Thread represents a group of Users exchanging Messages
+ * Message represents one message being sent in a Thread
  */
-export class Thread {
+export class Message {
   id: string;
-  lastMessage: Message;
-  name: string;
-  avatarSrc: string;
+  sentAt: Date;
+  isRead: boolean;
+  author: User;
+  text: string;
+  thread: Thread;
 
-  constructor(id?: string,
-              name?: string,
-              avatarSrc?: string) {
-    this.id = id;
-    this.name = name;
-    this.avatarSrc = avatarSrc;
+  constructor(obj?: any) {
+    this.id              = obj && obj.id;
+    this.isRead          = obj && obj.isRead          || false;
+    this.sentAt          = obj && obj.sentAt          || new Date();
+    this.author          = obj && obj.author          || null;
+    this.text            = obj && obj.text            || null;
+    this.thread          = obj && obj.thread          || null;
   }
 }

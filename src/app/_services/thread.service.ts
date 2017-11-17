@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
-import { Message } from '../message/message.model';
-import { MessagesService } from '../message/messages.service';
 import * as _ from 'lodash';
 import {Thread} from "../_models/thread";
+import {Message} from "../_models/message";
+import {MessagesService} from "./message.service";
 
 @Injectable()
 export class ThreadsService {

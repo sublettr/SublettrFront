@@ -1,5 +1,5 @@
-import { Message } from '../message/message.model';
 
+import {Message} from "./message";
 /**
  * Thread represents a group of Users exchanging Messages
  */

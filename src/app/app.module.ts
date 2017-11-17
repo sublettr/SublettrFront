@@ -31,6 +31,7 @@ import { MessagingComponent } from './messaging/messaging.component';
 import { MessageThreadComponent } from './message-thread/message-thread.component';
 import { MessageThreadsComponent } from './message-threads/message-threads.component';
 import {ThreadsService} from "./_services/thread.service";
+import {MessagesService} from "./_services/message.service";
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
@@ -79,7 +80,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     ShareModule
   ],
-  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserTrackingService, ImageService, ThreadsService],
+  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserTrackingService, ImageService, ThreadsService, MessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
