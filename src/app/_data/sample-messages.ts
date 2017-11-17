@@ -1,27 +1,26 @@
 /* tslint:disable:max-line-length */
-import * as moment from 'moment';
-import {User} from "../_models/user";
+import * as moment from "moment";
 import {Thread} from "../_models/thread";
 import {Message} from "../_models/message";
 import {MessagesService} from "../_services/message.service";
 import {ThreadsService} from "../_services/thread.service";
 import {UserService} from "../_services/user.service";
+import {FullUser} from "../_models/full-user";
 
 // the person using the app us Juliet
-// const me: User      = new User('Juliet', 'assets/images/avatars/female-avatar-1.png');
-// const ladycap: User = new User('Lady Capulet', 'assets/images/avatars/female-avatar-2.png');
-// const echo: User    = new User('Echo Bot', 'assets/images/avatars/male-avatar-1.png');
-// const rev: User     = new User('Reverse Bot', 'assets/images/avatars/female-avatar-4.png');
-// const wait: User    = new User('Waiting Bot', 'assets/images/avatars/male-avatar-2.png');
+const ladycap: FullUser = new FullUser({email: 'lc@purdue.edu', name: 'Lady Capulet'});
+const echo: FullUser    = new FullUser({email: 'eb@purdue.edu', name: 'Echo Bot'});
+const rev: FullUser     = new FullUser({email: 'rb@purdue.edu', name: 'Reverse Bot'});
+const wait: FullUser    = new FullUser({email: 'wb@purdue.edu', name: 'Waiting Bot'});
 
-const tLadycap: Thread = new Thread('tLadycap', ladycap.name, ladycap.avatarSrc);
-const tEcho: Thread    = new Thread('tEcho', echo.name, echo.avatarSrc);
-const tRev: Thread     = new Thread('tRev', rev.name, rev.avatarSrc);
-const tWait: Thread    = new Thread('tWait', wait.name, wait.avatarSrc);
+const tLadycap: Thread = new Thread('tLadycap', ladycap.name, 'assets/search-icon.png');
+const tEcho: Thread    = new Thread('tEcho', echo.name, 'assets/search-icon.png');
+const tRev: Thread     = new Thread('tRev', rev.name, 'assets/search-icon.png');
+const tWait: Thread    = new Thread('tWait', wait.name, 'assets/search-icon.png');
 
 const initialMessages: Array<Message> = [
   new Message({
-    author: me,
+    author: echo,
     sentAt: moment().subtract(45, 'minutes').toDate(),
     text: 'Yet let me weep for such a feeling loss.',
     thread: tLadycap

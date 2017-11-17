@@ -8,6 +8,9 @@ import {UserService} from "./_services/user.service";
 import {User} from "./_models/user";
 import {DataService} from "./_services/DataService";
 import {routerAnimation} from "./_anims/anim-route";
+import {ChatExampleData} from "./_data/sample-messages";
+import {ThreadsService} from "./_services/thread.service";
+import {MessagesService} from "./_services/message.service";
 
 @Component({
   selector: 'app-root',
@@ -24,7 +27,10 @@ export class AppComponent implements OnInit {
   loginDialogRef: MatDialogRef<LoginDialog>;
 
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, public dataService: DataService, public userService: UserService) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, public dataService: DataService,
+              public userService: UserService,
+              public messagesService: MessagesService,
+              public threadsService: ThreadsService) {
     iconRegistry
       .addSvgIcon(
         'water',
@@ -60,6 +66,7 @@ export class AppComponent implements OnInit {
       'tennis',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/tennis.svg')
     );
+    ChatExampleData.init(messagesService, threadsService, userService);
   }
 
   ngOnInit() {

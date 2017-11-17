@@ -3,6 +3,7 @@ import { Subject, Observable } from 'rxjs';
 import {Message} from "../_models/message";
 import {Thread} from "../_models/thread";
 import {User} from "../_models/user";
+import {FullUser} from "../_models/full-user";
 
 const initialMessages: Message[] = [];
 
@@ -91,7 +92,7 @@ export class MessagesService {
     this.newMessages.next(message);
   }
 
-  messagesForThreadUser(thread: Thread, user: User): Observable<Message> {
+  messagesForThreadUser(thread: Thread, user: FullUser): Observable<Message> {
     return this.newMessages
       .filter((message: Message) => {
         // belongs to this thread
