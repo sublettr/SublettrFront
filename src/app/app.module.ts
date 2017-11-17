@@ -29,6 +29,7 @@ import {ShareDialog} from "./_classes/share";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { MessagingComponent } from './messaging/messaging.component';
 import { MessageThreadComponent } from './message-thread/message-thread.component';
+import { MessageThreadsComponent } from './message-threads/message-threads.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
@@ -55,7 +56,8 @@ const routes: Routes = [
     RatingPipe,
     TagsPipe,
     MessagingComponent,
-    MessageThreadComponent
+    MessageThreadComponent,
+    MessageThreadsComponent
   ],
   entryComponents: [
     LoginDialog,
