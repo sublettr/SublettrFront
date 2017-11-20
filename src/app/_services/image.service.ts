@@ -3,6 +3,8 @@ import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 import { Sublease } from '../_models/sublease';
 import { environment } from '../../environments/environment';
+import { AWSError } from 'aws-sdk/lib/error';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ImageService {
@@ -35,7 +37,7 @@ export class ImageService {
         return 'assets/images/no-photo.png';
     }
 
-    public uploadSubletImages(sublease: Sublease, imageList: FileList) {
+    public uploadSubletImage(sublease: Sublease, imageList: FileList) {
         return new Promise((resolve, reject) => {
             const albumName = `${sublease.email}-${sublease.address}`;
             try {
@@ -92,5 +94,20 @@ export class ImageService {
                 resolve(data.Location);
             });
         });
+    }
+
+    public updateSubletImage(sublease: Sublease, imageList: FileList) {
+        return this.deletePhoto(sublease.imageUrl)
+            .then(this.uploadSubletImage(sublease, imageList));
+    }
+
+    private deletePhoto(imageUrl: string): any {
+        const s3: S3 = this.getS3();
+        const photoKey = imageUrl.replace('https://s3.amazonaws.com/sublettr-images/', '');
+        return s3.deleteObject({
+            Key: photoKey,
+            Bucket: 'sublettr-images'
+            })
+            .promise();
     }
 }

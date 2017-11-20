@@ -48,7 +48,7 @@ export class SubleaseService {
   }
 
   create(sublease: Sublease, imageList: FileList) {
-    this.ImageService.uploadSubletImages(sublease, imageList)
+    this.ImageService.uploadSubletImage(sublease, imageList)
       .then((sublease) => {
         this.http.post(this.baseURL + '/api/Sublet/full', sublease, this.getHeaders())
           .map((response: Response) => response.json())
@@ -59,10 +59,13 @@ export class SubleaseService {
       });
   }
 
-  updatePost(sublease: Sublease) {
-    return this.http.put(this.baseURL + '/api/Sublet/full/' + sublease.id, sublease, this.getHeaders()).map((response: Response) => {
-      return response.json()
-    });
+  updatePost(sublease: Sublease, imageList: FileList) {
+    debugger; 
+    const updateRequest = this.ImageService.updateSubletImage(sublease, imageList)
+      .then(this.http.put(this.baseURL + '/api/Sublet/full/' + sublease.id, sublease, this.getHeaders()).map((response: Response) => {
+        return response.json()
+      }));
+      return Observable.fromPromise(updateRequest);
   }
 
   delete(id: number) {

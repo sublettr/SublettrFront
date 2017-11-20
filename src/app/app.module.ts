@@ -18,30 +18,30 @@ import {ProfileComponent, UpdateProfileDialog} from './profile/profile.component
 import {LoginDialog} from "./_classes/login";
 import {RegisterDialog} from "./_classes/register";
 import {DataService} from "./_services/DataService";
-import {UserTrackingService} from "./_services/UserTrackingService";
+import {UserTrackingService} from './_services/UserTrackingService';
 import {ImageService} from './_services/image.service';
-import {EqualValidator} from "./_directives/EqualValidator";
+import {EqualValidator} from './_directives/EqualValidator';
 import { CostPipe } from './_pipes/cost-pipe.pipe';
 import { RatingPipe } from './_pipes/rating-pipe.pipe';
 import { TagsPipe } from './_pipes/tags.pipe';
 import {ShareModule} from 'ng2share/share.module'
-import {ShareDialog} from "./_classes/share";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ShareDialog} from './_classes/share';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MessagingComponent } from './messaging/messaging.component';
 import { MessageThreadComponent } from './message-thread/message-thread.component';
 import { MessageThreadsComponent } from './message-threads/message-threads.component';
-import {ThreadsService} from "./_services/thread.service";
-import {MessagesService} from "./_services/message.service";
+import {ThreadsService} from './_services/thread.service';
+import {MessagesService} from './_services/message.service';
 import { MessageWindowComponent } from './message-window/message-window.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
-import {FromNowPipe} from "./_pipes/from-now.pipe";
+import {FromNowPipe} from './_pipes/from-now.pipe';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
   { path: '*', component: LandingComponent, data: { animation: '*' } },
   { path: 'post', component: PostComponent, data: { animation: 'post' } },
   { path: 'view-sublease/:id', component: ViewSubleaseComponent, data: { animation: 'view-sublease/:id' } },
-  { path: 'profile/:email', component: ProfileComponent,data: { animation: 'profile/:email' } },
+  { path: 'profile/:email', component: ProfileComponent, data: { animation: 'profile/:email' } },
   { path: 'messenger/:email', component: MessagingComponent, data: { animation: 'messenger/:email' } },
 ];
 

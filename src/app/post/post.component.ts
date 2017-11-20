@@ -48,7 +48,7 @@ export class PostComponent implements OnInit {
       this.post = {
         "id": 0,
         "email": this.currentUser.email,
-        "address": "",
+        'address': "",
         "price": 0,
         "description": "",
         "hasRoommates": false,
@@ -83,7 +83,7 @@ export class PostComponent implements OnInit {
       imageUrl: ""
     });
 
-    //Add roommates
+    // Add roommates
     this.initRoommates();
 
     if (this.post.openHouse != "") {
@@ -119,7 +119,7 @@ export class PostComponent implements OnInit {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
     console.log(this.post);
-    let formModel = model.getRawValue();
+    const formModel = model.getRawValue();
       formModel.imageUrl = "";
     const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
 
@@ -136,7 +136,7 @@ export class PostComponent implements OnInit {
   }
 
   updateForm(model) {
-    let formModel = model.getRawValue();
+    const formModel = model.getRawValue();
     formModel.id = this.post.id;
     formModel.email = this.post.email;
     formModel.email = this.post.email;
@@ -144,18 +144,18 @@ export class PostComponent implements OnInit {
     formModel.imageUrl = this.post.imageUrl;
     formModel.price
 
-    console.log("Updating: " + JSON.stringify(formModel));
+    console.log('Updating: ' + JSON.stringify(formModel));
     this.subleaseService.updatePost(formModel)
       .subscribe(
         data => {
-          this.router.navigate(["view-sublease/" + this.post.id]);
+          this.router.navigate(['view-sublease/' + this.post.id]);
 
-          console.log("Successful post update")
+          console.log('Successful post update')
         },
         error => {
-          console.log("Post update issue " + error);
+          console.log('Post update issue ' + error);
         }
-      )
+      );
   }
 
 }
