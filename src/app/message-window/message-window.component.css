@@ -9,3 +9,7 @@
   width: 100%;
   margin-bottom: 0;
 }
+
+.chat-input {
+  padding: 5px 10px;
+}
