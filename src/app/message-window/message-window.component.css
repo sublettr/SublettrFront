@@ -1,0 +1,11 @@
+.chat-window .panel-footer .input-group .chat-input {
+  display: table-cell;
+}
+
+.chat-window .panel-footer .input-group .chat-input {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+}
