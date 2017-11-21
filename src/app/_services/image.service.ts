@@ -2,27 +2,28 @@ import { Injectable } from '@angular/core';
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 import { Sublease } from '../_models/sublease';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ImageService {
-    constructor() { };
+    constructor() { }
     private getS3(): S3 {
         AWS.config.update({
             region: 'us-east-1',
-            credentials: new AWS.Credentials('AKIAIU736BH3YINHJLZA', '3NudFL2qYOhOciAS0JYmnwOPPh3F/rW9cZt8EoBd')
+            credentials: new AWS.Credentials(environment['S3_ACCESS_ID'], environment['S3_ACCESS_KEY'])
         });
 
         const clientParams: S3.ClientConfiguration = {
             apiVersion: '2016-03-01',
             params: { Bucket: 'sublettr-images' }
-        }
+        };
         const aws = <any>AWS;
         aws.config.credentials.get(function() {
 
             // Credentials will be available when this function is called.
-            var accessKeyId = AWS.config.credentials.accessKeyId;
-            var secretAccessKey = AWS.config.credentials.secretAccessKey;
-            var sessionToken = AWS.config.credentials.sessionToken;
+            const accessKeyId = AWS.config.credentials.accessKeyId;
+            const secretAccessKey = AWS.config.credentials.secretAccessKey;
+            const sessionToken = AWS.config.credentials.sessionToken;
         });
         return new S3(clientParams);
     }
@@ -36,13 +37,13 @@ export class ImageService {
 
     public uploadSubletImages(sublease: Sublease, imageList: FileList) {
         return new Promise((resolve, reject) => {
-            const albumName: string = `${sublease.email}-${sublease.address}`;
+            const albumName = `${sublease.email}-${sublease.address}`;
             try {
                 this.createAlbum(albumName);
             } catch (err) {
                 console.log(err);
             }
-            for (let i: number = 0; i < imageList.length; i++) {
+            for (let i = 0; i < imageList.length; i++) {
                 this.addPhoto(albumName, imageList[i])
                     .then(url => {
                         sublease.imageUrl = url;
@@ -51,18 +52,18 @@ export class ImageService {
                     .catch(err => reject(err));
             }
 
-        })
+        });
     }
 
     private createAlbum(albumName: string) {
         const sublettrS3: S3 = this.getS3();
         albumName = albumName.trim();
-        const albumKey: string = `${encodeURIComponent(albumName)}/`;
+        const albumKey = `${encodeURIComponent(albumName)}/`;
         return sublettrS3.headObject({
             Key: albumKey,
             Bucket: 'sublettr-images'
         }, function(err, data) {
-            if (err && err.code != 'NotFound') {
+            if (err && err.code !== 'NotFound') {
                 throw err;
             }
             sublettrS3.putObject({ Key: albumKey, Bucket: 'sublettr-images' }, function(err, data) {
@@ -76,7 +77,7 @@ export class ImageService {
 
     private addPhoto(albumName: string, file: any): any {
         return new Promise((resolve, reject) => {
-            const albumPhotosKeys: string = `${encodeURIComponent(albumName)}/`;
+            const albumPhotosKeys = `${encodeURIComponent(albumName)}/`;
 
             const photoKey: string = albumPhotosKeys + encodeURIComponent(file.name);
             this.getS3().upload({
@@ -89,7 +90,7 @@ export class ImageService {
                     reject(err);
                 }
                 resolve(data.Location);
-            })
+            });
         });
     }
 }
