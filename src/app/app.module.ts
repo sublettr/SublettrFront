@@ -32,6 +32,9 @@ import { MessageThreadComponent } from './message-thread/message-thread.componen
 import { MessageThreadsComponent } from './message-threads/message-threads.component';
 import {ThreadsService} from "./_services/thread.service";
 import {MessagesService} from "./_services/message.service";
+import { MessageWindowComponent } from './message-window/message-window.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
+import {FromNowPipe} from "./_pipes/from-now.pipe";
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
@@ -57,9 +60,12 @@ const routes: Routes = [
     CostPipe,
     RatingPipe,
     TagsPipe,
+    FromNowPipe,
     MessagingComponent,
     MessageThreadComponent,
-    MessageThreadsComponent
+    MessageThreadsComponent,
+    MessageWindowComponent,
+    ChatMessageComponent
   ],
   entryComponents: [
     LoginDialog,
