@@ -72,7 +72,7 @@ export class SubleaseService {
   }
 
   saveSublease(email: string, id: number) {
-    return this.http.put(this.baseURL + '/save/' + email + '/' + id, this.getHeaders()).map((response: Response) => {
+    return this.http.post(this.baseURL + '/save/' + email + '/' + id, this.getHeaders()).map((response: Response) => {
       return response.json()
     });
   }
