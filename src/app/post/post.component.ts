@@ -1,10 +1,10 @@
-import {Component, OnInit} from "@angular/core";
-import {Sublease} from "../_models/sublease";
-import {SubleaseService} from "../_services/sublet.service";
-import {FullUser} from "../_models/full-user";
-import {Router} from "@angular/router";
-import {DataService} from "../_services/DataService";
-import {FormGroup, FormBuilder, Validators, FormArray} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {Sublease} from '../_models/sublease';
+import {SubleaseService} from '../_services/sublet.service';
+import {FullUser} from '../_models/full-user';
+import {Router} from '@angular/router';
+import {DataService} from '../_services/DataService';
+import {FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 
 @Component({
   selector: 'app-post',
@@ -13,20 +13,20 @@ import {FormGroup, FormBuilder, Validators, FormArray} from "@angular/forms";
 })
 export class PostComponent implements OnInit {
 
-  amenities = [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
+  amenities = [{title: 'Electric', url: 'electric'}, {title: 'Water', url: 'water'}, {
     title: 'Fitness Center',
-    url: "fit-center"
-  }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-    title: "Free Laundry",
-    url: "laundry"
-  }, {title: "Parking Lot", url: "lot"},
-    {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
-      title: "Basketball Court",
-      url: "basketball"
-    }, {title: "Tennis Court", url: "tennis"}];
+    url: 'fit-center'
+  }, {title: 'Free Parking', url: 'parking'}, {title: 'Garage', url: 'garage'}, {
+    title: 'Free Laundry',
+    url: 'laundry'
+  }, {title: 'Parking Lot', url: 'lot'},
+    {title: 'Indoor Pool', url: 'in-pool'}, {title: 'Outdoor Pool', url: 'out-pool'}, {
+      title: 'Basketball Court',
+      url: 'basketball'
+    }, {title: 'Tennis Court', url: 'tennis'}];
 
-  isLoggedIn: boolean = false;
-  currentUser: FullUser = new FullUser("");
+  isLoggedIn = false;
+  currentUser: FullUser = new FullUser('');
 
   post: Sublease;
 
@@ -44,28 +44,28 @@ export class PostComponent implements OnInit {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     this.post = this.dataService.post;
-    if (this.post == undefined) {
+    if (this.post === undefined) {
       this.post = {
-        "id": 0,
-        "email": this.currentUser.email,
-        'address': "",
-        "price": 0,
-        "description": "",
-        "hasRoommates": false,
-        "roommates": [],
-        "hasOpenHouse": false,
-        "openHouse": "",
-        "isFurnished": false,
-        "tags": [],
-        "imageUrl": "",
-      }
+        'id': 0,
+        'email': this.currentUser.email,
+        'address': '',
+        'price': 0,
+        'description': '',
+        'hasRoommates': false,
+        'roommates': [],
+        'hasOpenHouse': false,
+        'openHouse': '',
+        'isFurnished': false,
+        'tags': [],
+        'imageUrl': '',
+      };
     }
 
     if (this.post.roommates && this.post.roommates.length > 0) {
       this.post.hasRoommates = true;
     }
 
-    if (this.post.openHouse != "") {
+    if (this.post.openHouse !== '') {
       this.post.hasOpenHouse = true;
     }
 
@@ -80,16 +80,16 @@ export class PostComponent implements OnInit {
       openHouse: [''],
       isFurnished: [this.post.isFurnished],
       tags: [],
-      imageUrl: ""
+      imageUrl: ''
     });
 
     // Add roommates
     this.initRoommates();
 
-    if (this.post.openHouse != "") {
+    if (this.post.openHouse !== '') {
       this.post.hasOpenHouse = true;
     }
-    console.log("Post " + JSON.stringify(this.post));
+    console.log('Post ' + JSON.stringify(this.post));
   }
 
   initRoommates() {
@@ -120,7 +120,7 @@ export class PostComponent implements OnInit {
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
     console.log(this.post);
     const formModel = model.getRawValue();
-      formModel.imageUrl = "";
+    formModel.imageUrl = '';
     const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
 
     formModel.email = this.post.email;
@@ -130,9 +130,17 @@ export class PostComponent implements OnInit {
       roommate.id = 0;
       roommate.subletID = 0;
     });
-    console.log("Uploading: " + JSON.stringify(formModel));
+    console.log('Uploading: ' + JSON.stringify(formModel));
 
-    this.subleaseService.create(formModel, imageList);
+    this.subleaseService.create(formModel, imageList)
+      .subscribe(
+      data => {
+        this.router.navigate([`view-sublease/${this.post.id}`]);
+        console.log('Successful post');
+      },
+      error => {
+        console.log(`Post update issue: ${error}`);
+      });
   }
 
   updateForm(model) {
@@ -142,20 +150,21 @@ export class PostComponent implements OnInit {
     formModel.email = this.post.email;
     formModel.tags = this.post.tags;
     formModel.imageUrl = this.post.imageUrl;
-    formModel.price
+    formModel.price = this.post.price;
 
+    const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
     console.log('Updating: ' + JSON.stringify(formModel));
-    this.subleaseService.updatePost(formModel)
+    this.subleaseService.updatePost(formModel, imageList)
       .subscribe(
-        data => {
-          this.router.navigate(['view-sublease/' + this.post.id]);
+      data => {
+        formModel.imageUrl = data.imageUrl;
+        this.router.navigate(['view-sublease/' + this.post.id]);
 
-          console.log('Successful post update')
-        },
-        error => {
-          console.log('Post update issue ' + error);
-        }
-      );
+        console.log('Successful post update');
+      },
+      error => {
+        console.log('Post update issue ' + error);
+      });
   }
 
 }
