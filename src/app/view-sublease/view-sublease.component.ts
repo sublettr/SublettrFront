@@ -8,6 +8,7 @@ import {FullUser} from "../_models/full-user";
 import {ImageService} from "../_services/image.service";
 import {ShareDialog} from "../_classes/share";
 import {MatDialog} from "@angular/material";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-view-sublease',
@@ -32,6 +33,9 @@ export class ViewSubleaseComponent implements OnInit {
   };
   private isLoggedIn: boolean;
 
+  private postID: number;
+  private savedPost: boolean;
+
   opened: Boolean = false;
   toggle(roommateLength: number) {
     if (roommateLength > 0) {
@@ -41,20 +45,22 @@ export class ViewSubleaseComponent implements OnInit {
 
   subletError: Boolean;
 
-  constructor(private userTrackingService: UserTrackingService, private subleaseService: SubleaseService, private route: ActivatedRoute, private router: Router, private dataService: DataService, private imageService: ImageService, private dialog: MatDialog) { }
+  constructor(private userTrackingService: UserTrackingService, private subleaseService: SubleaseService, private route: ActivatedRoute, private router: Router, private dataService: DataService, public userService: UserService, private imageService: ImageService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const id = Number.parseInt(params['id']);
-      console.log("ID: " + id);
-      this.loadSublease(id);
+      this.postID = Number.parseInt(params['id']);
+      console.log("ID: " + this.postID);
+      this.loadSublease(this.postID);
     });
     if (localStorage.getItem('currentUser') == null) {
       this.isLoggedIn = false;
     } else {
       this.isLoggedIn = true;
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.loadSavedSublets(this.currentUser.email);
     }
+
   }
 
 
@@ -71,6 +77,21 @@ export class ViewSubleaseComponent implements OnInit {
         this.subletError = true;
       }
       );
+  }
+
+  loadSavedSublets(email: string) {
+    this.userService.getSavedSubleases(email)
+      .subscribe(data => {
+          if (data != undefined) {
+            let savedSublets = data;
+            this.savedPost = savedSublets.some(x => x.id === this.postID)
+          } else {
+            console.log("No saved sublets returned.")
+          }
+        },
+        error => {
+          console.log("Unable to fetch saved sublets");
+        })
   }
 
   edit(): void {
