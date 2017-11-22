@@ -11,6 +11,9 @@ import {routerAnimation} from "./_anims/anim-route";
 import {ChatExampleData} from "./_data/sample-messages";
 import {ThreadsService} from "./_services/thread.service";
 import {MessagesService} from "./_services/message.service";
+import {Message} from "./_models/message";
+import {Thread} from "./_models/thread";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +26,8 @@ export class AppComponent implements OnInit {
 
   isLoggedIn: boolean = false;
   currentUser: FullUser;
+
+  unreadMessagesCount: number;
 
   loginDialogRef: MatDialogRef<LoginDialog>;
 
@@ -76,6 +81,31 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = true;
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
+
+    this.messagesService.messages
+      .combineLatest(
+        this.threadsService.currentThread,
+        (messages: Message[], currentThread: Thread) =>
+          [currentThread, messages] )
+
+      .subscribe(([currentThread, messages]: [Thread, Message[]]) => {
+        this.unreadMessagesCount =
+          _.reduce(
+            messages,
+            (sum: number, m: Message) => {
+              const messageIsInCurrentThread: boolean = m.thread &&
+                currentThread &&
+                (currentThread.id === m.thread.id);
+              // note: in a "real" app you should also exclude
+              // messages that were authored by the current user b/c they've
+              // already been "read"
+              if (m && !m.isRead && !messageIsInCurrentThread) {
+                sum = sum + 1;
+              }
+              return sum;
+            },
+            0);
+      });
   }
 
   // change the animation state
