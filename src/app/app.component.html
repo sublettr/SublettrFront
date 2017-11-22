@@ -14,7 +14,7 @@
         <a class="nav-link active" [routerLink]="['/profile', currentUser.email]">Profile</a>
       </li>
       <li *ngIf="currentUser" class="nav-item active">
-        <a class="nav-link active" [routerLink]="['/messenger', currentUser.email]">Messages</a>
+        <a class="nav-link active" [routerLink]="['/messenger', currentUser.email]">Messages <span class="badge">{{ unreadMessagesCount }}</span></a>
       </li>
     </ul>
 
