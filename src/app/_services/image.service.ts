@@ -3,6 +3,9 @@ import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 import { Sublease } from '../_models/sublease';
 import { environment } from '../../environments/environment';
+import { AWSError } from 'aws-sdk/lib/error';
+import { Observable } from 'rxjs/Observable';
+import { HeadObjectOutput, PutObjectOutput, UploadPartOutput, PutObjectRequest, DeleteObjectOutput } from 'aws-sdk/clients/s3';
 
 @Injectable()
 export class ImageService {
@@ -35,62 +38,50 @@ export class ImageService {
         return 'assets/images/no-photo.png';
     }
 
-    public uploadSubletImages(sublease: Sublease, imageList: FileList) {
-        return new Promise((resolve, reject) => {
-            const albumName = `${sublease.email}-${sublease.address}`;
-            try {
-                this.createAlbum(albumName);
-            } catch (err) {
-                console.log(err);
-            }
-            for (let i = 0; i < imageList.length; i++) {
-                this.addPhoto(albumName, imageList[i])
-                    .then(url => {
-                        sublease.imageUrl = url;
-                        resolve(sublease);
-                    })
-                    .catch(err => reject(err));
-            }
+    public uploadSubletImage(sublease: Sublease, imageList: FileList): Observable<Sublease> {
+        const albumName = `${sublease.email}-${sublease.address}`;
 
+        const uploadPromise: Promise<Sublease> = new Promise((resolve, reject) =>  {
+            this.createAlbum(albumName)
+            .then(() => this.addPhoto(albumName, imageList[0]))
+            .then((url: string) => {
+                sublease.imageUrl = url;
+                resolve(sublease);
+            })
+            .catch(err => reject(err));
         });
+
+        return Observable.fromPromise(uploadPromise);
     }
 
     private createAlbum(albumName: string) {
         const sublettrS3: S3 = this.getS3();
         albumName = albumName.trim();
         const albumKey = `${encodeURIComponent(albumName)}/`;
-        return sublettrS3.headObject({
-            Key: albumKey,
-            Bucket: 'sublettr-images'
-        }, function(err, data) {
-            if (err && err.code !== 'NotFound') {
-                throw err;
-            }
-            sublettrS3.putObject({ Key: albumKey, Bucket: 'sublettr-images' }, function(err, data) {
-                if (err) {
-                    throw new Error(`Error creating album: ${err.message}`);
-                }
-            });
 
-        });
+        return sublettrS3.putObject({ Key: albumKey, Bucket: 'sublettr-images' })
+            .promise()
+            .then((data: PutObjectOutput) => console.log(data))
+            .catch((err: AWSError) => {
+                throw new Error(`Error creating album: ${err.message}`);
+            });
     }
 
-    private addPhoto(albumName: string, file: any): any {
-        return new Promise((resolve, reject) => {
+    private addPhoto(albumName: string, file: any): Promise <string> {
+        return new Promise<string>((resolve, reject) => {
             const albumPhotosKeys = `${encodeURIComponent(albumName)}/`;
 
             const photoKey: string = albumPhotosKeys + encodeURIComponent(file.name);
-            this.getS3().upload({
+            const uploadParams: PutObjectRequest = {
                 Key: photoKey,
                 Body: file,
                 ACL: 'public-read',
                 Bucket: 'sublettr-images'
-            }, function(err, data) {
-                if (err) {
-                    reject(err);
-                }
-                resolve(data.Location);
-            });
+            };
+            this.getS3().upload(uploadParams)
+                .promise()
+                .then((data: S3.ManagedUpload.SendData ) => resolve(data.Location))
+                .catch((err: AWSError) => reject(err));
         });
     }
 }
