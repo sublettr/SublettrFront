@@ -7,6 +7,7 @@ import {Sublease} from "../_models/sublease";
 import {DataService} from "../_services/DataService";
 import {ImageService} from "../_services/image.service";
 import {LandingFilter} from "../_models/landing-filter";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-landing',
@@ -35,9 +36,11 @@ export class LandingComponent implements OnInit {
 
   landingFilter: LandingFilter;
 
+  savedSublets: Sublease[];
+
   subletsError: boolean;
 
-  constructor(private router: Router, public dataService: DataService, private subleaseService: SubleaseService, private imageService: ImageService) {
+  constructor(private router: Router, public dataService: DataService, public userService: UserService, private subleaseService: SubleaseService, private imageService: ImageService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
       amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
@@ -61,6 +64,7 @@ export class LandingComponent implements OnInit {
     } else {
       this.isLoggedIn = true;
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.loadSavedSublets(this.currentUser.email);
     }
 
     this.landingFilter = new LandingFilter([0, 2000], 5, [{label: 'tag1', value: 'tag1'}, {
@@ -102,6 +106,27 @@ export class LandingComponent implements OnInit {
           console.log("Getting tags issue " + error);
         }
       );
+  }
+
+  loadSavedSublets(email: string) {
+    this.userService.getSavedSubleases(email)
+      .subscribe(data => {
+          if (data != undefined) {
+            this.savedSublets = data;
+          } else {
+            console.log("No saved sublets returned.")
+          }
+        },
+        error => {
+          console.log("Unable to fetch saved sublets");
+        })
+  }
+
+  isPostSaved(postID: number): boolean {
+    if (!this.savedSublets) {
+      return false;
+    }
+    return this.savedSublets.some(x => x.id === postID);
   }
 
   //Favorite a sublease
