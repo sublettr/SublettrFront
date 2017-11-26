@@ -104,6 +104,7 @@ export class ViewSubleaseComponent implements OnInit {
     console.log("Saving " + id + " " + this.currentUser.email);
     this.subleaseService.saveSublease(this.currentUser.email, id).subscribe(
       data => {
+        this.savedPost = !this.savedPost;
         console.log('Returned: ' + data);
       },
       error => {
