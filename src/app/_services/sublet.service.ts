@@ -49,7 +49,10 @@ export class SubleaseService {
 
   create(sublease: Sublease, imageList: FileList): Observable<Sublease> {
     return this.ImageService.uploadSubletImage(sublease, imageList)
-      .flatMap((data: Sublease) => this.http.post(this.baseURL + '/api/Sublet/full', data, this.getHeaders()))
+      .flatMap((data: Sublease) => {
+        console.log(`POST: ${JSON.stringify(sublease)}`);
+        return this.http.post(this.baseURL + '/api/Sublet/full', data, this.getHeaders());
+      })
       .map((response: Response) => response.json());
   }
 
