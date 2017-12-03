@@ -8,14 +8,15 @@ import 'rxjs/add/operator/toPromise';
 import {FullUser} from '../_models/full-user';
 import {Sublease} from '../_models/sublease';
 import {ImageService} from './image.service';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class SubleaseService {
   constructor(private http: Http, private ImageService: ImageService) {
+    this.baseURL = environment['production'] ? process.env.API_URL : 'http://localhost:5000';
   }
 
-  baseURL = 'http://localhost:5000';
-
+  baseURL: string;
   getHeaders() {
     const headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
