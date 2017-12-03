@@ -42,6 +42,9 @@ export class ImageService {
         const albumName = `${sublease.email}-${sublease.address}`;
 
         const uploadPromise: Promise<Sublease> = new Promise((resolve, reject) =>  {
+            if (imageList.length < 1) {
+                resolve(sublease);
+            }
             this.createAlbum(albumName)
             .then(() => this.addPhoto(albumName, imageList[0]))
             .then((url: string) => {
