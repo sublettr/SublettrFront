@@ -90,7 +90,7 @@
                 </div>
                 <div class="col" style="text-align: right">
                   <div class="footer-btn">
-                    <button class="btn" [disabled]="!currentUser && currentUser.email != property.email"
+                    <button class="btn" [disabled]="currentUser?.email != property.email"
                             (click)="favorite(property.id)">
                       <i class="fa fa-heart" aria-hidden="true"
                          [style.color]="isPostSaved(property.id) ? 'red':'slategray'"></i>️
