@@ -12,7 +12,7 @@ import { User } from "../_models/user";
 @Injectable()
 export class UserService {
     constructor(private http: Http) {
-        this.baseURL = environment['production'] ? process.env.API_URL : 'http://localhost:5000';
+        this.baseURL = environment['API_URL'];
     }
 
     baseURL: string;
@@ -22,9 +22,9 @@ export class UserService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append("Access-Control-Allow-Credentials", 'true');
         headers.append('Access-Control-Allow-Methods', "GET, HEAD, OPTIONS, POST, PUT, DELETE");
-        headers.append("Access-Control-Allow-Headers", "Content-Type");
-        headers.append("Content-Type", "application/json");
-        headers.append("Accept", "application/json")
+        headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
         const options = new RequestOptions({ headers: headers });
         console.log(JSON.stringify(options));
         return options;

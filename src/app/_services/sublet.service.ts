@@ -13,7 +13,7 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class SubleaseService {
   constructor(private http: Http, private ImageService: ImageService) {
-    this.baseURL = environment['production'] ? process.env.API_URL : 'http://localhost:5000';
+    this.baseURL = environment['API_URL'];
   }
 
   baseURL: string;
