@@ -8,14 +8,15 @@ import 'rxjs/add/operator/toPromise';
 import {FullUser} from '../_models/full-user';
 import {Sublease} from '../_models/sublease';
 import {ImageService} from './image.service';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class SubleaseService {
   constructor(private http: Http, private ImageService: ImageService) {
+    this.baseURL = environment['API_URL'];
   }
 
-  baseURL = 'http://localhost:5000';
-
+  baseURL: string;
   getHeaders() {
     const headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
@@ -49,7 +50,10 @@ export class SubleaseService {
 
   create(sublease: Sublease, imageList: FileList): Observable<Sublease> {
     return this.ImageService.uploadSubletImage(sublease, imageList)
-      .flatMap((data: Sublease) => this.http.post(this.baseURL + '/api/Sublet/full', data, this.getHeaders()))
+      .flatMap((data: Sublease) => {
+        console.log(`POST: ${JSON.stringify(sublease)}`);
+        return this.http.post(this.baseURL + '/api/Sublet/full', data, this.getHeaders());
+      })
       .map((response: Response) => response.json());
   }
 

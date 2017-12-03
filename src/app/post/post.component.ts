@@ -141,7 +141,7 @@ export class PostComponent implements OnInit {
     this.subleaseService.create(formModel, imageList)
       .subscribe(
       data => {
-        this.router.navigate([`view-sublease/${this.post.id}`]);
+        this.router.navigate([`view-sublease/${data}}`]);
         console.log('Successful post');
       },
       error => {
