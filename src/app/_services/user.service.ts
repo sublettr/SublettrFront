@@ -17,11 +17,11 @@ export class UserService {
 
     baseURL: string;
     getHeaders() {
-        let headers = new Headers();
-        //headers.append("Content-Type", "text/xml");
-        headers.append("Access-Control-Allow-Origin", "*");
-        headers.append("Access-Control-Allow-Credentials", 'true');
-        headers.append('Access-Control-Allow-Methods', "GET, HEAD, OPTIONS, POST, PUT, DELETE");
+        const headers = new Headers();
+        // headers.append("Content-Type", "text/xml");
+        headers.append('Access-Control-Allow-Origin', '*');
+        headers.append('Access-Control-Allow-Credentials', 'true');
+        headers.append('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT, DELETE');
         headers.append('Access-Control-Allow-Headers', 'Content-Type');
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
