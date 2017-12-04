@@ -50,6 +50,9 @@ export class PostComponent implements OnInit {
         'email': this.currentUser.email,
         'address': '',
         'price': 0,
+        'rating': 0,
+        'ratingTotal': 0,
+        'ratingNumber': 5,
         'description': '',
         'hasRoommates': false,
         'roommates': [],
@@ -74,6 +77,7 @@ export class PostComponent implements OnInit {
       address: [this.post.address, [Validators.required]],
       description: [this.post.description],
       price: [this.post.price],
+      rating: [this.post.rating],
       hasRoommates: [this.post.hasRoommates],
       roommates: this._fb.array([]),
       hasOpenHouse: [this.post.hasOpenHouse],
@@ -124,6 +128,8 @@ export class PostComponent implements OnInit {
     const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
 
     formModel.email = this.post.email;
+    formModel.rating = this.post.rating;
+
     formModel.tags = this.post.tags;
     formModel.roommates.forEach(roommate => {
       console.log(roommate);
@@ -151,6 +157,9 @@ export class PostComponent implements OnInit {
     formModel.tags = this.post.tags;
     formModel.imageUrl = this.post.imageUrl;
     formModel.price = this.post.price;
+    formModel.rating = this.post.rating;
+    formModel.ratingNumber = this.post.ratingNumber;
+    formModel.ratingTotal = this.post.ratingTotal;
 
     const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
     console.log('Updating: ' + JSON.stringify(formModel));

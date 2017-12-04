@@ -9,20 +9,21 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod"
+    "preinstall": "node -e \"process.env.NODE_ENV == 'production'\" && node build-prod-env.ts",
+    "postinstall": "node -e \"process.env.NODE_ENV == 'production'\" && ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.4.6",
     "@angular/cdk": "^2.0.0-beta.12",
     "@angular/cli": "1.4.1",
-    "@angular/compiler-cli": "^4.4.6",
-    "@angular/language-service": "^4.4.6",
     "@angular/common": "^4.4.6",
     "@angular/compiler": "^4.4.6",
+    "@angular/compiler-cli": "^4.4.6",
     "@angular/core": "^4.4.6",
     "@angular/forms": "^4.4.6",
     "@angular/http": "^4.4.6",
+    "@angular/language-service": "^4.4.6",
     "@angular/material": "^2.0.0-beta.12",
     "@angular/platform-browser": "^4.4.6",
     "@angular/platform-browser-dynamic": "^4.4.6",
@@ -38,8 +39,8 @@
     "moment": "^2.19.2",
     "ng2share": "^1.3.6",
     "primeng": "^4.3.0",
-    "typescript": "~2.3.3",
     "rxjs": "^5.5.2",
+    "typescript": "~2.3.3",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {
