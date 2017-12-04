@@ -1,19 +1,36 @@
-<div class="jumbotron vertical-center">
-  <div class="container">
-    <div *ngIf="subletError" class="col justify-content-center">
-      <img src="../../assets/images/generic_400_error.png" class="rounded mx-auto d-block" height="500" width="666"/>
-    </div>
-    <div class="card view-sublease-card" *ngIf="sublet">
+<div class="container-fluid">
+  <div *ngIf="subletError" class="col justify-content-center">
+    <img src="../../assets/images/generic_400_error.png" class="rounded mx-auto d-block" height="500" width="666"/>
+  </div>
+  <div *ngIf="sublet">
+    <div class="col">
       <img class="card-img-top img-fluid"
            src={{this.imageService.getPhoto(sublet)}}
            alt="Photo of a Property Listing">
+    </div>
+    <div class="w-100"></div>
+    <div class="sublease-content">
+      <div class="row">
+        <div class="col-9">
+          <h3 style="float: left">{{sublet.address}}</h3>
+        </div>
+        <div class="col-3">
+          <h4 style="float: left">{{sublet.price != (undefined || 0) ? '$' + (sublet.price | number:'.0-0') :
+            'Message
+            For Price'}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="card view-sublease-card" *ngIf="sublet">
+
       <div class="card-body">
         <div class="row">
           <div class="col">
             <h3 style="float: left">{{sublet.address}}</h3>
           </div>
           <div class="col">
-            <h4 style="float: right">{{sublet.price != (undefined || 0) ? '$' + (sublet.price | number:'.0-0') : 'Message
+            <h4 style="float: right">{{sublet.price != (undefined || 0) ? '$' + (sublet.price | number:'.0-0') :
+              'Message
               For Price'}}</h4>
           </div>
           <div class="w-100"></div>
@@ -71,10 +88,12 @@
             </div>
             <div>
               <p-rating *ngIf="!rated"
-                        style="display: inline-block; margin-right: 14px; font-size: larger" (onRate)="rate($event.value)" [(ngModel)]="sublet.rating"
+                        style="display: inline-block; margin-right: 14px; font-size: larger"
+                        (onRate)="rate($event.value)" [(ngModel)]="sublet.rating"
                         [cancel]="false"></p-rating>
               <p-rating *ngIf="rated"
-                        style="display: inline-block; margin-right: 14px; font-size: larger; color: red !important" [(ngModel)]="rating"
+                        style="display: inline-block; margin-right: 14px; font-size: larger; color: red !important"
+                        [(ngModel)]="rating"
                         readonly="true"
                         [cancel]="false"></p-rating>
               <label style="display: inline-block;">{{sublet.rating | number:'.2-2'}}</label>
