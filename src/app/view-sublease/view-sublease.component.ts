@@ -112,7 +112,7 @@ export class ViewSubleaseComponent implements OnInit {
         this.rated = true;
       },
       error => {
-        console.log("Unable to rate sublet.");
+        console.log("Unable to rate sublet. " + error);
       }
     )
   }

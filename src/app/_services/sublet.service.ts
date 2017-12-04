@@ -96,7 +96,7 @@ export class SubleaseService {
   }
 
   rate(id: number, rating: number) {
-    return this.http.post(this.baseURL + 'api/Sublet/rate/' + id + '/' + rating, this.getHeaders()).map((response: Response) => {
+    return this.http.post(this.baseURL + '/api/Sublet/rate/' + id + '/' + rating, this.getHeaders()).map((response: Response) => {
       return response.json();
     });
   }
