@@ -2,8 +2,7 @@
   <div class="container-fluid search">
     <div class="row">
       <nav *ngIf="dataService.sidebar" [@enterAnimation] id="sidebar" class="col-md-3 sidebar">
-        <div class="sidebar-header header-cover"
-             style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
+        <div class="sidebar-header header-cover" style="background-image: url(http://www.emintrinsic.com/Content/img/left.png);">
           <div *ngIf="this.currentUser" data-toggle="dropdown" class="sidebar-brand">
             <p>{{this.currentUser.name}}</p>
             <p>{{this.currentUser.email}}</p>
@@ -15,25 +14,18 @@
             <p>Price</p>
             <div class="components">
               <div class="row justify-content-between">
-                <input type="number" [(ngModel)]="landingFilter.costFilter[0]" class="form-control input-rounded"
-                       readonly>
-                <input type="number" [(ngModel)]="landingFilter.costFilter[1]" class="form-control input-rounded"
-                       readonly>
+                <input type="number" [(ngModel)]="landingFilter.costFilter[0]" class="form-control input-rounded" readonly>
+                <input type="number" [(ngModel)]="landingFilter.costFilter[1]" class="form-control input-rounded" readonly>
               </div>
-              <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px', 'margin-top':'30px'}"
-                        [animate]="true" [range]="true"
-                        [min]="0" [max]="2000"></p-slider>
+              <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px', 'margin-top':'30px'}" [animate]="true" [range]="true" [min]="0" [max]="2000"></p-slider>
             </div>
           </li>
           <hr>
           <li>
-            <p>Rating {{landingFilter.ratingFilter}}</p>
+            <p>Rating</p>
             <div class="components">
-              <p-rating style="text-align: center; font-size: larger" [(ngModel)]="landingFilter.ratingFilter"
-                        [cancel]="false"></p-rating>
-              <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px', 'margin-top':'30px'}"
-                        [animate]="true"
-                        [min]="1" [max]="5"></p-slider>
+              <p-rating style="text-align: center; font-size: larger" [(ngModel)]="landingFilter.ratingFilter" [cancel]="false"></p-rating>
+              <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px', 'margin-top':'30px'}" [animate]="true" [min]="1" [max]="5"></p-slider>
             </div>
           </li>
           <hr>
@@ -41,9 +33,14 @@
             <p>Tags</p>
             <div class="components">
               <p-chips [style]="{'margin-bottom':'30px'}" [(ngModel)]="landingFilter.tagFilter"></p-chips>
-              <p-multiSelect [options]="landingFilter.tags" [optionLabel]="label" [dataKey]="value"
-                             [(ngModel)]="landingFilter.tagFilter"
-                             [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+              <p-multiSelect [options]="landingFilter.tags" [optionLabel]="label" [dataKey]="value" [(ngModel)]="landingFilter.tagFilter" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+            </div>
+          </li>
+          <hr>
+          <li>
+            <p>Apply Filters</p>
+            <div class="components">
+              <button mat-button (click)="applyFilters(landingFilter.costFilter, landingFilter.ratingFilter, landingFilter.tagFilter)">Apply</button>
             </div>
           </li>
           <hr>
@@ -51,7 +48,7 @@
       </nav>
       <div class="container col-md-9">
         <div *ngIf="subletsError" class="col justify-content-center">
-          <img src="../../assets/images/empty_state.jpg" class="rounded mx-auto d-block" height="600" width="800"/>
+          <img src="../../assets/images/empty_state.jpg" class="rounded mx-auto d-block" height="600" width="800" />
           <br>
           <h3 style="text-align: center; color: var(--DarkGray)">Sorry, unable to load any subleases</h3>
         </div>
@@ -61,9 +58,7 @@
           <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <div class="img-wrapper">
-                <img class="card-img-top img-fluid"
-                     src="{{this.imageService?.getPhoto(property)}}"
-                     alt="Photo of a Property Listing">
+                <img class="card-img-top img-fluid" src="{{this.imageService?.getPhoto(property)}}" alt="Photo of a Property Listing">
               </div>
             </a>
             <div class="card-body">
@@ -82,11 +77,9 @@
                 </div>
                 <div class="w-100"></div>
                 <div class="col">
-                  <p-rating style="font-size: larger" [(ngModel)]="property.rating" readonly="true"
-                            [cancel]="false"></p-rating>
+                  <p-rating style="font-size: larger" [(ngModel)]="property.rating" readonly="true" [cancel]="false"></p-rating>
                   <div class="footer-btn">
-                    <button class="btn" [disabled]="!currentUser && currentUser.email != property.email"
-                            (click)="favorite(property.id)">
+                    <button class="btn" [disabled]="!currentUser && currentUser.email != property.email" (click)="favorite(property.id)">
                       <i class="fa fa-heart" aria-hidden="true"
                          [style.color]="isPostSaved(property.id) ? 'red':'slategray'"></i>️
                     </button>
