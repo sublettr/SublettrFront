@@ -28,6 +28,42 @@
           </div>
           <hr>
           <div class="row">
+            <p class="mb-0" (click)="toggle(sublet.roommates.length)">
+              {{sublet.roommates.length}} {{sublet.roommates.length != 1 ? 'Roommates':'Roommate'}}
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-12" style="">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <ul class="list-group list-group-header">
+                    <li class="list-group-item list-group-body">
+                      <div class="row" style="font-weight: bold">
+                        <div class="col-3 text-left">Age</div>
+                        <div class="col-3">Grade</div>
+                        <div class="col-3">Major</div>
+                        <div class="col-3">Sex</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="list-group list-group-body" style="">
+                    <li class="list-group-item" *ngFor="let roommate of sublet.roommates">
+                      <div class="row">
+                        <div class="col-3 text-left" style=" ">
+                          {{roommate.age? (roommate.age) : '...'}}
+                        </div>
+                        <div class="col-3" style="">{{roommate.grade? (roommate.grade) : '...'}}</div>
+                        <div class="col-3" style="">{{roommate.major? (roommate.major) : '...'}}</div>
+                        <div class="col-3" style="">{{roommate.sex? (roommate.sex) : '...'}}</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
             <p>Ratings</p>
           </div>
           <div class="row">
