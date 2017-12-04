@@ -8,7 +8,7 @@ KEYS.forEach((key) => prodEnv[key] = process.env[key]);
 
 const writeStream = fs.createWriteStream(path.join(__dirname + '/src/environments/environment.prod.ts'));
 
-writeStream.write('export const environment =  JSON.stringify(prodEnv))');
+writeStream.write('export const environment = ' + JSON.stringify(prodEnv));
 
 writeStream.end();
 
