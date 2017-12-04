@@ -82,13 +82,8 @@
                 </div>
                 <div class="w-100"></div>
                 <div class="col">
-                  <div style="display: inline-block; float: left">
-                    <p>Amentities</p>
-                    <span *ngFor="let amenity of subleases[0].amenities" matTooltip="{{amenity.title}}"><mat-icon
-                      style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
-                  </div>
-                </div>
-                <div class="col" style="text-align: right">
+                  <p-rating style="font-size: larger" [(ngModel)]="property.rating"
+                            [cancel]="false"></p-rating>
                   <div class="footer-btn">
                     <button class="btn" [disabled]="!currentUser && currentUser.email != property.email"
                             (click)="favorite(property.id)">
@@ -104,4 +99,3 @@
       </div>
     </div>
   </div>
-</div>
