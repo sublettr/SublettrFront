@@ -70,7 +70,12 @@
                 style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
             </div>
             <div>
-              <p-rating style="display: inline-block; margin-right: 14px; font-size: larger" [(ngModel)]="sublet.rating" readonly="true"
+              <p-rating *ngIf="!rated"
+                        style="display: inline-block; margin-right: 14px; font-size: larger" (onRate)="rate($event.value)" [(ngModel)]="sublet.rating"
+                        [cancel]="false"></p-rating>
+              <p-rating *ngIf="rated"
+                        style="display: inline-block; margin-right: 14px; font-size: larger; color: red !important" [(ngModel)]="rating"
+                        readonly="true"
                         [cancel]="false"></p-rating>
               <label style="display: inline-block;">{{sublet.rating | number:'.2-2'}}</label>
             </div>
