@@ -12,7 +12,36 @@
     <div class="sublease-content">
       <div class="row">
         <div class="col-9">
-          <h3 style="float: left">{{sublet.address}}</h3>
+          <div class="row">
+            <h3 style="float: left">{{sublet.address}}</h3>
+          </div>
+          <div class="row">
+            <p style="float: left; color: var(--GrayChateau)">{{sublet.description}}</p>
+          </div>
+          <hr>
+          <div class="row">
+            <div style="display: inline-block; float: left">
+              <p>Amentities</p>
+              <span *ngFor="let amenity of sublease.amenities" matTooltip="{{amenity.title}}"><mat-icon
+                style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon></span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <p>Ratings</p>
+          </div>
+          <div class="row">
+            <p-rating *ngIf="!rated"
+                      style="display: inline-block; margin-right: 14px; font-size: larger"
+                      (onRate)="rate($event.value)" [(ngModel)]="sublet.rating"
+                      [cancel]="false"></p-rating>
+            <p-rating *ngIf="rated"
+                      style="display: inline-block; margin-right: 14px; font-size: larger; color: red !important"
+                      [(ngModel)]="rating"
+                      readonly="true"
+                      [cancel]="false"></p-rating>
+            <label style="display: inline-block;">{{sublet.rating | number:'.2-2'}}</label>
+          </div>
         </div>
         <div class="col-3">
           <div class="row justify-content-end">
@@ -20,20 +49,20 @@
               'Message
               For Price'}}</h4>
           </div>
-         <div class="row justify-content-end">
-           <div class="share-price-btn">
-             <button class="btn" *ngIf="currentUser && sublet.email != currentUser.email"
-                     (click)="favorite(sublet.id)">
-               <i [style.color]="savedPost ? 'slategray':'red'" class="fa fa-heart" aria-hidden="true"></i>️
-             </button>
-             <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
-                                                      style="color: dodgerblue;"></i>️
-             </button>
-             <button class="btn" *ngIf="currentUser && sublet.email == currentUser.email" (click)="edit()"><i
-               class="fa fa-edit" aria-hidden="true" style="color: slategray;"></i>️
-             </button>
-           </div>
-         </div>
+          <div class="row justify-content-end">
+            <div class="share-price-btn">
+              <button class="btn" *ngIf="currentUser && sublet.email != currentUser.email"
+                      (click)="favorite(sublet.id)">
+                <i [style.color]="savedPost ? 'slategray':'red'" class="fa fa-heart" aria-hidden="true"></i>️
+              </button>
+              <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
+                                                       style="color: dodgerblue;"></i>️
+              </button>
+              <button class="btn" *ngIf="currentUser && sublet.email == currentUser.email" (click)="edit()"><i
+                class="fa fa-edit" aria-hidden="true" style="color: slategray;"></i>️
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
