@@ -3,12 +3,11 @@
     <img src="../../assets/images/generic_400_error.png" class="rounded mx-auto d-block" height="500" width="666"/>
   </div>
   <div *ngIf="sublet">
-    <div class="col" style="padding-left: 0; padding-right: 0">
+    <div class="row justify-content-center" style="padding-left: 0; padding-right: 0">
       <img class="card-img-top img-fluid"
            src={{this.imageService.getPhoto(sublet)}}
            alt="Photo of a Property Listing">
     </div>
-    <div class="w-100"></div>
     <div class="sublease-content">
       <div class="row">
         <div class="col-9">

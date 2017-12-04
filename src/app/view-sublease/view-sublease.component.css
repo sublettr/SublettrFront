@@ -26,7 +26,8 @@
 }
 
 .card-img-top {
-  height: 500px;
+  width: auto;
+  min-height: 500px;
 }
 
 .sublease-card-img {
