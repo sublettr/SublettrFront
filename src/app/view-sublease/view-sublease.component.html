@@ -16,7 +16,10 @@
             <h3 style="float: left">{{sublet.address}}</h3>
           </div>
           <div class="row">
-            <p style="float: left; color: var(--GrayChateau)">{{sublet.description}}</p>
+            <p *ngFor="let tag of sublet.tags" style="padding-right: 10px; color: var(--GrayChateau)">{{tag}}</p>
+          </div>
+          <div class="row">
+            <p>{{sublet.description}}</p>
           </div>
           <hr>
           <div class="row">
