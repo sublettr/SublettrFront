@@ -161,11 +161,10 @@ export class ProfileComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'fa fa-trash',
       accept: () => {
-        this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
-        // this.deletePost(subleaseID, index);
+        this.deletePost(subleaseID, index);
       },
       reject: () => {
-        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'Canceling Deleting'}];
       }
     });
   }
@@ -174,10 +173,11 @@ export class ProfileComponent implements OnInit {
     console.log('Deleting ' + subleaseID);
     this.subleaseService.delete(subleaseID).subscribe(
       data => {
-        console.log('Sucessfully deleted' + data);
+        this.msgs = [{severity:'info', summary:'Confirmed', detail:'Sublease deleted'}];
         this.postedSubleases.splice(index, 1);
       },
       error => {
+        this.msgs = [{severity:'error', summary:'Confirmed', detail:'A deletion error has occured' + error}];
         console.log('An error has occurred while deleting ' + error);
       }
     )
@@ -252,35 +252,5 @@ export class UpdateProfileDialog {
           console.log("Updating user issue " + error);
         }
       )
-  }
-}
-
-@Component({
-  selector: 'app-confirmDialogs',
-  templateUrl: './confirm-dialog.html',
-  providers: [ConfirmationService]
-})
-export class ConfirmDeleteDialog {
-
-  msgs: Message[] = [];
-
-  @Output() myEvent = new EventEmitter();
-
-  constructor(private confirmationService: ConfirmationService) {}
-
-  public confirmDelete(subleaseID: number, index: number) {
-    console.log('Displaying delete confirmation box');
-    this.confirmationService.confirm({
-      message: 'Do you want to delete this record?',
-      header: 'Delete Confirmation',
-      icon: 'fa fa-trash',
-      accept: () => {
-        this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
-        // this.deletePost(subleaseID, index);
-      },
-      reject: () => {
-        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
-      }
-    });
   }
 }

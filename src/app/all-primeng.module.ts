@@ -4,6 +4,7 @@ import {SidebarModule} from "primeng/components/sidebar/sidebar";
 import {SliderModule} from "primeng/components/slider/slider";
 import {RatingModule} from "primeng/components/rating/rating";
 import {ConfirmDialogModule} from "primeng/components/confirmdialog/confirmdialog";
+import {GrowlModule} from "primeng/components/growl/growl";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {ConfirmDialogModule} from "primeng/components/confirmdialog/confirmdialo
     SliderModule,
     MultiSelectModule,
     RatingModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    GrowlModule
   ],
   exports: [
     DialogModule,
@@ -24,7 +26,8 @@ import {ConfirmDialogModule} from "primeng/components/confirmdialog/confirmdialo
     SliderModule,
     MultiSelectModule,
     RatingModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    GrowlModule
   ],
   declarations: []
 })
