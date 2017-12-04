@@ -84,6 +84,17 @@ export class SubleaseService {
     });
   }
 
+  getFilteredResults(cost: number[], rating: number, tags: string[]) {
+    return this.http.post(this.baseURL + '/api/Sublet/filter/', JSON.stringify({
+        minPrice: cost[0],
+        maxPrice: cost[1],
+        maxRating: rating,
+        tags: tags,
+      }), this.getHeaders()).map((response: Response) => {
+      return response.json();
+    });
+  }
+
   // private helper methods
   private addAuthToken() {
     // register authorization header with user auth token

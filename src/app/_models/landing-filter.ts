@@ -22,4 +22,3 @@ export class Tag {
     this.value = value;
   }
 }
-
