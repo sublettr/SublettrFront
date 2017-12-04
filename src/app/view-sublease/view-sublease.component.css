@@ -26,7 +26,7 @@
 }
 
 .card-img-top {
-  height: 250px;
+  height: 500px;
 }
 
 .sublease-card-img {
@@ -89,4 +89,10 @@
 
 .share-price-btn {
 
+}
+
+.footer-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }
