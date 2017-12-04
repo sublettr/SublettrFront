@@ -36,6 +36,9 @@ export class ViewSubleaseComponent implements OnInit {
   private postID: number;
   private savedPost: boolean;
 
+  private rated: boolean;
+  private rating: number = -1;
+
   opened: Boolean = false;
   toggle(roommateLength: number) {
     if (roommateLength > 0) {
@@ -70,6 +73,7 @@ export class ViewSubleaseComponent implements OnInit {
       .subscribe(
       data => {
         this.sublet = data;
+        this.rating = this.sublet.rating;
         this.subletError = false;
       },
       error => {
@@ -97,6 +101,20 @@ export class ViewSubleaseComponent implements OnInit {
   edit(): void {
     this.dataService.post = this.sublet;
     this.router.navigate(["post"]);
+  }
+
+  rate(rating: number) {
+    console.log("Rate " + rating + " " + this.sublet.rating);
+    this.sublet.rating = this.rating;
+    this.rating = rating;
+    this.subleaseService.rate(this.sublet.id, rating).subscribe(
+      data => {
+        this.rated = true;
+      },
+      error => {
+        console.log("Unable to rate sublet. " + error);
+      }
+    )
   }
 
   //Favorite a sublease
