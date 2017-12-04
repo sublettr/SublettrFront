@@ -14,7 +14,7 @@ import { ViewSubleaseComponent } from './view-sublease/view-sublease.component';
 import {UserService} from "./_services/user.service";
 import {AuthenticationService} from "./_services/auth.service";
 import {SubleaseService} from "./_services/sublet.service";
-import {ProfileComponent, UpdateProfileDialog} from './profile/profile.component';
+import {ProfileComponent, UpdateProfileDialog, ConfirmDeleteDialog} from './profile/profile.component';
 import {LoginDialog} from "./_classes/login";
 import {RegisterDialog} from "./_classes/register";
 import {DataService} from "./_services/DataService";
@@ -35,6 +35,8 @@ import {MessagesService} from './_services/message.service';
 import { MessageWindowComponent } from './message-window/message-window.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import {FromNowPipe} from './_pipes/from-now.pipe';
+import {ConfirmDialogModule} from "primeng/components/confirmdialog/confirmdialog";
+import {ConfirmationService} from "primeng/components/common/confirmationservice";
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
@@ -53,6 +55,7 @@ const routes: Routes = [
     RegisterDialog,
     ShareDialog,
     UpdateProfileDialog,
+    ConfirmDeleteDialog,
     PostComponent,
     ViewSubleaseComponent,
     ProfileComponent,
@@ -71,7 +74,8 @@ const routes: Routes = [
     LoginDialog,
     RegisterDialog,
     UpdateProfileDialog,
-    ShareDialog
+    ShareDialog,
+    ConfirmDeleteDialog
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     ShareModule
   ],
-  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserTrackingService, ImageService, ThreadsService, MessagesService],
+  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserTrackingService, ImageService, ThreadsService, MessagesService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

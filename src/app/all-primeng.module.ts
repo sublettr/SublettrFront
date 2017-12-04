@@ -3,7 +3,7 @@ import {CalendarModule, DialogModule, FileUploadModule, MultiSelectModule} from 
 import {SidebarModule} from "primeng/components/sidebar/sidebar";
 import {SliderModule} from "primeng/components/slider/slider";
 import {RatingModule} from "primeng/components/rating/rating";
-
+import {ConfirmDialogModule} from "primeng/components/confirmdialog/confirmdialog";
 
 @NgModule({
   imports: [
@@ -13,7 +13,8 @@ import {RatingModule} from "primeng/components/rating/rating";
     FileUploadModule,
     SliderModule,
     MultiSelectModule,
-    RatingModule
+    RatingModule,
+    ConfirmDialogModule
   ],
   exports: [
     DialogModule,
@@ -22,7 +23,8 @@ import {RatingModule} from "primeng/components/rating/rating";
     FileUploadModule,
     SliderModule,
     MultiSelectModule,
-    RatingModule
+    RatingModule,
+    ConfirmDialogModule
   ],
   declarations: []
 })

@@ -25,6 +25,7 @@
       <button (click)="openProfileDialog()" class="btn btn-secondary">Edit  <i matTooltip="Edit" class="fa fa-edit" aria-hidden="true" style="color: var(--GrayChateau);"></i></button>
     </div>
   </div>
+  <p-confirmDialog></p-confirmDialog>
   <div class="container profile-items-container">
     <hr>
     <div *ngIf="currentUser && profile && profile.email == currentUser.email" class="row profile-items">
@@ -106,7 +107,7 @@
               <div class="footer-btn">
                 <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
                    style="color: var(--GrayNurse); margin-right: 1em"></i>️
-                <i (click)="deletePost(property.id, i)"
+                <i (click)="confirmDelete(property.id, i)"
                    [style.color]="'red'" class="fa fa-trash"
                    aria-hidden="true"></i>
               </div>
