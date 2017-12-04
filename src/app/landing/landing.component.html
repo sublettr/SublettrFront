@@ -21,19 +21,17 @@
                        readonly>
               </div>
               <p-slider [(ngModel)]="landingFilter.costFilter" [style]="{'height':'10px', 'margin-top':'30px'}"
-                        [animate]="true" [range]="true"
-                        [min]="0" [max]="2000"></p-slider>
+                        [animate]="true" [range]="true" [min]="0" [max]="2000"></p-slider>
             </div>
           </li>
           <hr>
           <li>
-            <p>Rating {{landingFilter.ratingFilter}}</p>
+            <p>Rating</p>
             <div class="components">
               <p-rating style="text-align: center; font-size: larger" [(ngModel)]="landingFilter.ratingFilter"
                         [cancel]="false"></p-rating>
               <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px', 'margin-top':'30px'}"
-                        [animate]="true"
-                        [min]="1" [max]="5"></p-slider>
+                        [animate]="true" [min]="1" [max]="5"></p-slider>
             </div>
           </li>
           <hr>
@@ -42,8 +40,17 @@
             <div class="components">
               <p-chips [style]="{'margin-bottom':'30px'}" [(ngModel)]="landingFilter.tagFilter"></p-chips>
               <p-multiSelect [options]="landingFilter.tags" [optionLabel]="label" [dataKey]="value"
-                             [(ngModel)]="landingFilter.tagFilter"
-                             [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                             [(ngModel)]="landingFilter.tagFilter" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+            </div>
+          </li>
+          <hr>
+          <li>
+            <p>Apply Filters</p>
+            <div class="components">
+              <button class="btn btn-primary"
+                      (click)="applyFilters(landingFilter.costFilter, landingFilter.ratingFilter, landingFilter.tagFilter)">
+                Apply
+              </button>
             </div>
           </li>
           <hr>
@@ -61,8 +68,7 @@
           <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <div class="img-wrapper">
-                <img class="card-img-top img-fluid"
-                     src="{{this.imageService?.getPhoto(property)}}"
+                <img class="card-img-top img-fluid" src="{{this.imageService?.getPhoto(property)}}"
                      alt="Photo of a Property Listing">
               </div>
             </a>
