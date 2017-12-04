@@ -82,7 +82,7 @@
                 </div>
                 <div class="w-100"></div>
                 <div class="col">
-                  <p-rating style="font-size: larger" [(ngModel)]="property.rating"
+                  <p-rating style="font-size: larger" [(ngModel)]="property.rating" readonly="true"
                             [cancel]="false"></p-rating>
                   <div class="footer-btn">
                     <button class="btn" [disabled]="!currentUser && currentUser.email != property.email"
