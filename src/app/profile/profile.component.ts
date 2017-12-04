@@ -164,7 +164,7 @@ export class ProfileComponent implements OnInit {
         this.deletePost(subleaseID, index);
       },
       reject: () => {
-        this.msgs = [{severity:'info', summary:'Rejected', detail:'Canceling Deleting'}];
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'Canceling Deletion of Sublease'}];
       }
     });
   }
