@@ -25,6 +25,8 @@
       <button (click)="openProfileDialog()" class="btn btn-secondary">Edit  <i matTooltip="Edit" class="fa fa-edit" aria-hidden="true" style="color: var(--GrayChateau);"></i></button>
     </div>
   </div>
+  <p-growl [value]="msgs"></p-growl>
+  <p-confirmDialog></p-confirmDialog>
   <div class="container profile-items-container">
     <hr>
     <div *ngIf="currentUser && profile && profile.email == currentUser.email" class="row profile-items">
@@ -73,7 +75,7 @@
     <div class="row profile-items">
       <h3>Posted Subleases</h3>
       <div class="horizontal-card-list">
-        <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases">
+        <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases; let i = index">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
             <div class="img-wrapper">
             <img class="card-img-top img-fluid listing-card-img"
@@ -105,7 +107,10 @@
               </div>
               <div class="footer-btn">
                 <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
-                   style="color: var(--GrayNurse);"></i>️
+                   style="color: var(--GrayNurse); margin-right: 1em"></i>️
+                <i (click)="confirmDelete(property.id, i)"
+                   [style.color]="'red'" class="fa fa-trash"
+                   aria-hidden="true"></i>
               </div>
             </div>
           </div>

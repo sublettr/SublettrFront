@@ -35,6 +35,7 @@ import {MessagesService} from './_services/message.service';
 import { MessageWindowComponent } from './message-window/message-window.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import {FromNowPipe} from './_pipes/from-now.pipe';
+import {ConfirmationService} from "primeng/components/common/confirmationservice";
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
@@ -86,7 +87,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     ShareModule
   ],
-  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserTrackingService, ImageService, ThreadsService, MessagesService],
+  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserTrackingService, ImageService, ThreadsService, MessagesService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

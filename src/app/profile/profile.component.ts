@@ -8,6 +8,8 @@ import {Sublease} from "../_models/sublease";
 import {ImageService} from "../_services/image.service";
 import {SubleaseService} from "../_services/sublet.service";
 import {DataService} from "../_services/DataService";
+import {ConfirmationService} from "primeng/components/common/confirmationservice";
+import {Message} from "primeng/components/common/message";
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +20,8 @@ export class ProfileComponent implements OnInit {
 
   savedSubleases: Sublease[];
   postedSubleases: Sublease[];
+
+  msgs: Message[] = [];
 
   subleaseSamples = [{
     id: "0",
@@ -62,7 +66,13 @@ export class ProfileComponent implements OnInit {
 
   grades = grades;
 
-  constructor(public dialog: MatDialog, private userService: UserService, private subleaseService: SubleaseService, private dataService: DataService, private imageService: ImageService, private route: ActivatedRoute, private router: Router) {
+  constructor(public dialog: MatDialog,
+              private confirmationService: ConfirmationService,
+              private userService: UserService,
+              private subleaseService: SubleaseService,
+              private dataService: DataService,
+              private imageService: ImageService,
+              private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -142,6 +152,36 @@ export class ProfileComponent implements OnInit {
   editPost(sublease: Sublease): void {
     this.dataService.post = sublease;
     this.router.navigate(["post"]);
+  }
+
+  public confirmDelete(subleaseID: number, index: number) {
+    console.log('Displaying delete confirmation box');
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'fa fa-trash',
+      accept: () => {
+        this.deletePost(subleaseID, index);
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'Canceling Deletion of Sublease'}];
+      }
+    });
+  }
+
+  deletePost(subleaseID: number, index: number): void {
+    console.log('Deleting ' + subleaseID);
+    this.subleaseService.delete(subleaseID).subscribe(
+      data => {
+        this.msgs = [{severity:'info', summary:'Confirmed', detail:'Sublease deleted'}];
+        this.postedSubleases.splice(index, 1);
+        this.savedSubleases = this.savedSubleases.filter(sublease => sublease.id !== subleaseID);
+      },
+      error => {
+        this.msgs = [{severity:'error', summary:'Confirmed', detail:'A deletion error has occured' + error}];
+        console.log('An error has occurred while deleting ' + error);
+      }
+    )
   }
 
   openProfileDialog(): void {
