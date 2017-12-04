@@ -26,7 +26,8 @@
 }
 
 .card-img-top {
-  height: 250px;
+  width: auto;
+  min-height: 500px;
 }
 
 .sublease-card-img {
@@ -81,4 +82,18 @@
 .list-group-panel{
   border: 1px solid #ccdbeb;
   border-radius: 0;
+}
+
+.sublease-content {
+  padding: 2em 10em;
+}
+
+.share-price-btn {
+
+}
+
+.footer-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }
