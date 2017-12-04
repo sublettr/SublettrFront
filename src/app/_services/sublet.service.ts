@@ -22,7 +22,7 @@ export class SubleaseService {
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Access-Control-Allow-Credentials', 'true');
     headers.append('Access-Control-Allow-Methods', 'GET, HEAD, POST, PUT, DELETE');
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    headers.append('Access-Control-Allow-Headers', 'Content-Type, Origin');
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     const options = new RequestOptions({headers: headers});
