@@ -175,6 +175,7 @@ export class ProfileComponent implements OnInit {
       data => {
         this.msgs = [{severity:'info', summary:'Confirmed', detail:'Sublease deleted'}];
         this.postedSubleases.splice(index, 1);
+        this.savedSubleases = this.savedSubleases.filter(sublease => sublease.id !== subleaseID);
       },
       error => {
         this.msgs = [{severity:'error', summary:'Confirmed', detail:'A deletion error has occured' + error}];
