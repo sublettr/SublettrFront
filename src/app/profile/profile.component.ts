@@ -144,6 +144,19 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(["post"]);
   }
 
+  deletePost(subleaseID: number, index: number): void {
+    console.log('Deleting ' + subleaseID);
+    this.subleaseService.delete(subleaseID).subscribe(
+      data => {
+        console.log('Sucessfully deleted' + data);
+        this.postedSubleases.splice(index, 1);
+      },
+      error => {
+        console.log('An error has occurred while deleting ' + error);
+      }
+    )
+  }
+
   openProfileDialog(): void {
     let profileDialogRef = this.dialog.open(UpdateProfileDialog, {
       width: '500px',
