@@ -21,10 +21,14 @@
       <label for="inputSubletImage">Sublet Photo</label>
       <input type="file"
              id="inputSubletImage"
-             class="form-control-file"
-             name="subletImage"
+             class="form-control-file photo-upload"
+             formControlName="imageUrl"
              accept="image/*"
+             (change)="updateImgPreview($event)"
       >
+      <div *ngIf="selectedImage">
+        <img  [src]="selectedImage" width="300px" height="250px"> 
+      </div>
     </div>
     <div class="form-group">
       <label for="inputPrice">Monthly Rent</label>

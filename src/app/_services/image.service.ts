@@ -70,6 +70,10 @@ export class ImageService {
             });
     }
 
+    getImageNameFromContentUrl(contentUrl: string) {
+        return contentUrl.slice(contentUrl.lastIndexOf('/') + 1);
+    }
+
     private addPhoto(albumName: string, file: any): Promise <string> {
         return new Promise<string>((resolve, reject) => {
             const albumPhotosKeys = `${encodeURIComponent(albumName)}/`;

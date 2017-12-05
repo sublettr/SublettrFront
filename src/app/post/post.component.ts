@@ -5,6 +5,8 @@ import {FullUser} from '../_models/full-user';
 import {Router} from '@angular/router';
 import {DataService} from '../_services/DataService';
 import {FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import {ImageService} from '../_services/image.service';
 
 @Component({
   selector: 'app-post',
@@ -29,10 +31,11 @@ export class PostComponent implements OnInit {
   currentUser: FullUser = new FullUser('');
 
   post: Sublease;
-
+  selectedImage: SafeUrl;
   public postForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private subleaseService: SubleaseService, public dataService: DataService, private router: Router) {
+  constructor(private _fb: FormBuilder, private subleaseService: SubleaseService,
+    public dataService: DataService, private router: Router, private sanitizer: DomSanitizer, private imageService: ImageService) {
 
   }
 
@@ -84,7 +87,7 @@ export class PostComponent implements OnInit {
       openHouse: [''],
       isFurnished: [this.post.isFurnished],
       tags: [],
-      imageUrl: ''
+      imageUrl: ['']
     });
 
     // Add roommates
@@ -93,6 +96,11 @@ export class PostComponent implements OnInit {
     if (this.post.openHouse !== '') {
       this.post.hasOpenHouse = true;
     }
+
+    if (this.post.imageUrl) {
+      this.selectedImage = this.post.imageUrl;
+    }
+
     console.log('Post ' + JSON.stringify(this.post));
   }
 
@@ -117,6 +125,12 @@ export class PostComponent implements OnInit {
     // remove address from the list
     const control = <FormArray>this.postForm.controls['roommates'];
     control.removeAt(i);
+  }
+
+  updateImgPreview($event) {
+    if ($event.target.files) {
+      this.selectedImage = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL($event.target.files[0]));
+    }
   }
 
   submitForm(model) {
