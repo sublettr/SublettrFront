@@ -66,7 +66,7 @@ export class LandingComponent implements OnInit {
       this.loadSavedSublets(this.currentUser.email);
     }
 
-    this.landingFilter = new LandingFilter([0, 2000], 5, [{label: 'tag1', value: 'tag1'}, {
+    this.landingFilter = new LandingFilter([0, 2000], [1,5], [{label: 'tag1', value: 'tag1'}, {
       label: 'tag2',
       value: 'tag2'
     }, {label: 'tag3', value: 'tag3'}, {label: 'tag4', value: 'tag4'}, {label: 'tag5', value: 'tag5'}], []);
@@ -97,7 +97,7 @@ export class LandingComponent implements OnInit {
     this.subleaseService.getTags()
       .subscribe(
         data => {
-          this.landingFilter = new LandingFilter([0, 2000], 5, data, []);
+          this.landingFilter = new LandingFilter([0, 2000], [1,5], data, []);
           console.log('Tags: ' + JSON.stringify(this.landingFilter.tagFilter));
 
         },
@@ -140,7 +140,7 @@ export class LandingComponent implements OnInit {
     );
   }
 
-  applyFilters(cost: number[], rating: number, tags: string[]): void {
+  applyFilters(cost: number[], rating: number[], tags: string[]): void {
     console.log('cost: ' +  cost);
     console.log('rating: ' +  rating);
     console.log('tags: ' + tags);

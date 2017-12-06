@@ -28,10 +28,14 @@
           <li>
             <p>Rating</p>
             <div class="components">
-              <p-rating style="text-align: center; font-size: larger" [(ngModel)]="landingFilter.ratingFilter"
-                        [cancel]="false"></p-rating>
+              <div class="row justify-content-between">
+                <input type="number" [(ngModel)]="landingFilter.ratingFilter[0]" class="form-control input-rounded"
+                       readonly>
+                <input type="number" [(ngModel)]="landingFilter.ratingFilter[1]" class="form-control input-rounded"
+                       readonly>
+              </div>
               <p-slider [(ngModel)]="landingFilter.ratingFilter" [style]="{'height':'10px', 'margin-top':'30px'}"
-                        [animate]="true" [min]="1" [max]="5"></p-slider>
+                        [animate]="true" [step]="1" [range]="true" [min]="1" [max]="5"></p-slider>
             </div>
           </li>
           <hr>
