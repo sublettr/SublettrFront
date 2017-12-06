@@ -72,6 +72,12 @@
   color: white;
 }
 
+.posted-card p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .posted-card .md-icon.svg.path {
   fill: white !important;
 }

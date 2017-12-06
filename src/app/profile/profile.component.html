@@ -51,7 +51,7 @@
             <div class="row">
               <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
             </div>
-            <div class="row">
+            <div *ngIf="property.description" class="row">
               <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
             </div>
             <div class="row">
@@ -82,33 +82,27 @@
           </a>
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-7">
-                <h5 style="float: left">{{property.address}}</h5>
-              </div>
-              <div class="col">
-                <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
-              </div>
-              <div class="w-100"></div>
-              <div class="col">
-                <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
-              </div>
-              <div class="w-100"></div>
-              <div class="col-sm-10">
-                <p *ngIf="property.amenities == null">No amentities</p>
-                <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
-                <div class="row">
-                  <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities"
-                            matTooltip="{{amenity.title}}"
-                            style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
-                </div>
-              </div>
-              <div class="footer-btn">
-                <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
-                   style="color: var(--GrayNurse); margin-right: 1em"></i>️
-                <i (click)="confirmDelete(property.id, i)"
-                   [style.color]="'red'" class="fa fa-trash"
-                   aria-hidden="true"></i>
-              </div>
+              <h5 style="float: left">{{property.address}}</h5>
+            </div>
+            <div class="row">
+              <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
+            </div>
+            <div *ngIf="property.description" class="row">
+              <p style="float: left; color: var(--GrayNurse)">{{property.description}}</p>
+            </div>
+            <div class="row">
+              <p *ngIf="property.amenities == null">No amentities</p>
+              <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
+              <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities"
+                        matTooltip="{{amenity.title}}"
+                        style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
+            </div>
+            <div class="footer-btn">
+              <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
+                 style="color: var(--GrayNurse); margin-right: 1em"></i>️
+              <i (click)="confirmDelete(property.id, i)"
+                 [style.color]="'red'" class="fa fa-trash"
+                 aria-hidden="true"></i>
             </div>
           </div>
         </div>
