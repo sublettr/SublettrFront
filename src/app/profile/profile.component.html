@@ -22,7 +22,10 @@
 
     </div>
     <div *ngIf="currentUser && profile.email == currentUser.email" class="edit-profile-btn-div">
-      <button (click)="openProfileDialog()" class="btn btn-secondary">Edit  <i matTooltip="Edit" class="fa fa-edit" aria-hidden="true" style="color: var(--GrayChateau);"></i></button>
+      <button (click)="openProfileDialog()" class="btn btn-secondary">Edit <i matTooltip="Edit" class="fa fa-edit"
+                                                                              aria-hidden="true"
+                                                                              style="color: var(--GrayChateau);"></i>
+      </button>
     </div>
   </div>
   <p-growl [value]="msgs"></p-growl>
@@ -43,79 +46,75 @@
           </a>
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-7">
+              <div class="col-9">
                 <h5 style="float: left">{{property.address}}</h5>
               </div>
-              <div class="col">
+              <div class="col-3">
                 <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
               </div>
-              <div class="w-100"></div>
-              <div class="col">
-                <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
-              </div>
-              <div class="w-100"></div>
-              <div class="col-sm-10">
-                <p *ngIf="property.amenities == null">No amentities</p>
-                <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
-                <div class="row">
-                  <mat-icon *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
-                            style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon>
-                </div>
-              </div>
-              <div class="footer-btn">
-                <i (click)="favorite(property.id, i)"
-                   [style.color]="'red'" class="fa fa-trash"
-                   aria-hidden="true"></i>
-              </div>
+            </div>
+            <div class="row">
+              <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
+            </div>
+            <div class="row">
+              <p *ngIf="property.amenities == null">No amentities</p>
+              <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
+                <mat-icon *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
+                          style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon>
+            </div>
+            <div class="footer-btn">
+              <i (click)="favorite(property.id, i)"
+                 [style.color]="'red'" class="fa fa-trash"
+                 aria-hidden="true"></i>
             </div>
           </div>
-        </div>
       </div>
     </div>
-    <div class="row profile-items">
-      <h3>Posted Subleases</h3>
-      <div class="horizontal-card-list">
-        <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases; let i = index">
-          <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
-            <div class="img-wrapper">
+  </div>
+  <div class="row profile-items">
+    <h3>Posted Subleases</h3>
+    <div class="horizontal-card-list">
+      <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases; let i = index">
+        <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
+          <div class="img-wrapper">
             <img class="card-img-top img-fluid listing-card-img"
                  src={{this.imageService?.getPhoto(property)}}
                  alt="Photo of a Property Listing">
+          </div>
+        </a>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-7">
+              <h5 style="float: left">{{property.address}}</h5>
             </div>
-          </a>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-7">
-                <h5 style="float: left">{{property.address}}</h5>
+            <div class="col">
+              <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+              <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-sm-10">
+              <p *ngIf="property.amenities == null">No amentities</p>
+              <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
+              <div class="row">
+                <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities"
+                          matTooltip="{{amenity.title}}"
+                          style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
               </div>
-              <div class="col">
-                <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
-              </div>
-              <div class="w-100"></div>
-              <div class="col">
-                <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
-              </div>
-              <div class="w-100"></div>
-              <div class="col-sm-10">
-                <p *ngIf="property.amenities == null">No amentities</p>
-                <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
-                <div class="row">
-                  <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities"
-                            matTooltip="{{amenity.title}}"
-                            style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
-                </div>
-              </div>
-              <div class="footer-btn">
-                <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
-                   style="color: var(--GrayNurse); margin-right: 1em"></i>️
-                <i (click)="confirmDelete(property.id, i)"
-                   [style.color]="'red'" class="fa fa-trash"
-                   aria-hidden="true"></i>
-              </div>
+            </div>
+            <div class="footer-btn">
+              <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
+                 style="color: var(--GrayNurse); margin-right: 1em"></i>️
+              <i (click)="confirmDelete(property.id, i)"
+                 [style.color]="'red'" class="fa fa-trash"
+                 aria-hidden="true"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

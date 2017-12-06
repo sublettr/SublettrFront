@@ -49,7 +49,7 @@
 
 .horizontal-card-list {
   overflow-x: scroll;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .horizontal-card-list > .col-md-3 {
