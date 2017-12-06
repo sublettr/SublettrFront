@@ -65,7 +65,7 @@
         <div *ngIf="!subletsError" class="row justify-content-center">
 
           <!--| tagsPipe:landingFilter.tagFilter-->
-          <div class="card listing-card col-md-5" *ngFor="let property of sublets | costPipe:landingFilter.costFilter">
+          <div class="card listing-card col-md-5" *ngFor="let property of dataService.sublets | costPipe:landingFilter.costFilter">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <div class="img-wrapper">
                 <img class="card-img-top img-fluid" src="{{this.imageService?.getPhoto(property)}}"

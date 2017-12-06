@@ -1,13 +1,13 @@
-import {Component, OnInit} from "@angular/core";
-import {SubleaseService} from "../_services/sublet.service";
-import {Router} from "@angular/router";
-import {animate, style, transition, trigger} from "@angular/animations";
-import {FullUser} from "../_models/full-user";
-import {Sublease} from "../_models/sublease";
-import {DataService} from "../_services/DataService";
-import {ImageService} from "../_services/image.service";
-import {LandingFilter} from "../_models/landing-filter";
-import {UserService} from "../_services/user.service";
+import {Component, OnInit} from '@angular/core';
+import {SubleaseService} from '../_services/sublet.service';
+import {Router} from '@angular/router';
+import {animate, style, transition, trigger} from '@angular/animations';
+import {FullUser} from '../_models/full-user';
+import {Sublease} from '../_models/sublease';
+import {DataService} from '../_services/DataService';
+import {ImageService} from '../_services/image.service';
+import {LandingFilter} from '../_models/landing-filter';
+import {UserService} from '../_services/user.service';
 
 @Component({
   selector: 'app-landing',
@@ -30,7 +30,6 @@ import {UserService} from "../_services/user.service";
 })
 export class LandingComponent implements OnInit {
   public subleases;
-  public sublets: Sublease[];
   isLoggedIn: boolean;
   currentUser: FullUser;
 
@@ -42,15 +41,15 @@ export class LandingComponent implements OnInit {
 
   constructor(private router: Router, public dataService: DataService, public userService: UserService, private subleaseService: SubleaseService, private imageService: ImageService) {
     this.subleases = [{
-      title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
-      amenities: [{title: 'Electric', url: "electric"}, {title: 'Water', url: "water"}, {
+      title: 'Klondike House', url: 'assets/Klondike House.jpg', price: '500', location: 'Riatta Place',
+      amenities: [{title: 'Electric', url: 'electric'}, {title: 'Water', url: 'water'}, {
         title: 'Fitness Center',
-        url: "fit-center"
-      }, {title: 'Free Parking', url: "parking"}, {title: 'Garage', url: "garage"}, {
-        title: "Free Laundry",
-        url: "laundry"
+        url: 'fit-center'
+      }, {title: 'Free Parking', url: 'parking'}, {title: 'Garage', url: 'garage'}, {
+        title: 'Free Laundry',
+        url: 'laundry'
       }],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
     ];
   }
@@ -79,16 +78,16 @@ export class LandingComponent implements OnInit {
     this.router.navigateByUrl('/post');
   }
 
-  //Get all subleases for the front page
+  // Get all subleases for the front page
   loadAllSubleases() {
     this.subleaseService.getAll()
       .subscribe(
         data => {
-          this.sublets = data;
+          this.dataService.sublets = data;
           this.subletsError = false;
         },
         error => {
-          console.log("Getting sublets issue " + error);
+          console.log('Getting sublets issue ' + error);
           this.subletsError = true;
         }
       );
@@ -99,11 +98,11 @@ export class LandingComponent implements OnInit {
       .subscribe(
         data => {
           this.landingFilter = new LandingFilter([0, 2000], 5, data, []);
-          console.log("Tags: " + JSON.stringify(this.landingFilter.tagFilter));
+          console.log('Tags: ' + JSON.stringify(this.landingFilter.tagFilter));
 
         },
         error => {
-          console.log("Getting tags issue " + error);
+          console.log('Getting tags issue ' + error);
         }
       );
   }
@@ -111,15 +110,15 @@ export class LandingComponent implements OnInit {
   loadSavedSublets(email: string) {
     this.userService.getSavedSubleases(email)
       .subscribe(data => {
-          if (data != undefined) {
+          if (data !== undefined) {
             this.savedSublets = data;
           } else {
-            console.log("No saved sublets returned.")
+            console.log('No saved sublets returned.');
           }
         },
         error => {
-          console.log("Unable to fetch saved sublets");
-        })
+          console.log('Unable to fetch saved sublets');
+        });
   }
 
   isPostSaved(postID: number): boolean {
@@ -129,7 +128,7 @@ export class LandingComponent implements OnInit {
     return this.savedSublets.some(x => x.id === postID);
   }
 
-  //Favorite a sublease
+  // Favorite a sublease
   favorite(id: number): void {
     this.subleaseService.saveSublease(this.currentUser.email, id).subscribe(
       data => {
@@ -138,21 +137,21 @@ export class LandingComponent implements OnInit {
       error => {
         console.log('Favoriting issue ' + error);
       }
-    )
+    );
   }
 
   applyFilters(cost: number[], rating: number, tags: string[]): void {
-    console.log("cost: " +  cost);
-    console.log("rating: " +  rating);
-    console.log("tags: " + tags);
+    console.log('cost: ' +  cost);
+    console.log('rating: ' +  rating);
+    console.log('tags: ' + tags);
     this.subleaseService.getFilteredResults(cost, rating, tags)
       .subscribe(
         data => {
-          this.sublets = data;
+          this.dataService.sublets = data;
           this.subletsError = false;
         },
         error => {
-          console.log("Getting sublets issue " + error);
+          console.log('Getting sublets issue ' + error);
           this.subletsError = true;
         }
       );

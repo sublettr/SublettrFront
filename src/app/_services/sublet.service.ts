@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions, Response} from '@angular/http';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -99,6 +99,11 @@ export class SubleaseService {
     return this.http.post(this.baseURL + '/api/Sublet/rate/' + id + '/' + rating, this.getHeaders()).map((response: Response) => {
       return response.json();
     });
+  }
+
+  public search(query: string) {
+    return this.http.post(`${this.baseURL}/api/Sublet/search/${query}`, this.getHeaders())
+      .map((response: Response) => response.json());
   }
 
   // private helper methods

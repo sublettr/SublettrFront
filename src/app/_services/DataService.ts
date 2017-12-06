@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Sublease } from "../_models/sublease";
+import { Injectable } from '@angular/core';
+import { Sublease } from '../_models/sublease';
 
 @Injectable()
 export class DataService {
@@ -7,4 +7,5 @@ export class DataService {
 
   public post: Sublease;
   public sidebar: boolean;
+  public sublets: Sublease[];
 }

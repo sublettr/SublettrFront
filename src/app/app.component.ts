@@ -1,18 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {DomSanitizer} from "@angular/platform-browser";
-import {MatIconRegistry, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from "@angular/material";
-import {LoginDialog} from "./_classes/login";
-import {RegisterDialog} from "./_classes/register";
-import {FullUser} from "./_models/full-user";
-import {UserService} from "./_services/user.service";
-import {User} from "./_models/user";
-import {DataService} from "./_services/DataService";
-import {routerAnimation} from "./_anims/anim-route";
-import {ChatExampleData} from "./_data/sample-messages";
-import {ThreadsService} from "./_services/thread.service";
-import {MessagesService} from "./_services/message.service";
-import {Message} from "./_models/message";
-import {Thread} from "./_models/thread";
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material';
+import {LoginDialog} from './_classes/login';
+import {RegisterDialog} from './_classes/register';
+import {FullUser} from './_models/full-user';
+import {UserService} from './_services/user.service';
+import {User} from './_models/user';
+import {DataService} from './_services/DataService';
+import {routerAnimation} from './_anims/anim-route';
+import {ChatExampleData} from './_data/sample-messages';
+import {ThreadsService} from './_services/thread.service';
+import {MessagesService} from './_services/message.service';
+import {SubleaseService} from './_services/sublet.service';
+import {Message} from './_models/message';
+import {Thread} from './_models/thread';
 import * as _ from 'lodash';
 
 @Component({
@@ -21,10 +22,12 @@ import * as _ from 'lodash';
   styleUrls: ['./app.component.css'],
   animations: [routerAnimation]
 })
+
 export class AppComponent implements OnInit {
   title = 'app';
 
-  isLoggedIn: boolean = false;
+  searchQuery: string;
+  isLoggedIn = false;
   currentUser: FullUser;
 
   unreadMessagesCount: number;
@@ -35,7 +38,8 @@ export class AppComponent implements OnInit {
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, public dataService: DataService,
               public userService: UserService,
               public messagesService: MessagesService,
-              public threadsService: ThreadsService) {
+              public threadsService: ThreadsService,
+              public subleaseService: SubleaseService  ) {
     iconRegistry
       .addSvgIcon(
         'water',
@@ -110,30 +114,30 @@ export class AppComponent implements OnInit {
 
   // change the animation state
   getRouteAnimation(outlet) {
-    return outlet.activatedRouteData.animation
+    return outlet.activatedRouteData.animation;
   }
 
   openLoginDialog(): void {
     this.loginDialogRef = this.dialog.open(LoginDialog, {
       width: '500px',
       height: '500px',
-      data: {email: "", password: "", isLoggedIn: this.isLoggedIn}
+      data: {email: '', password: '', isLoggedIn: this.isLoggedIn}
     });
 
     this.loginDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(JSON.stringify(result));
-      if (result.email != "" && result.password != "") {
+      if (result.email !== '' && result.password !== '') {
         this.login(result);
       }
     });
   }
 
   openRegisterDialog(): void {
-    let registerDialogRef = this.dialog.open(RegisterDialog, {
+    const registerDialogRef = this.dialog.open(RegisterDialog, {
       width: '500px',
       height: '500px',
-      data: {firstname: "", lastname: "", password: ""}
+      data: {firstname: '', lastname: '', password: ''}
     });
 
     registerDialogRef.afterClosed().subscribe(result => {
@@ -163,16 +167,23 @@ export class AppComponent implements OnInit {
                 }
               },
               error => {
-                console.log("Get Full User By Email error");
+                console.log('Get Full User By Email error');
               }
-            )
+            );
           }
 
         },
         error => {
-          console.log("Login issue " + error);
+          console.log('Login issue ' + error);
         }
-      )
+      );
   }
 
+  searchSublets(query: string) {
+    this.subleaseService.search(query)
+      .subscribe(
+        data => this.dataService.sublets = data,
+        error => console.log(`Search error: ${error}`)
+      );
+  }
 }

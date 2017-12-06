@@ -88,7 +88,17 @@ const routes: Routes = [
     ReactiveFormsModule,
     ShareModule
   ],
-  providers: [UserService, AuthenticationService, SubleaseService, DataService, UserTrackingService, ImageService, ThreadsService, MessagesService, ConfirmationService],
+  providers: [
+    UserService,
+    AuthenticationService,
+    SubleaseService,
+    DataService,
+    UserTrackingService,
+    ImageService,
+    ThreadsService,
+    MessagesService,
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
