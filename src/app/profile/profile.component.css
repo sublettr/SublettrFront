@@ -61,9 +61,21 @@
   background: white;
 }
 
+.saved-card p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .posted-card {
   background: var(--GrayChateau);
   color: white;
+}
+
+.posted-card p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .posted-card .md-icon.svg.path {
