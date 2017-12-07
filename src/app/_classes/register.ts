@@ -5,6 +5,7 @@ import {UserService} from "../_services/user.service";
 import {User} from "../_models/user";
 import { genders } from '../_models/constants';
 import { grades } from '../_models/constants';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-landing',
   templateUrl: '../_classes/register-dialog.html',
@@ -24,7 +25,8 @@ export class RegisterDialog {
 
   constructor(public registerDialogRef: MatDialogRef<RegisterDialog>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
     this.data = {
       id: 0,
       username: "",
@@ -78,6 +80,7 @@ export class RegisterDialog {
                   this.isLoggedIn = true;
                   this.setLoggedIn.emit(this.isLoggedIn);
                 }
+                this.router.navigate(['profile/' + this.currentUser.email]);
               },
               error => {
                 console.log("Error updating profile", error);
