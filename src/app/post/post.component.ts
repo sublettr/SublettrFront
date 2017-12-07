@@ -144,7 +144,7 @@ export class PostComponent implements OnInit {
     console.log(this.post);
     const formModel = model.getRawValue();
     formModel.imageUrl = '';
-    const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="inputSubletImage"]')).files;
+    const imageList: FileList = (<HTMLInputElement>document.getElementById('inputSubletImage')).files;
 
     formModel.email = this.post.email;
     formModel.rating = this.post.rating;
@@ -180,7 +180,7 @@ export class PostComponent implements OnInit {
     formModel.ratingNumber = this.post.ratingNumber;
     formModel.ratingTotal = this.post.ratingTotal;
 
-    const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
+    const imageList: FileList = (<HTMLInputElement>document.getElementById('inputSubletImage')).files;
     console.log('Updating: ' + JSON.stringify(formModel));
     this.subleaseService.updatePost(formModel, imageList)
       .subscribe(
