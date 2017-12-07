@@ -67,6 +67,11 @@
   overflow: hidden;
 }
 
+.card-img-top {
+  width: auto;
+  height: 250px;
+}
+
 .posted-card {
   background: var(--GrayChateau);
   color: white;
