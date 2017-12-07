@@ -144,7 +144,7 @@ export class PostComponent implements OnInit {
     console.log(this.post);
     const formModel = model.getRawValue();
     formModel.imageUrl = '';
-    const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
+    const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="inputSubletImage"]')).files;
 
     formModel.email = this.post.email;
     formModel.rating = this.post.rating;
