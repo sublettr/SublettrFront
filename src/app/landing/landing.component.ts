@@ -133,7 +133,12 @@ export class LandingComponent implements OnInit {
     this.subleaseService.saveSublease(this.currentUser.email, sublease.id).subscribe(
       data => {
         console.log('Returned: ' + data);
-        this.savedSublets.push(sublease);
+        let index = this.savedSublets.indexOf(sublease);
+        if (index != -1) {
+          this.savedSublets.splice(index,1);
+        } else {
+          this.savedSublets.push(sublease);
+        }
       },
       error => {
         console.log('Favoriting issue ' + error);
