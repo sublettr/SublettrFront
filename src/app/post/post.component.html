@@ -19,16 +19,20 @@
     </div>
     <div class="form-group">
       <label for="inputSubletImage">Sublet Photo</label>
-      <input type="file"
-             id="inputSubletImage"
-             name="inputSubletImage"
-             class="form-control-file photo-upload"
-             formControlName="imageUrl"
-             accept="image/*"
-             (change)="updateImgPreview($event)"
-      >
+      <br/>
+      <label class="custom-file">
+        <input type="file"
+               id="inputSubletImage"
+               name="inputSubletImage"
+               class="form-control-file photo-upload custom-file-input"
+               formControlName="imageUrl"
+               accept="image/*"
+               (change)="updateImgPreview($event)"
+        >
+        <span class="custom-file-control"></span>
+      </label>
       <div *ngIf="selectedImage">
-        <img  [src]="selectedImage" width="300px" height="250px">
+        <img [src]="selectedImage" width="300px" height="250px">
       </div>
     </div>
     <div class="form-group">
@@ -72,20 +76,20 @@
                 </div>
                 <!--grade-->
                 <div class="row roommate-row">
-                  <label  class="col-md-3">grade</label>
+                  <label class="col-md-3">grade</label>
                   <select formControlName="grade" class="custom-select col-md-7">
                     <option selected *ngFor="let grade of grades">{{grade.name}}</option>
                   </select>
                   <div class="col">
-                  <!--display error message if grade is not valid-->
+                    <!--display error message if grade is not valid-->
                     <small [hidden]="postForm.controls.roommates.controls[i].controls.grade.valid">
-                     Grade is required
+                      Grade is required
                     </small>
                   </div>
                 </div>
                 <!--sex-->
                 <div class="row roommate-row">
-                  <label  class="col-md-3">sex</label>
+                  <label class="col-md-3">sex</label>
                   <select formControlName="sex" class="custom-select col-md-7">
                     <option selected *ngFor="let gender of sex">{{gender}}</option>
                   </select>
@@ -98,8 +102,8 @@
                 </div>
                 <!--major-->
                 <div class="row roommate-row">
-                  <label  class="col-md-3">major</label>
-                  <input  class="col-md-7" type="text" formControlName="major">
+                  <label class="col-md-3">major</label>
+                  <input class="col-md-7" type="text" formControlName="major">
                 </div>
                 <div>
                 </div>
