@@ -13,6 +13,7 @@ import {ThreadsService} from './_services/thread.service';
 import {MessagesService} from './_services/message.service';
 import {SubleaseService} from './_services/sublet.service';
 import {Message} from './_models/message';
+import {Message as PrimengMessage} from "primeng/components/common/message";
 import {Thread} from './_models/thread';
 import * as _ from 'lodash';
 
@@ -33,6 +34,8 @@ export class AppComponent implements OnInit {
   unreadMessagesCount: number;
 
   loginDialogRef: MatDialogRef<LoginDialog>;
+
+  msgs: PrimengMessage[] = [];
 
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, public dataService: DataService,
@@ -165,6 +168,7 @@ export class AppComponent implements OnInit {
                   localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
                   this.isLoggedIn = true;
                 }
+                this.msgs = [{severity:'info', summary:'Sucessfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
               },
               error => {
                 console.log('Get Full User By Email error');
@@ -174,7 +178,8 @@ export class AppComponent implements OnInit {
 
         },
         error => {
-          console.log('Login issue ' + error);
+          console.log('Login issue ' + error._body);
+          this.msgs = [{severity:'error', summary:'Login Error', detail:error._body}];
         }
       );
   }

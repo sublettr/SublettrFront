@@ -39,7 +39,7 @@ export class UserService {
     }
 
     getFullByEmail(email: string) {
-        return this.http.get(this.baseURL + '/api/Account/' + email, this.getHeaders()).map((response: Response) => response.json());
+        return this.http.get(this.baseURL + '/api/Account/' + email, this.getHeaders()).map((response: Response) => { return response.json() });
 
     }
 
