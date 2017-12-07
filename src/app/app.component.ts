@@ -124,14 +124,15 @@ export class AppComponent implements OnInit {
     this.loginDialogRef = this.dialog.open(LoginDialog, {
       width: '500px',
       height: '500px',
-      data: {email: '', password: '', isLoggedIn: this.isLoggedIn}
+      data: {msgs: this.msgs, email: '', password: '', isLoggedIn: this.isLoggedIn}
     });
 
     this.loginDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      console.log(JSON.stringify(result));
-      if (result.email !== '' && result.password !== '') {
-        this.login(result);
+      if (result && result.currentUser) {
+        this.currentUser = result.currentUser;
+        this.isLoggedIn = true;
+        this.msgs = [{severity:'info', summary:'Sucessfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
       }
     });
   }
@@ -152,36 +153,6 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('accessToken');
     this.isLoggedIn = false;
-  }
-
-  login(userData) {
-    this.userService.login(new User(userData))
-      .subscribe(
-        data => {
-          console.log(data);
-          if (data.access_token) {
-            localStorage.setItem('accessToken', data.access_token);
-            this.userService.getFullByEmail(userData.email).subscribe(data => {
-                this.currentUser = data;
-                if (this.currentUser) {
-                  // store user details and jwt token in local storage to keep user logged in between page refreshes
-                  localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-                  this.isLoggedIn = true;
-                }
-                this.msgs = [{severity:'info', summary:'Sucessfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
-              },
-              error => {
-                console.log('Get Full User By Email error');
-              }
-            );
-          }
-
-        },
-        error => {
-          console.log('Login issue ' + error._body);
-          this.msgs = [{severity:'error', summary:'Login Error', detail:error._body}];
-        }
-      );
   }
 
   searchSublets(query: string) {
