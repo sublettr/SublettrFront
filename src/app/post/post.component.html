@@ -71,7 +71,7 @@
                 <div>
                   <label>grade</label>
                   <select formControlName="grade" class="custom-select">
-                    <option selected *ngFor="let grade of grades" value="{{grade.value}}">{{grade.name}}</option>
+                    <option selected *ngFor="let grade of grades">{{grade.name}}</option>
                   </select>
                   <!--display error message if grade is not valid-->
                   <small [hidden]="postForm.controls.roommates.controls[i].controls.grade.valid">
