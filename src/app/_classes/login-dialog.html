@@ -27,7 +27,7 @@
       <mat-form-field style="width: 100%">
         <label>Password</label>
         <input required minlength="5"
-               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})'
+               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*()]).{6,})'
                matInput type="password" [(ngModel)]="data.password" name="password" #password="ngModel"/>
       </mat-form-field>
       <div *ngIf="password.invalid && (password.dirty || password.touched)"

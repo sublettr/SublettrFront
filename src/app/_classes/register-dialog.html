@@ -25,7 +25,7 @@
         <label>Password</label>
         <input required minlength="5"
                validateEqual="passwordcpy" reverse="true"
-               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})'
+               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*()]).{6,})'
                matInput type="password" [(ngModel)]="data.password" name="password" #password="ngModel"/>
       </mat-form-field>
       <div *ngIf="password.invalid && (password.dirty || password.touched)"
@@ -51,19 +51,18 @@
         <label>Confirm Password</label>
         <input required minlength="5"
                validateEqual="password"
-               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})'
+               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*()]).{6,})'
                matInput type="password" [(ngModel)]="data.passwordcpy" name="passwordcpy" #passwordcpy="ngModel"/>
       </mat-form-field>
       <div *ngIf="passwordcpy.invalid && (passwordcpy.dirty || passwordcpy.touched)"
            class="alert alert-danger">
-
         <div *ngIf="passwordcpy.errors.required">
           A password is required.
         </div>
         <div *ngIf="passwordcpy.errors.minlength">
           Password must be at least 6 characters long.
         </div>
-        <div *ngIf="passwordcpy.errors.validateEqual">
+        <div *ngIf="!passwordcpy.errors.validateEqual">
           Confirmation password does not match original password.
         </div>
         <div *ngIf="passwordcpy.errors.pattern">
