@@ -129,10 +129,11 @@ export class LandingComponent implements OnInit {
   }
 
   // Favorite a sublease
-  favorite(id: number): void {
-    this.subleaseService.saveSublease(this.currentUser.email, id).subscribe(
+  favorite(sublease: Sublease): void {
+    this.subleaseService.saveSublease(this.currentUser.email, sublease.id).subscribe(
       data => {
         console.log('Returned: ' + data);
+        this.savedSublets.push(sublease);
       },
       error => {
         console.log('Favoriting issue ' + error);
