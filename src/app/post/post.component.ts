@@ -7,6 +7,8 @@ import {DataService} from '../_services/DataService';
 import {FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import {ImageService} from '../_services/image.service';
+import { genders } from '../_models/constants';
+import { grades } from '../_models/constants';
 
 @Component({
   selector: 'app-post',
@@ -14,6 +16,9 @@ import {ImageService} from '../_services/image.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+
+  grades = grades;
+  sex = genders;
 
   amenities = [{title: 'Electric', url: 'electric'}, {title: 'Water', url: 'water'}, {
     title: 'Fitness Center',
@@ -139,7 +144,7 @@ export class PostComponent implements OnInit {
     console.log(this.post);
     const formModel = model.getRawValue();
     formModel.imageUrl = '';
-    const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="inputSubletImage"]')).files;
+    const imageList: FileList = (<HTMLInputElement>document.getElementById('inputSubletImage')).files;
 
     formModel.email = this.post.email;
     formModel.rating = this.post.rating;
@@ -175,7 +180,7 @@ export class PostComponent implements OnInit {
     formModel.ratingNumber = this.post.ratingNumber;
     formModel.ratingTotal = this.post.ratingTotal;
 
-    const imageList: FileList = (<HTMLInputElement>document.querySelector('input[name="subletImage"]')).files;
+    const imageList: FileList = (<HTMLInputElement>document.getElementById('inputSubletImage')).files;
     console.log('Updating: ' + JSON.stringify(formModel));
     this.subleaseService.updatePost(formModel, imageList)
       .subscribe(
