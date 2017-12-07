@@ -25,7 +25,7 @@
         <label>Password</label>
         <input required minlength="5"
                validateEqual="passwordcpy" reverse="true"
-               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})'
+               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*()]).{6,})'
                matInput type="password" [(ngModel)]="data.password" name="password" #password="ngModel"/>
       </mat-form-field>
       <div *ngIf="password.invalid && (password.dirty || password.touched)"
@@ -51,7 +51,7 @@
         <label>Confirm Password</label>
         <input required minlength="5"
                validateEqual="password"
-               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})'
+               pattern='((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*()]).{6,})'
                matInput type="password" [(ngModel)]="data.passwordcpy" name="passwordcpy" #passwordcpy="ngModel"/>
       </mat-form-field>
       <div *ngIf="passwordcpy.invalid && (passwordcpy.dirty || passwordcpy.touched)"
