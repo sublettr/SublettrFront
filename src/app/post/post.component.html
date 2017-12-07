@@ -59,38 +59,46 @@
               <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
               <div [formGroupName]="i">
                 <!--age-->
-                <div>
-                  <label>age</label>
-                  <input type="number" formControlName="age">
-                  <!--display error message if age is not valid-->
-                  <small [hidden]="postForm.controls.roommates.controls[i].controls.age.valid">
-                    Age is required
-                  </small>
+                <div class="row roommate-row">
+                  <label class="col-md-3">age</label>
+                  <input class="col-md-7" type="number" formControlName="age">
+                  <div class="col">
+                    <!--display error message if age is not valid-->
+                    <small [hidden]="postForm.controls.roommates.controls[i].controls.age.valid">
+                      Age is required
+                    </small>
+                  </div>
                 </div>
                 <!--grade-->
-                <div>
-                  <label>grade</label>
-                  <select formControlName="grade" class="custom-select">
+                <div class="row roommate-row">
+                  <label  class="col-md-3">grade</label>
+                  <select formControlName="grade" class="custom-select col-md-7">
                     <option selected *ngFor="let grade of grades">{{grade.name}}</option>
                   </select>
+                  <div class="col">
                   <!--display error message if grade is not valid-->
-                  <small [hidden]="postForm.controls.roommates.controls[i].controls.grade.valid">
-                    Grade is required
-                  </small>
+                    <small [hidden]="postForm.controls.roommates.controls[i].controls.grade.valid">
+                     Grade is required
+                    </small>
+                  </div>
                 </div>
                 <!--sex-->
-                <div>
-                  <label>sex</label>
-                  <input type="string" formControlName="sex">
+                <div class="row roommate-row">
+                  <label  class="col-md-3">sex</label>
+                  <select formControlName="sex" class="custom-select col-md-7">
+                    <option selected *ngFor="let gender of sex">{{gender}}</option>
+                  </select>
                   <!--display error message if grade is not valid-->
-                  <small [hidden]="postForm.controls.roommates.controls[i].controls.sex.valid">
-                    Gender is required
-                  </small>
+                  <div class="col">
+                    <small [hidden]="postForm.controls.roommates.controls[i].controls.sex.valid">
+                      Gender is required
+                    </small>
+                  </div>
                 </div>
                 <!--major-->
-                <div>
-                  <label>major</label>
-                  <input type="text" formControlName="major">
+                <div class="row roommate-row">
+                  <label  class="col-md-3">major</label>
+                  <input  class="col-md-7" type="text" formControlName="major">
                 </div>
                 <div>
                 </div>
