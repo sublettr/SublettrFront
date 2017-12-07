@@ -89,7 +89,7 @@ export class PostComponent implements OnInit {
       hasRoommates: [this.post.hasRoommates],
       roommates: this._fb.array([]),
       hasOpenHouse: [this.post.hasOpenHouse],
-      openHouse: [this.post.openHouse],
+      openHouse: [new Date(this.post.openHouse)],
       isFurnished: [this.post.isFurnished],
       tags: [this.post.tags],
       imageUrl: ['']
