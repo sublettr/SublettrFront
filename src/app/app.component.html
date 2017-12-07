@@ -39,6 +39,7 @@
     </ul>
   </div>
 </nav>
+<p-growl [value]="msgs"></p-growl>
 <div [@routerAnimation]="getRouteAnimation(route)">
   <router-outlet #route="outlet"></router-outlet>
 </div>
