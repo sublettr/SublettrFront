@@ -1,4 +1,5 @@
 <h2 mat-dialog-title style="color: var(--Froly)">Login</h2>
+<p-growl [value]="msgs"></p-growl>
 <form #loginForm="ngForm">
   <div mat-dialog-content>
     <div class="email-input">
@@ -50,7 +51,7 @@
         <button mat-button mat-no-ink>Forgot Password?</button>
       </div>
       <div class="login-btn-div">
-        <button [disabled]="loginForm.invalid" [mat-dialog-close]="data" class="btn btn-primary">Login</button>
+        <button [disabled]="loginForm.invalid" (click)="login(data)" class="btn btn-primary">Login</button>
       </div>
     </div>
   </div>
