@@ -7,6 +7,8 @@ import {DataService} from '../_services/DataService';
 import {FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import {ImageService} from '../_services/image.service';
+import { genders } from '../_models/constants';
+import { grades } from '../_models/constants';
 
 @Component({
   selector: 'app-post',
@@ -14,6 +16,9 @@ import {ImageService} from '../_services/image.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+
+  grades = grades;
+  sex = genders;
 
   amenities = [{title: 'Electric', url: 'electric'}, {title: 'Water', url: 'water'}, {
     title: 'Fitness Center',

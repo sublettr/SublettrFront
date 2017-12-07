@@ -27,7 +27,7 @@
              (change)="updateImgPreview($event)"
       >
       <div *ngIf="selectedImage">
-        <img  [src]="selectedImage" width="300px" height="250px"> 
+        <img  [src]="selectedImage" width="300px" height="250px">
       </div>
     </div>
     <div class="form-group">
@@ -70,7 +70,9 @@
                 <!--grade-->
                 <div>
                   <label>grade</label>
-                  <input type="string" formControlName="grade">
+                  <select formControlName="grade" class="custom-select">
+                    <option selected *ngFor="let grade of grades" value="{{grade.value}}">{{grade.name}}</option>
+                  </select>
                   <!--display error message if grade is not valid-->
                   <small [hidden]="postForm.controls.roommates.controls[i].controls.grade.valid">
                     Grade is required
