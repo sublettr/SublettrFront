@@ -67,8 +67,8 @@
       <div class="horizontal-card-list">
         <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases; let i = index">
           <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
-            <div class="img-wrapper">
-              <img class="card-img-top img-fluid listing-card-img"
+            <div class="row justify-content-center" style="margin: 0">
+              <img class="card-img-top img-fluid"
                    src={{this.imageService?.getPhoto(property)}}
                    alt="Photo of a Property Listing">
             </div>
