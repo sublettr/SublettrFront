@@ -91,7 +91,7 @@
             <div class="share-price-btn">
               <button class="btn" *ngIf="currentUser && sublet.email != currentUser.email"
                       (click)="favorite(sublet.id)">
-                <i [style.color]="savedPost ? 'slategray':'red'" class="fa fa-heart" aria-hidden="true"></i>️
+                <i [style.color]="savedPost ? 'red':'slategray'" class="fa fa-heart" aria-hidden="true"></i>️
               </button>
               <button class="btn" (click)="share()"><i class="fa fa-share" aria-hidden="true"
                                                        style="color: dodgerblue;"></i>️
