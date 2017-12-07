@@ -56,14 +56,13 @@
       </mat-form-field>
       <div *ngIf="passwordcpy.invalid && (passwordcpy.dirty || passwordcpy.touched)"
            class="alert alert-danger">
-
         <div *ngIf="passwordcpy.errors.required">
           A password is required.
         </div>
         <div *ngIf="passwordcpy.errors.minlength">
           Password must be at least 6 characters long.
         </div>
-        <div *ngIf="passwordcpy.errors.validateEqual">
+        <div *ngIf="!passwordcpy.errors.validateEqual">
           Confirmation password does not match original password.
         </div>
         <div *ngIf="passwordcpy.errors.pattern">
