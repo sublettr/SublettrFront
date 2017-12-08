@@ -217,7 +217,8 @@ export class UpdateProfileDialog {
 
   constructor(public profileDialogRef: MatDialogRef<UpdateProfileDialog>,
               @Inject(MAT_DIALOG_DATA) private data: any,
-              private userService: UserService) {
+              private userService: UserService,
+              private dataService: DataService) {
     this.profile = this.data;
     this.newUser = this.profile;
   }
@@ -246,11 +247,13 @@ export class UpdateProfileDialog {
             localStorage.setItem('currentUser', JSON.stringify(this.profile));
 
             console.log("Updated User Information: " + JSON.stringify(this.profile));
+            this.dataService.msgs = [{severity:'info', summary:'Profile Edited', detail:'You edited your profile.'}];
             this.closeDialog();
           }
         },
         error => {
           console.log("Updating user issue " + error);
+          this.dataService.msgs = [{severity:'error', summary:'Error Editing Profile', detail:'Check your profile data.'}];
         }
       )
   }
