@@ -135,7 +135,7 @@ export class AppComponent implements OnInit {
       if (result && result.currentUser) {
         this.currentUser = result.currentUser;
         this.isLoggedIn = true;
-        this.msgs = [{severity:'info', summary:'Sucessfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
+        this.msgs = [{severity:'info', summary:'Successfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
       }
     });
   }
@@ -152,7 +152,7 @@ export class AppComponent implements OnInit {
       if (result && result.currentUser) {
         this.currentUser = result.currentUser;
         this.isLoggedIn = true;
-        this.msgs = [{severity:'info', summary:'Sucessfully Registered', detail:'You registered the user: ' + this.currentUser.email}];
+        this.msgs = [{severity:'info', summary:'Successfully Registered', detail:'You registered the user: ' + this.currentUser.email}];
         this.router.navigate(['profile/' + this.currentUser.email]);
       }
     });
