@@ -116,7 +116,7 @@
                           matTooltip="{{amenity.title}}"
                           style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
               </div>
-              <div class="footer-btn">
+              <div *ngIf="currentUser && profile && profile.email == currentUser.email" class="footer-btn">
                 <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
                    style="color: var(--GrayNurse); margin-right: 1em"></i>️
                 <i (click)="confirmDelete(property.id, i)"
