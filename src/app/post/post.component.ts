@@ -52,6 +52,15 @@ export class PostComponent implements OnInit {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     this.post = this.dataService.post;
+    if (this.post) {
+      if (this.post.roommates && this.post.roommates.length > 0) {
+        this.post.hasRoommates = true;
+      }
+
+      if (this.post.openHouse !== '') {
+        this.post.hasOpenHouse = true;
+      }
+    }
     if (this.post === undefined) {
       this.post = {
         'id': 0,
@@ -65,20 +74,14 @@ export class PostComponent implements OnInit {
         'hasRoommates': false,
         'roommates': [],
         'hasOpenHouse': false,
-        'openHouse': '',
+        'openHouse': Date.now(),
         'isFurnished': false,
         'tags': [],
         'imageUrl': '',
       };
     }
 
-    if (this.post.roommates && this.post.roommates.length > 0) {
-      this.post.hasRoommates = true;
-    }
-
-    if (this.post.openHouse !== '') {
-      this.post.hasOpenHouse = true;
-    }
+    console.log('Pre-Post ' + JSON.stringify(this.post));
 
     this.postForm = this._fb.group({
       email: [this.post.email],
@@ -166,7 +169,7 @@ export class PostComponent implements OnInit {
 
     formModel.email = this.post.email;
     formModel.rating = this.post.rating;
-
+    formModel.openHouse = formModel.openHouse.toLocaleString();
     formModel.tags = this.post.tags;
     formModel.roommates.forEach(roommate => {
       console.log(roommate);
@@ -191,6 +194,7 @@ export class PostComponent implements OnInit {
     console.log('Before Set: ' + JSON.stringify(formModel));
     formModel.id = this.post.id;
     formModel.imageUrl = this.post.imageUrl;
+    formModel.openHouse = formModel.openHouse.toLocaleString();
 
     const imageList: FileList = (<HTMLInputElement>document.getElementById('inputSubletImage')).files;
     console.log('After Set: ' + JSON.stringify(formModel));
