@@ -165,16 +165,6 @@ export class LandingComponent implements OnInit {
 
   resetFilters(): void {
     this.landingFilter.resetFilter();
-    this.subleaseService.getFilteredResults([0,2000], [0,5], [])
-      .subscribe(
-        data => {
-          this.dataService.sublets = data;
-          this.subletsError = false;
-        },
-        error => {
-          console.log('Getting sublets issue ' + error);
-          this.subletsError = true;
-        }
-      );
+    this.loadAllSubleases();
   }
 }
