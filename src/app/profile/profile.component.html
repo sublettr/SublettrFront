@@ -85,9 +85,9 @@
           <br>
           <h3 *ngIf="postedSubleases === undefined"
               style="text-align: left; color: var(--red)">Uh oh! A problem occured while loading posts.</h3>
-          <h3 *ngIf="postedSubleases !== undefined && (currentUser && profile.email === currentUser.email)"
+          <h3 *ngIf="postedSubleases !== undefined && (currentUser && profile && profile.email === currentUser.email)"
               style="text-align: left; color: var(--DarkGray)">You have no posts. Go out and post!</h3>
-          <h3 *ngIf="(currentUser === undefined || (currentUser && profile.email !== currentUser.email)) && postedSubleases !== undefined"
+          <h3 *ngIf="(currentUser === undefined || (currentUser && profile && profile.email !== currentUser.email)) && postedSubleases !== undefined"
               style="text-align: left; color: var(--DarkGray)">This user does not post.</h3>
         </div>
         <div *ngIf="postedSubleases && postedSubleases.length > 0" class="horizontal-card-list">
