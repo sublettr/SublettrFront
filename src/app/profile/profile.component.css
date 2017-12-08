@@ -2,7 +2,6 @@
   min-height: 100vh;
   overflow-x: hidden;
   padding-left: 16px;
-  background-color: var(--GhostWhite);
 }
 
 .profile-row {
@@ -11,7 +10,6 @@
   display: -ms-flexbox;
   display:         flex;
   flex-wrap: wrap;
-  background-color: var(--GhostWhite);
   min-height: 33vh;
   justify-content: center;
   align-items: center;
@@ -19,12 +17,10 @@
 }
 
 .profile-items-container {
-  background-color: var(--GhostWhite);
   margin-bottom: 20px;
 }
 
 .profile-items {
-  background: var(--GhostWhite);
   color: black;
   margin-top: 24px;
 }
