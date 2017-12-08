@@ -1,3 +1,4 @@
+import {Tag} from "./tag";
 export class Sublease {
   id: number = 0;
   email: string = "";
@@ -12,11 +13,11 @@ export class Sublease {
   isFurnished: boolean = false;
   hasOpenHouse: boolean = false;
   openHouse: any;
-  tags: string[] = [];
+  tags: Tag[] = [];
   imageUrl: string = "";
 
 
-  constructor(id: number, email: string, address: string, description: string, price: number, rating: number, ratingTotal: number, ratingNumber: number, roommates: Roommate[], isFurnished: boolean, openHouse: Date, tags: string[], imageUrl: string) {
+  constructor(id: number, email: string, address: string, description: string, price: number, rating: number, ratingTotal: number, ratingNumber: number, roommates: Roommate[], isFurnished: boolean, openHouse: Date, tags: Tag[], imageUrl: string) {
     this.id = id;
     this.email = email;
     this.address = address;

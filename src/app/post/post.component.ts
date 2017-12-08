@@ -9,6 +9,7 @@ import {DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser'
 import {ImageService} from '../_services/image.service';
 import {genders} from '../_models/constants';
 import {grades} from '../_models/constants';
+import {Tag} from "../_models/tag";
 
 @Component({
   selector: 'app-post',
@@ -52,6 +53,7 @@ export class PostComponent implements OnInit {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     this.post = this.dataService.post;
+    let stringTags: string[] = [];
     if (this.post) {
       if (this.post.roommates && this.post.roommates.length > 0) {
         this.post.hasRoommates = true;
@@ -59,6 +61,12 @@ export class PostComponent implements OnInit {
 
       if (this.post.openHouse !== '') {
         this.post.hasOpenHouse = true;
+      }
+
+      if (this.post.tags) {
+        this.post.tags.forEach(tag => {
+          stringTags.concat(tag.tag);
+        });
       }
     }
     if (this.post === undefined) {
@@ -92,7 +100,7 @@ export class PostComponent implements OnInit {
       hasOpenHouse: [this.post.hasOpenHouse],
       openHouse: [new Date(this.post.openHouse)],
       isFurnished: [this.post.isFurnished],
-      tags: [this.post.tags],
+      tags: [stringTags],
       imageUrl: ['']
     });
 
@@ -171,9 +179,14 @@ export class PostComponent implements OnInit {
       roommate.id = 0;
       roommate.subletID = 0;
     });
+
+    let tags: Tag[] = [];
+    formModel.tags.forEach(tag => {
+      tags.concat(new Tag(0, tag, false));
+    });
     console.log('Uploading: ' + JSON.stringify(formModel));
 
-    this.subleaseService.create(formModel, imageList)
+    this.subleaseService.create(formModel, tags, imageList)
       .subscribe(
         data => {
           this.dataService.msgs = [{severity:'info', summary:'Successfully Added Post', detail:'Added post with id: ' + data}];

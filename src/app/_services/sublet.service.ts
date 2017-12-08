@@ -9,6 +9,7 @@ import {FullUser} from '../_models/full-user';
 import {Sublease} from '../_models/sublease';
 import {ImageService} from './image.service';
 import {environment} from '../../environments/environment';
+import {Tag} from "../_models/tag";
 
 @Injectable()
 export class SubleaseService {
@@ -48,7 +49,8 @@ export class SubleaseService {
     });
   }
 
-  create(sublease: Sublease, imageList: FileList): Observable<Sublease> {
+  create(sublease: Sublease, tags: Tag[], imageList: FileList): Observable<Sublease> {
+    sublease.tags = tags;
     return this.ImageService.uploadSubletImage(sublease, imageList)
       .flatMap((data: Sublease) => {
         console.log(`POST: ${JSON.stringify(sublease)}`);
