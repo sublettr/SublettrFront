@@ -118,6 +118,7 @@ export class ViewSubleaseComponent implements OnInit {
       },
       error => {
         console.log("Unable to rate sublet. " + error);
+        this.dataService.msgs = [{severity:'error', summary:'Rating Failed', detail:'There was a server error.'}];
       }
     )
   }
