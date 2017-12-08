@@ -23,8 +23,8 @@ export class ProfileComponent implements OnInit {
 
   msgs: Message[] = [];
 
-  private pullingFavoritedSublets: boolean;
-  private pullingPostedSublets: boolean;
+  public pullingFavoritedSublets: boolean;
+  public pullingPostedSublets: boolean;
 
 
   subleaseSamples = [{
@@ -60,8 +60,8 @@ export class ProfileComponent implements OnInit {
         {title: "Indoor Pool", url: "in-pool"}, {title: "Outdoor Pool", url: "out-pool"}, {
           title: "Basketball Court",
           url: "basketball"
-        }, {title: "Tennis Court", url: "tennis"}],
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        }, {title: 'Tennis Court', url: 'tennis'}],
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }];
 
   currentUser: FullUser;
@@ -83,11 +83,11 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     if (localStorage.getItem('currentUser') != null) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      console.log("Loaded profile: " + JSON.stringify(this.profile));
+      console.log('Loaded profile: ' + JSON.stringify(this.profile));
     }
     this.route.params.subscribe(params => {
       this.email = params['email'];
-      console.log("Email: " + this.email);
+      console.log('Email: ' + this.email);
       if (this.currentUser && this.email == this.currentUser.email) {
         this.profile = this.currentUser
         this.loadSavedSublets(this.profile.email);
@@ -105,11 +105,11 @@ export class ProfileComponent implements OnInit {
             this.profile = data;
             this.loadPostedSublets(this.profile.email)
           } else {
-            console.log("No data returned.")
+            console.log('No data returned.')
           }
         },
         error => {
-          console.log("Unable to fetch user");
+          console.log('Unable to fetch user');
         })
   }
 
@@ -120,12 +120,12 @@ export class ProfileComponent implements OnInit {
           if (data != undefined) {
             this.savedSubleases = data;
           } else {
-            console.log("No saved sublets returned.")
+            console.log('No saved sublets returned.')
           }
           this.pullingFavoritedSublets = false;
         },
         error => {
-          console.log("Unable to fetch saved sublets");
+          console.log('Unable to fetch saved sublets');
           this.pullingFavoritedSublets = false;
         })
   }
@@ -137,17 +137,17 @@ export class ProfileComponent implements OnInit {
           if (data != undefined) {
             this.postedSubleases = data;
           } else {
-            console.log("No posted sublets returned.")
+            console.log('No posted sublets returned.')
           }
           this.pullingPostedSublets = false;
         },
         error => {
-          console.log("Unable to fetch posted sublets");
+          console.log('Unable to fetch posted sublets');
           this.pullingPostedSublets = false;
         })
   }
 
-  //Favorite a sublease
+  // Favorite a sublease
   favorite(id: number, index: number): void {
     this.subleaseService.saveSublease(this.currentUser.email, id).subscribe(
       data => {
@@ -161,7 +161,7 @@ export class ProfileComponent implements OnInit {
 
   editPost(sublease: Sublease): void {
     this.dataService.post = sublease;
-    this.router.navigate(["post"]);
+    this.router.navigate(['post']);
   }
 
   public confirmDelete(subleaseID: number, index: number) {
@@ -191,11 +191,11 @@ export class ProfileComponent implements OnInit {
         this.msgs = [{severity:'error', summary:'Confirmed', detail:'A deletion error has occured' + error}];
         console.log('An error has occurred while deleting ' + error);
       }
-    )
+    );
   }
 
   openProfileDialog(): void {
-    let profileDialogRef = this.dialog.open(UpdateProfileDialog, {
+    const profileDialogRef = this.dialog.open(UpdateProfileDialog, {
       width: '500px',
       height: '500px',
       data: this.profile,
@@ -243,11 +243,11 @@ export class UpdateProfileDialog {
 
   updateProfile() {
 
-    console.log("Updating user profile: " + this.newUser);
-    if (this.newUser == undefined || this.newUser.userName == "") {
-      console.log("Invalid user " + this.data);
+    console.log('Updating user profile: ' + this.newUser);
+    if (this.newUser === undefined || this.newUser.userName === '') {
+      console.log('Invalid user ' + this.data);
     }
-    console.log("Mapped user: " + JSON.stringify(this.newUser));
+    console.log('Mapped user: ' + JSON.stringify(this.newUser));
     this.userService.updateProfile(this.newUser)
       .subscribe(
         data => {
@@ -256,15 +256,15 @@ export class UpdateProfileDialog {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(this.profile));
 
-            console.log("Updated User Information: " + JSON.stringify(this.profile));
-            this.dataService.msgs = [{severity:'info', summary:'Profile Edited', detail:'You edited your profile.'}];
+            console.log('Updated User Information: ' + JSON.stringify(this.profile));
+            this.dataService.msgs = [{severity: 'info', summary: 'Profile Edited', detail: 'You edited your profile.'}];
             this.closeDialog();
           }
         },
         error => {
-          console.log("Updating user issue " + error);
-          this.dataService.msgs = [{severity:'error', summary:'Error Editing Profile', detail:'Check your profile data.'}];
+          console.log('Updating user issue ' + error);
+          this.dataService.msgs = [{severity: 'error', summary: 'Error Editing Profile', detail: 'Check your profile data.'}];
         }
-      )
+      );
   }
 }
