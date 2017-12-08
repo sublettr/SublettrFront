@@ -50,11 +50,16 @@
           <hr>
           <li>
             <p>Apply Filters</p>
-            <div class="components">
+            <div class="components row justify-content-between">
+              <button class="btn btn-secondary"
+                      (click)="resetFilters()">
+                Reset
+              </button>
               <button class="btn btn-primary"
                       (click)="applyFilters(landingFilter.costFilter, landingFilter.ratingFilter, landingFilter.tagFilter)">
                 Apply
               </button>
+
             </div>
           </li>
           <hr>

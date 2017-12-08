@@ -162,4 +162,8 @@ export class LandingComponent implements OnInit {
         }
       );
   }
+
+  resetFilters(): void {
+    this.landingFilter.resetFilter();
+  }
 }
