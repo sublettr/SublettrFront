@@ -72,6 +72,9 @@
           <br>
           <h3 style="text-align: center; color: var(--DarkGray)">Sorry, unable to load any subleases</h3>
         </div>
+        <div class="col justify-content-center">
+          <p-progressSpinner [hidden]="!pullingSublets"></p-progressSpinner>
+        </div>
         <div *ngIf="!subletsError" class="row justify-content-center">
 
           <!--| tagsPipe:landingFilter.tagFilter-->

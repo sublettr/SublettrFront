@@ -39,6 +39,8 @@ export class LandingComponent implements OnInit {
 
   subletsError: boolean;
 
+  pullingSublets: boolean;
+
   constructor(private router: Router, public dataService: DataService, public userService: UserService, private subleaseService: SubleaseService, private imageService: ImageService) {
     this.subleases = [{
       title: 'Klondike House', url: 'assets/Klondike House.jpg', price: '500', location: 'Riatta Place',
@@ -80,13 +82,16 @@ export class LandingComponent implements OnInit {
 
   // Get all subleases for the front page
   loadAllSubleases() {
+    this.pullingSublets = true;
     this.subleaseService.getAll()
       .subscribe(
         data => {
+          this.pullingSublets = false;
           this.dataService.sublets = data;
           this.subletsError = false;
         },
         error => {
+          this.pullingSublets = false;
           console.log('Getting sublets issue ' + error);
           this.subletsError = true;
         }
