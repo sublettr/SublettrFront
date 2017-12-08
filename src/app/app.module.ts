@@ -37,6 +37,7 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
 import {FromNowPipe} from './_pipes/from-now.pipe';
 import {ConfirmationService} from 'primeng/components/common/confirmationservice';
 import { DomSanitizer } from '@angular/platform-browser/src/security/dom_sanitization_service';
+import {OrderByPipe} from "./_pipes/orderby-pipe.pipe";
 
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: '' } },
@@ -63,6 +64,7 @@ const routes: Routes = [
     RatingPipe,
     TagsPipe,
     FromNowPipe,
+    OrderByPipe,
     MessagingComponent,
     MessageThreadComponent,
     MessageThreadsComponent,

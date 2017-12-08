@@ -74,13 +74,26 @@
         </div>
         <div [hidden]="!pullingSublets" class="col" style="height: 90vh">
           <div class="row h-100 justify-content-center align-items-center">
-             <p-progressSpinner></p-progressSpinner>
+            <p-progressSpinner></p-progressSpinner>
+          </div>
+        </div>
+        <div *ngIf="!subletsError && !pullingSublets" class="row sortCol">
+          <div class="col">
+            <select class="custom-select sortBtn" [(ngModel)]="sortBy">
+              <option value="none">-- Select --</option>
+              <option value="name">Name</option>
+              <option value="address">Address</option>
+              <option value="ratinglow">Rating (Lowest First)</option>
+              <option value="ratinghigh">Rating (Highest First)</option>
+              <option value="pricelow">Price (Lowest First)</option>
+              <option value="pricehigh">Price (Highest First)</option>
+            </select>
+            <hr>
           </div>
         </div>
         <div *ngIf="!subletsError && !pullingSublets" class="row justify-content-center">
-
           <!--| tagsPipe:landingFilter.tagFilter-->
-          <div class="card listing-card col-md-5" *ngFor="let property of dataService.sublets | costPipe:landingFilter.costFilter">
+          <div class="card listing-card col-md-5" *ngFor="let property of dataService.sublets | orderby:sortBy">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <div class="img-wrapper">
                 <img class="card-img-top img-fluid" src="{{this.imageService?.getPhoto(property)}}"

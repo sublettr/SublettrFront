@@ -89,6 +89,14 @@
   flex: 1 1 auto;
 }
 
+.sortCol {
+  padding: 2em;
+}
+
+.sortBtn {
+  margin: 1em;
+}
+
 .listing-card {
   padding-left: 0;
   padding-right: 0;
