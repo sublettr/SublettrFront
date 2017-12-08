@@ -16,6 +16,7 @@ import {Message} from './_models/message';
 import {Message as PrimengMessage} from "primeng/components/common/message";
 import {Thread} from './_models/thread';
 import * as _ from 'lodash';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,9 @@ export class AppComponent implements OnInit {
   msgs: PrimengMessage[] = [];
 
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog, public dataService: DataService,
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog,
+              private router: Router,
+              public dataService: DataService,
               public userService: UserService,
               public messagesService: MessagesService,
               public threadsService: ThreadsService,
@@ -132,7 +135,7 @@ export class AppComponent implements OnInit {
       if (result && result.currentUser) {
         this.currentUser = result.currentUser;
         this.isLoggedIn = true;
-        this.msgs = [{severity:'info', summary:'Sucessfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
+        this.msgs = [{severity:'info', summary:'Successfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
       }
     });
   }
@@ -146,6 +149,12 @@ export class AppComponent implements OnInit {
 
     registerDialogRef.afterClosed().subscribe(result => {
       console.log('The registration dialog was closed');
+      if (result && result.currentUser) {
+        this.currentUser = result.currentUser;
+        this.isLoggedIn = true;
+        this.msgs = [{severity:'info', summary:'Successfully Registered', detail:'You registered the user: ' + this.currentUser.email}];
+        this.router.navigate(['profile/' + this.currentUser.email]);
+      }
     });
   }
 
