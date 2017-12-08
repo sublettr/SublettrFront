@@ -9,7 +9,13 @@ export class OrderByPipe {
     if (property === 'none' || !array || array === undefined) {
       return array;
     }
-    if (property === 'rating') {
+    if (property === 'pricehigh' || property === 'ratinghigh') {
+      if (property === 'pricehigh') {
+        property = 'price';
+      }
+      if (property === 'ratinghigh') {
+        property = 'rating';
+      }
       array.sort((a: Sublease, b: Sublease) => {
         if (a[property] > b[property]) {
           return -1;
@@ -20,6 +26,12 @@ export class OrderByPipe {
         }
       });
     } else {
+      if (property === 'pricelow') {
+        property = 'price';
+      }
+      if (property === 'ratinglow') {
+        property = 'rating';
+      }
       array.sort((a: Sublease, b: Sublease) => {
         if (a[property] < b[property]) {
           return -1;
