@@ -20,8 +20,8 @@ export class LandingFilter {
 }
 
 export class Tag {
-  label: string = "";
-  value: string = "";
+  label = "";
+  value = '';
 
   constructor(label: string, value: string) {
     this.label = label;

@@ -71,7 +71,7 @@ export class LandingComponent implements OnInit {
       this.loadSavedSublets(this.currentUser.email);
     }
 
-    this.landingFilter = new LandingFilter([0, 2000], [0,5], [{label: 'tag1', value: 'tag1'}, {
+    this.landingFilter = new LandingFilter([0, 2000], [0, 5], [{label: 'tag1', value: 'tag1'}, {
       label: 'tag2',
       value: 'tag2'
     }, {label: 'tag3', value: 'tag3'}, {label: 'tag4', value: 'tag4'}, {label: 'tag5', value: 'tag5'}], []);
@@ -105,7 +105,13 @@ export class LandingComponent implements OnInit {
     this.subleaseService.getTags()
       .subscribe(
         data => {
-          this.landingFilter = new LandingFilter([0, 2000], [0,5], data, []);
+          const newTags = data
+            .map((oldTag) => {
+              delete oldTag.isAmen;
+              return {label: oldTag.tag, value: oldTag.tag};
+            });
+            console.log(newTags);
+          this.landingFilter = new LandingFilter([0, 2000], [0, 5], newTags, []);
           console.log('Tags: ' + JSON.stringify(this.landingFilter.tagFilter));
 
         },
@@ -141,18 +147,18 @@ export class LandingComponent implements OnInit {
     this.subleaseService.saveSublease(this.currentUser.email, sublease.id).subscribe(
       data => {
         console.log('Returned: ' + data);
-        let index = this.savedSublets.indexOf(sublease);
-        if (index != -1) {
-          this.savedSublets.splice(index,1);
-          this.dataService.msgs = [{severity:'info', summary:'Successfully Removed Favorite', detail:'You removed ' + sublease.address + ' from your favorites.'}];
+        const index = this.savedSublets.indexOf(sublease);
+        if (index !== -1) {
+          this.savedSublets.splice(index, 1);
+          this.dataService.msgs = [{severity: 'info', summary: 'Successfully Removed Favorite', detail: 'You removed ' + sublease.address + ' from your favorites.'}];
         } else {
           this.savedSublets.push(sublease);
-          this.dataService.msgs = [{severity:'info', summary:'Successfully Favorited', detail:'You added ' + sublease.address + ' to your favorites.'}];
+          this.dataService.msgs = [{severity: 'info', summary: 'Successfully Favorited', detail: 'You added ' + sublease.address + ' to your favorites.'}];
         }
       },
       error => {
         console.log('Favoriting issue ' + error);
-        this.dataService.msgs = [{severity:'error', summary:'Favoriting Failed', detail:'Favoriting failed'}];
+        this.dataService.msgs = [{severity: 'error', summary: 'Favoriting Failed', detail: 'Favoriting failed'}];
       }
     );
   }
