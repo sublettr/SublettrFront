@@ -130,9 +130,15 @@ export class ViewSubleaseComponent implements OnInit {
       data => {
         this.savedPost = !this.savedPost;
         console.log('Returned: ' + data);
+        if (this.savedPost) {
+          this.dataService.msgs = [{severity:'info', summary:'Successfully Favorited', detail:''}];
+        } else {
+          this.dataService.msgs = [{severity: 'info', summary: 'Successfully Removed Favorite', detail: ''}];
+        }
       },
       error => {
         console.log('Favoriting issue ' + error);
+        this.dataService.msgs = [{severity:'error', summary:'Favoriting Failed', detail:'Favoriting failed'}];
       }
     )
   }
