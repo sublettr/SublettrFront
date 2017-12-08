@@ -27,14 +27,16 @@
     <hr>
     <div *ngIf="currentUser && profile && profile.email == currentUser.email" class="row profile-items">
       <div class="col">
-        <h3>Saved Subleases</h3>
+        <h3>Favorited Subleases</h3>
         <div *ngIf="savedSubleases === undefined || savedSubleases.length === 0">
           <br>
           <!-- Images courtesy of Scott Tusk https://dribbble.com/Tusk -->
           <img src="../../assets/images/fishing-empty-state.jpg" class="rounded d-block" height="300"
                width="400"/>
           <br>
-          <h3 style="text-align: left; color: var(--DarkGray)">You have no saved subleases at the moment. Go out and
+          <h3 *ngIf="savedSubleases === undefined"
+              style="text-align: left; color: var(--red)">Uh oh! A problem occured while loading favorites.</h3>
+          <h3 *ngIf="savedSubleases !== undefined" style="text-align: left; color: var(--DarkGray)">You have no favorited subleases at the moment. Go out and
             favorite!</h3>
         </div>
         <div *ngIf="savedSubleases && savedSubleases.length > 0" class="horizontal-card-list">
@@ -81,11 +83,11 @@
           <!-- Images courtesy of Scott Tusk https://dribbble.com/Tusk -->
           <img src="../../assets/images/cafe-empty-state.jpg" class="rounded d-block" height="300" width="400"/>
           <br>
-          <h3 *ngIf="currentUser && profile.email === currentUser.email && postedSubleases === undefined"
-              style="text-align: left; color: var(--DarkGray)">Uh oh! A problem occured while loading your posts.</h3>
-          <h3 *ngIf="postedSubleases !== undefined && currentUser === undefined"
+          <h3 *ngIf="postedSubleases === undefined"
+              style="text-align: left; color: var(--red)">Uh oh! A problem occured while loading posts.</h3>
+          <h3 *ngIf="postedSubleases !== undefined && (currentUser && profile.email === currentUser.email)"
               style="text-align: left; color: var(--DarkGray)">You have no posts. Go out and post!</h3>
-          <h3 *ngIf="(currentUser && profile.email !== currentUser.email) && postedSubleases !== undefined"
+          <h3 *ngIf="(currentUser === undefined || (currentUser && profile.email !== currentUser.email)) && postedSubleases !== undefined"
               style="text-align: left; color: var(--DarkGray)">This user does not post.</h3>
         </div>
         <div *ngIf="postedSubleases && postedSubleases.length > 0" class="horizontal-card-list">
