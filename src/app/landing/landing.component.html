@@ -79,8 +79,8 @@
         </div>
         <div *ngIf="!subletsError && !pullingSublets" class="row sortCol">
           <div class="col">
-            <select class="custom-select sortBtn" ng-model="sortBy">
-              <option value="None">-- Select --</option>
+            <select class="custom-select sortBtn" [(ngModel)]="sortBy">
+              <option value="none">-- Select --</option>
               <option value="name">Name</option>
               <option value="address">Address</option>
               <option value="rating">Rating</option>
@@ -91,7 +91,7 @@
         </div>
         <div *ngIf="!subletsError && !pullingSublets" class="row justify-content-center">
           <!--| tagsPipe:landingFilter.tagFilter-->
-          <div class="card listing-card col-md-5" *ngFor="let property of dataService.sublets">
+          <div class="card listing-card col-md-5" *ngFor="let property of dataService.sublets | orderby:sortBy">
             <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
               <div class="img-wrapper">
                 <img class="card-img-top img-fluid" src="{{this.imageService?.getPhoto(property)}}"
