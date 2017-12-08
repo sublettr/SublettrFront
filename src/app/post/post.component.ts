@@ -81,8 +81,6 @@ export class PostComponent implements OnInit {
       };
     }
 
-    console.log('Pre-Post ' + JSON.stringify(this.post));
-
     this.postForm = this._fb.group({
       email: [this.post.email],
       address: [this.post.address, [Validators.required]],
@@ -162,15 +160,12 @@ export class PostComponent implements OnInit {
   submitForm(model) {
     // let sublet = new Sublease(0, 26, this.post.address1 + " " + this.post.address2, "",
     //   this.post.roommates, this.post.isFurnished, this.post.openHouse, ["test"]);
-    console.log(this.post);
     const formModel = model.getRawValue();
     formModel.imageUrl = '';
     const imageList: FileList = (<HTMLInputElement>document.getElementById('inputSubletImage')).files;
 
     formModel.email = this.post.email;
-    formModel.rating = this.post.rating;
     formModel.openHouse = formModel.openHouse.toLocaleString();
-    formModel.tags = this.post.tags;
     formModel.roommates.forEach(roommate => {
       console.log(roommate);
       roommate.id = 0;
@@ -191,13 +186,11 @@ export class PostComponent implements OnInit {
 
   updateForm(model) {
     const formModel = model.getRawValue();
-    console.log('Before Set: ' + JSON.stringify(formModel));
     formModel.id = this.post.id;
     formModel.imageUrl = this.post.imageUrl;
     formModel.openHouse = formModel.openHouse.toLocaleString();
 
     const imageList: FileList = (<HTMLInputElement>document.getElementById('inputSubletImage')).files;
-    console.log('After Set: ' + JSON.stringify(formModel));
     this.subleaseService.updatePost(formModel, imageList)
       .subscribe(
         data => {
