@@ -105,6 +105,11 @@ export class LandingComponent implements OnInit {
     this.subleaseService.getTags()
       .subscribe(
         data => {
+          console.log(JSON.stringify(data))
+          data.forEach(tag => {
+            delete tag.isAmen;
+          })
+          console.log(JSON.stringify(data))
           this.landingFilter = new LandingFilter([0, 2000], [0,5], data, []);
           console.log('Tags: ' + JSON.stringify(this.landingFilter.tagFilter));
 
