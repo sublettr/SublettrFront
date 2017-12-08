@@ -23,6 +23,10 @@ export class ProfileComponent implements OnInit {
 
   msgs: Message[] = [];
 
+  private pullingFavoritedSublets: boolean;
+  private pullingPostedSublets: boolean;
+
+
   subleaseSamples = [{
     id: "0",
     title: 'Klondike House',
@@ -110,6 +114,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadSavedSublets(email: string) {
+    this.pullingFavoritedSublets = true;
     this.userService.getSavedSubleases(email)
       .subscribe(data => {
           if (data != undefined) {
@@ -117,13 +122,16 @@ export class ProfileComponent implements OnInit {
           } else {
             console.log("No saved sublets returned.")
           }
+          this.pullingFavoritedSublets = false;
         },
         error => {
           console.log("Unable to fetch saved sublets");
+          this.pullingFavoritedSublets = false;
         })
   }
 
   loadPostedSublets(email: string) {
+    this.pullingPostedSublets = true;
     this.userService.getPostedSubleases(email)
       .subscribe(data => {
           if (data != undefined) {
@@ -131,9 +139,11 @@ export class ProfileComponent implements OnInit {
           } else {
             console.log("No posted sublets returned.")
           }
+          this.pullingPostedSublets = false;
         },
         error => {
           console.log("Unable to fetch posted sublets");
+          this.pullingPostedSublets = false;
         })
   }
 

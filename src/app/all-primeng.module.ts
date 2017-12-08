@@ -5,6 +5,7 @@ import {SliderModule} from "primeng/components/slider/slider";
 import {RatingModule} from "primeng/components/rating/rating";
 import {ConfirmDialogModule} from "primeng/components/confirmdialog/confirmdialog";
 import {GrowlModule} from "primeng/components/growl/growl";
+import {ProgressSpinnerModule} from "primeng/components/progressspinner/progressspinner";
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {GrowlModule} from "primeng/components/growl/growl";
     MultiSelectModule,
     RatingModule,
     ConfirmDialogModule,
-    GrowlModule
+    GrowlModule,
+    ProgressSpinnerModule
   ],
   exports: [
     DialogModule,
@@ -27,7 +29,8 @@ import {GrowlModule} from "primeng/components/growl/growl";
     MultiSelectModule,
     RatingModule,
     ConfirmDialogModule,
-    GrowlModule
+    GrowlModule,
+    ProgressSpinnerModule
   ],
   declarations: []
 })

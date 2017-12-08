@@ -28,7 +28,10 @@
     <div *ngIf="currentUser && profile && profile.email == currentUser.email" class="row profile-items">
       <div class="col">
         <h3>Favorited Subleases</h3>
-        <div *ngIf="savedSubleases === undefined || savedSubleases.length === 0">
+        <div [hidden]="!pullingFavoritedSublets" class="col justify-content-center">
+          <p-progressSpinner></p-progressSpinner>
+        </div>
+        <div *ngIf="!pullingFavoritedSublets && (savedSubleases === undefined || savedSubleases.length === 0)">
           <br>
           <!-- Images courtesy of Scott Tusk https://dribbble.com/Tusk -->
           <img src="../../assets/images/fishing-empty-state.jpg" class="rounded d-block" height="300"
@@ -78,7 +81,10 @@
     <div class="row profile-items">
       <div class="col">
         <h3>Posted Subleases</h3>
-        <div *ngIf="postedSubleases === undefined || postedSubleases.length === 0">
+        <div [hidden]="!pullingPostedSublets" class="col justify-content-center">
+          <p-progressSpinner></p-progressSpinner>
+        </div>
+        <div *ngIf="!pullingPostedSublets && (postedSubleases === undefined || postedSubleases.length === 0)">
           <br>
           <!-- Images courtesy of Scott Tusk https://dribbble.com/Tusk -->
           <img src="../../assets/images/cafe-empty-state.jpg" class="rounded d-block" height="300" width="400"/>
