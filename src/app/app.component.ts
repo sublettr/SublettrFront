@@ -36,9 +36,6 @@ export class AppComponent implements OnInit {
 
   loginDialogRef: MatDialogRef<LoginDialog>;
 
-  msgs: PrimengMessage[] = [];
-
-
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog,
               private router: Router,
               public dataService: DataService,
@@ -127,7 +124,7 @@ export class AppComponent implements OnInit {
     this.loginDialogRef = this.dialog.open(LoginDialog, {
       width: '500px',
       height: '500px',
-      data: {msgs: this.msgs, email: '', password: '', isLoggedIn: this.isLoggedIn}
+      data: {msgs: this.dataService.msgs, email: '', password: '', isLoggedIn: this.isLoggedIn}
     });
 
     this.loginDialogRef.afterClosed().subscribe(result => {
@@ -135,7 +132,7 @@ export class AppComponent implements OnInit {
       if (result && result.currentUser) {
         this.currentUser = result.currentUser;
         this.isLoggedIn = true;
-        this.msgs = [{severity:'info', summary:'Successfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
+        this.dataService.msgs = [{severity:'info', summary:'Successfully Logged In', detail:'You logged into account with the email: ' + this.currentUser.email}];
       }
     });
   }
@@ -152,7 +149,7 @@ export class AppComponent implements OnInit {
       if (result && result.currentUser) {
         this.currentUser = result.currentUser;
         this.isLoggedIn = true;
-        this.msgs = [{severity:'info', summary:'Successfully Registered', detail:'You registered the user: ' + this.currentUser.email}];
+        this.dataService.msgs = [{severity:'info', summary:'Successfully Registered', detail:'You registered the user: ' + this.currentUser.email}];
         this.router.navigate(['profile/' + this.currentUser.email]);
       }
     });

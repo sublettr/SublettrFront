@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, EventEmitter, Output} from "@angular/core";
 import {SubleaseService} from "../_services/sublet.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Sublease} from "../_models/sublease";
@@ -9,6 +9,7 @@ import {ImageService} from "../_services/image.service";
 import {ShareDialog} from "../_classes/share";
 import {MatDialog} from "@angular/material";
 import {UserService} from "../_services/user.service";
+import {Message} from "primeng/components/common/message";
 
 @Component({
   selector: 'app-view-sublease',
@@ -19,6 +20,8 @@ export class ViewSubleaseComponent implements OnInit {
 
   sublet: Sublease;
   currentUser: FullUser;
+
+  @Output() onMessageChanged: EventEmitter<any> = new EventEmitter<any>();
 
   sublease = {
     title: 'Klondike House', url: 'assets/Klondike House.jpg', price: "500", location: "Riatta Place",
@@ -110,6 +113,8 @@ export class ViewSubleaseComponent implements OnInit {
     this.subleaseService.rate(this.sublet.id, rating).subscribe(
       data => {
         this.rated = true;
+        this.sublet.rating = data;
+        this.dataService.msgs = [{severity:'info', summary:'Successfully Rated', detail:'The new rating is ' + this.sublet.rating.toFixed(2)}];
       },
       error => {
         console.log("Unable to rate sublet. " + error);
