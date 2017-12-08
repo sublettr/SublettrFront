@@ -176,11 +176,13 @@ export class PostComponent implements OnInit {
     this.subleaseService.create(formModel, imageList)
       .subscribe(
         data => {
+          this.dataService.msgs = [{severity:'info', summary:'Successfully Added Post', detail:'Added post with id: ' + data}];
           this.router.navigate([`view-sublease/${data}}`]);
           console.log('Successful post');
         },
         error => {
           console.log(`Post update issue: ${error}`);
+          this.dataService.msgs = [{severity:'error', summary:'Issue Posting', detail:'Posting failed. Check the data or wait until our server can fix it.'}];
         });
   }
 
@@ -196,11 +198,12 @@ export class PostComponent implements OnInit {
         data => {
           formModel.imageUrl = data.imageUrl;
           this.router.navigate(['view-sublease/' + this.post.id]);
-
+          this.dataService.msgs = [{severity:'info', summary:'Successfully Updated Post', detail:'Updated post with id: ' + this.post.id}];
           console.log('Successful post update');
         },
         error => {
           console.log('Post update issue ' + error);
+          this.dataService.msgs = [{severity:'error', summary:'Issue Updating Post', detail:'Post updating failed on post id: ' + this.post.id}];
         });
   }
 

@@ -136,12 +136,15 @@ export class LandingComponent implements OnInit {
         let index = this.savedSublets.indexOf(sublease);
         if (index != -1) {
           this.savedSublets.splice(index,1);
+          this.dataService.msgs = [{severity:'info', summary:'Successfully Removed Favorite', detail:'You removed ' + sublease.address + ' from your favorites.'}];
         } else {
           this.savedSublets.push(sublease);
+          this.dataService.msgs = [{severity:'info', summary:'Successfully Favorited', detail:'You added ' + sublease.address + ' to your favorites.'}];
         }
       },
       error => {
         console.log('Favoriting issue ' + error);
+        this.dataService.msgs = [{severity:'error', summary:'Favoriting Failed', detail:'Favoriting failed'}];
       }
     );
   }

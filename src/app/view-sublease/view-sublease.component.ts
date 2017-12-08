@@ -118,6 +118,7 @@ export class ViewSubleaseComponent implements OnInit {
       },
       error => {
         console.log("Unable to rate sublet. " + error);
+        this.dataService.msgs = [{severity:'error', summary:'Rating Failed', detail:'There was a server error.'}];
       }
     )
   }
@@ -129,9 +130,15 @@ export class ViewSubleaseComponent implements OnInit {
       data => {
         this.savedPost = !this.savedPost;
         console.log('Returned: ' + data);
+        if (this.savedPost) {
+          this.dataService.msgs = [{severity:'info', summary:'Successfully Favorited', detail:''}];
+        } else {
+          this.dataService.msgs = [{severity: 'info', summary: 'Successfully Removed Favorite', detail: ''}];
+        }
       },
       error => {
         console.log('Favoriting issue ' + error);
+        this.dataService.msgs = [{severity:'error', summary:'Favoriting Failed', detail:'Favoriting failed'}];
       }
     )
   }
