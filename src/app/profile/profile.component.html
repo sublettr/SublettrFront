@@ -26,76 +26,99 @@
   <div class="container profile-items-container">
     <hr>
     <div *ngIf="currentUser && profile && profile.email == currentUser.email" class="row profile-items">
-      <h3>Saved Subleases</h3>
-      <div class="horizontal-card-list">
-        <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases; let i = index">
-          <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
-            <div class="row justify-content-center" style="margin: 0">
-              <img class="card-img-top img-fluid"
-                   src={{this.imageService?.getPhoto(property)}}
-                   alt="Photo of a Property Listing">
-            </div>
+      <div class="col">
+        <h3>Saved Subleases</h3>
+        <div *ngIf="savedSubleases === undefined || savedSubleases.length === 0">
+          <br>
+          <img src="../../assets/images/fishing-empty-state.jpg" class="rounded d-block" height="300"
+               width="400"/>
+          <br>
+          <h3 style="text-align: left; color: var(--DarkGray)">You have no saved subleases at the moment. Go out and
+            favorite!</h3>
+        </div>
+        <div *ngIf="savedSubleases && savedSubleases.length > 0" class="horizontal-card-list">
+          <div class="card saved-card col-md-3" *ngFor="let property of savedSubleases; let i = index">
+            <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
+              <div class="row justify-content-center" style="margin: 0">
+                <img class="card-img-top img-fluid"
+                     src={{this.imageService?.getPhoto(property)}}
+                     alt="Photo of a Property Listing">
+              </div>
 
-          </a>
-          <div class="card-body" style="margin-left: 1em; margin-right: 1em; margin-bottom: 1em">
-            <div class="row">
-              <h5 style="float: left">{{property.address}}</h5>
-            </div>
-            <div class="row">
-              <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
-            </div>
-            <div *ngIf="property.description" class="row">
-              <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
-            </div>
-            <div class="row">
-              <p *ngIf="property.amenities == null">No amentities</p>
-              <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
-              <mat-icon *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
-                        style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon>
-            </div>
-            <div class="footer-btn">
-              <i (click)="favorite(property.id, i)"
-                 [style.color]="'red'" class="fa fa-trash"
-                 aria-hidden="true"></i>
+            </a>
+            <div class="card-body" style="margin-left: 1em; margin-right: 1em; margin-bottom: 1em">
+              <div class="row">
+                <h5 style="float: left">{{property.address}}</h5>
+              </div>
+              <div class="row">
+                <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
+              </div>
+              <div *ngIf="property.description" class="row">
+                <p style="float: left; color: var(--GrayChateau)">{{property.description}}</p>
+              </div>
+              <div class="row">
+                <p *ngIf="property.amenities == null">No amentities</p>
+                <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
+                <mat-icon *ngFor="let amenity of property.amenities" matTooltip="{{amenity.title}}"
+                          style="margin-right: 16px" svgIcon="{{amenity.url}}"></mat-icon>
+              </div>
+              <div class="footer-btn">
+                <i (click)="favorite(property.id, i)"
+                   [style.color]="'red'" class="fa fa-trash"
+                   aria-hidden="true"></i>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row profile-items">
-      <h3>Posted Subleases</h3>
-      <div class="horizontal-card-list">
-        <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases; let i = index">
-          <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
-            <div class="row justify-content-center" style="margin: 0">
-              <img class="card-img-top img-fluid"
-                   src={{this.imageService?.getPhoto(property)}}
-                   alt="Photo of a Property Listing">
-            </div>
-          </a>
-          <div class="card-body">
-            <div class="row">
-              <h5 style="float: left">{{property.address}}</h5>
-            </div>
-            <div class="row">
-              <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
-            </div>
-            <div *ngIf="property.description" class="row">
-              <p style="float: left; color: var(--GrayNurse)">{{property.description}}</p>
-            </div>
-            <div class="row">
-              <p *ngIf="property.amenities == null">No amentities</p>
-              <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
-              <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities"
-                        matTooltip="{{amenity.title}}"
-                        style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
-            </div>
-            <div class="footer-btn">
-              <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
-                 style="color: var(--GrayNurse); margin-right: 1em"></i>️
-              <i (click)="confirmDelete(property.id, i)"
-                 [style.color]="'red'" class="fa fa-trash"
-                 aria-hidden="true"></i>
+      <div class="col">
+        <h3>Posted Subleases</h3>
+        <div *ngIf="postedSubleases === undefined || postedSubleases.length === 0">
+          <br>
+          <img src="../../assets/images/cafe-empty-state.jpg" class="rounded d-block" height="300" width="400"/>
+          <br>
+          <h3 *ngIf="currentUser && profile.email === currentUser.email && postedSubleases === undefined"
+              style="text-align: left; color: var(--DarkGray)">Uh oh! A problem occured while loading your posts.</h3>
+          <h3 *ngIf="postedSubleases !== undefined && currentUser === undefined"
+              style="text-align: left; color: var(--DarkGray)">You have no posts. Go out and post!</h3>
+          <h3 *ngIf="(currentUser && profile.email !== currentUser.email) && postedSubleases !== undefined"
+              style="text-align: left; color: var(--DarkGray)">This user does not post.</h3>
+        </div>
+        <div *ngIf="postedSubleases && postedSubleases.length > 0" class="horizontal-card-list">
+          <div class="card posted-card col-md-3" *ngFor="let property of postedSubleases; let i = index">
+            <a [routerLink]="['/view-sublease', property.id]" style="text-decoration: none; color: black">
+              <div class="row justify-content-center" style="margin: 0">
+                <img class="card-img-top img-fluid"
+                     src={{this.imageService?.getPhoto(property)}}
+                     alt="Photo of a Property Listing">
+              </div>
+            </a>
+            <div class="card-body">
+              <div class="row">
+                <h5 style="float: left">{{property.address}}</h5>
+              </div>
+              <div class="row">
+                <h5 style="float: right">{{property.price != undefined ? '$' + property.price : ''}}</h5>
+              </div>
+              <div *ngIf="property.description" class="row">
+                <p style="float: left; color: var(--GrayNurse)">{{property.description}}</p>
+              </div>
+              <div class="row">
+                <p *ngIf="property.amenities == null">No amentities</p>
+                <p *ngIf="property.amenities != null" style="margin-bottom: 0;">Amentities</p>
+                <mat-icon class="posted-icon" *ngFor="let amenity of property.amenities"
+                          matTooltip="{{amenity.title}}"
+                          style="margin-right: 16px; color: white !important;" svgIcon="{{amenity.url}}"></mat-icon>
+              </div>
+              <div class="footer-btn">
+                <i (click)="editPost(property)" matTooltip="Edit" class="fa fa-edit" aria-hidden="true"
+                   style="color: var(--GrayNurse); margin-right: 1em"></i>️
+                <i (click)="confirmDelete(property.id, i)"
+                   [style.color]="'red'" class="fa fa-trash"
+                   aria-hidden="true"></i>
+              </div>
             </div>
           </div>
         </div>
