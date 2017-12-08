@@ -11,6 +11,12 @@ export class LandingFilter {
     this.tags = tags;
     this.tagFilter = tagFilter;
   }
+
+  public resetFilter(): void {
+    this.costFilter = [0,2000];
+    this.ratingFilter = [0,5];
+    this.tagFilter = [];
+  }
 }
 
 export class Tag {
