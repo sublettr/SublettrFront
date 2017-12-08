@@ -158,15 +158,18 @@ export class LandingComponent implements OnInit {
     console.log('cost: ' +  cost);
     console.log('rating: ' +  rating);
     console.log('tags: ' + tags);
+    this.pullingSublets = true;
     this.subleaseService.getFilteredResults(cost, rating, tags)
       .subscribe(
         data => {
           this.dataService.sublets = data;
           this.subletsError = false;
+          this.pullingSublets = false;
         },
         error => {
           console.log('Getting sublets issue ' + error);
           this.subletsError = true;
+          this.pullingSublets = false;
         }
       );
   }
