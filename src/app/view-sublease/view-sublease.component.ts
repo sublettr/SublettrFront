@@ -110,6 +110,7 @@ export class ViewSubleaseComponent implements OnInit {
     this.subleaseService.rate(this.sublet.id, rating).subscribe(
       data => {
         this.rated = true;
+        this.sublet.rating = data;
       },
       error => {
         console.log("Unable to rate sublet. " + error);
