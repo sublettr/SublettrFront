@@ -30,6 +30,7 @@
         <h3>Saved Subleases</h3>
         <div *ngIf="savedSubleases === undefined || savedSubleases.length === 0">
           <br>
+          <!-- Images courtesy of Scott Tusk https://dribbble.com/Tusk -->
           <img src="../../assets/images/fishing-empty-state.jpg" class="rounded d-block" height="300"
                width="400"/>
           <br>
@@ -77,6 +78,7 @@
         <h3>Posted Subleases</h3>
         <div *ngIf="postedSubleases === undefined || postedSubleases.length === 0">
           <br>
+          <!-- Images courtesy of Scott Tusk https://dribbble.com/Tusk -->
           <img src="../../assets/images/cafe-empty-state.jpg" class="rounded d-block" height="300" width="400"/>
           <br>
           <h3 *ngIf="currentUser && profile.email === currentUser.email && postedSubleases === undefined"
