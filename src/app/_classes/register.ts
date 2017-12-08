@@ -15,18 +15,11 @@ export class RegisterDialog {
 
   grades = grades;
   sex = genders;
-
-  @Input() currentUser: FullUser;
-  @Output() setCurrentUser: EventEmitter<FullUser> = new EventEmitter<FullUser>();
-  @Input() isLoggedIn: boolean;
-  @Output() setLoggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  tempUser: FullUser;
+  currentUser: FullUser;
 
   constructor(public registerDialogRef: MatDialogRef<RegisterDialog>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private userService: UserService,
-              private router: Router) {
+              private userService: UserService) {
     this.data = {
       id: 0,
       username: "",
@@ -72,15 +65,11 @@ export class RegisterDialog {
           this.userService.updateProfile(fullUser)
             .subscribe(data => {
                 this.currentUser = fullUser;
-                this.setCurrentUser.emit(this.currentUser);
                 if (this.currentUser) {
                   // store user details and jwt token in local storage to keep user logged in between page refreshes
                   localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-
-                  this.isLoggedIn = true;
-                  this.setLoggedIn.emit(this.isLoggedIn);
+                  this.registerDialogRef.close({'currentUser': this.currentUser});
                 }
-                this.router.navigate(['profile/' + this.currentUser.email]);
               },
               error => {
                 console.log("Error updating profile", error);
